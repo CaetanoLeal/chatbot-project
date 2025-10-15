@@ -1,0 +1,41 @@
+[2025-09-30 19:43:10] [ERROR]: Erro ao processar webhook: Cannot read properties of undefined (reading '_data')
+[2025-09-30 19:43:27] [ERROR]: Erro ao processar webhook: Cannot read properties of undefined (reading '_data')
+[2025-09-30 19:49:01] [ERROR]: Erro ao salvar mensagem: relation "mensagens" does not exist
+[2025-09-30 19:49:01] [ERROR]: Erro ao processar webhook: relation "mensagens" does not exist
+[2025-09-30 19:53:27] [ERROR]: Erro ao salvar mensagem: relation "mensagens" does not exist
+[2025-09-30 19:53:27] [ERROR]: Erro ao processar webhook: relation "mensagens" does not exist
+[2025-09-30 19:55:19] [ERROR]: Erro ao salvar mensagem: relation "tbl_mensagem_whatsapp" does not exist
+[2025-09-30 19:55:19] [ERROR]: Erro ao processar webhook: relation "tbl_mensagem_whatsapp" does not exist
+[2025-09-30 19:58:31] [ERROR]: Erro ao salvar mensagem: relation "tbl_mensagem_whatsapp" does not exist
+[2025-09-30 19:58:31] [ERROR]: Erro ao processar webhook: relation "tbl_mensagem_whatsapp" does not exist
+[2025-09-30 19:59:42] [ERROR]: Erro ao salvar mensagem: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 19:59:42] [ERROR]: Erro ao processar webhook: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:04:05] [ERROR]: Erro ao salvar mensagem: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:04:05] [ERROR]: Erro ao processar webhook: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:16:43] [ERROR]: Erro ao salvar mensagem: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:16:43] [ERROR]: Erro ao processar webhook: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:25:00] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-09-30 20:25:22] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-09-30 20:28:56] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 17:53:08] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 18:08:19] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 18:09:51] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 18:47:20] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 18:47:41] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-06 19:24:45] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-06 19:49:30] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-07 19:30:02] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-07 20:24:06] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 17:41:09] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 17:53:32] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 18:43:04] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 18:49:03] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 19:08:35] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 19:13:45] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 20:00:48] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 18:44:52] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 19:13:23] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 19:36:12] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 19:41:30] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 20:05:29] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 20:27:09] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up

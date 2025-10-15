@@ -1,0 +1,88 @@
+version: '3.9'
+
+services:
+  db_chatbot:
+    image: postgres:15
+    container_name: db_chatbot
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: Server
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    networks:
+      - chatbot-network
+
+  chatbot:
+    build:
+      context: ./chatbot-erp
+      dockerfile: Dockerfile
+    container_name: chatbot-erp
+    environment:
+      - HOST_UID=1000
+      - HOST_GID=1000
+    volumes:
+      - ./chatbot-erp:/usr/src/app
+      - wwebjs_auth:/usr/src/app/.wwebjs_auth
+    ports:
+      - "3000:3000"
+    networks:
+      - chatbot-network
+    tty: true
+    depends_on:
+      - api_mensagem
+      - db_chatbot
+
+  api_mensagem:
+    build:
+      context: ./api_mensagem
+      dockerfile: Dockerfile
+    container_name: api_mensagem
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./api_mensagem:/app
+    working_dir: /app/src
+    command: node server.js
+    environment:
+      DB_HOST: db_chatbot
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: chatbot
+    networks:
+      - chatbot-network
+    depends_on:
+      - db_chatbot
+
+  telegram_bot:
+    build:
+      context: ./telegram-bot         # caminho da pasta do projeto do Telegram
+      dockerfile: Dockerfile
+    container_name: telegram-bot
+    restart: always
+    ports:
+      - "3002:3001"                   # mapeia porta interna 3001 do Telegram Bot para 3002 no host
+    volumes:
+      - ./telegram-bot:/app
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=db_chatbot
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=Server
+    networks:
+      - chatbot-network
+    depends_on:
+      - db_chatbot
+
+networks:
+  chatbot-network:
+    driver: bridge
+
+volumes:
+  wwebjs_auth:

@@ -1,0 +1,126 @@
+[2025-09-29 15:12:42] [INFO]: 🚀 Servidor rodando na porta 3000
+[2025-09-29 15:22:17] [INFO]: 🚀 Servidor rodando na porta 3000
+[2025-09-29 15:22:17] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Sep 29 2025 15:22:17 GMT-0300 (Brasilia Standard Time)
+[2025-09-29 15:22:39] [INFO]: 🚀 Servidor rodando na porta 3000
+[2025-09-29 15:22:39] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Sep 29 2025 15:22:39 GMT-0300 (Brasilia Standard Time)
+[2025-09-30 19:29:01] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-09-30 19:29:01] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Sep 30 2025 19:29:01 GMT+0000 (Coordinated Universal Time)
+[2025-09-30 19:33:39] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-09-30 19:33:39] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Sep 30 2025 19:33:39 GMT+0000 (Coordinated Universal Time)
+[2025-09-30 19:35:36] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-09-30 19:35:36] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Sep 30 2025 19:35:36 GMT+0000 (Coordinated Universal Time)
+[2025-09-30 19:38:57] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-09-30 19:38:57] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Sep 30 2025 19:38:57 GMT+0000 (Coordinated Universal Time)
+[2025-09-30 19:43:10] [ERROR]: Erro ao processar webhook: Cannot read properties of undefined (reading '_data')
+[2025-09-30 19:43:27] [ERROR]: Erro ao processar webhook: Cannot read properties of undefined (reading '_data')
+[2025-09-30 19:49:01] [ERROR]: Erro ao salvar mensagem: relation "mensagens" does not exist
+[2025-09-30 19:49:01] [ERROR]: Erro ao processar webhook: relation "mensagens" does not exist
+[2025-09-30 19:53:27] [ERROR]: Erro ao salvar mensagem: relation "mensagens" does not exist
+[2025-09-30 19:53:27] [ERROR]: Erro ao processar webhook: relation "mensagens" does not exist
+[2025-09-30 19:55:00] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-09-30 19:55:00] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Sep 30 2025 19:55:00 GMT+0000 (Coordinated Universal Time)
+[2025-09-30 19:55:19] [ERROR]: Erro ao salvar mensagem: relation "tbl_mensagem_whatsapp" does not exist
+[2025-09-30 19:55:19] [ERROR]: Erro ao processar webhook: relation "tbl_mensagem_whatsapp" does not exist
+[2025-09-30 19:58:31] [ERROR]: Erro ao salvar mensagem: relation "tbl_mensagem_whatsapp" does not exist
+[2025-09-30 19:58:31] [ERROR]: Erro ao processar webhook: relation "tbl_mensagem_whatsapp" does not exist
+[2025-09-30 19:59:42] [ERROR]: Erro ao salvar mensagem: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 19:59:42] [ERROR]: Erro ao processar webhook: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:03:44] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-09-30 20:03:44] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Sep 30 2025 20:03:44 GMT+0000 (Coordinated Universal Time)
+[2025-09-30 20:04:05] [ERROR]: Erro ao salvar mensagem: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:04:05] [ERROR]: Erro ao processar webhook: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:16:43] [ERROR]: Erro ao salvar mensagem: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:16:43] [ERROR]: Erro ao processar webhook: null value in column "id_mensagem" of relation "tbl_mensagem_whatsapp" violates not-null constraint
+[2025-09-30 20:25:00] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-09-30 20:25:00] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-09-30 20:25:22] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-09-30 20:25:22] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-09-30 20:28:56] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 16:41:49] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-01 16:41:49] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Oct 01 2025 16:41:49 GMT+0000 (Coordinated Universal Time)
+[2025-10-01 17:53:08] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 18:08:19] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 18:09:51] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 18:47:20] [ERROR]: Erro ao processar webhook: uuid_generate_v4 is not defined
+[2025-10-01 18:47:41] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-01 18:47:41] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-01 18:48:03] [INFO]: Mensagem salva no banco: id_mensagem=a44802d2-83d1-448d-b068-733fb2151376
+[2025-10-01 18:48:03] [INFO]: Mensagem registrada com sucesso: {"body":"","gn_json":"{\"evento\":\"qr_code_gerado\",\"nome\":\"caeteste\",\"token\":\"0149cc0a-c80a-4f47-ad71-abf3dcb2f636\",\"qr_raw\":\"2@HfVplDzFoOFQBZi5HY0M/1Qpj4rfexKsVF5QNKLPNQXdw84AgcVv9L0GwGT1u0Cv5Y9g/j+ZKc55VkplEhdZY8pDQoeLIEIsBLM=,8yeMXn9fnDBEOuyrQwQFwG6JqLGFTHGl72OWhxgJ8gk=,dBfbfMqfwWbAZtFapAegTw1VcD07QiVucOKDvPNi40c=,Be1VfPyWuRXrGpUKB5rrJkgKdAqlAvLDNjR+bGhHyns=,1\"}"}
+[2025-10-01 18:59:19] [INFO]: Mensagem salva no banco: id_mensagem=a242c78d-3b43-47b4-b206-70f008cf446d
+[2025-10-01 18:59:19] [INFO]: Mensagem registrada com sucesso: {"body":"","gn_json":"{\"evento\":\"qr_code_gerado\",\"nome\":\"caeteste\",\"token\":\"24572c42-5dd1-4493-b140-b8c4f8823225\",\"qr_raw\":\"2@em3in1l8qa6BOuTdX8IM+M+J/+GDohvYzg5RG/N+gi3xEjE2rcOT1C5WaMJidYT2p/xOYRr4UPJhTW4ne1g0+Fmtwym8rDVwxJ4=,BdK+ZN4Y8cqT6AMYZDOaYHqRmsJ3n/ozemo7kZAWUXQ=,jDo806ecjEFSBGFJmy07LznrZfEamq74qLZaWGUrXT4=,P9Pc2MMjPj+9EfgW3eeYVbsBSPmKFPssA9cwS337WG4=,1\"}"}
+[2025-10-01 18:59:52] [INFO]: Mensagem salva no banco: id_mensagem=5f7bae99-9858-4494-a269-c68b0f126299
+[2025-10-01 18:59:52] [INFO]: Mensagem registrada com sucesso: {"body":"","gn_json":"{\"evento\":\"autenticado\",\"nome\":\"caeteste\",\"token\":\"24572c42-5dd1-4493-b140-b8c4f8823225\"}"}
+[2025-10-01 19:07:51] [INFO]: Mensagem salva no banco: id_mensagem=5c552088-cc0e-4382-b547-07156a9f080b
+[2025-10-01 19:07:51] [INFO]: Mensagem registrada com sucesso: {"body":"","gn_json":"{\"evento\":\"qr_code_gerado\",\"nome\":\"caeteste\",\"token\":\"f7eb1565-07ed-4b3b-8161-00e6b652a084\",\"qr_raw\":\"2@iK2W/Moh9grb/bJQRPyO1cj5mxs+bXkKbvRTrRXlXyuYCSXl2EH9vjfB4GED0KNOHergzka5CyhNC50eiDEmj8btxEiiwgKnYdQ=,Q4ld2H5w7ILGX+l6cPkj8vA815Dp75vaY1T6dUJK9wg=,XUfqudVNhQFKePXiQfEHEip0NmUuvlor0HB8vmr9ADU=,/Jhx0IGcIKkoK3KriwfzY5QEFIhrJIfJzYa179oJWP8=,1\"}"}
+[2025-10-01 19:08:15] [INFO]: Mensagem salva no banco: id_mensagem=f0e98b4a-ccb8-424b-a3f0-3837fc5e3b23
+[2025-10-01 19:08:15] [INFO]: Mensagem registrada com sucesso: {"body":"","gn_json":"{\"evento\":\"autenticado\",\"nome\":\"caeteste\",\"token\":\"f7eb1565-07ed-4b3b-8161-00e6b652a084\"}"}
+[2025-10-01 19:09:15] [INFO]: Mensagem salva no banco: id_mensagem=0ca5c3cc-5866-4632-bfeb-9a17ea00aee5
+[2025-10-01 19:09:15] [INFO]: Mensagem registrada com sucesso: {"body":"","gn_json":"{\"evento\":\"qr_code_gerado\",\"nome\":\"caeteste\",\"token\":\"417dd21d-3789-474f-ae98-6a0c06cbc62b\",\"qr_raw\":\"2@NnG5EZspauNhEujDKNl3YJ+hffEQql28MzBZhB+0cWxUdI98Ls1JHpIJAKjUXMUs+jZLDxXpMytwfxWltiLgZhqVShoVkMoGwiM=,Yu5LdmnSGyVJBE+x8JbuVPMqEIpJfwXjgsnOvawzNC8=,uzsDzMqjzJxlJywm1anmrrH3hAXZYq8pNuIO1HBxq18=,Bj2bFy4rYDH4StDTqgBaUZjnSpzQa/99T70uGKfNAlE=,1\"}"}
+[2025-10-02 18:54:19] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-02 18:54:19] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 02 2025 18:54:19 GMT+0000 (Coordinated Universal Time)
+[2025-10-02 18:56:16] [INFO]: Mensagem salva no banco: id_mensagem=f546251c-87a9-4042-b18a-0b0f21d793ed
+[2025-10-02 18:56:16] [INFO]: Mensagem registrada com sucesso: {"body":"","gn_json":"{\"evento\":\"qr_code_gerado\",\"nome\":\"caeteste\",\"token\":\"75d610e3-d7df-497d-90a0-e67aceeba60d\",\"qr_raw\":\"2@+jv69E7CI9TXQ3a/hwmQdsyBNibX7H9LQ6LVRLA5yUeG1ZnHog7a+Up+IfATd02bZ+1Y3jdo812IxDqf5PHP7aDr7fAM1qD9KMk=,WRUSmmcFSvv/rQYKr8RE3Q1xFjymf7ubmL6VcldminQ=,iUl2JvtuGcT5du39XEaPlEF5DLmniWDrJO5+8Wj2/A4=,vgI2KzNeIrRQ0Gcr4A+hIkTwalfyTtTady3munlUkjg=,1\"}"}
+[2025-10-02 19:18:53] [INFO]: Mensagem salva no banco: id_mensagem=fe161969-6b9d-486c-9a7c-80c4cdbe77c0
+[2025-10-02 19:18:53] [INFO]: Mensagem registrada com sucesso: {"body":"","gn_json":"{\"evento\":\"qr_code_gerado\",\"nome\":\"caeteste\",\"token\":\"90504a7e-50cf-4e75-b1ed-be5dc3868c4b\",\"qr_raw\":\"2@SC+CP0xQgtfomdC5mtEFo/njSi+CbkbZaSz7rs4nuCHebQ4Yv+VqkcYO3OQLrOlLcDMdguBcCE7E8Go/lgd8ybXdhZqM7rwh/+8=,wTN8HsdG80e9BJbNZNVq2IaJzvOAZPR8pDARrokm4DI=,LmEZbREgFmJh0/4o8gofYu/agNbDOEHULE3N9TXhcxQ=,Ghrs6Km9N3lxHBFUK9EC8BjYMOUtKc4NksqkwhWweGQ=,1\"}"}
+[2025-10-02 19:39:09] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-02 19:39:09] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 02 2025 19:39:09 GMT+0000 (Coordinated Universal Time)
+[2025-10-02 19:55:27] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-02 19:55:27] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 02 2025 19:55:27 GMT+0000 (Coordinated Universal Time)
+[2025-10-02 19:59:47] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-02 19:59:47] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 02 2025 19:59:47 GMT+0000 (Coordinated Universal Time)
+[2025-10-06 19:00:33] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-06 19:00:33] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Oct 06 2025 19:00:33 GMT+0000 (Coordinated Universal Time)
+[2025-10-06 19:21:04] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-06 19:21:04] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Oct 06 2025 19:21:04 GMT+0000 (Coordinated Universal Time)
+[2025-10-06 19:24:45] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-06 19:24:45] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-06 19:49:29] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-06 19:49:30] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-06 20:02:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-06 20:02:03] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Oct 06 2025 20:02:03 GMT+0000 (Coordinated Universal Time)
+[2025-10-07 19:01:56] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-07 19:01:56] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Oct 07 2025 19:01:56 GMT+0000 (Coordinated Universal Time)
+[2025-10-07 19:30:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-07 19:30:02] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-07 20:24:06] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-07 20:24:06] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 17:38:13] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 17:38:13] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Oct 08 2025 17:38:13 GMT+0000 (Coordinated Universal Time)
+[2025-10-08 17:41:09] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 17:41:09] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 17:44:38] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 17:44:38] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Oct 08 2025 17:44:38 GMT+0000 (Coordinated Universal Time)
+[2025-10-08 17:53:31] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 17:53:32] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 18:43:04] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 18:43:04] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 18:49:03] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 18:49:03] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 19:08:35] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 19:08:35] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 19:13:45] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 19:13:45] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 19:34:33] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 19:34:33] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Oct 08 2025 19:34:33 GMT+0000 (Coordinated Universal Time)
+[2025-10-08 20:00:47] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 20:00:48] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-08 20:04:49] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-08 20:04:49] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Oct 08 2025 20:04:49 GMT+0000 (Coordinated Universal Time)
+[2025-10-15 17:30:54] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-15 17:30:54] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Oct 15 2025 17:30:54 GMT+0000 (Coordinated Universal Time)
+[2025-10-15 18:44:52] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-15 18:44:52] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 19:13:23] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-15 19:13:23] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 19:36:12] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-15 19:36:12] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 19:41:30] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-15 19:41:30] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 20:05:29] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-15 20:05:29] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-15 20:11:27] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-15 20:11:28] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Oct 15 2025 20:11:28 GMT+0000 (Coordinated Universal Time)
+[2025-10-15 20:12:45] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-15 20:12:45] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Oct 15 2025 20:12:45 GMT+0000 (Coordinated Universal Time)
+[2025-10-15 20:27:09] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-15 20:27:09] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
