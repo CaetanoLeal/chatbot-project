@@ -124,3 +124,61 @@
 [2025-10-15 20:12:45] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Oct 15 2025 20:12:45 GMT+0000 (Coordinated Universal Time)
 [2025-10-15 20:27:09] [INFO]: 🚀 Servidor rodando na porta 3001
 [2025-10-15 20:27:09] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-16 16:39:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-16 16:39:02] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 16 2025 16:39:02 GMT+0000 (Coordinated Universal Time)
+[2025-10-16 16:56:18] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-16 16:56:18] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 16 2025 16:56:18 GMT+0000 (Coordinated Universal Time)
+[2025-10-16 18:34:58] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-16 18:34:58] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 16 2025 18:34:58 GMT+0000 (Coordinated Universal Time)
+[2025-10-16 19:08:58] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-16 19:08:58] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 16 2025 19:08:58 GMT+0000 (Coordinated Universal Time)
+[2025-10-16 19:13:59] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-16 19:13:59] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-16 19:14:33] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:19:35] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:19:42] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:20:39] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:28:39] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-16 19:28:39] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-16 19:29:01] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:29:12] [INFO]: Mensagem Telegram salva: id=1053
+[2025-10-16 19:29:12] [INFO]: 📨 Mensagem Telegram registrada com sucesso
+[2025-10-16 19:35:11] [INFO]: Mensagem Telegram salva: id=371
+[2025-10-16 19:35:11] [INFO]: 📨 Mensagem Telegram registrada com sucesso
+[2025-10-16 19:46:37] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:47:14] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:51:03] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:51:06] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:51:34] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:52:56] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:53:22] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:55:42] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:56:03] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:56:29] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:58:44] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:58:44] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:58:53] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:58:53] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:59:00] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:59:04] [INFO]: Mensagem Telegram salva: id=372
+[2025-10-16 19:59:04] [INFO]: 📨 Mensagem Telegram registrada com sucesso
+[2025-10-16 19:59:17] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 19:59:29] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 20:00:07] [ERROR]: Erro ao salvar mensagem: invalid input syntax for type uuid: "ABCD1234"
+[2025-10-16 20:00:07] [ERROR]: Erro ao processar webhook: invalid input syntax for type uuid: "ABCD1234"
+[2025-10-16 20:00:29] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 20:02:08] [INFO]: Mensagem Telegram salva: id=373
+[2025-10-16 20:02:08] [INFO]: 📨 Mensagem Telegram registrada com sucesso
+[2025-10-16 20:02:44] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 20:02:59] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 20:03:22] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 20:04:09] [ERROR]: Erro ao salvar mensagem: invalid input syntax for type uuid: "TESTE1234"
+[2025-10-16 20:04:09] [ERROR]: Erro ao processar webhook: invalid input syntax for type uuid: "TESTE1234"
+[2025-10-16 20:04:52] [INFO]: Mensagem salva no banco: id_mensagem=550e8400-e29b-41d4-a716-446655440000
+[2025-10-16 20:04:52] [INFO]: 💬 Mensagem WhatsApp registrada com sucesso
+[2025-10-16 20:06:15] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 20:06:30] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 20:08:25] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-16 20:08:25] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-16 20:09:42] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-16 20:10:12] [WARN]: ⚠️ Mensagem recebida com formato desconhecido

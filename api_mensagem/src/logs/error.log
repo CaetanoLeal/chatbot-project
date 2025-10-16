@@ -39,3 +39,10 @@
 [2025-10-15 19:41:30] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2025-10-15 20:05:29] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2025-10-15 20:27:09] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-16 19:13:59] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-16 19:28:39] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-16 20:00:07] [ERROR]: Erro ao salvar mensagem: invalid input syntax for type uuid: "ABCD1234"
+[2025-10-16 20:00:07] [ERROR]: Erro ao processar webhook: invalid input syntax for type uuid: "ABCD1234"
+[2025-10-16 20:04:09] [ERROR]: Erro ao salvar mensagem: invalid input syntax for type uuid: "TESTE1234"
+[2025-10-16 20:04:09] [ERROR]: Erro ao processar webhook: invalid input syntax for type uuid: "TESTE1234"
+[2025-10-16 20:08:25] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
