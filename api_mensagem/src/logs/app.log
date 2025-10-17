@@ -182,3 +182,14 @@
 [2025-10-16 20:08:25] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2025-10-16 20:09:42] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
 [2025-10-16 20:10:12] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-17 17:45:03] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-17 17:45:04] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Oct 17 2025 17:45:04 GMT+0000 (Coordinated Universal Time)
+[2025-10-17 17:47:53] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-17 17:47:53] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-17 17:49:05] [WARN]: ⚠️ Mensagem recebida com formato desconhecido
+[2025-10-17 18:55:20] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-17 18:55:20] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-17 19:03:18] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-17 19:03:18] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Oct 17 2025 19:03:18 GMT+0000 (Coordinated Universal Time)
+[2025-10-17 19:41:20] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-17 19:41:20] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
