@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   db_chatbot:
@@ -15,26 +15,6 @@ services:
       - ./data/db:/var/lib/postgresql/data
     networks:
       - chatbot-network
-
-  chatbot:
-    build:
-      context: ./chatbot-erp
-      dockerfile: Dockerfile
-    container_name: chatbot-erp
-    environment:
-      - HOST_UID=1000
-      - HOST_GID=1000
-    volumes:
-      - ./chatbot-erp:/usr/src/app
-      - wwebjs_auth:/usr/src/app/.wwebjs_auth
-    ports:
-      - "3000:3000"
-    networks:
-      - chatbot-network
-    tty: true
-    depends_on:
-      - api_mensagem
-      - db_chatbot
 
   api_mensagem:
     build:
@@ -58,23 +38,47 @@ services:
     depends_on:
       - db_chatbot
 
+  chatbot-erp:
+    build:
+      context: ./chatbot-erp
+      dockerfile: Dockerfile
+    container_name: chatbot-erp
+    restart: always
+    environment:
+      NODE_ENV: production
+      CHROMIUM_PATH: /usr/bin/chromium
+      HOST_UID: 1000
+      HOST_GID: 1000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./chatbot-erp:/usr/src/app
+      - wwebjs_auth:/usr/src/app/.wwebjs_auth
+    networks:
+      - chatbot-network
+    tty: true
+    shm_size: 1gb # 🚀 evita travamento do Chrome
+    depends_on:
+      - api_mensagem
+      - db_chatbot
+
   telegram_bot:
     build:
-      context: ./telegram-bot         # caminho da pasta do projeto do Telegram
+      context: ./telegram-bot
       dockerfile: Dockerfile
     container_name: telegram-bot
     restart: always
     ports:
-      - "3002:3001"                   # mapeia porta interna 3001 do Telegram Bot para 3002 no host
+      - "3002:3001"
     volumes:
       - ./telegram-bot:/app
     environment:
-      - NODE_ENV=production
-      - DB_HOST=db_chatbot
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_NAME=Server
+      NODE_ENV: production
+      DB_HOST: db_chatbot
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: Server
     networks:
       - chatbot-network
     depends_on:
