@@ -258,3 +258,15 @@
 [2025-10-22 19:58:31] [INFO]: 📨 Mensagem Telegram registrada com sucesso
 [2025-10-22 20:15:39] [INFO]: 🚀 Servidor rodando na porta 3001
 [2025-10-22 20:15:39] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-23 17:07:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-23 17:07:02] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 23 2025 17:07:02 GMT+0000 (Coordinated Universal Time)
+[2025-10-23 18:30:10] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-23 18:30:10] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Oct 23 2025 18:30:10 GMT+0000 (Coordinated Universal Time)
+[2025-10-23 19:17:53] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-23 19:17:53] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-23 19:33:05] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-23 19:33:05] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-23 19:43:13] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-23 19:43:13] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-10-23 19:46:38] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-10-23 19:46:38] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up

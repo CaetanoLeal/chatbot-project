@@ -1,3 +1,4 @@
+//server.js
 const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
@@ -13,9 +14,9 @@ app.use(bodyParser.json());
 
 // Função auxiliar para detectar a origem da mensagem
 function detectarOrigemMensagem(msg) {
-  if (msg?._data?.id?._serialized) {
+  if (msg?.message?.from || msg?._data?.id?._serialized) {
     return "whatsapp";
-  } else if (msg?.className === "Message" && msg?.fromId?.className === "PeerUser") {
+  } else if (msg?.className === "Message" || msg?.message_id) {
     return "telegram";
   } else {
     return "desconhecida";
