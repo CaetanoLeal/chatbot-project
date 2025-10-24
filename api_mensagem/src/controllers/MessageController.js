@@ -1,4 +1,4 @@
-//MessageController.js
+// src/controllers/MessageController.js
 const MessageModel = require("../models/MessageModel");
 const logger = require("../logger");
  // ajuste o caminho conforme seu projeto

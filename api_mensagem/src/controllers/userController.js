@@ -1,4 +1,4 @@
-//userController.js
+// src/controllers/userController.js
 const User = require("../models/userModel");
 const logger = require("../logger");
 // ajuste o caminho conforme seu projeto

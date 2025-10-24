@@ -1,4 +1,4 @@
-//MessageModel.js
+// src/models/MessageModel.js
 const pool = require("../config/db");
 const logger = require("../../logger"); // sobe duas pastas: src/models -> src -> raiz
 
@@ -12,37 +12,37 @@ const MessageModel = {
         from_me, remote, id_interno, serialized_id,
         body, type, timestamp, client_received_ts,
         ack, from_number, to_number, author,
-        notify_name, is_starred, json_all_data, created_at
+        notify_name, is_starred, created_at
       ) VALUES (
         COALESCE($1, uuid_generate_v4()), $2, $3,
         $4, $5, $6, $7,
         $8, $9, $10, $11,
         $12, $13, $14, $15,
-        $16, $17, $18, NOW()
+        $16, $17, NOW()
       )
       ON CONFLICT (id_mensagem) DO NOTHING
       RETURNING *;
     `;
 
+
     const values = [
-      msg.id?._serialized || null,
-      msg.id?.remote || null,
+      msg._data?.id?._serialized || null,
+      msg._data?.id?.remote || null,
       null,
-      msg.fromMe || false,
-      msg.id?.remote || null,
-      msg.id?.id || null,
-      msg.id?._serialized || null,
-      msg.body || null,
-      msg.type || null,
-      msg.timestamp || null,
-      msg.timestamp || null,
-      msg.ack || null,
-      msg.from || null,
-      msg.to || null,
-      msg.author || null,
-      msg.notifyName || null,
-      msg.isStarred || false,
-      JSON.stringify(msg) // salva o objeto inteiro como JSON
+      msg._data?.id?.fromMe || false,
+      msg._data?.id?.remote || null,
+      msg._data?.id?.id || null,
+      msg._data?.id?._serialized || null,
+      msg._data?.body || null,
+      msg._data?.type || null,
+      msg._data?.t || null,
+      msg._data?.clientUrl || null,
+      msg._data?.ack || null,
+      msg._data?.from || null,
+      msg._data?.to || null,
+      msg._data?.author || null,
+      msg._data?.notifyName || null,
+      msg._data?.isStarred || false
     ];
 
     try {
