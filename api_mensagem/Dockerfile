@@ -7,9 +7,9 @@ WORKDIR /app
 # Copia os arquivos de dependências
 COPY package*.json ./
 
-# Instala as dependências
-RUN npm install --production
-
+# Instala TODAS as dependências (não apenas produção)
+RUN npm install
+RUN npm install uuid@8
 # Copia o restante do código
 COPY . .
 
@@ -17,5 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # Comando para iniciar a aplicação
-
 CMD ["node", "src/server.js"]
