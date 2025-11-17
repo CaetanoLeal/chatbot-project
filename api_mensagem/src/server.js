@@ -76,37 +76,27 @@ app.post("/webhook", async (req, res) => {
         let vIdUtilizador = require('uuid').v4();
         let vIdFunil = 'e1e4748f-aa5b-4981-8694-81dc5aabde9c';
 
-        db.query(
-          "INSERT INTO tbl_utilizador(id_utilizador) VALUES ($1)",
-          [vIdUtilizador]
-        );
-        try {
-          const vIsUtilizador = await db.query(
-            "SELECT id_utilizador FROM tbl_utilizador WHERE cd_telegram = $1",
-            [vIdRemetente]
-          );
+        const rUser = await db.query(
+          "SELECT id_utilizador FROM tbl_utilizador WHERE cd_telegram = $1",
+          [vIdRemetente]);
 
-          if (vIsUtilizador.rows.length > 0) {
-            const vIdUtilizador = vIsUtilizador.rows[0].id_utilizador;
-            logger.info(`✅ Utilizador já existente na tbl_utilizador (${vIdUtilizador})`);
+          if (rUser.rows.length > 0) {
+            // Já existe
+            vIdUtilizador = rUser.rows[0].id_utilizador;
+            logger.info(`✅ Utilizador já existente (${vIdUtilizador})`);
           } else {
-            const vIdUtilizador = '' + require('uuid').v4();
+            // Não existe → cadastra
+            vIdUtilizador = require("uuid").v4();
+
             await db.query(
-              `INSERT INTO tbl_utilizador (id_utilizador, cd_telegram) VALUES ($1, $2)`,
+              `INSERT INTO tbl_utilizador (id_utilizador, cd_telegram)
+              VALUES ($1, $2)`,
               [vIdUtilizador, vIdRemetente]
             );
-            logger.info(`🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = ${vIdUtilizador}`);
-          }
-        } catch (err) {
-          logger.error(`❌ Erro ao verificar/cadastrar tbl_utilizador: ${err.message}`);
-        }
-        
-        const vIsFunilUtilizador = await db.query(
-          "SELECT id_funil_utilizador FROM tbl_funil_utilizador WHERE id_utilizador = $1",
-          [vIdUtilizador]
-      );
 
-      
+            logger.info(`🆕 Novo utilizador cadastrado (${vIdUtilizador})`);
+          }
+   
       // Etapa 2: Verificar/Cadastrar na tbl_funil_utilizador
       let vCdMensagemCadastro = 0;
       let vCdMensagemChatbot = 0;
@@ -145,31 +135,34 @@ app.post("/webhook", async (req, res) => {
             [vCdMensagemCadastro]
           );
           const vMensagemTexto = vMensagemCadastro.rows[0]?.ds_mensagem;
-          const vCdMensagemDestino = 0;
           const userId = vIdRemetente;
           // Recuperar botões
-          if (vCdMensagemDestino === 0) {
-            const vbotao = await db.query(
-              "SELECT cd_botao, ds_botao FROM tbl_funil_cadastro_botao WHERE id_funil_cadastro = (SELECT id_funil_cadastro FROM tbl_funil_cadastro WHERE id_funil = $1) ORDER BY cd_botao",
-              [vIdFunil]
-            );
-            let vMensagemTexto = '';
+            if (vIsUtilizador.rows.length > 0) {
+              const vbotao = await db.query(
+                "SELECT cd_botao, ds_botao FROM tbl_funil_cadastro_botao WHERE id_funil_cadastro = (SELECT id_funil_cadastro FROM tbl_funil_cadastro WHERE id_funil = $1) ORDER BY cd_botao",
+                [vIdFunil]
+              );
 
-            if (vbotao.rows.length > 0) {
-              vMensagemTexto += "\n\n *Escolha uma opção:* \n";
-              for (const botao of vbotao.rows) {
-                vMensagemTexto += `\n ${botao.cd_botao} - ${botao.ds_botao}`;
-              }
-            } else {
-              vMensagemTexto += "\n\n(Nenhum botão configurado para este funil.)";
+              const vMensagemCadastro = await db.query(
+                "SELECT ds_mensagem FROM tbl_funil_cadastro WHERE cd_mensagem = $1",
+                [vCdMensagemCadastro]
+              );
+
+              const textoMensagem = vMensagemCadastro.rows[0]?.ds_mensagem || "Escolha uma opção:";
+
+              // 🔹 Montar teclado inline
+              const botoes = vbotao.rows.map(b => [
+                { text: b.ds_botao, callback_data: String(b.cd_botao) }
+              ]);
+
+              await axios.post("http://telegram-bot:3002/send-message", {
+                nome: "teste",
+                userId,
+                message: textoMensagem,
+                buttons: vbotao.rows.map(b => ({ text: b.ds_botao }))
+              });
             }
-
-            await axios.post("http://telegram-bot:3002/send-message", {
-              nome: "teste",
-              userId,
-              message: vMensagemTexto,
-            });
-          } else {
+          else {
             // Enviar mensagem e verificar aguardar resposta
             vStatus = 'AGUARDAR_RESPOSTA';
             await axios.post("http://telegram-bot:3002/send-message", {

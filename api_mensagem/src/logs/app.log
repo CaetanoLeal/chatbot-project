@@ -13855,3 +13855,1205 @@ Se você não solicitou esse código ao tentar entrar em outro dispositivo, bast
   "data": "2025-11-10T20:14:49.670Z"
 }
 [2025-11-10 20:14:49] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"18029097","mensagem":"\n\n *Escolha uma opção:* \n\n 1 - opcao 1\n 2 - opcao 2\n 3 - opcao 3","data":"2025-11-10T20:14:49.670Z"}
+[2025-11-11 16:23:05] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-11 16:23:05] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-11 16:23:05] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Nov 11 2025 16:23:05 GMT+0000 (Coordinated Universal Time)
+[2025-11-11 16:23:05] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-11 18:01:55] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-11 18:01:55] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-11 18:01:55] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-11-11 18:01:55] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-11-11 18:03:11] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "nova_instancia",
+  "nome": "teste",
+  "status": "conectado",
+  "stringSession": "1AQAOMTQ5LjE1NC4xNzUuNTYBu3+kbKDRNgKGBCz2Cn8Mop4hfB3uggYlkxfQZXAqmVMndSYqrJKgkJYzMywRglv4ajxM24H1aBUFEc7KWMsZy20IyVOlDlK63ju6dOoIhdwIwUaY8TYGLKwBxfw9SJevOFTCESKwZ8bjVHYZeLqN11u+5Ko9L5QFTVInPHNudEbDV73huiRfXQZgzO2zeZueEgGhfRcQqSKPtIut1KicDP0s0ofcDmzUVwTCp4CFHpb4zL6kArhKiiOJeak0OVLorubzBkietxdJK993jFdvnDK43wxbxJTbKOQnEU5uHwt5YUhgov8CsdYAkioIo0yIyruaNRT/S7IYuIMyxzXt1Pg="
+}
+[2025-11-11 18:03:11] [WARN]: ⚠️ Formato desconhecido: {"acao":"nova_instancia","nome":"teste","status":"conectado","stringSession":"1AQAOMTQ5LjE1NC4xNzUuNTYBu3+kbKDRNgKGBCz2Cn8Mop4hfB3uggYlkxfQZXAqmVMndSYqrJKgkJYzMywRglv4ajxM24H1aBUFEc7KWMsZy20IyVOlDlK63ju6dOoIhdwIwUaY8TYGLKwBxfw9SJevOFTCESKwZ8bjVHYZeLqN11u+5Ko9L5QFTVInPHNudEbDV73huiRfXQZgzO2zeZueEgGhfRcQqSKPtIut1KicDP0s0ofcDmzUVwTCp4CFHpb4zL6kArhKiiOJeak0OVLorubzBkietxdJK993jFdvnDK43wxbxJTbKOQnEU5uHwt5YUhgov8CsdYAkioIo0yIyruaNRT/S7IYuIMyxzXt1Pg="}
+[2025-11-11 18:03:51] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1516,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "salve",
+  "date": 1762884231,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 18:03:51] [INFO]: Mensagem Telegram salva: id=1516
+[2025-11-11 18:03:51] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "salve"
+[2025-11-11 18:03:51] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 18:03:51] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = 4e6d4f49-6870-47e6-8ad7-d12968c87ca7
+[2025-11-11 18:03:51] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 18:14:16] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": true,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1517,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "5423006949",
+    "className": "PeerUser"
+  },
+  "message": "teste",
+  "date": 1762884856,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 18:14:16] [INFO]: Mensagem Telegram salva: id=1517
+[2025-11-11 18:14:17] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 5423006949 | Mensagem: "teste"
+[2025-11-11 18:14:17] [INFO]: Mensagem ignorada: mensagem enviada pelo próprio bot.
+[2025-11-11 18:14:33] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1518,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "AINNNNNNNNNNN",
+  "date": 1762884873,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 18:14:33] [INFO]: Mensagem Telegram salva: id=1518
+[2025-11-11 18:14:33] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "AINNNNNNNNNNN"
+[2025-11-11 18:14:33] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 18:14:33] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = da6c3e36-0f7e-4598-ac67-8b3d588c4d83
+[2025-11-11 18:14:33] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 18:20:48] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591980625187",
+  "mensagem": "Escolha uma opção:",
+  "botoes": [
+    {
+      "text": "Sim"
+    },
+    {
+      "text": "Não"
+    },
+    {
+      "text": "Talvez"
+    }
+  ],
+  "data": "2025-11-11T18:20:48.413Z"
+}
+[2025-11-11 18:20:48] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591980625187","mensagem":"Escolha uma opção:","botoes":[{"text":"Sim"},{"text":"Não"},{"text":"Talvez"}],"data":"2025-11-11T18:20:48.413Z"}
+[2025-11-11 18:23:34] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591980625187",
+  "mensagem": "Escolha uma opção:",
+  "botoes": null,
+  "data": "2025-11-11T18:23:34.809Z"
+}
+[2025-11-11 18:23:34] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591980625187","mensagem":"Escolha uma opção:","botoes":null,"data":"2025-11-11T18:23:34.809Z"}
+[2025-11-11 18:46:41] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591988219466",
+  "mensagem": "Escolha uma opção:",
+  "botoes": null,
+  "data": "2025-11-11T18:46:41.977Z"
+}
+[2025-11-11 18:46:41] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591988219466","mensagem":"Escolha uma opção:","botoes":null,"data":"2025-11-11T18:46:41.977Z"}
+[2025-11-11 18:54:41] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-11 18:54:41] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-11 18:54:41] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-11-11 18:54:41] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-11-11 18:55:26] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "nova_instancia",
+  "nome": "teste",
+  "status": "conectado",
+  "stringSession": "1AQAOMTQ5LjE1NC4xNzUuNTQBu6+Ig1iysqgYucbvfbzZSeSyyoLiEddXSOP2gsJNJVBm2tRveWaPQaU5Kb7v7Z54Ma2Na7Akm/fk5gvjZYSe0i2nIsiNCqGw1SZNMcTqRHh7rTN0v2EGe4Tuyce7DDRpu+3ofx2GETM5kFZ9eoROs518Rb7Ca61C1Lrpx7Kge4x3apPuFBiubMASE88DZsHIcQsNnZvVbOiobaw17RkszBkWfTQg7IwKM8xWbctCkgmGXUCDlEun0m+arIiVk9RxfdkeLJ3sdk5I3wdP1TeX7urLvG31Jj35Lr5vhnh3dIYO5q5CcCBpL5qa4VwUpZYtWPqvxjjhJsmqc8IEx6z0png="
+}
+[2025-11-11 18:55:26] [WARN]: ⚠️ Formato desconhecido: {"acao":"nova_instancia","nome":"teste","status":"conectado","stringSession":"1AQAOMTQ5LjE1NC4xNzUuNTQBu6+Ig1iysqgYucbvfbzZSeSyyoLiEddXSOP2gsJNJVBm2tRveWaPQaU5Kb7v7Z54Ma2Na7Akm/fk5gvjZYSe0i2nIsiNCqGw1SZNMcTqRHh7rTN0v2EGe4Tuyce7DDRpu+3ofx2GETM5kFZ9eoROs518Rb7Ca61C1Lrpx7Kge4x3apPuFBiubMASE88DZsHIcQsNnZvVbOiobaw17RkszBkWfTQg7IwKM8xWbctCkgmGXUCDlEun0m+arIiVk9RxfdkeLJ3sdk5I3wdP1TeX7urLvG31Jj35Lr5vhnh3dIYO5q5CcCBpL5qa4VwUpZYtWPqvxjjhJsmqc8IEx6z0png="}
+[2025-11-11 18:55:42] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591988219466",
+  "mensagem": "Escolha uma opção:",
+  "botoes": null,
+  "data": "2025-11-11T18:55:42.169Z"
+}
+[2025-11-11 18:55:42] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591988219466","mensagem":"Escolha uma opção:","botoes":null,"data":"2025-11-11T18:55:42.169Z"}
+[2025-11-11 18:55:51] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591988219466",
+  "mensagem": "Escolha uma opção:",
+  "botoes": null,
+  "data": "2025-11-11T18:55:51.575Z"
+}
+[2025-11-11 18:55:51] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591988219466","mensagem":"Escolha uma opção:","botoes":null,"data":"2025-11-11T18:55:51.575Z"}
+[2025-11-11 18:55:55] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591988219466",
+  "mensagem": "Escolha uma opção:",
+  "botoes": null,
+  "data": "2025-11-11T18:55:55.623Z"
+}
+[2025-11-11 18:55:55] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591988219466","mensagem":"Escolha uma opção:","botoes":null,"data":"2025-11-11T18:55:55.623Z"}
+[2025-11-11 18:56:11] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "1415377944",
+  "mensagem": "teste",
+  "botoes": null,
+  "data": "2025-11-11T18:56:11.877Z"
+}
+[2025-11-11 18:56:11] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"1415377944","mensagem":"teste","botoes":null,"data":"2025-11-11T18:56:11.877Z"}
+[2025-11-11 18:57:32] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "flags": 18048,
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "post": true,
+  "fromScheduled": false,
+  "legacy": false,
+  "editHide": false,
+  "pinned": false,
+  "noforwards": false,
+  "invertMedia": false,
+  "flags2": 0,
+  "offline": false,
+  "videoProcessingPending": false,
+  "id": 14877,
+  "fromId": null,
+  "fromBoostsApplied": null,
+  "peerId": {
+    "channelId": "1748245892",
+    "className": "PeerChannel"
+  },
+  "savedPeerId": null,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "viaBusinessBotId": null,
+  "replyTo": null,
+  "date": 1762887446,
+  "message": "ACERTEI ONTEM E HOJE VAMOS POR MAIS UM BINGO NA NBA!\n\nPEGA E CHAMA 🔥🔥🔥\n\nBilhete pronto",
+  "media": {
+    "flags": 1,
+    "spoiler": false,
+    "photo": {
+      "flags": 0,
+      "hasStickers": false,
+      "id": "4942969310422960990",
+      "accessHash": "-2543277343825990588",
+      "fileReference": {
+        "type": "Buffer",
+        "data": [
+          2,
+          104,
+          52,
+          29,
+          132,
+          0,
+          0,
+          58,
+          29,
+          105,
+          19,
+          135,
+          22,
+          80,
+          168,
+          128,
+          100,
+          193,
+          25,
+          75,
+          255,
+          73,
+          122,
+          170,
+          165,
+          201,
+          151,
+          185,
+          85
+        ]
+      },
+      "date": 1762887446,
+      "sizes": [
+        {
+          "type": "i",
+          "bytes": {
+            "type": "Buffer",
+            "data": [
+              1,
+              15,
+              40,
+              214,
+              40,
+              51,
+              252,
+              95,
+              157,
+              46,
+              223,
+              173,
+              27,
+              136,
+              63,
+              116,
+              211,
+              168,
+              1,
+              184,
+              250,
+              209,
+              183,
+              62,
+              180,
+              185,
+              57,
+              233,
+              65,
+              56,
+              25,
+              160,
+              4,
+              8,
+              7,
+              115,
+              69,
+              0,
+              156,
+              224,
+              131,
+              69,
+              0,
+              127
+            ]
+          },
+          "className": "PhotoStrippedSize"
+        },
+        {
+          "type": "m",
+          "w": 320,
+          "h": 122,
+          "size": 6011,
+          "className": "PhotoSize"
+        },
+        {
+          "type": "x",
+          "w": 800,
+          "h": 306,
+          "size": 25790,
+          "className": "PhotoSize"
+        },
+        {
+          "type": "y",
+          "w": 1280,
+          "h": 489,
+          "sizes": [
+            3819,
+            8274,
+            14092,
+            19991,
+            32308
+          ],
+          "className": "PhotoSizeProgressive"
+        }
+      ],
+      "videoSizes": null,
+      "dcId": 1,
+      "className": "Photo"
+    },
+    "ttlSeconds": null,
+    "className": "MessageMediaPhoto"
+  },
+  "replyMarkup": null,
+  "entities": [
+    {
+      "offset": 75,
+      "length": 14,
+      "url": "https://brsportingbet.net/bilhete4879085",
+      "className": "MessageEntityTextUrl"
+    }
+  ],
+  "views": 1,
+  "forwards": 0,
+  "replies": null,
+  "editDate": null,
+  "postAuthor": null,
+  "groupedId": null,
+  "reactions": null,
+  "restrictionReason": null,
+  "ttlPeriod": null,
+  "quickReplyShortcutId": null,
+  "effect": null,
+  "factcheck": null,
+  "reportDeliveryUntilDate": null,
+  "className": "Message"
+}
+[2025-11-11 18:57:32] [INFO]: Mensagem ignorada de grupo/canal: peerId.className = PeerChannel
+[2025-11-11 19:04:20] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1527,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "AAAAAAAAAAAAAAin",
+  "date": 1762887860,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:04:20] [INFO]: Mensagem Telegram salva: id=1527
+[2025-11-11 19:04:20] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "AAAAAAAAAAAAAAin"
+[2025-11-11 19:04:20] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:04:21] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = 7ba6522c-30bc-4988-9de6-774a15fb1cd6
+[2025-11-11 19:04:21] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:04:33] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1528,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "Olha",
+  "date": 1762887873,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:04:33] [INFO]: Mensagem Telegram salva: id=1528
+[2025-11-11 19:04:33] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "Olha"
+[2025-11-11 19:04:33] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:04:33] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = f8886132-fd24-4a37-98db-541a04c2e389
+[2025-11-11 19:04:33] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:04:43] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1529,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "O problema não é vc, sou eu",
+  "date": 1762887883,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:04:43] [INFO]: Mensagem Telegram salva: id=1529
+[2025-11-11 19:04:43] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "O problema não é vc, sou eu"
+[2025-11-11 19:04:43] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:04:43] [ERROR]: ❌ Erro ao verificar/cadastrar tbl_utilizador: insert or update on table "tbl_funil_utilizador" violates foreign key constraint "fk_tbl_funil_utilizador_tbl_utilizador_2"
+[2025-11-11 19:04:43] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:04:58] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1530,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "Eu não estou pronta para um relacionamento agora",
+  "date": 1762887898,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:04:58] [INFO]: Mensagem Telegram salva: id=1530
+[2025-11-11 19:04:58] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "Eu não estou pronta para um relacionamento agora"
+[2025-11-11 19:04:58] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:04:58] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = fb3b461b-83ef-44ff-a914-8179aa75c35a
+[2025-11-11 19:04:58] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:05:11] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1531,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "Saí muito magoada do meu antigo relacionamento",
+  "date": 1762887911,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:05:11] [INFO]: Mensagem Telegram salva: id=1531
+[2025-11-11 19:05:11] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "Saí muito magoada do meu antigo relacionamento"
+[2025-11-11 19:05:11] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:05:11] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = 87306883-f678-4328-a515-d1738e8c6e25
+[2025-11-11 19:05:11] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:05:19] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1532,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "Pois meu ex tentou me agredir",
+  "date": 1762887919,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:05:19] [INFO]: Mensagem Telegram salva: id=1532
+[2025-11-11 19:05:19] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "Pois meu ex tentou me agredir"
+[2025-11-11 19:05:19] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:05:19] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = 39bdd543-ee93-4fcd-be85-f8acd4aa9d08
+[2025-11-11 19:05:19] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:06:36] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1533,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "Você é um cara muito especial",
+  "date": 1762887996,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:06:36] [INFO]: Mensagem Telegram salva: id=1533
+[2025-11-11 19:06:36] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "Você é um cara muito especial"
+[2025-11-11 19:06:36] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:06:36] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = d6a5238d-cf79-4859-be0c-dc952b8b600f
+[2025-11-11 19:06:36] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:06:41] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": true,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1534,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "5423006949",
+    "className": "PeerUser"
+  },
+  "message": "nossa ronaldo",
+  "date": 1762888001,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:06:41] [INFO]: Mensagem Telegram salva: id=1534
+[2025-11-11 19:06:41] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 5423006949 | Mensagem: "nossa ronaldo"
+[2025-11-11 19:06:41] [INFO]: Mensagem ignorada: mensagem enviada pelo próprio bot.
+[2025-11-11 19:07:00] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1535,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "E merece alguém que esteja pronta para tudo o que vc tem a oferecer",
+  "date": 1762888020,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:07:00] [INFO]: Mensagem Telegram salva: id=1535
+[2025-11-11 19:07:00] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "E merece alguém que esteja pronta para tudo o que vc tem a oferecer"
+[2025-11-11 19:07:00] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:07:00] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = 1a8b526e-e193-434b-bb08-33fb1082967b
+[2025-11-11 19:07:00] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:29:10] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591988219466",
+  "mensagem": "Escolha uma opção:",
+  "botoes": null,
+  "data": "2025-11-11T19:29:10.707Z"
+}
+[2025-11-11 19:29:10] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591988219466","mensagem":"Escolha uma opção:","botoes":null,"data":"2025-11-11T19:29:10.707Z"}
+[2025-11-11 19:29:21] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1537,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "1",
+  "date": 1762889361,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:29:21] [INFO]: Mensagem Telegram salva: id=1537
+[2025-11-11 19:29:21] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "1"
+[2025-11-11 19:29:21] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:29:21] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = 703e450d-89c6-487b-96d6-0431f90d2706
+[2025-11-11 19:29:21] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:30:17] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1538,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "Mostra o bumbum pra mim seu gostoso",
+  "date": 1762889417,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:30:17] [INFO]: Mensagem Telegram salva: id=1538
+[2025-11-11 19:30:17] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "Mostra o bumbum pra mim seu gostoso"
+[2025-11-11 19:30:17] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:30:17] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = a6d201e4-c89b-48cf-8028-6477dfd1a215
+[2025-11-11 19:30:17] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:32:47] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-11 19:32:47] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-11 19:32:47] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Nov 11 2025 19:32:47 GMT+0000 (Coordinated Universal Time)
+[2025-11-11 19:32:47] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-11 19:33:12] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "nova_instancia",
+  "nome": "teste",
+  "status": "conectado",
+  "stringSession": "1AQAOMTQ5LjE1NC4xNzUuNTQBuy2Xs3wWKBEwk1O67W1jtL2m30vw5PjtyOtV+pt2U4a8lNWFapZfXMKZJMr1gcZ7sF1HO4XIXnMBmhHMQzDOsvaQEr4L/uGFnCmQXRP2hvHoZZL6P0sw6Y2WTR+bmBkj2KaWJl7/pKJMqzaya1FEqZj0xLGLpI2TOSPUyVf70DERmslBUAaM+ISiAS5fK2rBjilKixaTuWQZvapxJUErxa79vtTyJCFsyWId/3Vb8j2rGwSTCDSmh3UGG+I3u/4zJuEyD3GCuXTWVkg5YraSY3NyPh0md4mVt3xapWZ08z12uOFL7JtfMs/3R1I7GZfIi8C6OrBFT7tK2E5ys3+7pxQ="
+}
+[2025-11-11 19:33:12] [WARN]: ⚠️ Formato desconhecido: {"acao":"nova_instancia","nome":"teste","status":"conectado","stringSession":"1AQAOMTQ5LjE1NC4xNzUuNTQBuy2Xs3wWKBEwk1O67W1jtL2m30vw5PjtyOtV+pt2U4a8lNWFapZfXMKZJMr1gcZ7sF1HO4XIXnMBmhHMQzDOsvaQEr4L/uGFnCmQXRP2hvHoZZL6P0sw6Y2WTR+bmBkj2KaWJl7/pKJMqzaya1FEqZj0xLGLpI2TOSPUyVf70DERmslBUAaM+ISiAS5fK2rBjilKixaTuWQZvapxJUErxa79vtTyJCFsyWId/3Vb8j2rGwSTCDSmh3UGG+I3u/4zJuEyD3GCuXTWVkg5YraSY3NyPh0md4mVt3xapWZ08z12uOFL7JtfMs/3R1I7GZfIi8C6OrBFT7tK2E5ys3+7pxQ="}
+[2025-11-11 19:33:38] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "1415377944",
+  "mensagem": "Escolha uma opção abaixo:",
+  "botoes": [
+    {
+      "text": "🌐 Site Oficial",
+      "url": "https://meusite.com"
+    },
+    {
+      "text": "📱 Fale no WhatsApp",
+      "url": "https://wa.me/5591980000000"
+    },
+    {
+      "text": "📘 Ver Instagram",
+      "url": "https://instagram.com/minhapagina"
+    }
+  ],
+  "data": "2025-11-11T19:33:38.400Z"
+}
+[2025-11-11 19:33:38] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"1415377944","mensagem":"Escolha uma opção abaixo:","botoes":[{"text":"🌐 Site Oficial","url":"https://meusite.com"},{"text":"📱 Fale no WhatsApp","url":"https://wa.me/5591980000000"},{"text":"📘 Ver Instagram","url":"https://instagram.com/minhapagina"}],"data":"2025-11-11T19:33:38.400Z"}
+[2025-11-11 19:34:09] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1541,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "kkkkkkkkkkkkkkkkkk",
+  "date": 1762889649,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-11 19:34:09] [INFO]: Mensagem Telegram salva: id=1541
+[2025-11-11 19:34:09] [INFO]: 👤 Remetente: 1415377944 | Destinatário: 1415377944 | Mensagem: "kkkkkkkkkkkkkkkkkk"
+[2025-11-11 19:34:09] [INFO]: ✅ Utilizador já existente na tbl_utilizador (1415377944                          )
+[2025-11-11 19:34:10] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = 697a2c2a-4219-4c06-bb70-c05a1d9bb664
+[2025-11-11 19:34:10] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:40:03] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1542,
+  "peerId": {
+    "userId": "1139677602",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1139677602",
+    "className": "PeerUser"
+  },
+  "message": "import dotenv from \"dotenv\";\nimport TelegramBot from \"node-telegram-bot-api\";\nimport axios from \"axios\";\nimport { consultarProduto, listarPontosEntrega, listarProdutosDisponiveis } from \"./db.js\";\n\ndotenv.config();\n\n// --- Configurações ---\nconst TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;\nconst GROQ_API_KEY = process.env.GROQ_API_KEY;\nconst GROQ_API_URL = \"https://api.groq.com/openai/v1/chat/completions\";\nconst MODEL_NAME = \"llama-3.1-8b-instant\";\n\nconst bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true });\nconst conversationHistory = [];\n\n// --- Menu principal ---\nfunction mainMenu() {\n  return {\n    reply_markup: {\n      inline_keyboard: [\n        [{ text: \"Produtos disponíveis\", callback_data: \"listar_produtos\" }],\n        [{ text: \"Pontos de entrega\", callback_data: \"listar_entrega\" }],\n        [{ text: \"Formas de pagamento\", callback_data: \"listar_pagamento\" }],\n      ],\n    },\n  };\n}\n\n// --- Comando /start ---\nbot.onText(/\\/start/, async (msg) => {\n  const text = `\n👋 Olá! Bem-vindo ao Isabelle's Brechó!\n\nEstou aqui para ajudá-lo a encontrar produtos, consultar estoque, formas de pagamento ou pontos de entrega.\n\nVocê pode usar palavras como:\n- \"estoque\" ou nome do produto\n- \"entrega\", \"pontos\" ou \"local de retirada\"\n- \"pagamento\", \"preço\" ou \"formas de pagamento\"\n\nOu clique em uma das opções abaixo:\n`;\n  await bot.sendMessage(msg.chat.id, text, mainMenu());\n});\n\n// --- Comando /reset ---\nbot.onText(/\\/reset/, async (msg) => {\n  conversationHistory.length = 0;\n  await bot.sendMessage(msg.chat.id, \"Histórico de conversa limpo! ✅\", mainMenu());\n});\n\n// --- Callback dos botões ---\nbot.on(\"callback_query\", async (query) => {\n  let reply = \"\";\n\n  if (query.data === \"listar_produtos\") {\n    reply = listarProdutosDisponiveis();\n  } else if (query.data === \"listar_entrega\") {\n    reply = listarPontosEntrega();\n  } else if (query.data === \"listar_pagamento\") {\n    reply = \"Aceitamos cartão, pix e dinheiro. Se quiser, posso detalhar formas de pagamento.\";\n  } else {\n    reply = \"Opção desconhecida 😕\";\n  }\n\n  await bot.sendMessage(query.message.chat.id, reply, mainMenu());\n  await bot.answerCallbackQuery(query.id);\n});\n\n// --- Mensagens de texto ---\nbot.on(\"message\", async (msg) => {\n  const userMessage = msg.text.toLowerCase();\n  let reply = \"\";\n\n  // Ignora comandos (já tratados acima)\n  if (userMessage.startsWith(\"/\")) return;\n\n  // Estoque\n  if (userMessage.includes(\"estoque\") || userMessage.includes(\"produto\")) {\n    const produto = userMessage.replace(\"estoque\", \"\").replace(\"produto\", \"\").trim();\n    reply = produto ? consultarProduto(produto) : listarProdutosDisponiveis();\n\n    conversationHistory.push({ role: \"user\", content: userMessage });\n    conversationHistory.push({ role: \"assistant\", content: reply });\n  }\n\n  // Pontos de entrega\n  else if (userMessage.includes(\"entrega\") || userMessage.includes(\"pontos\")) {\n    reply = listarPontosEntrega();\n    conversationHistory.push({ role: \"user\", content: userMessage });\n    conversationHistory.push({ role: \"assistant\", content: reply });\n  }\n\n  // Pagamento\n  else if (\n    userMessage.includes(\"pagamento\") ||\n    userMessage.includes(\"preço\") ||\n    userMessage.includes(\"valor\")\n  ) {\n    reply = \"Aceitamos cartão, pix e dinheiro. Se quiser, posso detalhar formas de pagamento.\";\n    conversationHistory.push({ role: \"user\", content: userMessage });\n    conversationHistory.push({ role: \"assistant\", content: reply });\n  }\n\n  // Caso geral → envia para Groq\n  else {\n    conversationHistory.push({ role: \"user\", content: userMessage });\n    const historyToSend = conversationHistory.slice(-10); // limita histórico\n\n    try {\n      const re",
+  "date": 1762890003,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": [
+    {
+      "offset": 369,
+      "length": 47,
+      "className": "MessageEntityUrl"
+    },
+    {
+      "offset": 1372,
+      "length": 11,
+      "className": "MessageEntityUrl"
+    },
+    {
+      "offset": 1532,
+      "length": 11,
+      "className": "MessageEntityUrl"
+    },
+    {
+      "offset": 1697,
+      "length": 10,
+      "className": "MessageEntityUrl"
+    },
+    {
+      "offset": 1787,
+      "length": 10,
+      "className": "MessageEntityUrl"
+    },
+    {
+      "offset": 1870,
+      "length": 10,
+      "className": "MessageEntityUrl"
+    },
+    {
+      "offset": 2080,
+      "length": 21,
+      "className": "MessageEntityUrl"
+    },
+    {
+      "offset": 2155,
+      "length": 8,
+      "className": "MessageEntityUrl"
+    }
+  ],
+  "ttlPeriod": 86400,
+  "className": "Message"
+}
+[2025-11-11 19:40:03] [INFO]: Mensagem Telegram salva: id=1542
+[2025-11-11 19:40:03] [INFO]: 👤 Remetente: 1139677602 | Destinatário: 1139677602 | Mensagem: "import dotenv from "dotenv";
+import TelegramBot from "node-telegram-bot-api";
+import axios from "axios";
+import { consultarProduto, listarPontosEntrega, listarProdutosDisponiveis } from "./db.js";
+
+dotenv.config();
+
+// --- Configurações ---
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
+const MODEL_NAME = "llama-3.1-8b-instant";
+
+const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true });
+const conversationHistory = [];
+
+// --- Menu principal ---
+function mainMenu() {
+  return {
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: "Produtos disponíveis", callback_data: "listar_produtos" }],
+        [{ text: "Pontos de entrega", callback_data: "listar_entrega" }],
+        [{ text: "Formas de pagamento", callback_data: "listar_pagamento" }],
+      ],
+    },
+  };
+}
+
+// --- Comando /start ---
+bot.onText(/\/start/, async (msg) => {
+  const text = `
+👋 Olá! Bem-vindo ao Isabelle's Brechó!
+
+Estou aqui para ajudá-lo a encontrar produtos, consultar estoque, formas de pagamento ou pontos de entrega.
+
+Você pode usar palavras como:
+- "estoque" ou nome do produto
+- "entrega", "pontos" ou "local de retirada"
+- "pagamento", "preço" ou "formas de pagamento"
+
+Ou clique em uma das opções abaixo:
+`;
+  await bot.sendMessage(msg.chat.id, text, mainMenu());
+});
+
+// --- Comando /reset ---
+bot.onText(/\/reset/, async (msg) => {
+  conversationHistory.length = 0;
+  await bot.sendMessage(msg.chat.id, "Histórico de conversa limpo! ✅", mainMenu());
+});
+
+// --- Callback dos botões ---
+bot.on("callback_query", async (query) => {
+  let reply = "";
+
+  if (query.data === "listar_produtos") {
+    reply = listarProdutosDisponiveis();
+  } else if (query.data === "listar_entrega") {
+    reply = listarPontosEntrega();
+  } else if (query.data === "listar_pagamento") {
+    reply = "Aceitamos cartão, pix e dinheiro. Se quiser, posso detalhar formas de pagamento.";
+  } else {
+    reply = "Opção desconhecida 😕";
+  }
+
+  await bot.sendMessage(query.message.chat.id, reply, mainMenu());
+  await bot.answerCallbackQuery(query.id);
+});
+
+// --- Mensagens de texto ---
+bot.on("message", async (msg) => {
+  const userMessage = msg.text.toLowerCase();
+  let reply = "";
+
+  // Ignora comandos (já tratados acima)
+  if (userMessage.startsWith("/")) return;
+
+  // Estoque
+  if (userMessage.includes("estoque") || userMessage.includes("produto")) {
+    const produto = userMessage.replace("estoque", "").replace("produto", "").trim();
+    reply = produto ? consultarProduto(produto) : listarProdutosDisponiveis();
+
+    conversationHistory.push({ role: "user", content: userMessage });
+    conversationHistory.push({ role: "assistant", content: reply });
+  }
+
+  // Pontos de entrega
+  else if (userMessage.includes("entrega") || userMessage.includes("pontos")) {
+    reply = listarPontosEntrega();
+    conversationHistory.push({ role: "user", content: userMessage });
+    conversationHistory.push({ role: "assistant", content: reply });
+  }
+
+  // Pagamento
+  else if (
+    userMessage.includes("pagamento") ||
+    userMessage.includes("preço") ||
+    userMessage.includes("valor")
+  ) {
+    reply = "Aceitamos cartão, pix e dinheiro. Se quiser, posso detalhar formas de pagamento.";
+    conversationHistory.push({ role: "user", content: userMessage });
+    conversationHistory.push({ role: "assistant", content: reply });
+  }
+
+  // Caso geral → envia para Groq
+  else {
+    conversationHistory.push({ role: "user", content: userMessage });
+    const historyToSend = conversationHistory.slice(-10); // limita histórico
+
+    try {
+      const re"
+[2025-11-11 19:40:03] [INFO]: ✅ Utilizador já existente na tbl_utilizador (ed0d5fc5-7c78-4b81-8750-3ba7b2c848f6)
+[2025-11-11 19:40:03] [INFO]: 🆕 Utilizador cadastrado em tbl_utilizador com id_utilizador = 058d30ae-c9f8-4edd-85fd-1879b7d3a1f7
+[2025-11-11 19:40:03] [ERROR]: ❌ Erro no processamento do webhook: vIsUtilizador is not defined
+[2025-11-11 19:50:57] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-11 19:50:57] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-11 19:50:57] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Nov 11 2025 19:50:57 GMT+0000 (Coordinated Universal Time)
+[2025-11-11 19:50:57] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-11 19:51:33] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "nova_instancia",
+  "nome": "teste",
+  "status": "conectado",
+  "stringSession": "1AQAOMTQ5LjE1NC4xNzUuNTQBu3VQxULWtbenMrvuBj7BI/Jdnyo+fDyppB8el8r5Q4pFxE9M+bI3o9hnV0wq8FN8EQlB613eWQXdESrO4bBR5ZjJO3VQd4bL60H88I2mk+3t5NR1uWbxN9zuuiRwyMKF/PTB2fS4EuO+qKNDDMu7oJ+FeA+WO4fvSOyJr2A20C8JPeXhcUcXJGqgKbw/dHQlbG/GrvVeHnxTiPO6P9T2wMHrBm2orai21ZLZGX8JeababwkIEiUa+oxlYvCYCiShtWfKsaaV1lKgu4QnHSvWa+HoXR7tXAvIRscJWayBGYO8oa7Gzz+jTbojfd28r6UoXWJGS7o1gDQfehtW4c4WkWU="
+}
+[2025-11-11 19:51:33] [WARN]: ⚠️ Formato desconhecido: {"acao":"nova_instancia","nome":"teste","status":"conectado","stringSession":"1AQAOMTQ5LjE1NC4xNzUuNTQBu3VQxULWtbenMrvuBj7BI/Jdnyo+fDyppB8el8r5Q4pFxE9M+bI3o9hnV0wq8FN8EQlB613eWQXdESrO4bBR5ZjJO3VQd4bL60H88I2mk+3t5NR1uWbxN9zuuiRwyMKF/PTB2fS4EuO+qKNDDMu7oJ+FeA+WO4fvSOyJr2A20C8JPeXhcUcXJGqgKbw/dHQlbG/GrvVeHnxTiPO6P9T2wMHrBm2orai21ZLZGX8JeababwkIEiUa+oxlYvCYCiShtWfKsaaV1lKgu4QnHSvWa+HoXR7tXAvIRscJWayBGYO8oa7Gzz+jTbojfd28r6UoXWJGS7o1gDQfehtW4c4WkWU="}
+[2025-11-11 19:52:29] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591980625187",
+  "mensagem": "Escolha uma opção:",
+  "botoes": [
+    [
+      {
+        "text": "Sim",
+        "callback_data": "sim"
+      },
+      {
+        "text": "Não",
+        "callback_data": "nao"
+      }
+    ],
+    [
+      {
+        "text": "Visitar site",
+        "url": "https://meusite.com"
+      }
+    ]
+  ],
+  "data": "2025-11-11T19:52:29.327Z"
+}
+[2025-11-11 19:52:29] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591980625187","mensagem":"Escolha uma opção:","botoes":[[{"text":"Sim","callback_data":"sim"},{"text":"Não","callback_data":"nao"}],[{"text":"Visitar site","url":"https://meusite.com"}]],"data":"2025-11-11T19:52:29.327Z"}
+[2025-11-11 20:03:56] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-11 20:03:56] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-11 20:03:56] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Nov 11 2025 20:03:56 GMT+0000 (Coordinated Universal Time)
+[2025-11-11 20:03:56] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-11 20:04:24] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "nova_instancia",
+  "nome": "teste",
+  "status": "conectado",
+  "stringSession": "1AQAOMTQ5LjE1NC4xNzUuNTQBu35ThbSU00T9XegnR7inr0g9H8L5Y5q81A9e3V8rQ1qv68QMy0hYmmSvnwWupaP51n8W5si9J0aTz1KE3odOMCEzcziqRG0ahiBL/7A2DUOqUmmNS5dj5Ln+L+gXb+OmlL2XjchQ7Gokq+WAwPB5zAbRVy5fcFxj74vfa+GnajrZCffmDxr+/z65mLeIDZVE/OvKPG2Plp4bQTSyPSBIw/ZeXuq+t2tuP4dVddOusDOWZUeNA5f15KrnYAOIqbwPhUhpMqofrwMIUd3UPdzyqYb8fx1QKjyDtdfWydw3PJwVgjf93i6nwJyXBxH0vu64VMkwpiko253FMO5YtQsjaZ4="
+}
+[2025-11-11 20:04:24] [WARN]: ⚠️ Formato desconhecido: {"acao":"nova_instancia","nome":"teste","status":"conectado","stringSession":"1AQAOMTQ5LjE1NC4xNzUuNTQBu35ThbSU00T9XegnR7inr0g9H8L5Y5q81A9e3V8rQ1qv68QMy0hYmmSvnwWupaP51n8W5si9J0aTz1KE3odOMCEzcziqRG0ahiBL/7A2DUOqUmmNS5dj5Ln+L+gXb+OmlL2XjchQ7Gokq+WAwPB5zAbRVy5fcFxj74vfa+GnajrZCffmDxr+/z65mLeIDZVE/OvKPG2Plp4bQTSyPSBIw/ZeXuq+t2tuP4dVddOusDOWZUeNA5f15KrnYAOIqbwPhUhpMqofrwMIUd3UPdzyqYb8fx1QKjyDtdfWydw3PJwVgjf93i6nwJyXBxH0vu64VMkwpiko253FMO5YtQsjaZ4="}
+[2025-11-11 20:05:01] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591980625187",
+  "mensagem": "Escolha uma opção:",
+  "botoes": [
+    [
+      {
+        "text": "Sim",
+        "callback_data": "sim"
+      },
+      {
+        "text": "Não",
+        "callback_data": "nao"
+      }
+    ],
+    [
+      {
+        "text": "Visitar site",
+        "url": "https://meusite.com"
+      }
+    ]
+  ],
+  "data": "2025-11-11T20:05:01.819Z"
+}
+[2025-11-11 20:05:01] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591980625187","mensagem":"Escolha uma opção:","botoes":[[{"text":"Sim","callback_data":"sim"},{"text":"Não","callback_data":"nao"}],[{"text":"Visitar site","url":"https://meusite.com"}]],"data":"2025-11-11T20:05:01.819Z"}
+[2025-11-12 18:08:56] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-12 18:08:56] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-12 18:08:56] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Nov 12 2025 18:08:56 GMT+0000 (Coordinated Universal Time)
+[2025-11-12 18:08:56] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-12 18:12:16] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "nova_instancia",
+  "nome": "teste",
+  "status": "conectado",
+  "stringSession": "1AQAOMTQ5LjE1NC4xNzUuNTYBu1xTDBhojaVfZNf2o+DLduHW3vWibstT72IEg26LZH94uF85gytexxrnJrskm8Hq59yshR9guEKfVCHl5nb+gvMVbbpvN55zbOpnsXuggimH6Jg3/TkjBhDstyguSH7Us2lzti0C9l/+qnMcLbsvCPlclgL9Lk2cvX4TMbjxVUxaqSwkH1Wy92po9k8MjBda3kiM/tzwpc54iJYhLMECt7vm5HuTzxZXkmqvczi+/pk2tUlpY5E3mzWgmfldJT/qNyHXNw8qH0TyBtYTl2CbyObMx5tBNxOVRrSQQX9Kz4D3Bc1NtKbvBgTxYJHlTvKQpqWjEm6V2WE/NZHuMtTnz/w="
+}
+[2025-11-12 18:12:16] [WARN]: ⚠️ Formato desconhecido: {"acao":"nova_instancia","nome":"teste","status":"conectado","stringSession":"1AQAOMTQ5LjE1NC4xNzUuNTYBu1xTDBhojaVfZNf2o+DLduHW3vWibstT72IEg26LZH94uF85gytexxrnJrskm8Hq59yshR9guEKfVCHl5nb+gvMVbbpvN55zbOpnsXuggimH6Jg3/TkjBhDstyguSH7Us2lzti0C9l/+qnMcLbsvCPlclgL9Lk2cvX4TMbjxVUxaqSwkH1Wy92po9k8MjBda3kiM/tzwpc54iJYhLMECt7vm5HuTzxZXkmqvczi+/pk2tUlpY5E3mzWgmfldJT/qNyHXNw8qH0TyBtYTl2CbyObMx5tBNxOVRrSQQX9Kz4D3Bc1NtKbvBgTxYJHlTvKQpqWjEm6V2WE/NZHuMtTnz/w="}
+[2025-11-12 18:12:22] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591980625187",
+  "mensagem": "Escolha uma opção:",
+  "botoes": [
+    [
+      {
+        "text": "Sim",
+        "callback_data": "sim"
+      },
+      {
+        "text": "Não",
+        "callback_data": "nao"
+      }
+    ],
+    [
+      {
+        "text": "Visitar site",
+        "url": "https://meusite.com"
+      }
+    ]
+  ],
+  "data": "2025-11-12T18:12:22.715Z"
+}
+[2025-11-12 18:12:22] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591980625187","mensagem":"Escolha uma opção:","botoes":[[{"text":"Sim","callback_data":"sim"},{"text":"Não","callback_data":"nao"}],[{"text":"Visitar site","url":"https://meusite.com"}]],"data":"2025-11-12T18:12:22.715Z"}
+[2025-11-12 18:31:22] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-12 18:31:22] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-12 18:31:22] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Nov 12 2025 18:31:22 GMT+0000 (Coordinated Universal Time)
+[2025-11-12 18:31:22] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-12 18:31:51] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "nova_instancia",
+  "nome": "teste",
+  "status": "conectado",
+  "stringSession": "1AQAOMTQ5LjE1NC4xNzUuNTYBuzwlDcPFpES9hNc4vxTXAh6sT1YczFC7euCJMWCbwBbMAfZ/Rr775El4nKGivbxIY6KXdCuDqzdAyobEzxEB8tcHXh5ZflK6qMgXuLWwxkdq99dG9g6NJixHZQryweYooMXJci7BZ/MLjV7vthERGXHG2SwRf1lP5zGKbG0QgoVHkFtyoLmgMCjOG19dWHIBws4f0DXZinG9q9E5d9bAuvDtXjosWAiogCuycqxBHjFQ0FF+A/AfghVCAkbwYIKAFRoYi41HAj1H4phPvux4Y2pkzHJOWBZysqxPg+Il6bhMyPJUQ5h1n5EoMfQheFojschhEGh2paH+85RuX8wnAtE="
+}
+[2025-11-12 18:31:51] [WARN]: ⚠️ Formato desconhecido: {"acao":"nova_instancia","nome":"teste","status":"conectado","stringSession":"1AQAOMTQ5LjE1NC4xNzUuNTYBuzwlDcPFpES9hNc4vxTXAh6sT1YczFC7euCJMWCbwBbMAfZ/Rr775El4nKGivbxIY6KXdCuDqzdAyobEzxEB8tcHXh5ZflK6qMgXuLWwxkdq99dG9g6NJixHZQryweYooMXJci7BZ/MLjV7vthERGXHG2SwRf1lP5zGKbG0QgoVHkFtyoLmgMCjOG19dWHIBws4f0DXZinG9q9E5d9bAuvDtXjosWAiogCuycqxBHjFQ0FF+A/AfghVCAkbwYIKAFRoYi41HAj1H4phPvux4Y2pkzHJOWBZysqxPg+Il6bhMyPJUQ5h1n5EoMfQheFojschhEGh2paH+85RuX8wnAtE="}
+[2025-11-12 18:32:02] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591980625187",
+  "mensagem": "Escolha uma opção:",
+  "botoes": [
+    [
+      {
+        "text": "Sim",
+        "callback_data": "sim"
+      },
+      {
+        "text": "Não",
+        "callback_data": "nao"
+      }
+    ],
+    [
+      {
+        "text": "Visitar site",
+        "url": "https://meusite.com"
+      }
+    ]
+  ],
+  "data": "2025-11-12T18:32:02.548Z"
+}
+[2025-11-12 18:32:02] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591980625187","mensagem":"Escolha uma opção:","botoes":[[{"text":"Sim","callback_data":"sim"},{"text":"Não","callback_data":"nao"}],[{"text":"Visitar site","url":"https://meusite.com"}]],"data":"2025-11-12T18:32:02.548Z"}
+[2025-11-12 18:33:22] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591988219466",
+  "mensagem": "Escolha uma opção:",
+  "botoes": [
+    [
+      {
+        "text": "Sim",
+        "callback_data": "sim"
+      },
+      {
+        "text": "Não",
+        "callback_data": "nao"
+      }
+    ],
+    [
+      {
+        "text": "Visitar site",
+        "url": "https://meusite.com"
+      }
+    ]
+  ],
+  "data": "2025-11-12T18:33:22.564Z"
+}
+[2025-11-12 18:33:22] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591988219466","mensagem":"Escolha uma opção:","botoes":[[{"text":"Sim","callback_data":"sim"},{"text":"Não","callback_data":"nao"}],[{"text":"Visitar site","url":"https://meusite.com"}]],"data":"2025-11-12T18:33:22.564Z"}
+[2025-11-12 18:50:43] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591988219466",
+  "mensagem": "Escolha uma opção:",
+  "botoes": [
+    [
+      {
+        "text": "Sim",
+        "callback_data": "sim"
+      },
+      {
+        "text": "Não",
+        "callback_data": "nao"
+      }
+    ],
+    [
+      {
+        "text": "Visitar site",
+        "url": "https://meusite.com"
+      }
+    ]
+  ],
+  "data": "2025-11-12T18:50:43.847Z"
+}
+[2025-11-12 18:50:43] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591988219466","mensagem":"Escolha uma opção:","botoes":[[{"text":"Sim","callback_data":"sim"},{"text":"Não","callback_data":"nao"}],[{"text":"Visitar site","url":"https://meusite.com"}]],"data":"2025-11-12T18:50:43.847Z"}
+[2025-11-12 18:51:50] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-12 18:51:51] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-12 18:51:51] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Nov 12 2025 18:51:51 GMT+0000 (Coordinated Universal Time)
+[2025-11-12 18:51:51] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-12 18:52:11] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "nova_instancia",
+  "nome": "teste",
+  "status": "conectado",
+  "stringSession": "1AQAOMTQ5LjE1NC4xNzUuNTYBu4ZtQh0DYgCBk9Iufccf8S0vaSU4FKQfaXvSxkr9+QEtcMMlNhEUz5YLIOpwd9x9gUyHtfYWsfQMwQropxLPw2Ergd3jcTme98KfECsHLj298lJhD5mOMGqx9oxoTKVH4Iy85A8H0u4iWxijE/WqOJwCqemSYcrbZi0N4wcYj6i90SQuVlswz6g6Ipp/Cn+sCFzFMADXScRmryb/xoiNNU/OjQm/LnSZ0pZmMZP908o8/x6IzBrwu9JtQzqHB5JZZ5AZrlWAV+uOu0OvZfBdmJPcd+D/pUizg/tckLVLvenluRl9DvCBLqbbNOfT1EjR+3I6JHlWYf0vAoCLnGx4osc="
+}
+[2025-11-12 18:52:11] [WARN]: ⚠️ Formato desconhecido: {"acao":"nova_instancia","nome":"teste","status":"conectado","stringSession":"1AQAOMTQ5LjE1NC4xNzUuNTYBu4ZtQh0DYgCBk9Iufccf8S0vaSU4FKQfaXvSxkr9+QEtcMMlNhEUz5YLIOpwd9x9gUyHtfYWsfQMwQropxLPw2Ergd3jcTme98KfECsHLj298lJhD5mOMGqx9oxoTKVH4Iy85A8H0u4iWxijE/WqOJwCqemSYcrbZi0N4wcYj6i90SQuVlswz6g6Ipp/Cn+sCFzFMADXScRmryb/xoiNNU/OjQm/LnSZ0pZmMZP908o8/x6IzBrwu9JtQzqHB5JZZ5AZrlWAV+uOu0OvZfBdmJPcd+D/pUizg/tckLVLvenluRl9DvCBLqbbNOfT1EjR+3I6JHlWYf0vAoCLnGx4osc="}
+[2025-11-12 18:52:16] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "+5591988219466",
+  "mensagem": "Escolha uma opção:",
+  "botoes": [
+    [
+      {
+        "text": "Sim",
+        "callback_data": "sim"
+      },
+      {
+        "text": "Não",
+        "callback_data": "nao"
+      }
+    ],
+    [
+      {
+        "text": "Visitar site",
+        "url": "https://meusite.com"
+      }
+    ]
+  ],
+  "data": "2025-11-12T18:52:16.840Z"
+}
+[2025-11-12 18:52:16] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"+5591988219466","mensagem":"Escolha uma opção:","botoes":[[{"text":"Sim","callback_data":"sim"},{"text":"Não","callback_data":"nao"}],[{"text":"Visitar site","url":"https://meusite.com"}]],"data":"2025-11-12T18:52:16.840Z"}
+[2025-11-12 18:59:13] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-12 18:59:13] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-12 18:59:13] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-11-12 18:59:13] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-11-12 19:19:04] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-12 19:19:04] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-12 19:19:04] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Nov 12 2025 19:19:04 GMT+0000 (Coordinated Universal Time)
+[2025-11-12 19:19:04] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-14 18:37:32] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-14 18:37:32] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-14 18:37:32] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Nov 14 2025 18:37:32 GMT+0000 (Coordinated Universal Time)
+[2025-11-14 18:37:32] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-17 16:30:40] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-17 16:30:40] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-17 16:30:40] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Nov 17 2025 16:30:40 GMT+0000 (Coordinated Universal Time)
+[2025-11-17 16:30:40] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
