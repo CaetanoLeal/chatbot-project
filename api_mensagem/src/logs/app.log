@@ -15057,3 +15057,517 @@ bot.on("message", async (msg) => {
 [2025-11-17 16:30:40] [INFO]: 🚀 Servidor rodando na porta 3001
 [2025-11-17 16:30:40] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Nov 17 2025 16:30:40 GMT+0000 (Coordinated Universal Time)
 [2025-11-17 16:30:40] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-18 17:37:05] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-18 17:37:05] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-18 17:37:05] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Nov 18 2025 17:37:05 GMT+0000 (Coordinated Universal Time)
+[2025-11-18 17:37:05] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-18 17:37:57] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "nova_instancia",
+  "nome": "teste",
+  "status": "conectado",
+  "stringSession": "1AQAOMTQ5LjE1NC4xNzUuNTYBuwj29LiWHFrkh6ZC2JMjUN5tTqgVxXjj2kaz8sC+9/ya0Ua9er1xukRPWd7VqLUnpUM2SHnC5FluxucgccLnKloSRPCkrKSJ1GUY/LZSjB+aLMxBAjutf/mV1BI5zNZPjhtYfjXbh26O0qQnr8tO8/zrnQ46dyo2Aqs6sinXzgPzTzTwrffDgKUbp0JMaUGcsxbDlZTgVRiKd0NX6IxiMxMGDaucrDwwSR3J0xnqnfPe9+vhpYlEjK5WevPQZY5GD0IfF0Iz4dJYu0gKsRma8G/Tff2cn1HsOYmHbH4YJ7cAzDleRHLZHE6WYJbMu2dwnlgFgPUPHrDU8InjGFtw3QI="
+}
+[2025-11-18 17:37:57] [WARN]: ⚠️ Formato desconhecido: {"acao":"nova_instancia","nome":"teste","status":"conectado","stringSession":"1AQAOMTQ5LjE1NC4xNzUuNTYBuwj29LiWHFrkh6ZC2JMjUN5tTqgVxXjj2kaz8sC+9/ya0Ua9er1xukRPWd7VqLUnpUM2SHnC5FluxucgccLnKloSRPCkrKSJ1GUY/LZSjB+aLMxBAjutf/mV1BI5zNZPjhtYfjXbh26O0qQnr8tO8/zrnQ46dyo2Aqs6sinXzgPzTzTwrffDgKUbp0JMaUGcsxbDlZTgVRiKd0NX6IxiMxMGDaucrDwwSR3J0xnqnfPe9+vhpYlEjK5WevPQZY5GD0IfF0Iz4dJYu0gKsRma8G/Tff2cn1HsOYmHbH4YJ7cAzDleRHLZHE6WYJbMu2dwnlgFgPUPHrDU8InjGFtw3QI="}
+[2025-11-18 17:38:34] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1562,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "dbvfdgfsxg",
+  "date": 1763487515,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-18 17:38:34] [INFO]: Mensagem Telegram salva: id=1562
+[2025-11-18 17:38:34] [INFO]: ✅ Utilizador já existente (1415377944                          )
+[2025-11-18 17:38:34] [INFO]: ✅ Funil utilizador existente: 140d6e6c-bdd7-4751-ba8e-5e2ed21beca2 (cd_mensagem_cadastro=1)
+[2025-11-18 17:38:35] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "1415377944",
+  "mensagem": "mensagem de bem vindo",
+  "data": "2025-11-18T17:38:35.290Z"
+}
+[2025-11-18 17:38:35] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"1415377944","mensagem":"mensagem de bem vindo","data":"2025-11-18T17:38:35.290Z"}
+[2025-11-18 17:38:35] [INFO]: 📤 Mensagem enviada ao serviço telegram-bot
+[2025-11-18 17:38:56] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "id": 1564,
+  "peerId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "fromId": {
+    "userId": "1415377944",
+    "className": "PeerUser"
+  },
+  "message": "Se fosse o Yuri já teria funcionado",
+  "date": 1763487537,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "replyTo": null,
+  "entities": null,
+  "ttlPeriod": null,
+  "className": "Message"
+}
+[2025-11-18 17:38:56] [INFO]: Mensagem Telegram salva: id=1564
+[2025-11-18 17:38:56] [INFO]: ✅ Utilizador já existente (1415377944                          )
+[2025-11-18 17:38:56] [INFO]: ✅ Funil utilizador existente: 140d6e6c-bdd7-4751-ba8e-5e2ed21beca2 (cd_mensagem_cadastro=1)
+[2025-11-18 17:38:57] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "acao": "mensagem_enviada",
+  "para": "1415377944",
+  "mensagem": "mensagem de bem vindo",
+  "data": "2025-11-18T17:38:57.032Z"
+}
+[2025-11-18 17:38:57] [WARN]: ⚠️ Formato desconhecido: {"acao":"mensagem_enviada","para":"1415377944","mensagem":"mensagem de bem vindo","data":"2025-11-18T17:38:57.032Z"}
+[2025-11-18 17:38:57] [INFO]: 📤 Mensagem enviada ao serviço telegram-bot
+[2025-11-18 17:54:15] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "flags": 17408,
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "post": true,
+  "fromScheduled": false,
+  "legacy": false,
+  "editHide": false,
+  "pinned": false,
+  "noforwards": false,
+  "invertMedia": false,
+  "flags2": 0,
+  "offline": false,
+  "videoProcessingPending": false,
+  "id": 14917,
+  "fromId": null,
+  "fromBoostsApplied": null,
+  "peerId": {
+    "channelId": "1748245892",
+    "className": "PeerChannel"
+  },
+  "savedPeerId": null,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "viaBusinessBotId": null,
+  "replyTo": null,
+  "date": 1763488454,
+  "message": "As escalações dos jogos das 16:45 vão sair já já e vou mandar um bingo de jogadores pra fazer gol aqui! \n\nJá deixa a notificação ativa!🔥🔔",
+  "media": null,
+  "replyMarkup": null,
+  "entities": null,
+  "views": 1,
+  "forwards": 0,
+  "replies": null,
+  "editDate": null,
+  "postAuthor": null,
+  "groupedId": null,
+  "reactions": null,
+  "restrictionReason": null,
+  "ttlPeriod": null,
+  "quickReplyShortcutId": null,
+  "effect": null,
+  "factcheck": null,
+  "reportDeliveryUntilDate": null,
+  "className": "Message"
+}
+[2025-11-18 17:54:15] [INFO]: Mensagem ignorada de grupo/canal: peerId.className = PeerChannel
+[2025-11-18 18:52:06] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "flags": 18048,
+  "out": false,
+  "mentioned": false,
+  "mediaUnread": false,
+  "silent": false,
+  "post": true,
+  "fromScheduled": false,
+  "legacy": false,
+  "editHide": false,
+  "pinned": false,
+  "noforwards": false,
+  "invertMedia": false,
+  "flags2": 0,
+  "offline": false,
+  "videoProcessingPending": false,
+  "id": 14918,
+  "fromId": null,
+  "fromBoostsApplied": null,
+  "peerId": {
+    "channelId": "1748245892",
+    "className": "PeerChannel"
+  },
+  "savedPeerId": null,
+  "fwdFrom": null,
+  "viaBotId": null,
+  "viaBusinessBotId": null,
+  "replyTo": null,
+  "date": 1763491920,
+  "message": "BINGÃO DA UEFA 🔥🔥🔥🔥\n\nBilhete pronto",
+  "media": {
+    "flags": 1,
+    "spoiler": false,
+    "photo": {
+      "flags": 0,
+      "hasStickers": false,
+      "id": "4965627947263920968",
+      "accessHash": "3094663912990121213",
+      "fileReference": {
+        "type": "Buffer",
+        "data": [
+          2,
+          104,
+          52,
+          29,
+          132,
+          0,
+          0,
+          58,
+          70,
+          105,
+          28,
+          192,
+          80,
+          49,
+          170,
+          194,
+          89,
+          81,
+          92,
+          174,
+          159,
+          162,
+          216,
+          92,
+          65,
+          11,
+          242,
+          115,
+          140
+        ]
+      },
+      "date": 1763491920,
+      "sizes": [
+        {
+          "type": "i",
+          "bytes": {
+            "type": "Buffer",
+            "data": [
+              1,
+              27,
+              40,
+              213,
+              100,
+              4,
+              158,
+              91,
+              240,
+              52,
+              187,
+              126,
+              180,
+              165,
+              136,
+              63,
+              116,
+              154,
+              117,
+              0,
+              55,
+              30,
+              198,
+              144,
+              174,
+              125,
+              105,
+              217,
+              59,
+              177,
+              131,
+              143,
+              90,
+              15,
+              3,
+              142,
+              104,
+              1,
+              2,
+              227,
+              215,
+              241,
+              162,
+              141,
+              199,
+              56,
+              218,
+              126,
+              180,
+              80,
+              6,
+              109,
+              218,
+              199,
+              246,
+              167,
+              45,
+              38,
+              15,
+              28,
+              21,
+              39,
+              181,
+              67,
+              178,
+              19,
+              143,
+              222,
+              99,
+              232,
+              134,
+              180,
+              164,
+              181,
+              134,
+              73,
+              25,
+              157,
+              50,
+              79,
+              124,
+              159,
+              74,
+              111,
+              216,
+              224,
+              254,
+              231,
+              254,
+              60,
+              107,
+              69,
+              37,
+              99,
+              39,
+              23,
+              112,
+              251,
+              124,
+              30,
+              173,
+              255,
+              0,
+              124,
+              209,
+              253,
+              161,
+              0,
+              238,
+              223,
+              149,
+              31,
+              100,
+              131,
+              251,
+              135,
+              254,
+              250,
+              52,
+              125,
+              138,
+              220,
+              158,
+              99,
+              255,
+              0,
+              199,
+              141,
+              43,
+              68,
+              119,
+              145,
+              97,
+              28,
+              58,
+              134,
+              94,
+              132,
+              100,
+              81,
+              73,
+              24,
+              10,
+              138,
+              0,
+              192,
+              0,
+              98,
+              138,
+              131,
+              68,
+              127
+            ]
+          },
+          "className": "PhotoStrippedSize"
+        },
+        {
+          "type": "m",
+          "w": 320,
+          "h": 212,
+          "size": 11763,
+          "className": "PhotoSize"
+        },
+        {
+          "type": "x",
+          "w": 800,
+          "h": 529,
+          "size": 44460,
+          "className": "PhotoSize"
+        },
+        {
+          "type": "y",
+          "w": 1280,
+          "h": 847,
+          "sizes": [
+            6821,
+            16102,
+            26560,
+            36414,
+            58500
+          ],
+          "className": "PhotoSizeProgressive"
+        }
+      ],
+      "videoSizes": null,
+      "dcId": 1,
+      "className": "Photo"
+    },
+    "ttlSeconds": null,
+    "className": "MessageMediaPhoto"
+  },
+  "replyMarkup": null,
+  "entities": [
+    {
+      "offset": 25,
+      "length": 14,
+      "url": "https://brsportingbet.net/bilhete4883167",
+      "className": "MessageEntityTextUrl"
+    }
+  ],
+  "views": 1,
+  "forwards": 0,
+  "replies": null,
+  "editDate": null,
+  "postAuthor": null,
+  "groupedId": null,
+  "reactions": null,
+  "restrictionReason": null,
+  "ttlPeriod": null,
+  "quickReplyShortcutId": null,
+  "effect": null,
+  "factcheck": null,
+  "reportDeliveryUntilDate": null,
+  "className": "Message"
+}
+[2025-11-18 18:52:06] [INFO]: Mensagem ignorada de grupo/canal: peerId.className = PeerChannel
+[2025-11-19 16:14:39] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-19 16:14:39] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-19 16:14:39] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Nov 19 2025 16:14:39 GMT+0000 (Coordinated Universal Time)
+[2025-11-19 16:14:39] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-11-19 19:00:55] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-19 19:00:55] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-19 19:00:55] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-11-19 19:00:55] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-11-21 16:49:02] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-11-21 16:49:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-11-21 16:49:02] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Nov 21 2025 16:49:02 GMT+0000 (Coordinated Universal Time)
+[2025-11-21 16:49:02] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-01 18:25:57] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-01 18:25:57] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-01 18:25:57] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Dec 01 2025 18:25:57 GMT+0000 (Coordinated Universal Time)
+[2025-12-01 18:25:57] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-11 17:53:27] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-11 17:53:27] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-11 17:53:27] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Dec 11 2025 17:53:27 GMT+0000 (Coordinated Universal Time)
+[2025-12-11 17:53:27] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-11 18:26:32] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-11 18:26:32] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-11 18:26:32] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Dec 11 2025 18:26:32 GMT+0000 (Coordinated Universal Time)
+[2025-12-11 18:26:32] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-11 19:08:51] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-11 19:08:51] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-11 19:08:51] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-12-11 19:08:51] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-12-11 19:28:00] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-11 19:28:00] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-11 19:28:01] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Dec 11 2025 19:28:01 GMT+0000 (Coordinated Universal Time)
+[2025-12-11 19:28:01] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-12 16:29:50] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-12 16:29:50] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-12 16:29:50] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Dec 12 2025 16:29:50 GMT+0000 (Coordinated Universal Time)
+[2025-12-12 16:29:50] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-12 18:21:12] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-12 18:21:12] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-12 18:21:12] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-12-12 18:21:12] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-12-12 18:45:45] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-12 18:45:45] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-12 18:45:45] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Dec 12 2025 18:45:45 GMT+0000 (Coordinated Universal Time)
+[2025-12-12 18:45:45] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-12 18:55:19] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-12 18:55:19] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-12 18:55:19] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-12-12 18:55:19] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-12-16 19:53:16] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-16 19:53:16] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-16 19:53:16] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Dec 16 2025 19:53:16 GMT+0000 (Coordinated Universal Time)
+[2025-12-16 19:53:16] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-22 17:21:20] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-22 17:21:20] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-22 17:21:20] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Dec 22 2025 17:21:20 GMT+0000 (Coordinated Universal Time)
+[2025-12-22 17:21:20] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-22 17:44:45] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-22 17:44:45] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-22 17:44:45] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Dec 22 2025 17:44:45 GMT+0000 (Coordinated Universal Time)
+[2025-12-22 17:44:45] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-22 17:52:02] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-22 17:52:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-22 17:52:02] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Dec 22 2025 17:52:02 GMT+0000 (Coordinated Universal Time)
+[2025-12-22 17:52:02] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-22 17:56:42] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-22 17:56:42] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-22 17:56:42] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-12-22 17:56:42] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-12-22 18:07:07] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-22 18:07:07] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-22 18:07:07] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Dec 22 2025 18:07:07 GMT+0000 (Coordinated Universal Time)
+[2025-12-22 18:07:07] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2025-12-22 18:42:03] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-22 18:42:03] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-22 18:42:03] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-12-22 18:42:03] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-12-22 19:03:07] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-22 19:03:07] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-22 19:03:07] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2025-12-22 19:03:07] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2025-12-23 18:03:27] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2025-12-23 18:03:27] [INFO]: 🚀 Servidor rodando na porta 3001
+[2025-12-23 18:03:27] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Dec 23 2025 18:03:27 GMT+0000 (Coordinated Universal Time)
+[2025-12-23 18:03:27] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
