@@ -44436,3 +44436,2012 @@ Aproveite agora porque está saindo muito e o estoque é limitado.
 📲 Compre agora chamada de vídeo!
 Corre que acaba rápido! 🚀
 [2026-01-23 19:08:03] [ERROR]: ❌ Erro ao enviar WhatsApp: timeout of 8000ms exceeded
+[2026-01-26 17:18:29] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-26 17:18:29] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-26 17:18:30] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jan 26 2026 17:18:29 GMT+0000 (Coordinated Universal Time)
+[2026-01-26 17:18:30] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-01-26 17:20:09] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559188219466@s.whatsapp.net",
+    "messageId": "3AE08AA5B326BAB4673F",
+    "pushName": "Leonan Valois",
+    "timestamp": 1769448009
+  },
+  "message": {
+    "type": "text",
+    "text": "Teste",
+    "raw": {
+      "conversation": "Teste",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "N8GEUlATTw4xFw==",
+          "senderTimestamp": "1769301299",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "KmJuEyvjcicwrJAxwBxpq2p+SX6z44KO/U8Ojp6qYuU="
+      }
+    }
+  }
+}
+[2026-01-26 17:20:09] [INFO]: 📩 WhatsApp: 559188219466 → Teste
+[2026-01-26 17:20:09] [INFO]: 📤 WhatsApp enviado para 559188219466
+[2026-01-26 17:20:16] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559188219466@s.whatsapp.net",
+    "messageId": "3A607769963745694C6F",
+    "pushName": "Leonan Valois",
+    "timestamp": 1769448016
+  },
+  "message": {
+    "type": "text",
+    "text": "Dlc",
+    "raw": {
+      "conversation": "Dlc",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "N8GEUlATTw4xFw==",
+          "senderTimestamp": "1769301299",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "fo5eI7yeyJqxSVcbh1YB5IPIRJCkSGXrm1sBBUYlmCg="
+      }
+    }
+  }
+}
+[2026-01-26 17:20:16] [INFO]: 📩 WhatsApp: 559188219466 → Dlc
+[2026-01-26 17:20:16] [INFO]: 📤 WhatsApp enviado para 559188219466
+[2026-01-26 17:20:20] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559188219466@s.whatsapp.net",
+    "messageId": "3A753D7535B61B048290",
+    "pushName": "Leonan Valois",
+    "timestamp": 1769448019
+  },
+  "message": {
+    "type": "text",
+    "text": "Dlc",
+    "raw": {
+      "conversation": "Dlc",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "N8GEUlATTw4xFw==",
+          "senderTimestamp": "1769301299",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "owYaoBgD+pHyFtBhnSpSg2wjtutYpTNUYxtokguShC4="
+      }
+    }
+  }
+}
+[2026-01-26 17:20:20] [INFO]: 📩 WhatsApp: 559188219466 → Dlc
+[2026-01-26 17:20:20] [INFO]: 📤 WhatsApp enviado para 559188219466
+[2026-01-26 17:20:23] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559188219466@s.whatsapp.net",
+    "messageId": "3A545D4578D1A60AF59A",
+    "pushName": "Leonan Valois",
+    "timestamp": 1769448023
+  },
+  "message": {
+    "type": "text",
+    "text": "Aiii",
+    "raw": {
+      "conversation": "Aiii",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "N8GEUlATTw4xFw==",
+          "senderTimestamp": "1769301299",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "Z82BbN4cKhjc9ZXUl7mqxSMYSQyarItohGCM3EhrHpA="
+      }
+    }
+  }
+}
+[2026-01-26 17:20:23] [INFO]: 📩 WhatsApp: 559188219466 → Aiii
+[2026-01-26 17:20:23] [INFO]: 📤 WhatsApp enviado para 559188219466
+[2026-01-26 17:20:29] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559188219466@s.whatsapp.net",
+    "messageId": "3A9DF35484133B8B596A",
+    "pushName": "Leonan Valois",
+    "timestamp": 1769448029
+  },
+  "message": {
+    "type": "text",
+    "text": "Viado fala mensagem de bem vindo",
+    "raw": {
+      "conversation": "Viado fala mensagem de bem vindo",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "N8GEUlATTw4xFw==",
+          "senderTimestamp": "1769301299",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "P9MZ+NPQHcGHlHTE7S2Zy8byhbDziMKW/CDKQ9m3mZ8="
+      }
+    }
+  }
+}
+[2026-01-26 17:20:29] [INFO]: 📩 WhatsApp: 559188219466 → Viado fala mensagem de bem vindo
+[2026-01-26 17:20:29] [INFO]: 📤 WhatsApp enviado para 559188219466
+[2026-01-26 17:20:37] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559188219466@s.whatsapp.net",
+    "messageId": "3A19B1DF311D6EE8AEB7",
+    "pushName": "Leonan Valois",
+    "timestamp": 1769448036
+  },
+  "message": {
+    "type": "text",
+    "text": "Bloqueia",
+    "raw": {
+      "conversation": "Bloqueia",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "N8GEUlATTw4xFw==",
+          "senderTimestamp": "1769301299",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "9GjSTeV5Hfri2mvDVOxg15uvIoke3fUPVdSPeLqxNFM="
+      }
+    }
+  }
+}
+[2026-01-26 17:20:37] [INFO]: 📩 WhatsApp: 559188219466 → Bloqueia
+[2026-01-26 17:20:37] [INFO]: 📤 WhatsApp enviado para 559188219466
+[2026-01-26 17:20:46] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559188219466@s.whatsapp.net",
+    "messageId": "3A9834AB4C5366061DF4",
+    "pushName": "Leonan Valois",
+    "timestamp": 1769448045
+  },
+  "message": {
+    "type": "text",
+    "text": "Olha mark, um chat bot aqui",
+    "raw": {
+      "conversation": "Olha mark, um chat bot aqui",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "N8GEUlATTw4xFw==",
+          "senderTimestamp": "1769301299",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "tl2essxHtG0bzSxIYEoLI2My+M4MMTHFf+ZIKMClOdU="
+      }
+    }
+  }
+}
+[2026-01-26 17:20:46] [INFO]: 📩 WhatsApp: 559188219466 → Olha mark, um chat bot aqui
+[2026-01-26 17:20:46] [INFO]: 📤 WhatsApp enviado para 559188219466
+[2026-01-26 17:24:25] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "messageId": "AC56B917346C68810E6ABE05F69D9132",
+    "pushName": "Clívia  Leal  🌟🫶🍀💮🍄",
+    "timestamp": 1769448265
+  },
+  "message": {
+    "type": "text",
+    "text": "https://www.instagram.com/reel/DT8dk8-ClQS/?igsh=MXVzZ3JuZThsMTJqcw==",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "https://www.instagram.com/reel/DT8dk8-ClQS/?igsh=MXVzZ3JuZThsMTJqcw==",
+        "matchedText": "https://www.instagram.com/reel/DT8dk8-ClQS/?igsh=MXVzZ3JuZThsMTJqcw==",
+        "title": "Fabio Souza / Notícias e política no Instagram: \"Na opinião de vocês Daniel Vorcaro deve fazer uma delação???? Botar pra quebrar em Brasília e no Brasil??? Ele tem muita gente graúda nas mãos e por isso mesmo sua vida a partir de então está a prêmio, DELTA VORCARO DELATA . Sigam curtam comentem e compartilhem nosso conteúdo, o Instagram está derrubando nosso engajamento, as páginas de esquerda estão em perigo nessa rede , sigam as páginas e ajude a fortalecer nossa Luta. @fdesouzaalves @esquerda.democratica @esquerda.atuante\"",
+        "textArgb": 4294967295,
+        "backgroundArgb": 4283943423,
+        "font": "SYSTEM",
+        "previewType": "VIDEO",
+        "jpegThumbnail": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABbAFsDASIAAhEBAxEB/8QAHAAAAgMBAQEBAAAAAAAAAAAABQYDBAcCAQAI/8QAOhAAAgECBQIEBAMFCAMAAAAAAQIDBBEABRIhMQZBEyJRYRQycYEHQpEVUnKhsSMkM1NiksHwgrLR/8QAGgEAAgMBAQAAAAAAAAAAAAAAAwQBAgUABv/EAC4RAAIBAwMBBgUFAQAAAAAAAAECAAMRIQQSMUEyUWFxofAUkbHB0QUTFULxgf/aAAwDAQACEQMRAD8Axi1hdeO+I9Zv5gSPpbFzIg5zendSAsTh2uewN8NNXmsNXS1kTkNTzzEah62Av+ox7CeVdyhAC3/2KdDmFRl0rvSsFaWJoX1KGDK3I3w75EvUWbx/tiPNqen1st3MSrcq6oV4AsqiG4NhpZRxfCx1nWGtrYGVblYQtx7E4ZMv6f6ecxxy9RfDwmR/IMzgGpBGxL8WUuwp7A72DA3sCM/XBV558rzR0LM636d14UqYus6b4ul+OhZJ1qa6ULSg6np30XF05YrEQRt5lva20tVlPVlJJVIuawLDJWPSSVENOLs5LTkgqvZmewBuCSNuAKpck6adkas6oaSVlpnJGYRr53e8qkkflVIt7ixHewAr9P8ATGadQ5L1BnsGZOBQSEAtVamAXe5YHfbg8G22MqtXSim9iAMDs95mpQ071n2Lz5935l3PR1Dl+ZCorM4oBVo7h2MKqNcR8O262ItUMRtxf2xcEGeZc2pOoMveQ1Ua/wBmkZbXMgXVbnSUiB2FzpJta7EG/S2aJ+HFP1OcxZoBIY1Qzk6ULWKgeuoA29sXc96TzbJKDJK85nZs3KXdZyLnlWJvuBsb9sC+Lolgm4XuV7PUZPTiH+Cq7d3gD2u/p59T4QjLH1JRUqpU5lElKYKtlDRKgdWqAHU6lFwzSI1t9msLnbFpqXqOSZ1bOKRhUTw62+FHnuqiMt5PVQpHpvv2GZ50FmdL1jl+S1FYJJsxAbW8pJJIBN79yVFvUgemCGXdG5xUdaVuR/tJzUQlpSxqGJ+UC/8AEVIB9sCOv05Tfu/qW7PS9vnfpL/x9UNtuOQO14Xv5W/yK7ZlXVlBBDNKjUwKsqCNFI0JoU7DsptyePbFSoYPM7RkBSeL3/5xZzSnkpqg00wCmGRkYqdV7XG3tziFoLGzNGh/d12t/PHoaW0oGTg5mBV3K5V+RiJFXVJTR6nDnUbeU4qrmqKpAWUr9se5pE8sYVFNwwNvscUkpJY0BMMlySPlPtgVevUWoVU4jNKmhpgkQgMwL6SYpyPpziN6jUbiGYHv5caF0dWzx+LGI9aRH8wJCg9sWepKiqjoLgugldFJG11uSR9NsFoGrVUsWtbwhm09MZt9ZmYnP+VN/txOKlorr4c9mAJAGx74YYaTMs0rZabK0syEa5WNgL72wyrlvUfTuXyVjTx1CINTRm5sPUfbCbayzbGb0h1/Tyy7lXH/AGZ4MxYIq+FNpXgadsSDMjoDPDOQpsBbG0ZRmSZplcFQSRd1LC+wI5GF+Wlpqo1709Q7zeI7LyAwVXLWHNrAWJtzhyrTqUwrbrg+EWFJCStvrENOowsLRmlqW82pSQDYjjHNH1THT1rTzU0kmlSCrW+mNK6HoDPmcjNZw7NDE176HGhmJT8wKaltve+wJxmP4keAvXGdijW0BnIS+xC7W2wka77tt/SXNBBm3qfzCuW9RQ5vmQp4oZ43YM62t2W9rfbBGfNoIpWSSEO4PmYgm5/XCP0oo/bSAkC8bi57eU+xw8GaNTZBE6juKYNf7lb4c0zM6ktM/VKqEBREGsfVEACCA3b74rre1iTb0vj0vrQ7DkHb74+HOF62ahMeUbVAmr/h7Ts9PnsygkU6qx9tzi11o7vlNLNUSPITKgszX2F8RdH5pU9L5L1FHmGVTOubQK1PKpXyqrk6iDvY3tiDqesfMciy2jgpmFTC7NOSy6V81hY339fYYZ0JvTqAjyl67MpQAXuc+GCYO6ezl8reoEEAkkeYlmY8Db9cH58zzipkeGWoBpnW2kILEHthBk+Py+WrE0EkccjgLMV8l79m47fyx+oug/w8yfqv8LsmrWZ6bNJY3Y1cZvqOth5lJsRsOLcc4wdUhFUma9LUbaQBOJiXRLNli1tPWNrR2PhnsgW4B++AaXHjPrK2ZuPvhor8ol6cz3OctzCrgqHjiZ4pInvE6i58p9d9xyDhWyvIc6rKKGVaCf8AvBHgXsBIpNg252udt+cbNGqTRWmTx95ipdtTUIGMW+WZNk2c1WXyPPTvZllLb97rY7jfjCp1hVNmPUldWTbSzuJGtfkgE8nBmloM2NTU0rZbU3V7A6TctcCwH1wuZ2b5lIfUL/6jAai2N7Qz8SLJnWHM4WKeIu4K+otgxO4aZzFLpjJ8oLbgYFZOSuYIy/MFa3m09j3wWcmV2dJVVGNwrEEgYY05spmdquRF59oQSSSSLk/Q4+DARgi174rKxWM3Hcc/fHQkJtfCztdzHiuBN2rZjJlFLS1syU9P8IhQxIkhksQ2lnDbXGn3HphPoVqaDMK2LNQ5kWHWGV/EDErdRcXF7ML+lj32xn0ZLewHf0xcpiqq1nBvG/F/TDK6s3UgcSjGy2EPZpLV1MaxyBkpJCoax+ax5I9e+HjJer85TJqDpebOpBkVJqQxUsXhPMCS2l5L3K7niwtzfGSU85hLERxSaha0iBhjpqnUzHwIBc3sEsB9MJVh+6bmEVyBaaN15U/HV9DBlwLrHG28Y2FyBbb+HBjp7qSvy+mqYaiKoqBLAkKksyGIoSVYW5sSdj64yKaqaRFVYoorb3jXST9cQGR/32/U4LQdqPBgHQMNs3CTPVFCKZhNMJfCMk0/z07rJqJFx5gQovxsSMZF1QHGfVZllSV9QLSR7qSQOMDNbFTux+px7AjSkrq0dyf+/UYNX1JqjInU6ZTreT5OwGZREi9rm3uBh5p8xihgSOenilkUeZzK1z+hthHy9PCzKIFwyupYMARcb4ItNGrESGIuOTY8/YYigwtF9Wm4iLUKyTalSN3IGo6BewHJ+mLEFMJSNAcm1zbFzpSOsmzB4KCCCVpUCOJ/lVS6+bkcHThopW6jgr5rUNHJPFHEH1Ebrd9Nxq31b7HmwPphZrXzHyTbEUZKcavDUliouVXew98TQQqt9TEEAqR9djh3nbPPHljbKaBJ/BjZxdWsNwD83lvZjbsd7Am5+deoZoVikoaISCztIzx6thezNq5YK2x5Gr3xII9mCLN7ESqejZ9SwCV5PRBc2FyePpiIo5DFHcgC5Grf14w6zw9QTVjVMmW0rTAyEmOTZw2pHFw++++3ffkm/fidQ1bwyRUFDpEBcmRV0vpubkXte4IsNhfHEju9ZALXt9oiHxRz4o78+1/6EHEbSG+zyH/yw4zp1BDVNI1JSiWtQMyCRbWRb3FnutlsSdrab7WxcjpepVqirZbloeONxYMhUaVO2lXtfy9xuQL/ACi0XHsy4J9iZ+XJ/M/+7HdOz+MvhvIGJtsb4vdQtV/HLHXRRRzxRIpEfcEagSbnezf8bWxQDBYvIp1HZmP9Bi20GQXI4hihgT45ppKp3eNWtddiNJ/798erR+INaTU6g9nmUMPqL49pY9KiM+RNPhOVsS2/Nv0GPWZL+SG69i2gE/ywVQFGIm9RnOTBGQClNeGr/iDAg1sIb3IBFwSASBa/3tuOQWpZsghlqVkkzF0YWikU7qNJFjxfdg31QDcEnEXQbEZy6gkCSLQ1jY2Lp37fbDw7eHJEEVAJHBYaQfzW29Pt3ued8KM2Zo9Isx02R+GxE2YmVFDGwuEUL3OgbFiN7f12ipYskfWzyZgsfiMqAW1WHH5bXI9x39BqZKWVlzGiVQgElKVYBBwGv6bcfcXHBOL8IGtIdxG7OGUH92RlBHo1vzDckk3uScTuIgiIrU9PkxSZ9desq6Ph4yNRY6yDuFPbfja/DcYgqYMjiiEjnOEYyhSJFCXF/NY2O4823t77M+VzyRrTohCq1RNcAC3+Kw+2BvVx09PRxgAJE0kKC3CLIAB+ijfnHXJNpAAAvA8C9NBx4k1ey3a6kjYEWB2XkH3tYX/04EZoKYVjCgadqawGuYi7evFtv/l/YUE3axx8Sb2vtggFpF5KzMQSGse5vucRb46x9iZUGX6WQBLqDrP5jbgd7euOnKazouV7XxWp2KobG3mB/rjsuysQDYAkDbFwYErmf//Z",
+        "contextInfo": {
+          "forwardingScore": 0,
+          "featureEligibilities": {
+            "canBeReshared": true
+          },
+          "statusSourceType": "TEXT"
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT",
+        "faviconMMSMetadata": {
+          "thumbnailDirectPath": "/v/t62.36144-24/564323433_924119643480135_4723030197559960693_n.enc?ccb=11-4&oh=01_Q5Aa3gFeec78j4a04_AV83euXBeSO9lXt2PzI-8yL0zv-i6ZNQ&oe=699F145F&_nc_sid=5e03e0",
+          "thumbnailSha256": "UBIyCBwMOmznfz7ynzrC0iEJ6Okg0E6Z1oi8zEMkoaA=",
+          "thumbnailEncSha256": "+qVRLZOoQTasMHTCLPwQy9go8gyuUHD9PZ0r9OraXhY=",
+          "mediaKey": "q8sRMPxFUl9ijeVeuaxiAGuCAhIYtBavR0TKy6DVmjM=",
+          "mediaKeyTimestamp": "1769448262",
+          "thumbnailHeight": 32,
+          "thumbnailWidth": 32
+        },
+        "linkPreviewMetadata": {
+          "linkMediaDuration": 95,
+          "socialMediaPostType": "REEL",
+          "linkInlineVideoMuted": false
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "n25C+IQCR/iqUz36B4Nczy3O7nAtSrGxIGXq82s8nHk="
+      }
+    }
+  }
+}
+[2026-01-26 17:24:25] [INFO]: 📩 WhatsApp: status → https://www.instagram.com/reel/DT8dk8-ClQS/?igsh=MXVzZ3JuZThsMTJqcw==
+[2026-01-26 17:24:25] [INFO]: 📤 WhatsApp enviado para status
+[2026-01-26 17:25:12] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559191729721@s.whatsapp.net",
+    "messageId": "3A6D82D6A388A0A71A91",
+    "pushName": "Yas",
+    "timestamp": 1769448311
+  },
+  "message": {
+    "type": "text",
+    "text": "Como está sua garganta?",
+    "raw": {
+      "conversation": "Como está sua garganta?",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderTimestamp": "1769446213",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "e14zxLaQMt05viNcII91xvuHOFmXxh6khu79QdxJPnY="
+      }
+    }
+  }
+}
+[2026-01-26 17:25:12] [INFO]: 📩 WhatsApp: 559191729721 → Como está sua garganta?
+[2026-01-26 17:25:12] [INFO]: 📤 WhatsApp enviado para 559191729721
+[2026-01-26 17:25:19] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559191729721@s.whatsapp.net",
+    "messageId": "3AB43805EC96E7C93725",
+    "pushName": "Yas",
+    "timestamp": 1769448319
+  },
+  "message": {
+    "type": "text",
+    "text": "Ah meu Deus KKKK",
+    "raw": {
+      "conversation": "Ah meu Deus KKKK",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderTimestamp": "1769446213",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "ey2b46Q0BJglsH0ZOjrXXpoTZbfTLKdFtrHwbNbhzzM="
+      }
+    }
+  }
+}
+[2026-01-26 17:25:19] [INFO]: 📩 WhatsApp: 559191729721 → Ah meu Deus KKKK
+[2026-01-26 17:25:19] [INFO]: 📤 WhatsApp enviado para 559191729721
+[2026-01-26 17:25:28] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559191729721@s.whatsapp.net",
+    "messageId": "3AEA60142F5815DF6D01",
+    "pushName": "Yas",
+    "timestamp": 1769448327
+  },
+  "message": {
+    "type": "sticker",
+    "text": "[Sticker]",
+    "raw": {
+      "stickerMessage": {
+        "url": "https://mmg.whatsapp.net/v/t62.15575-24/567975093_1450154393142830_3126078285787480040_n.enc?ccb=11-4&oh=01_Q5Aa3gHvojLNapKbsqWUoFUN5XacMh9D5XU6SGN8IAeM7lyukA&oe=699EFB8E&_nc_sid=5e03e0&mms3=true",
+        "fileSha256": "gBBlypjkCUqetf/jWkf0qLS7lpFh11092NcL7MT3IXQ=",
+        "fileEncSha256": "xKk9Ke4MQrTsAtz0q9WtH3JuzD+mGE3qcM8tyxvz/9I=",
+        "mediaKey": "tTAO+HXlBO2xh7Ntl3st2de7lYnzL7DG4D7Od0gd5ik=",
+        "mimetype": "image/webp",
+        "directPath": "/v/t62.15575-24/567975093_1450154393142830_3126078285787480040_n.enc?ccb=11-4&oh=01_Q5Aa3gHvojLNapKbsqWUoFUN5XacMh9D5XU6SGN8IAeM7lyukA&oe=699EFB8E&_nc_sid=5e03e0",
+        "fileLength": "33388",
+        "mediaKeyTimestamp": "1769393529",
+        "isAnimated": false,
+        "stickerSentTs": "1769448324356",
+        "isAvatar": false,
+        "isAiSticker": false,
+        "isLottie": false,
+        "accessibilityLabel": ""
+      },
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderTimestamp": "1769446213",
+          "recipientKeyHash": "HSVrt7qhp+s8Bg==",
+          "recipientTimestamp": "1769447966"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "q598Hcvts2eHw+XAYhT5is8VpDvf9z9uOp2nHe5oeEA="
+      }
+    }
+  }
+}
+[2026-01-26 17:25:28] [INFO]: 📩 WhatsApp: 559191729721 → [Sticker]
+[2026-01-26 17:25:28] [INFO]: 📤 WhatsApp enviado para 559191729721
+[2026-01-26 17:28:21] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3ADD6D7337697558E1F7",
+    "pushName": "Kalel",
+    "timestamp": 1769448501
+  },
+  "message": {
+    "type": "text",
+    "text": "O meu tá métodos ágeis de scrum e engenharia de usabilidade",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "O meu tá métodos ágeis de scrum e engenharia de usabilidade",
+        "contextInfo": {
+          "stanzaId": "3A824435B894B2CFB3D5",
+          "participant": "192431832227841@lid",
+          "quotedMessage": {
+            "conversation": "Segurança cibernética e metodos ageis em scrum"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "rKUJdu3RtQhHBPT7Fw/KGe0O3zsTgD7kwwYWkbcFWDc="
+      }
+    }
+  }
+}
+[2026-01-26 17:28:21] [INFO]: 📩 WhatsApp: 120363042741689479 → O meu tá métodos ágeis de scrum e engenharia de usabilidade
+[2026-01-26 17:28:22] [INFO]: 📤 WhatsApp enviado para 120363042741689479
+[2026-01-26 17:29:28] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "messageId": "A588F5A56A6554B4D083A452CD6CA873",
+    "pushName": "Delivery Ananindeua",
+    "timestamp": 1769448565
+  },
+  "message": {
+    "type": "image",
+    "text": "[Imagem]",
+    "raw": {
+      "imageMessage": {
+        "url": "https://mmg.whatsapp.net/o1/v/t24/f2/m269/AQMmKmb5txhMGor2wQ7OI_FvnCUJcqWC6wwkg2m4SG_cc3kh8nWufQGaot2mkq78zuWV6dHUxJJ07_z_gGX5V5x-yZbeCZivW1vFK2TWTw?ccb=9-4&oh=01_Q5Aa3gHzuIVikvVdVbxcOIDCxj5ptYnRbqLVf8tAGTOEwecTKA&oe=699F123B&_nc_sid=e6ed6c&mms3=true",
+        "mimetype": "image/jpeg",
+        "fileSha256": "MAXSwqYxfgbA+nPIv8Ignn4x9xczBMjhqKYkL7Z3opg=",
+        "fileLength": "248044",
+        "height": 1600,
+        "width": 1280,
+        "mediaKey": "oGIbmalFTeMaW3oU0iGZqfzXHquW2KpT3sz5YHMaaB0=",
+        "fileEncSha256": "cb6MksJT7ZFsk/9Hi9vLvzKwVjtd0cdbiftAC+4CR2s=",
+        "directPath": "/o1/v/t24/f2/m269/AQMmKmb5txhMGor2wQ7OI_FvnCUJcqWC6wwkg2m4SG_cc3kh8nWufQGaot2mkq78zuWV6dHUxJJ07_z_gGX5V5x-yZbeCZivW1vFK2TWTw?ccb=9-4&oh=01_Q5Aa3gHzuIVikvVdVbxcOIDCxj5ptYnRbqLVf8tAGTOEwecTKA&oe=699F123B&_nc_sid=e6ed6c",
+        "mediaKeyTimestamp": "1769447137",
+        "jpegThumbnail": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABsSFBcUERsXFhceHBsgKEIrKCUlKFE6PTBCYFVlZF9VXVtqeJmBanGQc1tdhbWGkJ6jq62rZ4C8ybqmx5moq6T/2wBDARweHigjKE4rK06kbl1upKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKT/wgARCABIADoDASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAAUCAwQBBv/EABgBAAMBAQAAAAAAAAAAAAAAAAABAgQD/9oADAMBAAIQAxAAAABFKnZtg0VtclozVPtKvmk08u7LNmV4B5XytFW2ozd8q90g0c3ki0TNJtUD0Z9WaGtj2XaY27m0iObuLE9T/qPJjxEGyQaM9l4OaqgHECK//8QAHREAAgIDAQEBAAAAAAAAAAAAAAECEQMhMRIEYf/aAAgBAgEBPwDNklVRRknONJIg20nuzbJT2SyUrI/ROtswZXJNy2NV0q1wr8FEbYp5FxjlN9Z6EeUzykNI/8QAHxEAAwEAAQQDAAAAAAAAAAAAAAECESEDEBITMUFR/9oACAEDAQE/AJS+yUmU8eI8kOaYoe4euTqSk8nt8GjZwZP4cGDNNEf/xAAuEAACAQMDAwMBCAMAAAAAAAABAgMABBESITEFQVETImEGFCMkQlJxkaFicpL/2gAIAQEAAT8AOoDnaocFvcKDCZtOksRxSWMgQkLnbOKfCth0YGmjOMrG38USy7GtXxRNQXEQRVdCWHirGdI70uwAB4pJmZTpQAHvXVHGuPJBcckUnUY/TC6DkDmiokYsw5NaIvBqxi1T7prHioYFWY5iDb8Ve2qtgrFo84oWqtEMSSavnipumFJFWWX3MNqFtHq0rMM/Ip+lusZf1RgDO1aG+a+nYjMZWGNh3qKCCO5y8mpieKmjVhMDsuOahjiFuhU6t+TV8xF2jqNQRTj96eHRCoKhnf3EjtV4xg6ZgH3HbmtUn6q+nD+FudyKQYfYZJbk1IGNo5bjTV7NJHaxxg6NbdqkdPTH3m4rqFwRGBET8kU0kjj3OxHyawa+mmiWOdZGC5809/ZW8ntwxz2q56uPQ1IQc/lp7tr29i9SM6V4UV6QEmWiOkVexlLZiEyCefFDVjGKwfNamA2aoI3lJxwO9C3lHGDQimXdSMj+q03JzlyBVxHcJEWZyy+KyT3rNdCt7WV5PtYGw9uajtrBGwNAU84NNBZhvYyY/wBq9G1yd03/AMq9CzYbsn/VNb2LDSShHy1dStLNLF2iRRKDtpOdq0N+k/xQJ80MnvUYXV7txWm3+alEfEYP70du9amHevUfz/Vf//4AAwD/2Q==",
+        "contextInfo": {
+          "pairedMediaType": "NOT_PAIRED_MEDIA",
+          "statusSourceType": "IMAGE"
+        },
+        "thumbnailDirectPath": "/v/t62.35850-24/622572287_1641628953864244_7885240359659185684_n.enc?ccb=11-4&oh=01_Q5Aa3gEb4xddhEkOVdT5NYV8xzYH1IC6mbq8pJCJ5unf88cwQw&oe=699F2457&_nc_sid=5e03e0",
+        "thumbnailSha256": "gJWwNAM4aBprRMzZmhWu6r5w5jvQnU/DvfbacAZU+VA=",
+        "thumbnailEncSha256": "+V1+Cu8XaU/2lUcOQIEVjS+F1no7T2R2rM7DdonyFRo="
+      },
+      "messageContextInfo": {
+        "messageSecret": "Ur1S/uYU1oQAbfXEh5V8kWxiSjKNcjCFpS9QhlOKw8s="
+      }
+    }
+  }
+}
+[2026-01-26 17:29:28] [INFO]: 📩 WhatsApp: status → [Imagem]
+[2026-01-26 17:29:28] [INFO]: 📤 WhatsApp enviado para status
+[2026-01-26 17:29:30] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A6289EDE8C33EFB083B",
+    "pushName": "Luan Rodrigues",
+    "timestamp": 1769448570
+  },
+  "message": {
+    "type": "text",
+    "text": "Eu consegui engenharia da usabilidade ligando pro numero que eles disponibilizaram",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "Eu consegui engenharia da usabilidade ligando pro numero que eles disponibilizaram",
+        "contextInfo": {
+          "stanzaId": "3ADD6D7337697558E1F7",
+          "participant": "162152212095207@lid",
+          "quotedMessage": {
+            "conversation": "O meu tá métodos ágeis de scrum e engenharia de usabilidade"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "XNHbDVPqpxlB2bbeL+gTjmXSxfpTn+10gLdvG5v0dIM="
+      }
+    }
+  }
+}
+[2026-01-26 17:29:30] [INFO]: 📩 WhatsApp: 120363042741689479 → Eu consegui engenharia da usabilidade ligando pro numero que eles disponibilizaram
+[2026-01-26 17:29:30] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:29:41] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A68024100ED894EA313",
+    "pushName": "Luan Rodrigues",
+    "timestamp": 1769448580
+  },
+  "message": {
+    "type": "text",
+    "text": "Falei com a atendente",
+    "raw": {
+      "conversation": "Falei com a atendente",
+      "messageContextInfo": {
+        "messageSecret": "UBwpUPKC46krYRBe/v5IK8ike54iAOPSK0QgL/Wn36c="
+      }
+    }
+  }
+}
+[2026-01-26 17:29:41] [INFO]: 📩 WhatsApp: 120363042741689479 → Falei com a atendente
+[2026-01-26 17:29:41] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:30:08] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A10514BB4CCAD8A9A9A",
+    "pushName": "Kalel",
+    "timestamp": 1769448608
+  },
+  "message": {
+    "type": "text",
+    "text": "O meu caiu esse dois mas acho que vou liga pra lá amanhã pra vê isso direito",
+    "raw": {
+      "conversation": "O meu caiu esse dois mas acho que vou liga pra lá amanhã pra vê isso direito",
+      "messageContextInfo": {
+        "messageSecret": "WT+h/dFksOJcJixA/m62hKT3a0s7xrKEmv92TTR6WWI="
+      }
+    }
+  }
+}
+[2026-01-26 17:30:08] [INFO]: 📩 WhatsApp: 120363042741689479 → O meu caiu esse dois mas acho que vou liga pra lá amanhã pra vê isso direito
+[2026-01-26 17:30:08] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:32:35] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A6E040ACCB2887DD358",
+    "pushName": "Kalel",
+    "timestamp": 1769448755
+  },
+  "message": {
+    "type": "text",
+    "text": "Eu tb",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "Eu tb",
+        "contextInfo": {
+          "stanzaId": "3A4BD4F7645FB5E678AF",
+          "participant": "14396780712138@lid",
+          "quotedMessage": {
+            "conversation": "Eu só duas"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "x5we9K1+Ip2trer+FUTSzVz6lIk3WeRQJtpB/IgjM8M="
+      }
+    }
+  }
+}
+[2026-01-26 17:32:35] [INFO]: 📩 WhatsApp: 120363042741689479 → Eu tb
+[2026-01-26 17:32:35] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:32:42] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A81B24AFF9D0F5726B4",
+    "pushName": "Rodrigo Moraes",
+    "timestamp": 1769448762
+  },
+  "message": {
+    "type": "text",
+    "text": "Tópicos de Big Data em Python e métodos ágeis com Scrum",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "Tópicos de Big Data em Python e métodos ágeis com Scrum",
+        "contextInfo": {
+          "stanzaId": "3ABA45CC27055C419E56",
+          "participant": "162152212095207@lid",
+          "quotedMessage": {
+            "conversation": "Quais são as duas matérias que estão lá pra vcs ?"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "PjELb6JzZ+3yqrrRjIBF0P1qYuaKifap0I425wSrPu0="
+      }
+    }
+  }
+}
+[2026-01-26 17:32:42] [INFO]: 📩 WhatsApp: 120363042741689479 → Tópicos de Big Data em Python e métodos ágeis com Scrum
+[2026-01-26 17:32:42] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:33:07] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A5C028CC8378FBBBAF0",
+    "pushName": "Rodrigo Moraes",
+    "timestamp": 1769448786
+  },
+  "message": {
+    "type": "text",
+    "text": "Não entendi, tem mais?",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "Não entendi, tem mais?",
+        "contextInfo": {
+          "stanzaId": "3A6E040ACCB2887DD358",
+          "participant": "162152212095207@lid",
+          "quotedMessage": {
+            "conversation": "Eu tb"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "J0rF90V4C6w6advbyza61wFfYhpuYAC+UrhbsRhrK1E="
+      }
+    }
+  }
+}
+[2026-01-26 17:33:07] [INFO]: 📩 WhatsApp: 120363042741689479 → Não entendi, tem mais?
+[2026-01-26 17:33:07] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A8D5F919F9584B9D504",
+    "pushName": "Kalel",
+    "timestamp": 1769448787
+  },
+  "message": {
+    "type": "text",
+    "text": "Cd um em diferente só os ágeis de scrum que tão iguais",
+    "raw": {
+      "conversation": "Cd um em diferente só os ágeis de scrum que tão iguais",
+      "messageContextInfo": {
+        "messageSecret": "h1g4+vPCtl6LAvAPH6RHbdI2MIbIKKefhbA3o/j4WV0="
+      }
+    }
+  }
+}
+[2026-01-26 17:33:07] [INFO]: 📩 WhatsApp: 120363042741689479 → Cd um em diferente só os ágeis de scrum que tão iguais
+[2026-01-26 17:33:07] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:33:07] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:33:17] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A8E2F8A9103EE052061",
+    "pushName": "Kalel",
+    "timestamp": 1769448797
+  },
+  "message": {
+    "type": "text",
+    "text": ".",
+    "raw": {
+      "extendedTextMessage": {
+        "text": ".",
+        "contextInfo": {
+          "stanzaId": "3ADD6D7337697558E1F7",
+          "participant": "162152212095207@lid",
+          "quotedMessage": {
+            "conversation": "O meu tá métodos ágeis de scrum e engenharia de usabilidade"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "ciXqZJckfMvp0n0j8YBO+OTcAeqVhH0C1Exxo5H8050="
+      }
+    }
+  }
+}
+[2026-01-26 17:33:17] [INFO]: 📩 WhatsApp: 120363042741689479 → .
+[2026-01-26 17:33:17] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:33:27] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3AA428BC726B6C3B13C2",
+    "pushName": "Kalel",
+    "timestamp": 1769448807
+  },
+  "message": {
+    "type": "text",
+    "text": "Sim são 5 matérias faltando",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "Sim são 5 matérias faltando",
+        "contextInfo": {
+          "stanzaId": "3A5C028CC8378FBBBAF0",
+          "participant": "14396780712138@lid",
+          "quotedMessage": {
+            "conversation": "Não entendi, tem mais?"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "S+1klKFcrk6JK5uqxwqv6VkhN6kWfjTYab1yldYzd6M="
+      }
+    }
+  }
+}
+[2026-01-26 17:33:27] [INFO]: 📩 WhatsApp: 120363042741689479 → Sim são 5 matérias faltando
+[2026-01-26 17:33:27] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:33:51] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3AA5F92A8245B1D05B61",
+    "pushName": "Rodrigo Moraes",
+    "timestamp": 1769448831
+  },
+  "message": {
+    "type": "text",
+    "text": "Realmente",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "Realmente",
+        "contextInfo": {
+          "stanzaId": "3AA428BC726B6C3B13C2",
+          "participant": "162152212095207@lid",
+          "quotedMessage": {
+            "conversation": "Sim são 5 matérias ao todo"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "UWzdQ2omLh9mJrGA7oEzmJvrr9nvV1JsaPEhrifmMXk="
+      }
+    }
+  }
+}
+[2026-01-26 17:33:51] [INFO]: 📩 WhatsApp: 120363042741689479 → Realmente
+[2026-01-26 17:33:51] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:33:58] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A3E9A26B1DD6355C698",
+    "pushName": "Rodrigo Moraes",
+    "timestamp": 1769448838
+  },
+  "message": {
+    "type": "text",
+    "text": "O que aconteceu?",
+    "raw": {
+      "conversation": "O que aconteceu?",
+      "messageContextInfo": {
+        "messageSecret": "jcxbB9TbA2p8V+dAhIR5IVmOgiL+IozHTyxbyqPavQo="
+      }
+    }
+  }
+}
+[2026-01-26 17:33:58] [INFO]: 📩 WhatsApp: 120363042741689479 → O que aconteceu?
+[2026-01-26 17:33:58] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:34:16] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3AB76CD377D0A42750CB",
+    "pushName": "Rodrigo Moraes",
+    "timestamp": 1769448856
+  },
+  "message": {
+    "type": "text",
+    "text": "Será se ainda tão finalizando as matérias?",
+    "raw": {
+      "conversation": "Será se ainda tão finalizando as matérias?",
+      "messageContextInfo": {
+        "messageSecret": "kfUkoEL9FR7nOZOXHYia1ByOb276agLbaoO1z79261Q="
+      }
+    }
+  }
+}
+[2026-01-26 17:34:16] [INFO]: 📩 WhatsApp: 120363042741689479 → Será se ainda tão finalizando as matérias?
+[2026-01-26 17:34:16] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:34:17] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A5D516E149BDA351537",
+    "pushName": "Kalel",
+    "timestamp": 1769448856
+  },
+  "message": {
+    "type": "text",
+    "text": "Até agr não apareceu mais matéria m na grade",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "Até agr não apareceu mais matéria m na grade",
+        "contextInfo": {
+          "stanzaId": "3A3E9A26B1DD6355C698",
+          "participant": "14396780712138@lid",
+          "quotedMessage": {
+            "conversation": "O que aconteceu?"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "ZMs7Qu8Zrx7hCgG2ExvIWenacpP8KAsqdEOU2f1dWQ8="
+      }
+    }
+  }
+}
+[2026-01-26 17:34:17] [INFO]: 📩 WhatsApp: 120363042741689479 → Até agr não apareceu mais matéria m na grade
+[2026-01-26 17:34:17] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:34:44] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3A869AC7049798C42084",
+    "pushName": "Kalel",
+    "timestamp": 1769448884
+  },
+  "message": {
+    "type": "text",
+    "text": "Talvez seria bom alguém tira essa duvida com alguém de lá",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "Talvez seria bom alguém tira essa duvida com alguém de lá",
+        "contextInfo": {
+          "stanzaId": "3AB76CD377D0A42750CB",
+          "participant": "14396780712138@lid",
+          "quotedMessage": {
+            "conversation": "Será se ainda tão finalizando as matérias?"
+          },
+          "quotedType": "EXPLICIT"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "qNaxaaT8DZSqCU2nN/LPL1JGbwGTr7Rl6rQDNSGe7zU="
+      }
+    }
+  }
+}
+[2026-01-26 17:34:44] [INFO]: 📩 WhatsApp: 120363042741689479 → Talvez seria bom alguém tira essa duvida com alguém de lá
+[2026-01-26 17:34:44] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:34:51] [INFO]: 📦 Conteúdo recebido no webhook:
+{
+  "event": "message.received",
+  "instance": {
+    "id": "98731d67-f8c1-4803-94ed-c0966e1491e1",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363042741689479@g.us",
+    "messageId": "3AFA1FD0793544932AC1",
+    "pushName": "Kalel",
+    "timestamp": 1769448891
+  },
+  "message": {
+    "type": "text",
+    "text": "A questão é eles atenderem",
+    "raw": {
+      "conversation": "A questão é eles atenderem",
+      "messageContextInfo": {
+        "messageSecret": "H5PrvfIeK+rtZkK2B1hFPZ8ofN2sQxS04Z9xt7Rowfs="
+      }
+    }
+  }
+}
+[2026-01-26 17:34:51] [INFO]: 📩 WhatsApp: 120363042741689479 → A questão é eles atenderem
+[2026-01-26 17:34:51] [ERROR]: ❌ Erro ao enviar WhatsApp: Request failed with status code 400
+[2026-01-26 17:39:00] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-26 17:39:00] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-26 17:39:00] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-01-26 17:39:00] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jan 26 2026 17:39:00 GMT+0000 (Coordinated Universal Time)
+[2026-01-26 17:40:38] [INFO]: 🆕 Utilizador criado (96d3cc4a-ee41-47d1-b471-26d43f0cea3a)
+[2026-01-26 17:40:57] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 17:42:38] [INFO]: 🆕 Utilizador criado (cc4fd66c-8c00-4872-b3a4-ac84c44d3776)
+[2026-01-26 17:44:42] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 17:53:11] [INFO]: 🆕 Utilizador criado (77b2bd9e-9272-4d35-bd38-4cd66fc4e401)
+[2026-01-26 17:53:57] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 17:54:11] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 17:55:38] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 17:55:44] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 17:55:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 17:55:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 17:55:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:00:34] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:00:40] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:00:49] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:00:55] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:01:07] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:01:18] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:02:52] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-26 18:02:52] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-26 18:02:52] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-01-26 18:02:52] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jan 26 2026 18:02:52 GMT+0000 (Coordinated Universal Time)
+[2026-01-26 18:09:24] [INFO]: 🆕 Utilizador criado (c0e88e0d-5e53-48b0-a2d4-3dd3c0607912)
+[2026-01-26 18:10:21] [INFO]: 🆕 Utilizador criado (cff06f1c-cecc-476c-b6c5-9a78ef5ee5ea)
+[2026-01-26 18:11:51] [INFO]: 🆕 Utilizador criado (a4cf4507-f171-4f0f-8cf0-a487a847539a)
+[2026-01-26 18:15:30] [INFO]: 🆕 Utilizador criado (9022a66d-834b-4ec0-bb76-957e35224aab)
+[2026-01-26 18:24:14] [INFO]: 🆕 Utilizador criado (0859da72-02fd-4ca3-addf-2b63ba7ea350)
+[2026-01-26 18:24:21] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:28:49] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:32:05] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:38:10] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:42] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:47] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:38:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:39:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:08] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:08] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:10] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:14] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:14] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:47] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:40:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:41:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:08] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:10] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:14] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:47] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:47] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:55] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:56] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:56] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:42:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:43:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:55] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:56] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:56] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:44:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:45:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:45:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:45:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:45:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:46:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:10] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:10] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:14] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:42] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:47:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:48:08] [INFO]: 🆕 Utilizador criado (f85efb0d-9e9c-488c-a868-f36b7fa46995)
+[2026-01-26 18:48:12] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:48:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 18:48:25] [INFO]: 🆕 Utilizador criado (db62134c-cb4a-42a8-b375-4a7ba3b64277)
+[2026-01-26 18:48:25] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-01-26 18:56:02] [INFO]: 🆕 Utilizador criado (196fc9f8-a0d6-4c7b-a6f6-be4249396f0c)
+[2026-01-26 18:59:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 18:59:42] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 19:03:58] [INFO]: 🆕 Utilizador criado (dad2f6b2-5422-4c3c-852f-562256c4af52)
+[2026-01-26 19:04:08] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:04:20] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:04:21] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:04:32] [INFO]: 🆕 Utilizador criado (c7c50c19-123d-42e4-b0db-16093dd93d3f)
+[2026-01-26 19:04:49] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:04:53] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:10:45] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-26 19:10:45] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-26 19:10:45] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-01-26 19:10:45] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-01-26 19:13:54] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:16:35] [INFO]: 🆕 Utilizador criado (d95a3ec3-ab1b-42a5-8fe0-8f8cb53a3e3b)
+[2026-01-26 19:25:21] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-26 19:25:21] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-26 19:25:22] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-01-26 19:25:22] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jan 26 2026 19:25:22 GMT+0000 (Coordinated Universal Time)
+[2026-01-26 19:32:29] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-26 19:32:29] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-26 19:32:29] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jan 26 2026 19:32:29 GMT+0000 (Coordinated Universal Time)
+[2026-01-26 19:32:29] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-01-26 19:36:19] [INFO]: 🆕 Utilizador criado (9ebe0531-5d6e-44a2-ae82-a1bf195c52a4)
+[2026-01-26 19:36:54] [INFO]: 🆕 Utilizador criado (eea242ca-fdb5-4d6d-ac54-c44804382740)
+[2026-01-26 19:37:01] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:37:43] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:37:57] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:44:59] [INFO]: 🆕 Utilizador criado (bd15ca9b-c73e-4f87-954a-463a44b1422f)
+[2026-01-26 19:46:22] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:52:40] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:52:42] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:53:26] [INFO]: 🆕 Utilizador criado (f569cca2-96b5-4a9b-badd-1138553d9383)
+[2026-01-26 19:53:34] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:53:41] [INFO]: 🆕 Utilizador criado (d42d4d0b-a4b8-4812-bf52-14c6ae29d4f6)
+[2026-01-26 19:54:16] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:54:22] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 19:54:44] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:00:48] [INFO]: 🆕 Utilizador criado (5d410ba3-0a8e-457c-aeb2-9760cdcdcf28)
+[2026-01-26 20:00:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:00:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:00:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:00:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:00:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:00:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:00:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:00:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:01:04] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:01:04] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:01:05] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:04:36] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:04:59] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:05:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:06:20] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:09:03] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:09:14] [INFO]: 🆕 Utilizador criado (9d656798-eca0-4ba3-bbf8-c34f8aa5a998)
+[2026-01-26 20:09:18] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:10:06] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:10:07] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:10:54] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:11:19] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:12:04] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:15:06] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:18:55] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:19:21] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:21:18] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:21:23] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:21:31] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:21:41] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:21:46] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:21:48] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:21:54] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:22:02] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:22:06] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:22:18] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:22:34] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:22:50] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:23:46] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:23:53] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:24:05] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:24:13] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:24:27] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:24:46] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:25:04] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:25:19] [INFO]: 🆕 Utilizador criado (98a3b1d2-084f-4162-9ded-d5e9959f0459)
+[2026-01-26 20:25:36] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:25:45] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:25:48] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:26:00] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:26:06] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:26:13] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:26:20] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:26:51] [INFO]: 🆕 Utilizador criado (64e0e7cf-e6ba-488b-b867-c1f22bfa7527)
+[2026-01-26 20:27:55] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:27:58] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:29:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:29:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:30:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:30:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:31:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:32:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:33:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:33:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:34:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:34:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:34:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:34:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:35:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:38:17] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:38:36] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:39:19] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:39:27] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:39:31] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:39:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:39:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:40:06] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:40:07] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:40:12] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:40:47] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:41:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:41:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:41:55] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:41:56] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:41:57] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:42:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:42:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:43:08] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:43:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:43:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:43:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:43:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:43:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:44:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:44:05] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:44:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:44:13] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:44:24] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:44:26] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:44:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:44:31] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:44:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:44:43] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:44:43] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:44:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:44:49] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:45:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:45:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:45:40] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:46:13] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 20:47:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:51:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:51:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:52:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 20:53:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 21:14:44] [INFO]: 🆕 Utilizador criado (127b68f1-f71c-4068-93d6-5c7814a53fc6)
+[2026-01-26 21:15:06] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:15:18] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:15:23] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:15:38] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:16:39] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:16:50] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:16:59] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:17:24] [INFO]: 🆕 Utilizador criado (407c4c76-b857-4f05-a2b6-359561feaad3)
+[2026-01-26 21:17:36] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:18:13] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:18:25] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:21:29] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:21:47] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:24:12] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:24:25] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:24:32] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:24:38] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:27:51] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:27:55] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:28:00] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:28:27] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:28:31] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:30:19] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:30:29] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:33:53] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:34:07] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:35:30] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:38:18] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:47:30] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:47:35] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:47:37] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:48:21] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:48:30] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:48:32] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:49:23] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:49:26] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 21:50:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:02:23] [INFO]: 🆕 Utilizador criado (97d5d8d6-69c9-44d0-861a-4ab4c2a73859)
+[2026-01-26 22:10:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:11:01] [INFO]: 🆕 Utilizador criado (c90dbb62-00cf-4ca9-8fc3-c40ae265093f)
+[2026-01-26 22:18:34] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:18:52] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:20:03] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:20:21] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:20:49] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:21:00] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:22:16] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:23:54] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:24:11] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:24:16] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:24:26] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:24:31] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:25:08] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:25:26] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:27:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:29:35] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:30:11] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:37:14] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:37:14] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:37:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:37:16] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:37:16] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 22:59:36] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 23:02:24] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 23:10:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 23:10:27] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 23:10:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 23:10:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 23:10:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 23:11:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 23:21:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-26 23:29:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-26 23:45:17] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:01:43] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:01:50] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:01:55] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:04:01] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:04:16] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:04:34] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:04:39] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:05:00] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:05:43] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:07:56] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:09:05] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:11:29] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:11:39] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:12:07] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:12:16] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:12:23] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:12:25] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:12:30] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:12:39] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:13:17] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:15:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:15:16] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:15:24] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:15:26] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:16:01] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:19:47] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:24:51] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:25:55] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:30:38] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:30:40] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:34:56] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:34:57] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:35:50] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:35:58] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 00:48:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 00:48:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 00:48:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 01:15:52] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:16:05] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:16:19] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:17:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 01:19:31] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:19:43] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:19:49] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:19:57] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:20:02] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:20:27] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:20:38] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:20:47] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:20:50] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:20:54] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:21:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:21:21] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:21:31] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:21:44] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:22:03] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:22:13] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:22:15] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:22:24] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:22:27] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:22:34] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:22:54] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:23:16] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:23:21] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:24:12] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:24:26] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:24:28] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:24:49] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:25:41] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:25:45] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:25:55] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:26:23] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:26:25] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:26:41] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:26:47] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:26:56] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:27:01] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:27:36] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:27:43] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:28:09] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:28:20] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:28:26] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:28:34] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:28:52] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:28:53] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:28:59] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:29:06] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:29:25] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:29:47] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:30:06] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:30:25] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:30:30] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:30:34] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:31:12] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:31:41] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:31:43] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:32:34] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:32:36] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:32:40] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:33:24] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:33:31] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:33:40] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:33:47] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:34:01] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 01:40:56] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:02:45] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:02:51] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:15:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:15:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:22:47] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:23:07] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:23:18] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:23:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:24:14] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:25:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:25:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:25:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:25:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:25:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:25:53] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:25:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:26:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:26:05] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:26:10] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:26:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:26:33] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:26:58] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:27:01] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:27:12] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:27:53] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:27:57] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:27:59] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:28:04] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:35:10] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 02:36:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:36:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:36:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:36:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:36:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:36:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:36:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:37:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:37:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:37:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:38:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:38:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:41:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:42:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:42:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:42:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:42:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:43:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:44:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:44:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:44:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:44:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:59:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 02:59:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-27 03:35:08] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:35:13] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:35:28] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:35:42] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:36:35] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:36:59] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:37:22] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:37:43] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:39:22] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:40:07] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:40:11] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:40:12] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:40:20] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:40:24] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 03:58:04] [INFO]: 🆕 Utilizador criado (77ff0e35-8c8e-42da-8d80-c98bcacbd087)
+[2026-01-27 03:58:25] [INFO]: ⏭️ WhatsApp já passou pelo funil
+[2026-01-27 05:52:32] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-27 05:52:33] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-27 05:52:33] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Jan 27 2026 05:52:33 GMT+0000 (Coordinated Universal Time)
+[2026-01-27 05:52:33] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-01-27 20:02:18] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-27 20:02:18] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-27 20:02:18] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-01-27 20:02:18] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-01-27 20:06:06] [INFO]: 🆕 Utilizador criado (63d4ed29-6cd4-450b-81a2-1e3b4a519dc2)
+[2026-01-27 20:13:07] [INFO]: 🆕 Utilizador criado (b6efe86e-3746-4390-b204-bb2fd5f495be)
+[2026-01-27 20:14:01] [INFO]: 🆕 Utilizador criado (e9733f6d-ab11-45e5-a2c4-daafa98f704d)
+[2026-01-28 16:43:25] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-28 16:43:25] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-28 16:43:25] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Jan 28 2026 16:43:25 GMT+0000 (Coordinated Universal Time)
+[2026-01-28 16:43:25] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-01-28 17:07:39] [INFO]: 🆕 Utilizador criado (a7df19f6-a88f-4df6-bfe6-52d4e3f9d3bf)
+[2026-01-28 17:10:26] [INFO]: 🆕 Utilizador criado (44c635f4-4f71-48bc-9835-f788741e8d9a)
+[2026-01-28 17:16:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:16:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:16:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:17:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:17:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:17:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:17:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:18:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:18:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:18:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:18:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:18:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:18:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:18:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:47] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:19:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:20:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:20:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:20:08] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:20:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:20:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:20:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:20:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:20:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:20:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:21:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:23:37] [INFO]: 🆕 Utilizador criado (df0465b7-745d-4858-9525-2dd93ce355b7)
+[2026-01-28 17:23:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:23:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:23:56] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:24:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:24:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:24:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:24:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:27:00] [INFO]: 🆕 Utilizador criado (0bf84d7c-3edd-450f-9252-c6a592581168)
+[2026-01-28 17:44:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:54:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:54:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:54:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:54:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:54:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:54:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:55:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:56:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:59:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:59:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:59:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:59:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:59:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:59:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:59:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 17:59:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:02:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:02:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:02:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:03:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:03:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:03:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:03:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:03:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:03:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:04:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:04:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:08:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:08:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:08:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:08:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:08:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:08:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:09:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:09:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:09:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:09:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:09:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:09:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:09:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:09:56] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:10:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:11:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:12:34] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-28 18:12:34] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-28 18:12:35] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-01-28 18:12:35] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-01-28 18:15:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:18:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:18:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:19:00] [INFO]: 🆕 Utilizador criado (68473108-1c8a-4319-b197-cf7733007877)
+[2026-01-28 18:19:00] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-01-28 18:23:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:08] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:08] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:10] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:42] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:47] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:23:55] [INFO]: 🆕 Utilizador criado (1335b605-2f3a-4e7f-a0be-0eaccea0e33f)
+[2026-01-28 18:23:55] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-01-28 18:24:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:28:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:28:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:28:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:28:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:28:52] [INFO]: 🆕 Utilizador criado (f9bcaf56-7bb2-4a5a-abd3-4e8cb6e6f6b1)
+[2026-01-28 18:28:52] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-01-28 18:29:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:29:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:29:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:29:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:29:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:29:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:29:47] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:29:55] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:30:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:30:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:30:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:30:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:30:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:30:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:30:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:30:55] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:30:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:31:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:31:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:31:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:31:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:31:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:31:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:31:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:31:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:31:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:32:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:32:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:32:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:32:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:33:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:33:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:33:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:33:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:34:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:34:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:34:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:35:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:35:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:36:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:36:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:36:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:36:52] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-28 18:36:52] [INFO]: 🚀 Servidor rodando
+[2026-01-28 18:36:52] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-01-28 18:36:52] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-01-28 18:38:56] [INFO]: 🆕 Utilizador criado (bb44469a-e6a9-49a7-9a61-2c08da08293c)
+[2026-01-28 18:39:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:39:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:39:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:40:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:41:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:41:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:42:34] [INFO]: 🆕 Utilizador criado (087e4f8e-7a75-4dc4-a7d7-957d7a3574f2)
+[2026-01-28 18:43:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:43:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:43:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:43:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:43:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:43:53] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:44:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:44:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:46:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:42] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:47:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:48:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:48:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:48:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:49:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:14] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:50:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:51:14] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:51:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:51:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:51:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-01-28 18:51:40] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-28 18:51:41] [INFO]: 🚀 Chatbot rodando com cadastro + funil conversacional
+[2026-01-28 18:51:41] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-01-28 18:51:41] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-01-28 21:37:36] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-01-28 21:37:36] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-01-28 21:37:36] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Jan 28 2026 21:37:36 GMT+0000 (Coordinated Universal Time)
+[2026-01-28 21:37:36] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-01-28 21:38:42] [ERROR]: ❌ Webhook error: texto is not defined
+[2026-01-28 21:39:01] [INFO]: 🆕 Utilizador criado (90fc4b6d-f5c5-4ec1-a472-177928bbe226)
+[2026-01-28 21:39:01] [ERROR]: ❌ Webhook error: sendMessage is not defined
+[2026-01-28 21:39:07] [ERROR]: ❌ Webhook error: texto is not defined
+[2026-01-28 21:39:17] [ERROR]: ❌ Webhook error: texto is not defined
