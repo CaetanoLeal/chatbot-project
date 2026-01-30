@@ -20,6 +20,23 @@ const FUNIL_EXPIRACAO_MIN = 60 * 24 * 7 // 7 dias
    HELPERS
 ===================================================== */
 
+async function getEstadoConversa(idUtilizador, idFunil) {
+  const r = await db.query(
+    `
+    SELECT cd_mensagem_chatbot
+    FROM tbl_funil_utilizador
+    WHERE id_utilizador = $1
+      AND id_funil = $2
+    LIMIT 1
+    `,
+    [idUtilizador, idFunil]
+  )
+
+  if (r.rows.length === 0) return null
+
+  return r.rows[0].cd_mensagem_chatbot
+}
+
 async function getOrCreateUtilizador({ cdTelegram, cdWhatsapp, telefone }) {
   const campo = cdTelegram ? "cd_telegram" : "cd_whatsapp"
   const valor = cdTelegram || cdWhatsapp
@@ -131,7 +148,7 @@ async function processarRespostaCadastro({
   const cdBotao = parseInt(texto)
   if (isNaN(cdBotao)) return
 
-  // 1️⃣ Descobrir o cadastro ativo do funil
+  // 1️⃣ Cadastro inicial
   const rCadastro = await db.query(
     `
     SELECT id_funil_cadastro
@@ -142,15 +159,14 @@ async function processarRespostaCadastro({
     `,
     [DEFAULT_FUNIL_ID]
   )
-
   if (rCadastro.rows.length === 0) return
 
   const { id_funil_cadastro } = rCadastro.rows[0]
 
-  // 2️⃣ Descobrir qual botão foi escolhido
+  // 2️⃣ Botão escolhido
   const rBotao = await db.query(
     `
-    SELECT cd_mensagem_destino
+    SELECT cd_mensagem_destino, id_funil_chatbot
     FROM tbl_funil_cadastro_botao
     WHERE id_funil_cadastro = $1
       AND cd_botao = $2
@@ -158,29 +174,132 @@ async function processarRespostaCadastro({
     `,
     [id_funil_cadastro, cdBotao]
   )
-
   if (rBotao.rows.length === 0) return
 
-  const { cd_mensagem_destino } = rBotao.rows[0]
+  const { cd_mensagem_destino, id_funil_chatbot } = rBotao.rows[0]
 
-  // 3️⃣ Buscar mensagem no chatbot
-  const rChatbot = await db.query(
+  // 3️⃣ Atualiza estado do usuário (ENTRA NO CHATBOT)
+  await db.query(
     `
-    SELECT ds_mensagem
+    UPDATE tbl_funil_utilizador
+    SET cd_mensagem_chatbot = $1,
+        dh_mensagem = NOW()
+    WHERE id_utilizador = $2
+      AND id_funil = $3
+    `,
+    [cd_mensagem_destino, idUtilizador, DEFAULT_FUNIL_ID]
+  )
+
+  // 4️⃣ Busca mensagem + botões do chatbot
+  const mensagem = await getMensagemChatbotComBotoes({
+    idFunil: DEFAULT_FUNIL_ID,
+    cdMensagem: cd_mensagem_destino
+  })
+
+  if (mensagem) {
+    await sendMessage(mensagem.textoFinal)
+  }
+}
+
+async function getMensagemChatbotComBotoes({ idFunil, cdMensagem }) {
+  const rMsg = await db.query(
+    `
+    SELECT id_funil_chatbot, ds_mensagem
     FROM tbl_funil_chatbot
     WHERE id_funil = $1
       AND cd_mensagem = $2
     LIMIT 1
     `,
-    [DEFAULT_FUNIL_ID, cd_mensagem_destino]
+    [idFunil, cdMensagem]
   )
 
-  if (rChatbot.rows.length === 0) return
+  if (rMsg.rows.length === 0) return null
 
-  // 4️⃣ Enviar mensagem
-  await sendMessage(rChatbot.rows[0].ds_mensagem)
+  const { id_funil_chatbot, ds_mensagem } = rMsg.rows[0]
+
+  const rBotoes = await db.query(
+    `
+    SELECT cd_botao, ds_botao
+    FROM tbl_funil_chatbot_botao
+    WHERE id_funil_chatbot = $1
+    ORDER BY cd_botao
+    `,
+    [id_funil_chatbot]
+  )
+
+  let textoFinal = ds_mensagem
+
+  if (rBotoes.rows.length > 0) {
+    textoFinal += "\n\n"
+    textoFinal += rBotoes.rows
+      .map(b => `${b.cd_botao} - ${b.ds_botao}`)
+      .join("\n")
+  }
+
+  return { textoFinal, id_funil_chatbot }
 }
 
+async function processarRespostaChatbot({
+  idUtilizador,
+  texto,
+  sendMessage
+}) {
+  const cdBotao = parseInt(texto)
+  if (isNaN(cdBotao)) return
+
+  const rEstado = await db.query(
+    `
+    SELECT cd_mensagem_chatbot
+    FROM tbl_funil_utilizador
+    WHERE id_utilizador = $1
+      AND id_funil = $2
+    LIMIT 1
+    `,
+    [idUtilizador, DEFAULT_FUNIL_ID]
+  )
+
+  if (rEstado.rows.length === 0) return
+
+  const cdMensagemAtual = rEstado.rows[0].cd_mensagem_chatbot
+
+  const rBotao = await db.query(
+    `
+    SELECT cd_mensagem_destino
+    FROM tbl_funil_chatbot_botao b
+    JOIN tbl_funil_chatbot c
+      ON c.id_funil_chatbot = b.id_funil_chatbot
+    WHERE c.id_funil = $1
+      AND c.cd_mensagem = $2
+      AND b.cd_botao = $3
+    LIMIT 1
+    `,
+    [DEFAULT_FUNIL_ID, cdMensagemAtual, cdBotao]
+  )
+
+  if (rBotao.rows.length === 0) return
+
+  const cdDestino = rBotao.rows[0].cd_mensagem_destino
+
+  await db.query(
+    `
+    UPDATE tbl_funil_utilizador
+    SET cd_mensagem_chatbot = $1,
+        dh_mensagem = NOW()
+    WHERE id_utilizador = $2
+      AND id_funil = $3
+    `,
+    [cdDestino, idUtilizador, DEFAULT_FUNIL_ID]
+  )
+
+  const mensagem = await getMensagemChatbotComBotoes({
+    idFunil: DEFAULT_FUNIL_ID,
+    cdMensagem: cdDestino
+  })
+
+  if (mensagem) {
+    await sendMessage(mensagem.textoFinal)
+  }
+}
 
 async function sendWhatsAppMessage({ telefone, message }) {
   await axios.post(
@@ -226,15 +345,35 @@ app.post("/webhook", async (req, res) => {
       )
 
       if (jaPassou) {
-        await processarRespostaCadastro({
+        const estadoChatbot = await getEstadoConversa(
           idUtilizador,
-          texto: msg.message,
-          sendMessage: async (message) =>
-            sendTelegramMessage({
-              userId: telegramUserId,
-              message
-            })
-        })
+          DEFAULT_FUNIL_ID
+        )
+
+        // 👉 SE JÁ ENTROU NO CHATBOT, SEMPRE CONTINUA NELE
+        if (estadoChatbot && estadoChatbot > 0) {
+          await processarRespostaChatbot({
+            idUtilizador,
+            texto: msg.message,
+            sendMessage: async (message) =>
+              sendTelegramMessage({
+                userId: telegramUserId,
+                message
+              })
+          })
+        } 
+        // 👉 PRIMEIRA RESPOSTA APÓS BOAS-VINDAS
+        else {
+          await processarRespostaCadastro({
+            idUtilizador,
+            texto: msg.message,
+            sendMessage: async (message) =>
+              sendTelegramMessage({
+                userId: telegramUserId,
+                message
+              })
+          })
+        }
 
         return res.status(200).json({ success: true })
       }
@@ -274,15 +413,35 @@ app.post("/webhook", async (req, res) => {
       )
 
       if (jaPassou) {
-        await processarRespostaCadastro({
+        const estadoChatbot = await getEstadoConversa(
           idUtilizador,
-          texto: body,
-          sendMessage: async (message) =>
-            sendWhatsAppMessage({
-              telefone,
-              message
-            })
-        })
+          DEFAULT_FUNIL_ID
+        )
+
+        // 👉 SE JÁ ENTROU NO CHATBOT, SEMPRE CONTINUA NELE
+        if (estadoChatbot && estadoChatbot > 0) {
+          await processarRespostaChatbot({
+            idUtilizador,
+            texto: msg.message,
+            sendMessage: async (message) =>
+              sendWhatsAppMessage({
+                userId: telegramUserId,
+                message
+              })
+          })
+        } 
+        // 👉 PRIMEIRA RESPOSTA APÓS BOAS-VINDAS
+        else {
+          await processarRespostaCadastro({
+            idUtilizador,
+            texto: msg.message,
+            sendMessage: async (message) =>
+              sendWhatsAppMessage({
+                userId: telegramUserId,
+                message
+              })
+          })
+        }
 
         return res.status(200).json({ success: true })
       }
