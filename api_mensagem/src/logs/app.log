@@ -46518,3 +46518,284 @@ Corre que acaba rápido! 🚀
 [2026-01-30 20:33:37] [INFO]: 🆕 Utilizador criado (b61eddfd-5d82-4d72-a509-81d67f96c73b)
 [2026-01-30 20:42:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
 [2026-01-30 20:59:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 17:12:01] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 17:12:01] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 17:12:01] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Feb 02 2026 17:12:01 GMT+0000 (Coordinated Universal Time)
+[2026-02-02 17:12:01] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-02-02 17:27:36] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 17:28:23] [INFO]: 🆕 Utilizador criado (75af128c-12ab-4fd3-82b8-9fbf22c4a54a)
+[2026-02-02 17:34:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 17:38:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 17:38:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 17:38:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 18:06:00] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 18:06:00] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 18:06:01] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-02 18:06:01] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-02 18:19:24] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 18:19:24] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 18:19:25] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-02 18:19:25] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-02 18:36:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 18:52:28] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 18:52:28] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 18:52:28] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-02 18:52:28] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-02 18:54:10] [ERROR]: ❌ Webhook error: MessageModels is not defined
+[2026-02-02 18:54:47] [ERROR]: ❌ Webhook error: MessageModels is not defined
+[2026-02-02 18:55:01] [ERROR]: ❌ Webhook error: MessageModels is not defined
+[2026-02-02 19:01:47] [ERROR]: ❌ Webhook error: MessageModels is not defined
+[2026-02-02 19:17:41] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 19:17:41] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 19:17:41] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-02 19:17:41] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-02 19:26:00] [INFO]: 🆕 Utilizador criado (4be5840f-6e52-4675-9276-e92c3e9e8ca3)
+[2026-02-02 19:26:01] [INFO]: 🆕 Utilizador criado (746d87a9-72eb-4a95-9d6f-8e4e97e81221)
+[2026-02-02 19:35:47] [INFO]: 🆕 Utilizador criado (b134775f-fc7a-47c1-a045-8faaccf292dc)
+[2026-02-02 19:43:50] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 19:43:50] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 19:43:51] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Feb 02 2026 19:43:51 GMT+0000 (Coordinated Universal Time)
+[2026-02-02 19:43:51] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-02-02 19:52:59] [ERROR]: ❌ Webhook error: column reference "cd_mensagem_destino" is ambiguous
+[2026-02-02 20:00:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:00:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:00:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:01:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:04:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:04:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:04:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:04:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:04:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:05:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:05:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:05:08] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:05:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:06:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:06:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:06:32] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:06:42] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:06:47] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:06:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:08:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:09:19] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:09:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 20:17:26] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 20:17:26] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 20:17:27] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-02 20:17:27] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-02 20:19:57] [INFO]: 🆕 Utilizador criado (117a3f60-4a8d-4d91-a83b-8e4b7516833d)
+[2026-02-02 20:20:26] [INFO]: 🆕 Utilizador criado (153aced7-a326-4033-b993-11f378fc748d)
+[2026-02-02 20:20:29] [INFO]: 🆕 Utilizador criado (4fca8bf2-c248-4281-9121-ccda5ef98425)
+[2026-02-02 20:21:43] [INFO]: 🆕 Utilizador criado (8d29ec26-6578-4cb0-a16c-d3dc94a5643a)
+[2026-02-02 20:26:52] [INFO]: 🆕 Utilizador criado (ffd57bdf-e8a7-4a2e-84c6-6d0bd4957bad)
+[2026-02-02 20:33:15] [INFO]: 🆕 Utilizador criado (5c57cc56-06b8-4cc1-8896-659dc5ca6239)
+[2026-02-02 21:03:23] [INFO]: 🆕 Utilizador criado (bbbddcf4-4aab-4a0d-b099-ea3f7c17e18c)
+[2026-02-02 21:05:58] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 21:05:58] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 21:05:58] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Feb 02 2026 21:05:58 GMT+0000 (Coordinated Universal Time)
+[2026-02-02 21:05:58] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-02-02 21:41:03] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 21:41:03] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 21:41:03] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-02 21:41:03] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-02 21:46:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:46:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:46:38] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:46:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:47:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:47:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:47:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:47:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:47:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:47:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:48:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:48:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:48:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:48:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:48:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 21:49:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 22:05:45] [INFO]: 🆕 Utilizador criado (5ecc08f4-8078-4922-8eb3-34e075ff4522)
+[2026-02-02 22:07:09] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 22:07:39] [INFO]: 🆕 Utilizador criado (8f906fd1-89f5-4c5d-a1e2-792f4cecdda7)
+[2026-02-02 22:08:28] [INFO]: 🆕 Utilizador criado (c8d10525-744d-48b9-9dfd-494d3a5cafcc)
+[2026-02-02 22:32:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 22:43:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-02-02 22:54:38] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-02 22:54:38] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-02 22:54:38] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Feb 02 2026 22:54:38 GMT+0000 (Coordinated Universal Time)
+[2026-02-02 22:54:38] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-02-03 17:37:23] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-03 17:37:23] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-03 17:37:23] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Feb 03 2026 17:37:23 GMT+0000 (Coordinated Universal Time)
+[2026-02-03 17:37:23] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-02-03 17:40:36] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 17:49:09] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 17:49:09] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 17:49:36] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 17:51:05] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 17:55:36] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-03 17:55:36] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-03 17:55:37] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-03 17:55:37] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-03 17:58:04] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 17:59:04] [INFO]: 🆕 Utilizador criado (ae30e39b-802e-4fd6-80ba-5da62459b5ea)
+[2026-02-03 18:00:28] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:04:45] [INFO]: 🆕 Utilizador criado (94e99f32-2203-4837-8d37-414fb5eba493)
+[2026-02-03 18:08:20] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:37:21] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:37:34] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:37:45] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:39:58] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:41:09] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:43:05] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:43:34] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:43:52] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:43:56] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:43:58] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:04] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:07] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:10] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:11] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:12] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:20] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:21] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:31] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:34] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:40] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:44:58] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:45:28] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:45:36] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:45:57] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:46:35] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:46:41] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:47:31] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:47:34] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:48:48] [INFO]: 🆕 Utilizador criado (009a668b-86d5-4448-aeda-2fdc905f04a0)
+[2026-02-03 18:51:20] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:51:38] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:52:03] [INFO]: 🆕 Utilizador criado (b426f585-cde9-48c8-a4e8-542624cf96ab)
+[2026-02-03 18:52:07] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:57:50] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:57:51] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 18:59:34] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:04:47] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:04:59] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:08] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:10] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:13] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:17] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:27] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:34] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:38] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:41] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:46] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:47] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:50] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:05:57] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:06:22] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:07:57] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:16:01] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:16:26] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:16:49] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:17:25] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:21:43] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:21:44] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:21:45] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:21:45] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:21:46] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:21:47] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:21:47] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:21:48] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:21:48] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:28:09] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:28:41] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:28:43] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:28:44] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:29:27] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:35:43] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:35:44] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 19:37:25] [INFO]: 🆕 Utilizador criado (e81eeadb-7b0e-44d5-a0ac-ace34270f7c0)
+[2026-02-03 19:45:10] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-03 19:45:11] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-03 19:45:11] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-03 19:45:11] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-03 19:50:29] [INFO]: 🆕 Utilizador criado (d2f82853-5336-4a17-9b22-5afa6cca3b82)
+[2026-02-03 19:50:51] [INFO]: 🆕 Utilizador criado (2f6ff90b-5549-44c2-9619-aca8044163be)
+[2026-02-03 20:16:34] [INFO]: 🆕 Utilizador criado (06e57e85-8fe2-48b4-a75f-7cac1cebe72f)
+[2026-02-03 20:22:22] [INFO]: 🆕 Utilizador criado (cd3bcbd0-fa1b-4aa4-a68d-0720fa0d9e63)
+[2026-02-03 20:31:57] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:31:57] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:31:58] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:31:58] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:31:59] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:32:00] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:32:00] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:32:01] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:35:16] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:35:17] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:35:18] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:35:18] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:35:19] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:35:19] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:35:19] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:36:54] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:36:55] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:36:58] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:37:05] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:37:06] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:37:06] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:37:06] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:45:36] [INFO]: 🆕 Utilizador criado (85034b40-1045-477f-b3a8-e3a95caeccde)
+[2026-02-03 20:48:54] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:49:09] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:54:01] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:54:10] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:54:20] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:54:24] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:54:35] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:54:36] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:54:47] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:54:49] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:54:56] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:55:05] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:55:10] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:55:15] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:55:34] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:56:00] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:56:03] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:56:13] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:56:32] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:56:41] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:57:56] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 20:58:11] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:00:18] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:00:26] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:00:27] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:03:32] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:07:36] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:12:38] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:39:04] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:40:42] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:41:27] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:41:42] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:41:42] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:41:50] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:42:18] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:42:22] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:42:37] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:42:44] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:42:46] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:42:51] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:42:55] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:43:06] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:43:10] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:43:12] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:43:15] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:43:16] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:43:19] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:43:23] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:44:17] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:44:37] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:45:56] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:46:29] [WARN]: ⚠️ Não foi possível extrair número do WhatsApp
+[2026-02-03 21:53:31] [INFO]: 🆕 Utilizador criado (f2c55570-a89a-4171-a0e6-5e88465a9d9f)
