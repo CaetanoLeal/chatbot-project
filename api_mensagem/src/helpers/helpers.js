@@ -144,10 +144,16 @@ async function processarRespostaCadastro({
   texto,
   sendMessage
 }) {
-  const cdBotao = parseInt(texto)
-  if (isNaN(cdBotao)) return
+  const cdBotao = Number(texto)
 
-  // 1️⃣ Cadastro inicial
+  if (!Number.isInteger(cdBotao)) {
+    await sendMessage(
+      "resposta invalida! escolha uma das opções acima digitando o numero correspondente a ela"
+    )
+    return
+  }
+
+  // 1️⃣ Mensagem inicial
   const rCadastro = await db.query(
     `
     SELECT id_funil_cadastro
@@ -158,6 +164,7 @@ async function processarRespostaCadastro({
     `,
     [DEFAULT_FUNIL_ID]
   )
+
   if (rCadastro.rows.length === 0) return
 
   const { id_funil_cadastro } = rCadastro.rows[0]
@@ -165,7 +172,7 @@ async function processarRespostaCadastro({
   // 2️⃣ Botão escolhido
   const rBotao = await db.query(
     `
-    SELECT cd_mensagem_destino, id_funil_chatbot
+    SELECT cd_mensagem_destino
     FROM tbl_funil_cadastro_botao
     WHERE id_funil_cadastro = $1
       AND cd_botao = $2
@@ -173,11 +180,17 @@ async function processarRespostaCadastro({
     `,
     [id_funil_cadastro, cdBotao]
   )
-  if (rBotao.rows.length === 0) return
 
-  const { cd_mensagem_destino, id_funil_chatbot } = rBotao.rows[0]
+  if (rBotao.rows.length === 0) {
+    await sendMessage(
+      "resposta invalida! escolha uma das opções acima digitando o numero correspondente a ela"
+    )
+    return
+  }
 
-  // 3️⃣ Atualiza estado do usuário (ENTRA NO CHATBOT)
+  const { cd_mensagem_destino } = rBotao.rows[0]
+
+  // 3️⃣ Atualiza estado
   await db.query(
     `
     UPDATE tbl_funil_utilizador
@@ -189,7 +202,7 @@ async function processarRespostaCadastro({
     [cd_mensagem_destino, idUtilizador, DEFAULT_FUNIL_ID]
   )
 
-  // 4️⃣ Busca mensagem + botões do chatbot
+  // 4️⃣ Envia próxima mensagem
   const mensagem = await getMensagemChatbotComBotoes({
     idFunil: DEFAULT_FUNIL_ID,
     cdMensagem: cd_mensagem_destino
@@ -243,8 +256,14 @@ async function processarRespostaChatbot({
   texto,
   sendMessage
 }) {
-  const cdBotao = parseInt(texto)
-  if (isNaN(cdBotao)) return
+  const cdBotao = Number(texto)
+
+  if (!Number.isInteger(cdBotao)) {
+    await sendMessage(
+      "resposta invalida! escolha uma das opções acima digitando o numero correspondente a ela"
+    )
+    return
+  }
 
   // 1️⃣ Estado atual
   const rEstado = await db.query(
@@ -262,7 +281,7 @@ async function processarRespostaChatbot({
 
   const cdMensagemAtual = rEstado.rows[0].cd_mensagem_chatbot
 
-  // 2️⃣ Descobre o ID da mensagem atual
+  // 2️⃣ ID da mensagem atual
   const rMensagemAtual = await db.query(
     `
     SELECT id_funil_chatbot
@@ -278,7 +297,7 @@ async function processarRespostaChatbot({
 
   const idFunilChatbotAtual = rMensagemAtual.rows[0].id_funil_chatbot
 
-  // 3️⃣ Busca o botão
+  // 3️⃣ Botão selecionado
   const rBotao = await db.query(
     `
     SELECT cd_mensagem_destino
@@ -290,7 +309,12 @@ async function processarRespostaChatbot({
     [idFunilChatbotAtual, cdBotao]
   )
 
-  if (rBotao.rows.length === 0) return
+  if (rBotao.rows.length === 0) {
+    await sendMessage(
+      "resposta invalida! escolha uma das opções acima digitando o numero correspondente a ela"
+    )
+    return
+  }
 
   const cdDestino = rBotao.rows[0].cd_mensagem_destino
 
@@ -306,7 +330,7 @@ async function processarRespostaChatbot({
     [cdDestino, idUtilizador, DEFAULT_FUNIL_ID]
   )
 
-  // 5️⃣ Envia próxima mensagem
+  // 5️⃣ Próxima mensagem
   const mensagem = await getMensagemChatbotComBotoes({
     idFunil: DEFAULT_FUNIL_ID,
     cdMensagem: cdDestino
