@@ -1509,3 +1509,13 @@ Instead change the require of index.js in /app/src/server.js to a dynamic import
 [2026-02-04 19:20:20] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
 [2026-02-04 19:43:12] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-02-04 19:43:12] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-05 17:18:32] [ERROR]: ❌ Erro de conexão com PostgreSQL: database "chatbot" does not exist
+[2026-02-05 17:18:32] [ERROR]: ❌ Erro ao buscar id_funil: database "chatbot" does not exist
+[2026-02-05 17:27:55] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-05 17:27:55] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-05 19:58:09] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-05 19:58:09] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-06 18:41:32] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-06 18:41:32] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-07 00:37:13] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-07 00:37:13] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
