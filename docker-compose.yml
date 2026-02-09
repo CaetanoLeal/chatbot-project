@@ -1,6 +1,23 @@
 version: "3.9"
 
 services:
+  dashboard-chatbot:
+      build:
+        context: ./dashboard-chatbot
+        dockerfile: Dockerfile
+      container_name: dashboard-chatbot
+      restart: always
+      ports:
+        - "3003:3000"
+      volumes:
+        - ./dashboard-chatbot:/app
+        - /app/node_modules
+        - /app/.next
+      networks:
+        - chatbot-network
+      depends_on:
+        - api_mensagem
+
   db_chatbot:
     image: postgres:15
     container_name: db_chatbot

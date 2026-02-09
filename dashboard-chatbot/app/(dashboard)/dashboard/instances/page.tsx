@@ -3,9 +3,6 @@
 import { useState } from "react"
 import ConnectInstanceModal from "./components/ConnectInstanceModal"
 
-/* =====================
-   TYPES
-===================== */
 type InstancePlatform = "whatsapp" | "telegram"
 
 type Instance = {
@@ -16,9 +13,6 @@ type Instance = {
   funnel: string
 }
 
-/* =====================
-   HELPERS
-===================== */
 function PlatformBadge({ platform }: { platform: InstancePlatform }) {
   if (platform === "whatsapp") {
     return (
@@ -41,11 +35,8 @@ function PlatformBadge({ platform }: { platform: InstancePlatform }) {
   )
 }
 
-/* =====================
-   PAGE
-===================== */
 export default function InstancesPage() {
-  const [instances, setInstances] = useState<Instance[]>([
+  const [instances] = useState<Instance[]>([
     {
       id: "1",
       name: "Atendimento Principal",
@@ -65,7 +56,7 @@ export default function InstancesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
-    <div className="space-y-6 text-zinc-700">
+    <div className="p-6 space-y-6 text-zinc-700">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-zinc-800">
@@ -80,7 +71,7 @@ export default function InstancesPage() {
         </button>
       </div>
 
-      {/* Grid de instâncias */}
+      {/* Grid */}
       {instances.length === 0 ? (
         <div className="bg-white rounded shadow p-6 text-zinc-500">
           Nenhuma instância conectada.
@@ -92,12 +83,10 @@ export default function InstancesPage() {
               key={instance.id}
               className="bg-white rounded shadow p-4 flex gap-4"
             >
-              {/* Avatar */}
               <div className="w-14 h-14 rounded-full bg-zinc-200 flex items-center justify-center text-zinc-500 text-sm">
                 IMG
               </div>
 
-              {/* Info */}
               <div className="flex-1 space-y-1">
                 <div className="font-semibold text-zinc-800">
                   {instance.name}
@@ -125,7 +114,6 @@ export default function InstancesPage() {
         </div>
       )}
 
-      {/* Modal */}
       {isModalOpen && (
         <ConnectInstanceModal
           onClose={() => setIsModalOpen(false)}

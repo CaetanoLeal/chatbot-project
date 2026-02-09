@@ -143,7 +143,7 @@ export default function CreateFunnelPage() {
   ====================== */
 
   return (
-    <div className="space-y-10 max-w-4xl">
+    <div className="p-6 space-y-10 max-w-4xl">
       <h1 className="text-2xl font-bold text-zinc-700">
         Criar Funil
       </h1>

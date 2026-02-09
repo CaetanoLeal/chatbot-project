@@ -1,3 +1,4 @@
+//app/(dashboard)/dashboard/page.tsx
 function getGreeting() {
   const hour = new Date().getHours()
 
@@ -11,7 +12,7 @@ export default function DashboardPage() {
   const greeting = getGreeting()
 
   return (
-    <div className="space-y-10">
+    <div className="p-6 space-y-10">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
