@@ -1,5 +1,4 @@
-//src/repositories/funil.repository.js
-const db = require('../config/db');
+const db = require('../config/db')
 
 class FunilRepository {
   async listar() {
@@ -11,8 +10,20 @@ class FunilRepository {
       FROM tbl_funil
       ORDER BY no_funil
     `)
-
     return rows
+  }
+
+  async criar({ name, description }) {
+    const { rows } = await db.query(
+      `
+      INSERT INTO tbl_funil (no_funil, ds_funil)
+      VALUES ($1, $2)
+      RETURNING id_funil
+      `,
+      [name, description]
+    )
+
+    return rows[0]
   }
 }
 
