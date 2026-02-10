@@ -1519,3 +1519,11 @@ Instead change the require of index.js in /app/src/server.js to a dynamic import
 [2026-02-06 18:41:32] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-02-07 00:37:13] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
 [2026-02-07 00:37:13] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-09 17:18:26] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-09 17:18:26] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-09 17:24:23] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-09 17:24:23] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-09 17:28:05] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-09 17:28:05] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-09 17:35:14] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-09 17:35:14] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up

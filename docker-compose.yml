@@ -42,9 +42,7 @@ services:
       - "3001:3001"
     volumes:
       - ./api_mensagem:/app
-      - /app/node_modules  # <--- adiciona isso
-    working_dir: /app/src
-    command: node server.js
+      - /app/node_modules
     environment:
       DB_HOST: db_chatbot
       DB_PORT: 5432

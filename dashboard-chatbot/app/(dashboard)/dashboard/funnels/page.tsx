@@ -1,22 +1,37 @@
+//app/(dashboard)/dashboard/funnels/page.tsx
+'use client'
+
+import { useEffect, useState } from 'react'
+
+type Funil = {
+  id: string
+  name: string
+  description: string
+}
+
 export default function FunnelsPage() {
-  const funnels = [
-    {
-      id: "1",
-      name: "Funil de Vendas",
-      description: "Conversão de leads via WhatsApp",
-      messagesCount: 12,
-      usersCount: 154,
-      createdAt: "01/02/2026",
-    },
-    {
-      id: "2",
-      name: "Funil de Suporte",
-      description: "Atendimento automático ao cliente",
-      messagesCount: 8,
-      usersCount: 87,
-      createdAt: "28/01/2026",
-    },
-  ]
+  const [funnels, setFunnels] = useState<Funil[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function carregarFunis() {
+      try {
+        const response = await fetch('http://localhost:3001/api/funis')
+        const data = await response.json()
+        setFunnels(data)
+      } catch (error) {
+        console.error('Erro ao carregar funis', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    carregarFunis()
+  }, [])
+
+  if (loading) {
+    return <div className="p-6">Carregando funis...</div>
+  }
 
   return (
     <div className="p-6 space-y-6">
@@ -37,6 +52,12 @@ export default function FunnelsPage() {
 
       {/* Lista de funis */}
       <div className="space-y-4">
+        {funnels.length === 0 && (
+          <p className="text-zinc-500 text-sm">
+            Nenhum funil cadastrado.
+          </p>
+        )}
+
         {funnels.map((funil) => (
           <div
             key={funil.id}
@@ -63,12 +84,6 @@ export default function FunnelsPage() {
                   Deletar
                 </button>
               </div>
-            </div>
-
-            <div className="flex flex-wrap gap-6 text-sm text-zinc-600">
-              <span>📨 {funil.messagesCount} mensagens</span>
-              <span>👥 {funil.usersCount} utilizadores</span>
-              <span>Criado em: {funil.createdAt}</span>
             </div>
           </div>
         ))}

@@ -1,3 +1,4 @@
+//app/(dashboard)/dashboard/funnels/new/page.tsx
 "use client"
 
 import { useState } from "react"
@@ -17,6 +18,8 @@ type Mensagem = {
 
 export default function CreateFunnelPage() {
   // Dados do funil
+  const [funilId, setFunilId] = useState<string | null>(null)
+  const isFunilCriado = Boolean(funilId)
   const [funnelName, setFunnelName] = useState("")
   const [funnelDescription, setFunnelDescription] = useState("")
   // Mensagem de boas-vindas
@@ -181,7 +184,11 @@ export default function CreateFunnelPage() {
         </section>
 
       {/* MENSAGEM DE BOAS-VINDAS */}
-      <section className="bg-white text-zinc-700 rounded shadow p-6 space-y-4">
+      <section
+        className={`bg-white rounded shadow p-6 space-y-4 ${
+          !isFunilCriado ? "opacity-50 pointer-events-none" : ""
+        }`}
+      >
         <h2 className="font-semibold">
           Mensagem de boas-vindas
         </h2>
@@ -248,7 +255,11 @@ export default function CreateFunnelPage() {
       </section>
 
       {/* MENSAGENS DO CHATBOT */}
-      <section className="space-y-6">
+      <section
+        className={`space-y-6 ${
+          !isFunilCriado ? "opacity-50 pointer-events-none" : ""
+        }`}
+      >
         <h2 className="font-semibold text-zinc-700">
           Mensagens do chatbot
         </h2>
@@ -354,7 +365,27 @@ export default function CreateFunnelPage() {
         </button>
       </section>
 
-      <button className="bg-green-600 text-white px-6 py-3 rounded">
+      <button
+        onClick={async () => {
+          if (!funnelName.trim()) {
+            alert("Informe o nome do funil")
+            return
+          }
+
+          const response = await fetch("http://localhost:3001/api/funis", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: funnelName,
+              description: funnelDescription,
+            }),
+          })
+
+          const data = await response.json()
+          setFunilId(data.id_funil)
+        }}
+        className="bg-green-600 text-white px-6 py-3 rounded"
+      >
         Salvar funil
       </button>
     </div>

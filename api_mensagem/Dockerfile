@@ -14,7 +14,7 @@ RUN npm install uuid@8
 COPY . .
 
 # Expõe a porta (ajuste se necessário)
-EXPOSE 3000
+EXPOSE 3001
 
 # Comando para iniciar a aplicação
 CMD ["node", "src/server.js"]

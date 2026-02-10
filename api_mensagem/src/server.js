@@ -1,9 +1,12 @@
+//src/server.js
 const express = require("express")
 const bodyParser = require("body-parser")
 const dotenv = require("dotenv")
+const cors = require('cors')
 
 const logger = require("../logger")
 const helper = require("./helpers/helpers")
+const routes = require('./routes')
 
 const sendMessage = require("./services/sendMessage")
 const constants = require("./constants/chatbot.constants")
@@ -14,7 +17,17 @@ const MessageModels = require("./models/MessageModel")
 dotenv.config()
 
 const app = express()
+app.use(cors())
 app.use(bodyParser.json())
+
+app.use('/api', routes)
+
+app.use((req, res) => {
+  return res.status(404).json({
+    success: false,
+    message: "Rota não encontrada"
+  })
+})
 
 let gTipo = constants.TIPO.NENHUM
 
@@ -199,6 +212,15 @@ app.post("/webhook", async (req, res) => {
 app.get("/", (_, res) =>
   res.send("🚀 API de Mensagens ativa e rodando!")
 )
+
+app.use((err, req, res, next) => {
+  logger.error("🔥 Erro não tratado:", err)
+
+  return res.status(500).json({
+    success: false,
+    message: "Erro interno do servidor"
+  })
+})
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, "0.0.0.0", () =>
