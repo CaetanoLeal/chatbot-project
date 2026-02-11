@@ -1,3 +1,4 @@
+//src/controllers/funil.controller.js
 const FunilService = require('../services/funil.service')
 
 class FunilController {
@@ -20,6 +21,18 @@ class FunilController {
       res.status(400).json({
         error: error.message,
       })
+    }
+  }
+
+  async salvarEstrutura(req, res) {
+    try {
+      const { id } = req.params
+
+      await FunilService.salvarEstrutura(id, req.body)
+
+      res.json({ message: 'Estrutura salva com sucesso' })
+    } catch (error) {
+      res.status(400).json({ error: error.message })
     }
   }
 }

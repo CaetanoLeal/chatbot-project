@@ -1,3 +1,4 @@
+//src/repositories/funil.repository.js
 const db = require('../config/db')
 
 class FunilRepository {

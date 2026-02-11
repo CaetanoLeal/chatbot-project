@@ -12,3 +12,16 @@
 [2026-02-10 18:35:24] [INFO]: 🚀 Servidor rodando na porta 3001
 [2026-02-10 18:35:24] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Feb 10 2026 18:35:24 GMT+0000 (Coordinated Universal Time)
 [2026-02-10 18:35:24] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-02-11 16:23:10] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-11 16:23:10] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-11 16:23:10] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Feb 11 2026 16:23:10 GMT+0000 (Coordinated Universal Time)
+[2026-02-11 16:23:10] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-02-11 17:52:02] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-11 17:52:03] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-11 17:52:03] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-11 17:52:03] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-11 17:52:13] [ERROR]: 🔥 Erro não tratado: the database system is starting up
+[2026-02-11 18:21:17] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-11 18:21:17] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-11 18:21:17] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-11 18:21:17] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up

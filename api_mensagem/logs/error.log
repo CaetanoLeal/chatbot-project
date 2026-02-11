@@ -1,1 +1,6 @@
 [2025-09-30 18:51:49] [ERROR]: ❌ Erro de conexão com PostgreSQL: connect ECONNREFUSED ::1:5432
+[2026-02-11 17:52:03] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-11 17:52:03] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-11 17:52:13] [ERROR]: 🔥 Erro não tratado: the database system is starting up
+[2026-02-11 18:21:17] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-11 18:21:17] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up

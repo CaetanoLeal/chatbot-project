@@ -68,7 +68,13 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
     setMessages(initialData.messages)
     }, [initialData])
 
-  const lockFunnelData = mode === "create" && Boolean(funilId)
+    const isFunilCreated = Boolean(funilId)
+
+    // Bloqueia mensagens enquanto funil não existir
+    const lockMessages = mode === "create" && !isFunilCreated
+
+    // Bloqueia dados depois que funil já foi criado
+    const lockFunnelData = mode === "create" && isFunilCreated
 
   /* =====================
      HELPERS
@@ -201,14 +207,14 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
   ====================== */
 
   return (
-    <div className="p-6 space-y-10 max-w-4xl">
+    <div className="h-screen overflow-y-auto p-6 space-y-10 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold text-zinc-700">
         {isEdit ? "Editar Funil" : "Criar Funil"}
       </h1>
 
       {/* DADOS DO FUNIL */}
       <section
-        className={`bg-white rounded shadow p-6 space-y-4 ${
+        className={`bg-white text-zinc-700 rounded shadow p-6 space-y-4 ${
           lockFunnelData ? "opacity-50 pointer-events-none" : ""
         }`}
       >
@@ -243,7 +249,16 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
       </button>
 
       {/* MENSAGEM DE BOAS-VINDAS */}
-      <section className="bg-white rounded shadow p-6 space-y-4">
+      {lockMessages && (
+        <div className="bg-yellow-100 text-yellow-800 p-3 rounded text-sm">
+          ⚠️ Salve o nome e a descrição do funil antes de cadastrar mensagens.
+        </div>
+      )}
+      <section
+        className={`bg-white text-zinc-700 rounded shadow p-6 space-y-4 ${
+          lockMessages ? "opacity-50 pointer-events-none" : ""
+        }`}
+      >
         <h2 className="font-semibold">Mensagem de boas-vindas</h2>
 
         <textarea
@@ -298,7 +313,11 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
       </section>
 
       {/* MENSAGENS DO CHATBOT */}
-      <section className="space-y-6">
+      <section
+        className={`space-y-6 text-zinc-700 ${
+          lockMessages ? "opacity-50 pointer-events-none" : ""
+        }`}
+      >
         <h2 className="font-semibold text-zinc-700">
           Mensagens do chatbot
         </h2>
@@ -398,6 +417,24 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
           + Adicionar mensagem
         </button>
       </section>
+        {isFunilCreated && (
+          <button
+            onClick={async () => {
+              await fetch(
+                `http://localhost:3001/api/funis/${funilId}/estrutura`,
+                {
+                  method: "PUT",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ welcomeMessage, messages }),
+                }
+              )
+              alert("✅ Estrutura salva com sucesso!")
+            }}
+            className="bg-blue-600 text-white px-6 py-3 rounded"
+          >
+            Salvar mensagens
+          </button>
+        )}
     </div>
   )
 }

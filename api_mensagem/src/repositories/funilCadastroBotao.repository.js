@@ -1,7 +1,9 @@
+//src/repositories/funilCadastroBotao.repository.js
 const { v4: uuid } = require('uuid')
 
 class FunilCadastroBotaoRepository {
   async criar(client, data) {
+    
     await client.query(`
       INSERT INTO tbl_funil_cadastro_botao
       (id_funil_cadastro_botao, id_funil_cadastro, cd_botao, ds_botao, cd_mensagem_destino)
