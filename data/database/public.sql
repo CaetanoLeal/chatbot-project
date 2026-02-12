@@ -431,6 +431,88 @@ CREATE TABLE "public"."telegram_users" (
 -- Records of telegram_users
 -- ----------------------------
 
+/* =====================================================
+   TABELA: tbl_provider
+===================================================== */
+
+CREATE TABLE tbl_provider (
+    cd_provider SERIAL PRIMARY KEY,
+    ds_provider VARCHAR(50) NOT NULL UNIQUE
+);
+
+/* Registros iniciais */
+INSERT INTO tbl_provider (ds_provider) VALUES
+('whatsapp'),
+('telegram');
+
+
+/* =====================================================
+   TABELA: tbl_status
+===================================================== */
+
+CREATE TABLE tbl_status (
+    cd_status SERIAL PRIMARY KEY,
+    ds_status VARCHAR(50) NOT NULL UNIQUE
+);
+
+/* Registros iniciais */
+INSERT INTO tbl_status (ds_status) VALUES
+('inativo'),
+('ativo'),
+('desconectado');
+
+
+/* =====================================================
+   TABELA: tbl_instancia
+===================================================== */
+
+CREATE TABLE tbl_instancia (
+    id_instancia SERIAL PRIMARY KEY,
+
+    no_instancia VARCHAR(100) NOT NULL,
+
+    cd_provider INTEGER NOT NULL,
+    cd_status INTEGER NOT NULL,
+
+    session_string TEXT,
+    nu_telefone VARCHAR(20),
+    ds_webhook TEXT,
+    ds_foto_perfil TEXT,
+
+    dt_created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    dt_update_at TIMESTAMP NOT NULL DEFAULT NOW(),
+
+    CONSTRAINT fk_instancia_provider
+        FOREIGN KEY (cd_provider)
+        REFERENCES tbl_provider(cd_provider)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+
+    CONSTRAINT fk_instancia_status
+        FOREIGN KEY (cd_status)
+        REFERENCES tbl_status(cd_status)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+
+/* =====================================================
+   TRIGGER PARA ATUALIZAR dt_update_at AUTOMATICAMENTE
+===================================================== */
+
+CREATE OR REPLACE FUNCTION fn_update_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW.dt_update_at = NOW();
+   RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tg_update_instancia_timestamp
+BEFORE UPDATE ON tbl_instancia
+FOR EACH ROW
+EXECUTE FUNCTION fn_update_timestamp();
+
 -- ----------------------------
 -- Function structure for aud_alteracao
 -- ----------------------------
