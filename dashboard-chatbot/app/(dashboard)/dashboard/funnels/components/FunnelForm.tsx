@@ -4,14 +4,17 @@
 import { useEffect, useState } from "react"
 
 type Botao = {
+  id: string
   cd_botao: number
   ds_botao: string
   cd_mensagem_destino: number | null
 }
 
 type Mensagem = {
+  id: string
   cd_mensagem: number
   ds_mensagem: string
+  cd_mensagem_destino: number | null
   is_aguardar: boolean
   botoes: Botao[]
 }
@@ -47,8 +50,10 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
 
   const [welcomeMessage, setWelcomeMessage] = useState<Mensagem>(
     initialData?.welcomeMessage ?? {
+      id: crypto.randomUUID(), // 👈 ID temporário
       cd_mensagem: 1,
       ds_mensagem: "",
+      cd_mensagem_destino: null,
       is_aguardar: true,
       botoes: [],
     }
@@ -90,6 +95,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
       botoes: [
         ...welcomeMessage.botoes,
         {
+          id: crypto.randomUUID(),
           cd_botao: welcomeMessage.botoes.length + 1,
           ds_botao: "",
           cd_mensagem_destino: null,
@@ -114,8 +120,10 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
     setMessages([
       ...messages,
       {
+        id: crypto.randomUUID(), // ID temporário
         cd_mensagem: nextCd,
         ds_mensagem: "",
+        cd_mensagem_destino: null,
         is_aguardar: true,
         botoes: [],
       },
@@ -130,6 +138,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
             botoes: [
               ...msg.botoes,
               {
+                id: crypto.randomUUID(),
                 cd_botao: msg.botoes.length + 1,
                 ds_botao: "",
                 cd_mensagem_destino: null,
@@ -157,8 +166,8 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
   ====================== */
 
   async function salvarFunil() {
-    if (!funnelName || !funnelDescription) {
-      alert("Preencha nome e descrição do funil")
+    if (!funnelName) {
+      alert("Preencha o nome do funil")
       return
     }
 
@@ -177,7 +186,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: funnelName,
-          description: funnelDescription,
+          description: funnelDescription || null,
           welcomeMessage,
           messages,
         }),
@@ -230,7 +239,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
         <textarea
           className="border rounded px-3 py-2 w-full"
           placeholder="Descrição"
-          value={funnelDescription}
+          defaultValue={funnelDescription ?? ""}
           onChange={(e) => setFunnelDescription(e.target.value)}
         />
       </section>
@@ -270,7 +279,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
         />
 
         {welcomeMessage.botoes.map((botao, index) => (
-          <div key={index} className="flex gap-2 items-center">
+          <div key={botao.id} className="flex gap-2 items-center">
             <input
               className="border rounded px-2 py-1 flex-1"
               value={botao.ds_botao}
@@ -286,13 +295,14 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
               value={botao.cd_mensagem_destino ?? ""}
               onChange={(e) => {
                 const botoes = [...welcomeMessage.botoes]
-                botoes[index].cd_mensagem_destino = Number(e.target.value)
+                botoes[index].cd_mensagem_destino =
+                e.target.value === "" ? null : Number(e.target.value)
                 setWelcomeMessage({ ...welcomeMessage, botoes })
               }}
             >
               <option value="">Destino</option>
               {allMessages().map(msg => (
-                <option key={msg.cd_mensagem} value={msg.cd_mensagem}>
+                <option key={msg.id} value={msg.cd_mensagem}>
                   Mensagem {msg.cd_mensagem}
                 </option>
               ))}
@@ -324,7 +334,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
 
         {messages.map(msg => (
           <div
-            key={msg.cd_mensagem}
+            key={msg.id}
             className="bg-white rounded shadow p-6 space-y-4"
           >
             <div className="flex justify-between">
@@ -350,7 +360,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
             />
 
             {msg.botoes.map((botao, index) => (
-              <div key={index} className="flex gap-2 items-center">
+              <div key={botao.id} className="flex gap-2 items-center">
                 <input
                   className="border rounded px-2 py-1 flex-1"
                   value={botao.ds_botao}
@@ -374,7 +384,8 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
                     const updated = messages.map(m => {
                       if (m.cd_mensagem === msg.cd_mensagem) {
                         const botoes = [...m.botoes]
-                        botoes[index].cd_mensagem_destino = Number(e.target.value)
+                        botoes[index].cd_mensagem_destino =
+                        e.target.value === "" ? null : Number(e.target.value)
                         return { ...m, botoes }
                       }
                       return m

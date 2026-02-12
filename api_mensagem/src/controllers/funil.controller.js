@@ -35,6 +35,21 @@ class FunilController {
       res.status(400).json({ error: error.message })
     }
   }
+  async buscarPorId(req, res) {
+    try {
+      const { id } = req.params
+
+      const funil = await FunilService.buscarPorId(id)
+
+      if (!funil) {
+        return res.status(404).json({ error: 'Funil não encontrado' })
+      }
+
+      res.json(funil)
+    } catch (error) {
+      res.status(400).json({ error: error.message })
+    }
+  }
 }
 
 module.exports = new FunilController()

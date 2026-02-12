@@ -11,9 +11,13 @@ class FunilService {
     return FunilRepository.listar()
   }
 
+  async buscarPorId(id_funil) {
+    return FunilRepository.buscarPorId(id_funil)
+  }
+
   async criar({ name, description }) {
-    if (!name || !description) {
-      throw new Error('Nome e descrição são obrigatórios')
+    if (!name) {
+      throw new Error('Nome é obrigatório')
     }
 
     return FunilRepository.criar({ name, description })

@@ -1,4 +1,3 @@
-//app/(dashboard)/dashboard/funnels/[id]/page.tsx
 "use client"
 
 import { useParams } from "next/navigation"
@@ -11,12 +10,23 @@ export default function EditFunnelPage() {
 
   useEffect(() => {
     async function carregar() {
-      const res = await fetch(`http://localhost:3001/api/funis/${id}`)
-      const json = await res.json()
-      setData(json)
+      try {
+        const res = await fetch(`http://localhost:3001/api/funis/${id}`)
+
+        if (!res.ok) {
+          throw new Error("Erro ao buscar funil")
+        }
+
+        const json = await res.json()
+        console.log("FUNIL RECEBIDO:", json)
+
+        setData(json)
+      } catch (err) {
+        console.error(err)
+      }
     }
 
-    carregar()
+    if (id) carregar()
   }, [id])
 
   if (!data) {
