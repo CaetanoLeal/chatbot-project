@@ -13,6 +13,7 @@ const constants = require("./constants/chatbot.constants")
 
 const TelegramMessageModel = require("./models/TelegramMessageModel")
 const MessageModels = require("./models/MessageModel")
+const InstanceModel = require("./models/InstanceModel")
 
 dotenv.config()
 
@@ -46,6 +47,45 @@ app.post("/webhook", async (req, res) => {
         : msg.event === "message.received"
         ? constants.TIPO.WHATSAPP
         : constants.TIPO.NENHUM
+
+    /* ================= INSTÂNCIA ================= */
+
+    if (msg.event === "instance.connected") {
+
+      const provider =
+        msg.provider === "whatsapp"
+          ? InstanceModel.PROVIDER.WHATSAPP
+          : InstanceModel.PROVIDER.TELEGRAM
+
+      await InstanceModel.saveOrUpdateInstance({
+        no_instancia: msg.nome,
+        cd_provider: provider,
+        cd_status: InstanceModel.STATUS.ATIVO,
+        session_string: msg.session_string || null,
+        nu_telefone: msg.phoneNumber || null,
+        ds_webhook: msg.webhook || null,
+        ds_foto_perfil: null,
+        ds_auth_path: msg.ds_auth_path || null
+      })
+
+      return res.status(200).json({ success: true })
+    }
+
+    if (msg.event === "instance.disconnected") {
+
+      const provider =
+        msg.provider === "whatsapp"
+          ? InstanceModel.PROVIDER.WHATSAPP
+          : InstanceModel.PROVIDER.TELEGRAM
+
+      await InstanceModel.saveOrUpdateInstance({
+        no_instancia: msg.nome,
+        cd_provider: provider,
+        cd_status: InstanceModel.STATUS.DESCONECTADO
+      })
+
+      return res.status(200).json({ success: true })
+    }
 
     /* ================= TELEGRAM ================= */
     if (msg.className === "Message" && msg.peerId?.className === "PeerUser") {

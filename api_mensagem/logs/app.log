@@ -37,3 +37,7 @@
 [2026-02-12 00:35:49] [INFO]: 🚀 Servidor rodando na porta 3001
 [2026-02-12 00:35:49] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Feb 12 2026 00:35:49 GMT+0000 (Coordinated Universal Time)
 [2026-02-12 00:35:49] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-02-12 17:30:37] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-02-12 17:30:38] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-02-12 17:30:38] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is not yet accepting connections
+[2026-02-12 17:30:38] [ERROR]: ❌ Erro ao buscar id_funil: the database system is not yet accepting connections
