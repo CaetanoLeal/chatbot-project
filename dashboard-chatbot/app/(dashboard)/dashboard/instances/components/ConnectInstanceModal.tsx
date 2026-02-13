@@ -1,3 +1,4 @@
+//app/(dashboard)/dashboard/instances/components/ConnectInstanceModal.tsx
 "use client"
 import { useState } from "react"
 

@@ -65,7 +65,8 @@ app.post("/webhook", async (req, res) => {
         nu_telefone: msg.phoneNumber || null,
         ds_webhook: msg.webhook || null,
         ds_foto_perfil: null,
-        ds_auth_path: msg.ds_auth_path || null
+        ds_auth_path: msg.ds_auth_path || null,
+        id_funil: msg.id_funil || null
       })
 
       return res.status(200).json({ success: true })
@@ -187,10 +188,12 @@ app.post("/webhook", async (req, res) => {
         telefone
       })
 
-      const jaPassou = await helper.hasFunilUtilizador(
-        idUtilizador,
-        constants.DEFAULT_FUNIL_ID
-      )
+      const idFunil = await InstanceModel.getFunilByInstanceName(msg.nome)
+
+      if (!idFunil) {
+        logger.warn("⚠️ Instância sem funil vinculado:", msg.nome)
+        return res.status(200).json({ success: true })
+      }
 
       if (jaPassou) {
         const estadoChatbot = await helper.getEstadoConversa(

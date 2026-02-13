@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ConnectInstanceModal from "./components/ConnectInstanceModal"
 
 type InstancePlatform = "whatsapp" | "telegram"
@@ -27,37 +27,53 @@ function PlatformBadge({ platform }: { platform: InstancePlatform }) {
 
   return (
     <span className="flex items-center gap-1 bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">
-      <span className="w-4 h-4 rounded-full bg-blue-500 text-white flex items-center justify-center text-[10px]">
-        T
-      </span>
-      Telegram
+        <span className="w-4 h-4 rounded-full bg-blue-500 text-white flex items-center justify-center text-[10px]">
+          T
+        </span>
+        Telegram
     </span>
   )
 }
 
 export default function InstancesPage() {
-  const [instances] = useState<Instance[]>([
-    {
-      id: "1",
-      name: "Atendimento Principal",
-      number: "+55 91 99999-9999",
-      platforms: ["whatsapp"],
-      funnel: "Funil WhatsApp",
-    },
-    {
-      id: "2",
-      name: "Vendas Telegram",
-      number: "@meu_bot",
-      platforms: ["telegram"],
-      funnel: "Funil Telegram",
-    },
-  ])
-
+  const [instances, setInstances] = useState<Instance[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function fetchInstances() {
+      try {
+        const response = await fetch("http://localhost:3001/api/instancias")
+
+        const result = await response.json()
+
+        if (!result.success) {
+          throw new Error("Erro ao buscar instâncias")
+        }
+
+        const formatted: Instance[] = result.data.map((item: any) => ({
+          id: item.id,
+          name: item.name,
+          number: item.number || "Não informado",
+          platforms: [item.platform as InstancePlatform],
+          funnel: "Sem funil"
+        }))
+
+        setInstances(formatted)
+      } catch (err: any) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchInstances()
+  }, [])
 
   return (
     <div className="p-6 space-y-6 text-zinc-700">
-      {/* Header */}
+      
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-zinc-800">
           Instâncias
@@ -71,12 +87,25 @@ export default function InstancesPage() {
         </button>
       </div>
 
-      {/* Grid */}
-      {instances.length === 0 ? (
+      {loading && (
+        <div className="bg-white rounded shadow p-6 text-zinc-500">
+          Carregando instâncias...
+        </div>
+      )}
+
+      {error && (
+        <div className="bg-red-100 text-red-600 rounded p-4">
+          {error}
+        </div>
+      )}
+
+      {!loading && !error && instances.length === 0 && (
         <div className="bg-white rounded shadow p-6 text-zinc-500">
           Nenhuma instância conectada.
         </div>
-      ) : (
+      )}
+
+      {!loading && !error && instances.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {instances.map((instance) => (
             <div
