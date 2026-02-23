@@ -10,6 +10,7 @@ const routes = require('./routes')
 
 const sendMessage = require("./services/sendMessage")
 const constants = require("./constants/chatbot.constants")
+const idFunil = constants.DEFAULT_FUNIL_ID
 
 const TelegramMessageModel = require("./models/TelegramMessageModel")
 const MessageModels = require("./models/MessageModel")
@@ -21,16 +22,10 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.use('/api', routes)
-
-app.use((req, res) => {
-  return res.status(404).json({
-    success: false,
-    message: "Rota não encontrada"
-  })
-})
 
 let gTipo = constants.TIPO.NENHUM
+
+app.use('/api', routes)
 
 /*
 =====================================================
@@ -49,6 +44,24 @@ app.post("/webhook", async (req, res) => {
         : constants.TIPO.NENHUM
 
     /* ================= INSTÂNCIA ================= */
+    if (msg.event === "instance.created") {
+
+      const provider =
+        msg.provider === "whatsapp"
+          ? InstanceModel.PROVIDER.WHATSAPP
+          : InstanceModel.PROVIDER.TELEGRAM
+
+      await InstanceModel.saveOrUpdateInstance({
+        no_instancia: msg.nome,
+        cd_provider: provider,
+        cd_status: InstanceModel.STATUS.INATIVO,
+        ds_webhook: msg.webhook || null,
+        ds_auth_path: msg.ds_auth_path || null,
+        id_funil: msg.id_funil || null
+      })
+
+      return res.status(200).json({ success: true })
+    }
 
     if (msg.event === "instance.connected") {
 
@@ -69,6 +82,11 @@ app.post("/webhook", async (req, res) => {
         id_funil: msg.id_funil || null
       })
 
+      io.emit("INSTANCE_CONNECTED", {
+        nome: msg.nome,
+        telefone: msg.phoneNumber
+      })
+
       return res.status(200).json({ success: true })
     }
 
@@ -83,6 +101,10 @@ app.post("/webhook", async (req, res) => {
         no_instancia: msg.nome,
         cd_provider: provider,
         cd_status: InstanceModel.STATUS.DESCONECTADO
+      })
+
+      io.emit("INSTANCE_DISCONNECTED", {
+        nome: msg.nome
       })
 
       return res.status(200).json({ success: true })
@@ -107,13 +129,13 @@ app.post("/webhook", async (req, res) => {
 
       const jaPassou = await helper.hasFunilUtilizador(
         idUtilizador,
-        constants.DEFAULT_FUNIL_ID
+        idFunil
       )
 
       if (jaPassou) {
         const estadoChatbot = await helper.getEstadoConversa(
           idUtilizador,
-          constants.DEFAULT_FUNIL_ID
+          idFunil
         )
 
         if (estadoChatbot && estadoChatbot > 0) {
@@ -143,11 +165,11 @@ app.post("/webhook", async (req, res) => {
 
       await helper.createFunilUtilizador(
         idUtilizador,
-        constants.DEFAULT_FUNIL_ID
+        idFunil
       )
 
       const mensagem = await helper.getMensagemInicialComBotoes(
-        constants.DEFAULT_FUNIL_ID
+        idFunil
       )
 
       if (mensagem) {
@@ -161,6 +183,16 @@ app.post("/webhook", async (req, res) => {
     }
 
     /* ================= WHATSAPP ================= */
+    if (msg.event === "instance.qr") {
+
+      io.emit("INSTANCE_QR", {
+        nome: msg.nome,
+        qrCode: msg.qrCode
+      })
+
+      return res.status(200).json({ success: true })
+    }
+
     if (msg.event === "message.received" && msg.whatsapp && msg.message) {
       const body = msg.message.text || ""
 
@@ -188,17 +220,15 @@ app.post("/webhook", async (req, res) => {
         telefone
       })
 
-      const idFunil = await InstanceModel.getFunilByInstanceName(msg.nome)
-
-      if (!idFunil) {
-        logger.warn("⚠️ Instância sem funil vinculado:", msg.nome)
-        return res.status(200).json({ success: true })
-      }
+      const jaPassou = await helper.hasFunilUtilizador(
+        idUtilizador,
+        idFunil
+      )
 
       if (jaPassou) {
         const estadoChatbot = await helper.getEstadoConversa(
           idUtilizador,
-          constants.DEFAULT_FUNIL_ID
+          idFunil
         )
 
         if (estadoChatbot && estadoChatbot > 0) {
@@ -228,11 +258,11 @@ app.post("/webhook", async (req, res) => {
 
       await helper.createFunilUtilizador(
         idUtilizador,
-        constants.DEFAULT_FUNIL_ID
+        idFunil
       )
 
       const mensagem = await helper.getMensagemInicialComBotoes(
-        constants.DEFAULT_FUNIL_ID
+        idFunil
       )
 
       if (mensagem) {
@@ -265,7 +295,24 @@ app.use((err, req, res, next) => {
   })
 })
 
+app.use((req, res) => {
+  return res.status(404).json({
+    success: false,
+    message: "Rota não encontrada"
+  })
+})
+
+const http = require("http")
+const { Server } = require("socket.io")
+
+const server = http.createServer(app)
+
+const io = new Server(server, {
+  cors: { origin: "*" }
+})
+
 const PORT = process.env.PORT || 3001
-app.listen(PORT, "0.0.0.0", () =>
+
+server.listen(PORT, "0.0.0.0", () =>
   logger.info(`🚀 Servidor rodando na porta ${PORT}`)
 )

@@ -8,15 +8,14 @@ const {
 } = require("../constants/chatbot.constants.js")
 
 function extrairNumeroWhatsapp({ jid, jidAlt }) {
-  const candidatos = [jid, jidAlt].filter(Boolean)
+  const raw = jid || jidAlt
+  if (!raw) return null
 
-  for (const j of candidatos) {
-    if (typeof j === "string" && j.endsWith("@s.whatsapp.net")) {
-      return j.split("@")[0]
-    }
-  }
+  const numero = raw.split("@")[0]
 
-  return null
+  if (!numero) return null
+
+  return numero.split(":")[0]
 }
 
 async function getEstadoConversa(idUtilizador, idFunil) {

@@ -8,3 +8,61 @@
 [2026-02-11 22:31:22] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-02-12 17:30:38] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is not yet accepting connections
 [2026-02-12 17:30:38] [ERROR]: ❌ Erro ao buscar id_funil: the database system is not yet accepting connections
+[2026-02-18 17:34:39] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-18 17:34:39] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-19 16:50:15] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-19 16:50:15] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-19 19:48:45] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-19 19:48:45] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-19 21:22:24] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-19 21:22:24] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-20 16:46:33] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-20 16:46:33] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-20 18:03:45] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-20 18:03:45] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-20 19:50:19] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-20 19:50:19] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-02-20 19:52:46] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 19:52:46] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 19:57:57] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 19:57:57] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:10] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:10] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:11] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:11] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:18] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:19] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:19] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:20] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:20] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:21] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:21] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:22] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:22] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:22] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:22] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:23] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:23] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:24] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:24] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:25] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:25] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:26] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:27] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:27] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:28] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:28] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:29] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:30] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:30] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:31] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:31] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:05:32] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:05:32] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-20 20:10:25] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-02-20 20:10:25] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-02-23 17:37:49] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-02-23 17:37:49] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
