@@ -62,15 +62,20 @@ services:
       CHROMIUM_PATH: /usr/bin/chromium
       HOST_UID: 1000
       HOST_GID: 1000
+      DB_HOST: db_chatbot
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: chatbot
     ports:
       - "3000:3000"
     volumes:
       - ./chatbot-erp:/usr/src/app
-      - wwebjs_auth:/usr/src/app/.wwebjs_auth
+      - ./chatbot-erp/auth:/usr/src/app/auth
     networks:
       - chatbot-network
     tty: true
-    shm_size: 1gb # 🚀 evita travamento do Chrome
+    shm_size: 1gb # evita travamento do Chrome
     depends_on:
       - api_mensagem
       - db_chatbot
@@ -100,6 +105,3 @@ services:
 networks:
   chatbot-network:
     driver: bridge
-
-volumes:
-  wwebjs_auth:

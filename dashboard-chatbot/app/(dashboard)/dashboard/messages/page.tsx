@@ -1,7 +1,6 @@
-//app/(dashboard)/dashboard/messages/page.tsx
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 /* =====================
    TYPES
@@ -38,7 +37,7 @@ function PlatformBadge({ platform }: { platform: Platform }) {
 
 function Avatar({ name }: { name: string }) {
   const initials = name
-    .split(" ")
+    ?.split(" ")
     .map((n) => n[0])
     .join("")
     .slice(0, 2)
@@ -46,7 +45,7 @@ function Avatar({ name }: { name: string }) {
 
   return (
     <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-semibold shrink-0">
-      {initials}
+      {initials || "?"}
     </div>
   )
 }
@@ -55,52 +54,81 @@ function Avatar({ name }: { name: string }) {
    PAGE
 ===================== */
 export default function MessagesPage() {
-  const [threads, setThreads] = useState<ChatThread[]>([
-    {
-      id: "1",
-      contactName: "João Silva",
-      contactNumber: "+55 91 99999-9999",
-      platform: "whatsapp",
-      messages: [
-        {
-          id: "m1",
-          platform: "whatsapp",
-          fromMe: false,
-          senderName: "João Silva",
-          content: "Oi, quero saber mais sobre o serviço",
-          timestamp: "05/02/2026 14:30",
-        },
-        {
-          id: "m2",
-          platform: "whatsapp",
-          fromMe: true,
-          senderName: "Atendimento",
-          content: "Claro! Em que posso te ajudar?",
-          timestamp: "05/02/2026 14:31",
-        },
-      ],
-    },
-    {
-      id: "2",
-      contactName: "Maria Oliveira",
-      contactNumber: "@maria_oliveira",
-      platform: "telegram",
-      messages: [
-        {
-          id: "m3",
-          platform: "telegram",
-          fromMe: false,
-          senderName: "Maria Oliveira",
-          content: "Vocês atendem pelo Telegram?",
-          timestamp: "04/02/2026 09:10",
-        },
-      ],
-    },
-  ])
-
-  const [activeChat, setActiveChat] = useState<ChatThread | null>(threads[0])
+  const [threads, setThreads] = useState<ChatThread[]>([])
+  const [activeChat, setActiveChat] = useState<ChatThread | null>(null)
   const [reply, setReply] = useState("")
 
+  /* =====================
+     LOAD CHATS
+  ===================== */
+  useEffect(() => {
+    loadChats()
+  }, [])
+
+  async function loadChats() {
+    try {
+      const res = await fetch("http://localhost:3001/api/chats")
+      const json = await res.json()
+
+      if (!json.success) return
+
+      const formatted: ChatThread[] = json.data.map((chat: any) => ({
+        id: chat.id_chat,
+        contactName: chat.no_utilizador || "Sem nome",
+        contactNumber: chat.nu_telefone || "-",
+        platform: chat.cd_provider === 1 ? "whatsapp" : "telegram",
+        messages: []
+      }))
+
+      setThreads(formatted)
+
+      if (formatted.length > 0) {
+        loadMessages(formatted[0])
+      }
+    } catch (err) {
+      console.error("Erro ao carregar chats", err)
+    }
+  }
+
+  /* =====================
+     LOAD MESSAGES
+  ===================== */
+  async function loadMessages(chat: ChatThread) {
+    try {
+      const res = await fetch(
+        `http://localhost:3001/api/chats/${chat.id}/messages`
+      )
+      const json = await res.json()
+
+      if (!json.success) return
+
+      const formattedMessages: ChatMessage[] = json.data.map((msg: any) => ({
+        id: msg.id_mensagem,
+        platform: chat.platform,
+        fromMe: msg.from_me,
+        senderName: msg.from_me ? "Atendimento" : chat.contactName,
+        content: msg.ds_conteudo,
+        timestamp: new Date(msg.dh_envio).toLocaleString()
+      }))
+
+      const updatedChat = {
+        ...chat,
+        messages: formattedMessages
+      }
+
+      setActiveChat(updatedChat)
+
+      setThreads((prev) =>
+        prev.map((c) => (c.id === chat.id ? updatedChat : c))
+      )
+    } catch (err) {
+      console.error("Erro ao carregar mensagens", err)
+    }
+  }
+
+  /* =====================
+     SEND MESSAGE (LOCAL POR ENQUANTO)
+  ===================== */
   function sendMessage() {
     if (!reply || !activeChat) return
 
@@ -110,22 +138,21 @@ export default function MessagesPage() {
       fromMe: true,
       senderName: "Atendimento",
       content: reply,
-      timestamp: new Date().toLocaleString(),
+      timestamp: new Date().toLocaleString()
+    }
+
+    const updatedChat = {
+      ...activeChat,
+      messages: [...activeChat.messages, newMessage]
     }
 
     setThreads((prev) =>
       prev.map((chat) =>
-        chat.id === activeChat.id
-          ? { ...chat, messages: [...chat.messages, newMessage] }
-          : chat
+        chat.id === activeChat.id ? updatedChat : chat
       )
     )
 
-    setActiveChat({
-      ...activeChat,
-      messages: [...activeChat.messages, newMessage],
-    })
-
+    setActiveChat(updatedChat)
     setReply("")
   }
 
@@ -136,7 +163,7 @@ export default function MessagesPage() {
         {threads.map((chat) => (
           <div
             key={chat.id}
-            onClick={() => setActiveChat(chat)}
+            onClick={() => loadMessages(chat)}
             className={`flex gap-3 p-4 cursor-pointer border-b hover:bg-zinc-100 ${
               activeChat?.id === chat.id ? "bg-zinc-200" : ""
             }`}
@@ -151,12 +178,12 @@ export default function MessagesPage() {
                 {chat.contactNumber}
               </div>
               <div className="text-sm text-zinc-500 truncate">
-                {chat.messages.at(-1)?.content}
+                {chat.messages.at(-1)?.content || ""}
               </div>
               <div className="flex justify-between text-xs mt-1">
                 <PlatformBadge platform={chat.platform} />
                 <span className="text-zinc-400">
-                  {chat.messages.at(-1)?.timestamp}
+                  {chat.messages.at(-1)?.timestamp || ""}
                 </span>
               </div>
             </div>
@@ -166,66 +193,68 @@ export default function MessagesPage() {
 
       {/* CHAT */}
       <main className="flex-1 flex flex-col">
-        {/* Header */}
         {activeChat && (
-          <div className="border-b p-4 flex justify-between items-center bg-white">
-            <div className="flex items-center gap-3">
-              <Avatar name={activeChat.contactName} />
-              <div>
-                <div className="font-semibold text-zinc-800">
-                  {activeChat.contactName}
-                </div>
-                <div className="text-sm text-zinc-500">
-                  {activeChat.contactNumber}
+          <>
+            {/* Header */}
+            <div className="border-b p-4 flex justify-between items-center bg-white">
+              <div className="flex items-center gap-3">
+                <Avatar name={activeChat.contactName} />
+                <div>
+                  <div className="font-semibold text-zinc-800">
+                    {activeChat.contactName}
+                  </div>
+                  <div className="text-sm text-zinc-500">
+                    {activeChat.contactNumber}
+                  </div>
                 </div>
               </div>
+              <PlatformBadge platform={activeChat.platform} />
             </div>
-            <PlatformBadge platform={activeChat.platform} />
-          </div>
-        )}
 
-        {/* Mensagens */}
-        <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-zinc-100">
-          {activeChat?.messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`flex gap-2 ${
-                msg.fromMe ? "justify-end" : "justify-start"
-              }`}
-            >
-              {!msg.fromMe && <Avatar name={msg.senderName} />}
+            {/* Mensagens */}
+            <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-zinc-100">
+              {activeChat.messages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`flex gap-2 ${
+                    msg.fromMe ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  {!msg.fromMe && <Avatar name={msg.senderName} />}
 
-              <div
-                className={`max-w-md px-4 py-2 rounded text-sm ${
-                  msg.fromMe
-                    ? "bg-blue-600 text-white"
-                    : "bg-white text-zinc-800"
-                }`}
+                  <div
+                    className={`max-w-md px-4 py-2 rounded text-sm ${
+                      msg.fromMe
+                        ? "bg-blue-600 text-white"
+                        : "bg-white text-zinc-800"
+                    }`}
+                  >
+                    <div>{msg.content}</div>
+                    <div className="text-[10px] opacity-70 mt-1 text-right">
+                      {msg.timestamp}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Input */}
+            <div className="border-t p-3 flex gap-2 bg-white">
+              <input
+                placeholder="Digite sua mensagem..."
+                className="border rounded px-3 py-2 flex-1"
+                value={reply}
+                onChange={(e) => setReply(e.target.value)}
+              />
+              <button
+                onClick={sendMessage}
+                className="bg-blue-600 text-white px-4 py-2 rounded"
               >
-                <div>{msg.content}</div>
-                <div className="text-[10px] opacity-70 mt-1 text-right">
-                  {msg.timestamp}
-                </div>
-              </div>
+                Enviar
+              </button>
             </div>
-          ))}
-        </div>
-
-        {/* Input */}
-        <div className="border-t p-3 flex gap-2 bg-white">
-          <input
-            placeholder="Digite sua mensagem..."
-            className="border rounded px-3 py-2 flex-1"
-            value={reply}
-            onChange={(e) => setReply(e.target.value)}
-          />
-          <button
-            onClick={sendMessage}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
-          >
-            Enviar
-          </button>
-        </div>
+          </>
+        )}
       </main>
     </div>
   )

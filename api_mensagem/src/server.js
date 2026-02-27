@@ -9,6 +9,7 @@ const helper = require("./helpers/helpers")
 const routes = require('./routes')
 
 const sendMessage = require("./services/sendMessage")
+const chatService = require("./services/chatService")
 const constants = require("./constants/chatbot.constants")
 const idFunil = constants.DEFAULT_FUNIL_ID
 
@@ -112,6 +113,7 @@ app.post("/webhook", async (req, res) => {
 
     /* ================= TELEGRAM ================= */
     if (msg.className === "Message" && msg.peerId?.className === "PeerUser") {
+
       if (msg.out === true) {
         return res.status(200).json({ success: true })
       }
@@ -126,6 +128,31 @@ app.post("/webhook", async (req, res) => {
       const idUtilizador = await helper.getOrCreateUtilizador({
         cdTelegram: telegramUserId
       })
+
+      /* ===== BUSCA INSTÂNCIA ===== */
+      const instancia = await InstanceModel.getByNome(msg.nome)
+      if (!instancia) {
+        return res.status(200).json({ success: true })
+      }
+
+      const idChat = await chatService.getOrCreateChat({
+        idUtilizador,
+        cdProvider: 2,
+        idInstancia: instancia.id_instancia
+      })
+
+      await chatService.saveUnifiedMessage({
+        idChat,
+        cdProvider: 2,
+        idMensagemExterna: msg.id?.toString(),
+        fromMe: false,
+        conteudo: msg.message,
+        tipo: "text",
+        payload: msg,
+        dhEnvio: new Date(msg.date * 1000)
+      })
+
+      /* ===== FLUXO FUNIL NORMAL ===== */
 
       const jaPassou = await helper.hasFunilUtilizador(
         idUtilizador,
@@ -183,17 +210,8 @@ app.post("/webhook", async (req, res) => {
     }
 
     /* ================= WHATSAPP ================= */
-    if (msg.event === "instance.qr") {
-
-      io.emit("INSTANCE_QR", {
-        nome: msg.nome,
-        qrCode: msg.qrCode
-      })
-
-      return res.status(200).json({ success: true })
-    }
-
     if (msg.event === "message.received" && msg.whatsapp && msg.message) {
+
       const body = msg.message.text || ""
 
       if (!body || msg.message?.raw?.protocolMessage) {
@@ -208,10 +226,7 @@ app.post("/webhook", async (req, res) => {
       })
 
       if (!telefone) {
-        logger.warn("⚠️ Não foi possível extrair número do WhatsApp", {
-          jid: msg.whatsapp.jid,
-          jidAlt: msg.whatsapp.jidAlt
-        })
+        logger.warn("⚠️ Não foi possível extrair número do WhatsApp")
         return res.status(200).json({ success: true })
       }
 
@@ -219,6 +234,31 @@ app.post("/webhook", async (req, res) => {
         cdWhatsapp: telefone,
         telefone
       })
+
+      /* ===== BUSCA INSTÂNCIA ===== */
+      const instancia = await InstanceModel.getByNome(msg.nome)
+      if (!instancia) {
+        return res.status(200).json({ success: true })
+      }
+
+      const idChat = await chatService.getOrCreateChat({
+        idUtilizador,
+        cdProvider: 1,
+        idInstancia: instancia.id_instancia
+      })
+
+      await chatService.saveUnifiedMessage({
+        idChat,
+        cdProvider: 1,
+        idMensagemExterna: msg.message?.key?.id,
+        fromMe: false,
+        conteudo: body,
+        tipo: "text",
+        payload: msg.message,
+        dhEnvio: new Date(msg.messageTimestamp * 1000)
+      })
+
+      /* ===== FLUXO FUNIL NORMAL ===== */
 
       const jaPassou = await helper.hasFunilUtilizador(
         idUtilizador,

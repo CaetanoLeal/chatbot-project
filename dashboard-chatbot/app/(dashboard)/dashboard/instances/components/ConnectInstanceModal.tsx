@@ -102,6 +102,7 @@ export default function ConnectInstanceModal({
         },
         body: JSON.stringify({
           name,
+          webhookUrl: "http://localhost:3001/webhook",
           id_funil: funnel,
           platform
         })
