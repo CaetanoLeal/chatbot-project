@@ -71,7 +71,6 @@ services:
       - "3000:3000"
     volumes:
       - ./chatbot-erp:/usr/src/app
-      - ./chatbot-erp/auth:/usr/src/app/auth
     networks:
       - chatbot-network
     tty: true
