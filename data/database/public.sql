@@ -1,7 +1,7 @@
 /*
  Navicat Premium Dump SQL
 
- Source Server         : Server
+ Source Server         : chatbot
  Source Server Type    : PostgreSQL
  Source Server Version : 150014 (150014)
  Source Host           : localhost:5432
@@ -12,8 +12,20 @@
  Target Server Version : 150014 (150014)
  File Encoding         : 65001
 
- Date: 04/02/2026 16:43:54
+ Date: 27/02/2026 17:11:10
 */
+
+
+-- ----------------------------
+-- Sequence structure for tbl_instancia_id_instancia_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."tbl_instancia_id_instancia_seq";
+CREATE SEQUENCE "public"."tbl_instancia_id_instancia_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 2147483647
+START 1
+CACHE 1;
 
 -- ----------------------------
 -- Sequence structure for tbl_mensagem_telegram_id_seq
@@ -31,6 +43,28 @@ CACHE 1;
 -- ----------------------------
 DROP SEQUENCE IF EXISTS "public"."tbl_mensagem_whatsapp_id_seq";
 CREATE SEQUENCE "public"."tbl_mensagem_whatsapp_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 2147483647
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Sequence structure for tbl_provider_cd_provider_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."tbl_provider_cd_provider_seq";
+CREATE SEQUENCE "public"."tbl_provider_cd_provider_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 2147483647
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Sequence structure for tbl_status_cd_status_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."tbl_status_cd_status_seq";
+CREATE SEQUENCE "public"."tbl_status_cd_status_seq" 
 INCREMENT 1
 MINVALUE  1
 MAXVALUE 2147483647
@@ -110,13 +144,14 @@ CREATE TABLE "public"."tbl_botao" (
 DROP TABLE IF EXISTS "public"."tbl_chat";
 CREATE TABLE "public"."tbl_chat" (
   "id_chat" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
-  "id_funil_utilizador" char(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "sg_status" char(1) COLLATE "pg_catalog"."default" NOT NULL,
-  "dh_mensagem" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  "is_cadastro" bool NOT NULL DEFAULT false,
-  "cd_mensagem_cadastro" int2,
-  "is_chatbot" bool NOT NULL DEFAULT false,
-  "cd_mensagem_chatbot" int2
+  "id_utilizador" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "cd_provider" int2 NOT NULL,
+  "id_instancia" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "ultima_mensagem" text COLLATE "pg_catalog"."default",
+  "dh_ultima_mensagem" timestamp(6),
+  "nao_lidas" int4 DEFAULT 0,
+  "dt_created_at" timestamp(6) DEFAULT now(),
+  "dt_updated_at" timestamp(6) DEFAULT now()
 )
 ;
 
@@ -125,40 +160,20 @@ CREATE TABLE "public"."tbl_chat" (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for tbl_chat_status
--- ----------------------------
-DROP TABLE IF EXISTS "public"."tbl_chat_status";
-CREATE TABLE "public"."tbl_chat_status" (
-  "sg_chat_status" char(1) COLLATE "pg_catalog"."default" NOT NULL,
-  "ds_chat_status" varchar(50) COLLATE "pg_catalog"."default" NOT NULL
-)
-;
-COMMENT ON COLUMN "public"."tbl_chat_status"."sg_chat_status" IS 'N - Não atendido
-A - Atendimento
-F - Finalizado
-T - Transferido
-R – Reaberto
-C - Cancelado
-E – Em espera';
-
--- ----------------------------
--- Records of tbl_chat_status
--- ----------------------------
-
--- ----------------------------
 -- Table structure for tbl_funil
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."tbl_funil";
 CREATE TABLE "public"."tbl_funil" (
   "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
-  "no_funil" varchar(100) COLLATE "pg_catalog"."default" NOT NULL
+  "no_funil" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "ds_funil" text COLLATE "pg_catalog"."default"
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil
 -- ----------------------------
-INSERT INTO "public"."tbl_funil" VALUES ('e1e4748f-aa5b-4981-8694-81dc5aabde9c', 'teste');
+INSERT INTO "public"."tbl_funil" VALUES ('e1e4748f-aa5b-4981-8694-81dc5aabde9c', 'teste', NULL);
 
 -- ----------------------------
 -- Table structure for tbl_funil_cadastro
@@ -169,7 +184,7 @@ CREATE TABLE "public"."tbl_funil_cadastro" (
   "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "cd_mensagem" int2 NOT NULL,
   "ds_mensagem" text COLLATE "pg_catalog"."default" NOT NULL,
-  "cd_mensagem_destino" int2 NOT NULL,
+  "cd_mensagem_destino" int2,
   "is_aguardar" bool NOT NULL
 )
 ;
@@ -188,29 +203,28 @@ CREATE TABLE "public"."tbl_funil_cadastro_botao" (
   "id_funil_cadastro" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "cd_botao" int2 NOT NULL,
   "ds_botao" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
-  "cd_mensagem_destino" int2 NOT NULL,
-  "id_funil_chatbot" char(36) COLLATE "pg_catalog"."default"
+  "cd_mensagem_destino" int2
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil_cadastro_botao
 -- ----------------------------
-INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('1bac609b-c203-445f-b511-a5879c1cfbde', 'dc8b0fc7-7e6f-4ac2-a187-7425c407235c', 1, 'opcao 1', 2, NULL);
-INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('2a7b155c-6e9a-465f-91d6-6c5133eb8517', 'dc8b0fc7-7e6f-4ac2-a187-7425c407235c', 2, 'opcao 2', 2, NULL);
-INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('af4ca289-e809-4e93-9269-dad9328354ad', 'dc8b0fc7-7e6f-4ac2-a187-7425c407235c', 3, 'opcao 3', 2, NULL);
+INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('1bac609b-c203-445f-b511-a5879c1cfbde', 'dc8b0fc7-7e6f-4ac2-a187-7425c407235c', 1, 'opcao 1', 2);
+INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('2a7b155c-6e9a-465f-91d6-6c5133eb8517', 'dc8b0fc7-7e6f-4ac2-a187-7425c407235c', 2, 'opcao 2', 2);
+INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('af4ca289-e809-4e93-9269-dad9328354ad', 'dc8b0fc7-7e6f-4ac2-a187-7425c407235c', 3, 'opcao 3', 2);
 
 -- ----------------------------
 -- Table structure for tbl_funil_chatbot
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."tbl_funil_chatbot";
 CREATE TABLE "public"."tbl_funil_chatbot" (
-  "id_funil_chatbot" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "id_funil_chatbot" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
   "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "cd_mensagem" int4 NOT NULL,
   "ds_mensagem" text COLLATE "pg_catalog"."default",
   "cd_mensagem_destino" int4,
-  "is_aguardar" bool
+  "is_aguardar" bool NOT NULL
 )
 ;
 
@@ -226,11 +240,11 @@ INSERT INTO "public"."tbl_funil_chatbot" VALUES ('5202cbb4-1bab-494a-88ad-41709d
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."tbl_funil_chatbot_botao";
 CREATE TABLE "public"."tbl_funil_chatbot_botao" (
-  "id_funil_chatbot_botao" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "id_funil_chatbot_botao" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
   "id_funil_chatbot" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "cd_botao" int2 NOT NULL,
   "ds_botao" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
-  "cd_mensagem_destino" int2 NOT NULL
+  "cd_mensagem_destino" int2
 )
 ;
 
@@ -265,7 +279,55 @@ CREATE TABLE "public"."tbl_funil_utilizador" (
 -- ----------------------------
 -- Records of tbl_funil_utilizador
 -- ----------------------------
+INSERT INTO "public"."tbl_funil_utilizador" VALUES ('68c2ea99-3c54-46a5-a753-3c3374c293b1', 'e1e4748f-aa5b-4981-8694-81dc5aabde9c', 'd5f92959-f863-40a3-8f32-ed83f95cb0d9', 1, 0, '2026-02-20 20:16:39.298', '2026-02-27 20:16:39.298');
+INSERT INTO "public"."tbl_funil_utilizador" VALUES ('7f832501-5356-47f6-b076-16bf49596390', 'e1e4748f-aa5b-4981-8694-81dc5aabde9c', '418f65f3-e753-461d-90b9-d23813956282', 1, 4, '2026-02-20 20:16:54.993212', '2026-02-27 20:15:50.338');
 
+-- ----------------------------
+-- Table structure for tbl_instancia
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."tbl_instancia";
+CREATE TABLE "public"."tbl_instancia" (
+  "id_instancia" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
+  "no_instancia" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "cd_provider" int2 NOT NULL,
+  "cd_status" int2 NOT NULL,
+  "session_string" text COLLATE "pg_catalog"."default",
+  "nu_telefone" varchar(20) COLLATE "pg_catalog"."default",
+  "ds_webhook" text COLLATE "pg_catalog"."default",
+  "ds_foto_perfil" text COLLATE "pg_catalog"."default",
+  "dt_created_at" timestamp(6) NOT NULL DEFAULT now(),
+  "dt_update_at" timestamp(6) NOT NULL DEFAULT now(),
+  "ds_auth_path" text COLLATE "pg_catalog"."default",
+  "id_funil" char(36) COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
+-- Records of tbl_instancia
+-- ----------------------------
+INSERT INTO "public"."tbl_instancia" VALUES ('e7047c6b-833a-4404-afac-eafc66723ada', 'caetano_bot', 1, 3, NULL, NULL, 'http://api_mensagem:3001/webhook', NULL, '2026-02-27 19:41:33.758848', '2026-02-27 19:43:30.60039', '/usr/src/app/auth/731ab112-535e-4a51-b824-709c057fe102', 'e1e4748f-aa5b-4981-8694-81dc5aabde9c');
+
+-- ----------------------------
+-- Table structure for tbl_mensagem
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."tbl_mensagem";
+CREATE TABLE "public"."tbl_mensagem" (
+  "id_mensagem" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
+  "id_chat" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "cd_provider" int2 NOT NULL,
+  "id_mensagem_externa" varchar(150) COLLATE "pg_catalog"."default",
+  "from_me" bool NOT NULL,
+  "ds_conteudo" text COLLATE "pg_catalog"."default",
+  "ds_tipo" varchar(50) COLLATE "pg_catalog"."default" DEFAULT 'text'::character varying,
+  "ds_payload" jsonb,
+  "dh_envio" timestamp(6) NOT NULL,
+  "dt_created_at" timestamp(6) DEFAULT now()
+)
+;
+
+-- ----------------------------
+-- Records of tbl_mensagem
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tbl_mensagem_telegram
@@ -308,7 +370,6 @@ CREATE TABLE "public"."tbl_mensagem_telegram" (
 -- Records of tbl_mensagem_telegram
 -- ----------------------------
 
-
 -- ----------------------------
 -- Table structure for tbl_mensagem_whatsapp
 -- ----------------------------
@@ -338,7 +399,86 @@ CREATE TABLE "public"."tbl_mensagem_whatsapp" (
 -- ----------------------------
 -- Records of tbl_mensagem_whatsapp
 -- ----------------------------
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (1, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614671137, '2026-02-20 19:11:11.15357');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (2, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614673949, '2026-02-20 19:11:13.950989');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (3, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614699348, '2026-02-20 19:11:39.368717');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (4, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614715016, '2026-02-20 19:11:55.039889');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (5, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614758125, '2026-02-20 19:12:38.139476');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (6, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614792588, '2026-02-20 19:13:12.600277');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (7, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614796791, '2026-02-20 19:13:16.792214');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (8, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614804640, '2026-02-20 19:13:24.641153');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (9, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614811459, '2026-02-20 19:13:31.460003');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (10, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614837455, '2026-02-20 19:13:57.477821');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (11, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771614873834, '2026-02-20 19:14:33.855264');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (12, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771616396154, '2026-02-20 19:39:56.168739');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (13, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771616400061, '2026-02-20 19:40:00.062923');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (14, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771616406072, '2026-02-20 19:40:06.073923');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (15, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771616438416, '2026-02-20 19:40:38.427155');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (16, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771616954058, '2026-02-20 19:49:14.070191');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (49, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617166226, '2026-02-20 19:52:46.251416');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (50, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617477434, '2026-02-20 19:57:57.449906');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (51, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617910469, '2026-02-20 20:05:10.482833');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (52, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617911346, '2026-02-20 20:05:11.346915');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (53, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617918275, '2026-02-20 20:05:18.275496');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (54, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617919217, '2026-02-20 20:05:19.217726');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (55, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617920182, '2026-02-20 20:05:20.182941');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (56, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617921085, '2026-02-20 20:05:21.086363');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (57, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617922037, '2026-02-20 20:05:22.03783');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (58, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617922965, '2026-02-20 20:05:22.966182');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (59, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617923903, '2026-02-20 20:05:23.903873');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (60, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617924889, '2026-02-20 20:05:24.890319');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (61, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617925722, '2026-02-20 20:05:25.723264');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (62, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617926737, '2026-02-20 20:05:26.738518');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (63, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617927741, '2026-02-20 20:05:27.74267');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (64, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617928654, '2026-02-20 20:05:28.655742');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (65, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617929615, '2026-02-20 20:05:29.615986');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (66, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617930543, '2026-02-20 20:05:30.544433');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (67, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617931412, '2026-02-20 20:05:31.413885');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (68, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771617932315, '2026-02-20 20:05:32.315946');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (69, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618225093, '2026-02-20 20:10:25.113339');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (70, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618550302, '2026-02-20 20:15:50.318715');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (71, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618560930, '2026-02-20 20:16:00.957984');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (72, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618599265, '2026-02-20 20:16:39.281397');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (73, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618601233, '2026-02-20 20:16:41.234935');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (74, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618604508, '2026-02-20 20:16:44.508984');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (75, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618609855, '2026-02-20 20:16:49.855825');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (76, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618614974, '2026-02-20 20:16:54.975134');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (77, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618671292, '2026-02-20 20:17:51.309177');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (78, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618678469, '2026-02-20 20:17:58.469656');
+INSERT INTO "public"."tbl_mensagem_whatsapp" VALUES (79, NULL, NULL, NULL, NULL, 'f', NULL, NULL, 'text', NULL, NULL, NULL, NULL, NULL, 'f', NULL, 1771618684852, '2026-02-20 20:18:04.852803');
 
+-- ----------------------------
+-- Table structure for tbl_provider
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."tbl_provider";
+CREATE TABLE "public"."tbl_provider" (
+  "cd_provider" int2 NOT NULL,
+  "ds_provider" varchar(50) COLLATE "pg_catalog"."default" NOT NULL
+)
+;
+
+-- ----------------------------
+-- Records of tbl_provider
+-- ----------------------------
+INSERT INTO "public"."tbl_provider" VALUES (1, 'whatsapp');
+INSERT INTO "public"."tbl_provider" VALUES (2, 'telegram');
+
+-- ----------------------------
+-- Table structure for tbl_status
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."tbl_status";
+CREATE TABLE "public"."tbl_status" (
+  "cd_status" int2 NOT NULL,
+  "ds_status" varchar(50) COLLATE "pg_catalog"."default" NOT NULL
+)
+;
+
+-- ----------------------------
+-- Records of tbl_status
+-- ----------------------------
+INSERT INTO "public"."tbl_status" VALUES (1, 'inativo');
+INSERT INTO "public"."tbl_status" VALUES (2, 'ativo');
+INSERT INTO "public"."tbl_status" VALUES (3, 'desconectado');
 
 -- ----------------------------
 -- Table structure for tbl_utilizador
@@ -356,7 +496,8 @@ CREATE TABLE "public"."tbl_utilizador" (
 -- ----------------------------
 -- Records of tbl_utilizador
 -- ----------------------------
-
+INSERT INTO "public"."tbl_utilizador" VALUES ('418f65f3-e753-461d-90b9-d23813956282', NULL, '559181927478', '559181927478', NULL);
+INSERT INTO "public"."tbl_utilizador" VALUES ('d5f92959-f863-40a3-8f32-ed83f95cb0d9', NULL, '559191729721', '559191729721', NULL);
 
 -- ----------------------------
 -- Table structure for telegram_messages
@@ -430,88 +571,6 @@ CREATE TABLE "public"."telegram_users" (
 -- ----------------------------
 -- Records of telegram_users
 -- ----------------------------
-
-/* =====================================================
-   TABELA: tbl_provider
-===================================================== */
-
-CREATE TABLE tbl_provider (
-    cd_provider SERIAL PRIMARY KEY,
-    ds_provider VARCHAR(50) NOT NULL UNIQUE
-);
-
-/* Registros iniciais */
-INSERT INTO tbl_provider (ds_provider) VALUES
-('whatsapp'),
-('telegram');
-
-
-/* =====================================================
-   TABELA: tbl_status
-===================================================== */
-
-CREATE TABLE tbl_status (
-    cd_status SERIAL PRIMARY KEY,
-    ds_status VARCHAR(50) NOT NULL UNIQUE
-);
-
-/* Registros iniciais */
-INSERT INTO tbl_status (ds_status) VALUES
-('inativo'),
-('ativo'),
-('desconectado');
-
-
-/* =====================================================
-   TABELA: tbl_instancia
-===================================================== */
-
-CREATE TABLE tbl_instancia (
-    id_instancia SERIAL PRIMARY KEY,
-
-    no_instancia VARCHAR(100) NOT NULL,
-
-    cd_provider INTEGER NOT NULL,
-    cd_status INTEGER NOT NULL,
-
-    session_string TEXT,
-    nu_telefone VARCHAR(20),
-    ds_webhook TEXT,
-    ds_foto_perfil TEXT,
-
-    dt_created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    dt_update_at TIMESTAMP NOT NULL DEFAULT NOW(),
-
-    CONSTRAINT fk_instancia_provider
-        FOREIGN KEY (cd_provider)
-        REFERENCES tbl_provider(cd_provider)
-        ON UPDATE CASCADE
-        ON DELETE RESTRICT,
-
-    CONSTRAINT fk_instancia_status
-        FOREIGN KEY (cd_status)
-        REFERENCES tbl_status(cd_status)
-        ON UPDATE CASCADE
-        ON DELETE RESTRICT
-);
-
-
-/* =====================================================
-   TRIGGER PARA ATUALIZAR dt_update_at AUTOMATICAMENTE
-===================================================== */
-
-CREATE OR REPLACE FUNCTION fn_update_timestamp()
-RETURNS TRIGGER AS $$
-BEGIN
-   NEW.dt_update_at = NOW();
-   RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER tg_update_instancia_timestamp
-BEFORE UPDATE ON tbl_instancia
-FOR EACH ROW
-EXECUTE FUNCTION fn_update_timestamp();
 
 -- ----------------------------
 -- Function structure for aud_alteracao
@@ -1124,132 +1183,6 @@ $BODY$
   COST 100;
 
 -- ----------------------------
--- Function structure for fn_copy
--- ----------------------------
-DROP FUNCTION IF EXISTS "public"."fn_copy"("p_ic_tipo" varchar, "p_no_tabela" varchar, "p_gn_path" varchar, "p_no_file" varchar, "p_is_delete" bool, "p_no_schema" varchar, "p_gn_tipo" bpchar, "p_ic_delimiter" bpchar, "p_is_header" bool);
-CREATE FUNCTION "public"."fn_copy"("p_ic_tipo" varchar, "p_no_tabela" varchar, "p_gn_path" varchar=''::character varying, "p_no_file" varchar=''::character varying, "p_is_delete" bool=true, "p_no_schema" varchar='public'::character varying, "p_gn_tipo" bpchar=''::bpchar, "p_ic_delimiter" bpchar='^'::bpchar, "p_is_header" bool=false)
-  RETURNS "pg_catalog"."bool" AS $BODY$
-
-DECLARE
-    v_cmd                                   VARCHAR(8000)   := '';
-    v_aux                                   VARCHAR(100)    := '';
-
-BEGIN
-
-----------------------------------------------------------------------------------------------------
--- VALIDANDO
-----------------------------------------------------------------------------------------------------
-    IF (p_ic_tipo NOT IN ('IN', 'OUT')) THEN
-        RAISE EXCEPTION 'O tipo de BCP deve ser "IN" ou "OUT".';
-        RETURN false;
-    END IF;
-    
-    IF (p_gn_tipo = '') THEN
-        p_gn_tipo = 'T';
-    END IF;
-    
-    IF (p_gn_tipo NOT IN ('C', 'T', 'B')) THEN
-        RAISE EXCEPTION 'O tipo de BCP deve ser "IN" ou "OUT".';
-        RETURN false;
-    END IF;
-    
-    IF ((p_gn_tipo = 'C') AND (p_ic_delimiter = '')) THEN
-        p_ic_delimiter = '^';
-    END IF;
-    
-    IF NOT EXISTS(SELECT A.no_tabela FROM vw_sys_table A WHERE A.no_tabela = p_no_tabela) THEN
-        RAISE EXCEPTION 'Tabela inexistente: "%".', p_no_tabela
-        USING HINT = 'Verifique o nome da tabela';
-        RETURN false;
-    END IF;
-
-----------------------------------------------------------------------------------------------------
---  AJUSTES
-----------------------------------------------------------------------------------------------------
-    IF (p_gn_path = '') THEN
-        p_gn_path	= 'C:\database\copy\';
-    END IF;
-    
-    IF (RIGHT(p_gn_path, 1) <> '\') THEN
-        p_gn_path	= p_gn_path || '\';
-    END IF;
-    
-    IF (p_no_file = '') THEN
-        p_no_file	= p_gn_path || p_no_tabela || '.copy';
-    END IF;
-    
-    IF (p_no_schema = '') THEN
-        p_no_schema	= 'public';
-    END IF;
-
-----------------------------------------------------------------------------------------------------
---  CONFIGURA TRIGGER
-----------------------------------------------------------------------------------------------------
-    IF ((p_ic_tipo = 'IN') AND (p_is_delete = true)) THEN
-        BEGIN
-            EXECUTE FORMAT('ALTER TABLE %I.%I DISABLE TRIGGER ALL', p_no_schema, p_no_tabela);
-        EXCEPTION
-            WHEN duplicate_table THEN
-                RAISE EXCEPTION 'Erro ao desativar trigger: "%".', p_no_tabela
-                USING HINT = 'Desative-as manualmente';
-                RETURN false;
-        END;
-        
-        BEGIN
-            EXECUTE FORMAT('DELETE FROM %s.%s', p_no_schema, p_no_tabela);
-        EXCEPTION
-            WHEN duplicate_table THEN
-                RAISE EXCEPTION 'Erro ao excluir registros: "%".', p_no_tabela
-                USING HINT = 'Verifique as restrições da tabela';
-                RETURN false;
-        END;
-    END IF;
-
-----------------------------------------------------------------------------------------------------
---  PROCESSA ARQUIVO
-----------------------------------------------------------------------------------------------------
-    BEGIN
-        v_cmd   = CASE WHEN p_ic_tipo = 'IN' THEN 'FROM' ELSE 'TO' END;
-    
-        v_aux   = CASE WHEN p_gn_tipo = 'C' THEN ' WITH CSV'
-                       WHEN p_gn_tipo = 'B' THEN ' WITH BINARY' 
-                       ELSE '' 
-                   END
-               || CASE WHEN p_ic_delimiter = '' THEN '' ELSE FORMAT(' DELIMITER ''%s''', p_ic_delimiter) END
-               || CASE WHEN p_is_header = true THEN ' HEADER' ELSE '' END;
-    
-        v_cmd   = FORMAT('COPY %s %s ''%s'' %s', p_no_tabela, v_cmd, p_no_file, v_aux);
-    
-        EXECUTE v_cmd;
-    EXCEPTION
-        WHEN duplicate_table THEN
-    END;
-
-----------------------------------------------------------------------------------------------------
---  RETORNA TRIGGER
-----------------------------------------------------------------------------------------------------
-    IF (p_ic_tipo = 'IN') AND (p_is_delete = true) THEN
-        BEGIN
-            EXECUTE FORMAT('ALTER TABLE %I.%I ENABLE TRIGGER ALL', p_no_schema, p_no_tabela);
-        EXCEPTION
-            WHEN duplicate_table THEN
-                RAISE EXCEPTION 'Erro ao reativar trigger: "%".', p_no_tabela
-                USING HINT = 'Ative-as manualmente';
-                RETURN false;
-        END;
-    END IF;
-
-----------------------------------------------------------------------------------------------------
---  RETORNO
-----------------------------------------------------------------------------------------------------
-	RETURN true;
-
-END;
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-
--- ----------------------------
 -- Function structure for fn_ret_acao
 -- ----------------------------
 DROP FUNCTION IF EXISTS "public"."fn_ret_acao"("p_cd_acao" int2);
@@ -1732,6 +1665,20 @@ $BODY$
   COST 100;
 
 -- ----------------------------
+-- Function structure for fn_update_timestamp
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."fn_update_timestamp"();
+CREATE FUNCTION "public"."fn_update_timestamp"()
+  RETURNS "pg_catalog"."trigger" AS $BODY$
+BEGIN
+   NEW.dt_update_at = NOW();
+   RETURN NEW;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+-- ----------------------------
 -- Function structure for maiusculas
 -- ----------------------------
 DROP FUNCTION IF EXISTS "public"."maiusculas"(text);
@@ -1772,8 +1719,8 @@ CREATE FUNCTION "public"."retira_acentuacao"("p_texto" text)
 -- ----------------------------
 -- Function structure for unaccent
 -- ----------------------------
-DROP FUNCTION IF EXISTS "public"."unaccent"(text);
-CREATE FUNCTION "public"."unaccent"(text)
+DROP FUNCTION IF EXISTS "public"."unaccent"(regdictionary, text);
+CREATE FUNCTION "public"."unaccent"(regdictionary, text)
   RETURNS "pg_catalog"."text" AS '$libdir/unaccent', 'unaccent_dict'
   LANGUAGE c STABLE STRICT
   COST 1;
@@ -1781,8 +1728,8 @@ CREATE FUNCTION "public"."unaccent"(text)
 -- ----------------------------
 -- Function structure for unaccent
 -- ----------------------------
-DROP FUNCTION IF EXISTS "public"."unaccent"(regdictionary, text);
-CREATE FUNCTION "public"."unaccent"(regdictionary, text)
+DROP FUNCTION IF EXISTS "public"."unaccent"(text);
+CREATE FUNCTION "public"."unaccent"(text)
   RETURNS "pg_catalog"."text" AS '$libdir/unaccent', 'unaccent_dict'
   LANGUAGE c STABLE STRICT
   COST 1;
@@ -1994,43 +1941,48 @@ CREATE VIEW "public"."vw_sys_table" AS  SELECT z.no_database,
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
-ALTER SEQUENCE "public"."tbl_mensagem_telegram_id_seq"
-OWNED BY "public"."tbl_mensagem_telegram"."id";
-SELECT setval('"public"."tbl_mensagem_telegram_id_seq"', 598, true);
+ALTER SEQUENCE "public"."tbl_instancia_id_instancia_seq"
+OWNED BY "public"."tbl_instancia"."id_instancia";
+SELECT setval('"public"."tbl_instancia_id_instancia_seq"', 1, false);
 
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
-ALTER SEQUENCE "public"."tbl_mensagem_whatsapp_id_seq"
-OWNED BY "public"."tbl_mensagem_whatsapp"."id";
-SELECT setval('"public"."tbl_mensagem_whatsapp_id_seq"', 733, true);
+SELECT setval('"public"."tbl_mensagem_telegram_id_seq"', 1, false);
 
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
-ALTER SEQUENCE "public"."telegram_messages_id_seq"
-OWNED BY "public"."telegram_messages"."id";
+SELECT setval('"public"."tbl_mensagem_whatsapp_id_seq"', 79, true);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+ALTER SEQUENCE "public"."tbl_provider_cd_provider_seq"
+OWNED BY "public"."tbl_provider"."cd_provider";
+SELECT setval('"public"."tbl_provider_cd_provider_seq"', 2, true);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+ALTER SEQUENCE "public"."tbl_status_cd_status_seq"
+OWNED BY "public"."tbl_status"."cd_status";
+SELECT setval('"public"."tbl_status_cd_status_seq"', 3, true);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
 SELECT setval('"public"."telegram_messages_id_seq"', 1, false);
 
 -- ----------------------------
--- Primary Key structure for table aud_detalhe
+-- Uniques structure for table tbl_chat
 -- ----------------------------
-ALTER TABLE "public"."aud_detalhe" ADD CONSTRAINT "aud_detalhe_pkey" PRIMARY KEY ("nu_sessao", "id_auditoria", "no_campo");
-
--- ----------------------------
--- Primary Key structure for table aud_registro
--- ----------------------------
-ALTER TABLE "public"."aud_registro" ADD CONSTRAINT "aud_registro_pkey" PRIMARY KEY ("nu_sessao", "id_sequencia");
+ALTER TABLE "public"."tbl_chat" ADD CONSTRAINT "uq_chat_unica" UNIQUE ("id_utilizador", "cd_provider", "id_instancia");
 
 -- ----------------------------
 -- Primary Key structure for table tbl_chat
 -- ----------------------------
 ALTER TABLE "public"."tbl_chat" ADD CONSTRAINT "tbl_chat_pkey" PRIMARY KEY ("id_chat");
-
--- ----------------------------
--- Primary Key structure for table tbl_chat_status
--- ----------------------------
-ALTER TABLE "public"."tbl_chat_status" ADD CONSTRAINT "tbl_chat_status_pkey" PRIMARY KEY ("sg_chat_status");
 
 -- ----------------------------
 -- Primary Key structure for table tbl_funil
@@ -2063,19 +2015,41 @@ ALTER TABLE "public"."tbl_funil_chatbot_botao" ADD CONSTRAINT "tbl_funil_chatbot
 ALTER TABLE "public"."tbl_funil_utilizador" ADD CONSTRAINT "tbl_funil_utilizador_pkey" PRIMARY KEY ("id_funil_utilizador");
 
 -- ----------------------------
--- Uniques structure for table tbl_mensagem_telegram
+-- Triggers structure for table tbl_instancia
 -- ----------------------------
-ALTER TABLE "public"."tbl_mensagem_telegram" ADD CONSTRAINT "tbl_mensagem_telegram_id_mensagem_key" UNIQUE ("id_mensagem");
+CREATE TRIGGER "tg_update_instancia_timestamp" BEFORE UPDATE ON "public"."tbl_instancia"
+FOR EACH ROW
+EXECUTE PROCEDURE "public"."fn_update_timestamp"();
 
 -- ----------------------------
--- Primary Key structure for table tbl_mensagem_telegram
+-- Primary Key structure for table tbl_instancia
 -- ----------------------------
-ALTER TABLE "public"."tbl_mensagem_telegram" ADD CONSTRAINT "tbl_mensagem_telegram_pkey" PRIMARY KEY ("id");
+ALTER TABLE "public"."tbl_instancia" ADD CONSTRAINT "tbl_instancia_pkey" PRIMARY KEY ("id_instancia");
 
 -- ----------------------------
--- Primary Key structure for table tbl_mensagem_whatsapp
+-- Primary Key structure for table tbl_mensagem
 -- ----------------------------
-ALTER TABLE "public"."tbl_mensagem_whatsapp" ADD CONSTRAINT "tbl_mensagem_whatsapp_pkey" PRIMARY KEY ("id");
+ALTER TABLE "public"."tbl_mensagem" ADD CONSTRAINT "tbl_mensagem_pkey" PRIMARY KEY ("id_mensagem");
+
+-- ----------------------------
+-- Uniques structure for table tbl_provider
+-- ----------------------------
+ALTER TABLE "public"."tbl_provider" ADD CONSTRAINT "tbl_provider_ds_provider_key" UNIQUE ("ds_provider");
+
+-- ----------------------------
+-- Primary Key structure for table tbl_provider
+-- ----------------------------
+ALTER TABLE "public"."tbl_provider" ADD CONSTRAINT "tbl_provider_pkey" PRIMARY KEY ("cd_provider");
+
+-- ----------------------------
+-- Uniques structure for table tbl_status
+-- ----------------------------
+ALTER TABLE "public"."tbl_status" ADD CONSTRAINT "tbl_status_ds_status_key" UNIQUE ("ds_status");
+
+-- ----------------------------
+-- Primary Key structure for table tbl_status
+-- ----------------------------
+ALTER TABLE "public"."tbl_status" ADD CONSTRAINT "tbl_status_pkey" PRIMARY KEY ("cd_status");
 
 -- ----------------------------
 -- Primary Key structure for table tbl_utilizador
@@ -2083,20 +2057,11 @@ ALTER TABLE "public"."tbl_mensagem_whatsapp" ADD CONSTRAINT "tbl_mensagem_whatsa
 ALTER TABLE "public"."tbl_utilizador" ADD CONSTRAINT "tbl_utilizador_pkey" PRIMARY KEY ("id_utilizador");
 
 -- ----------------------------
--- Primary Key structure for table telegram_messages
--- ----------------------------
-ALTER TABLE "public"."telegram_messages" ADD CONSTRAINT "telegram_messages_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
--- Primary Key structure for table telegram_users
--- ----------------------------
-ALTER TABLE "public"."telegram_users" ADD CONSTRAINT "telegram_users_pkey" PRIMARY KEY ("user_id");
-
--- ----------------------------
 -- Foreign Keys structure for table tbl_chat
 -- ----------------------------
-ALTER TABLE "public"."tbl_chat" ADD CONSTRAINT "fk_tbl_chat_tbl_chat_status_2" FOREIGN KEY ("sg_status") REFERENCES "public"."tbl_chat_status" ("sg_chat_status") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."tbl_chat" ADD CONSTRAINT "fk_tbl_chat_tbl_funil_utilizador_1" FOREIGN KEY ("id_funil_utilizador") REFERENCES "public"."tbl_funil_utilizador" ("id_funil_utilizador") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_chat" ADD CONSTRAINT "fk_chat_instancia" FOREIGN KEY ("id_instancia") REFERENCES "public"."tbl_instancia" ("id_instancia") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_chat" ADD CONSTRAINT "fk_chat_provider" FOREIGN KEY ("cd_provider") REFERENCES "public"."tbl_provider" ("cd_provider") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_chat" ADD CONSTRAINT "fk_chat_utilizador" FOREIGN KEY ("id_utilizador") REFERENCES "public"."tbl_utilizador" ("id_utilizador") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ----------------------------
 -- Foreign Keys structure for table tbl_funil_cadastro
@@ -2125,7 +2090,14 @@ ALTER TABLE "public"."tbl_funil_utilizador" ADD CONSTRAINT "fk_tbl_funil_utiliza
 ALTER TABLE "public"."tbl_funil_utilizador" ADD CONSTRAINT "fk_tbl_funil_utilizador_tbl_utilizador_2" FOREIGN KEY ("id_utilizador") REFERENCES "public"."tbl_utilizador" ("id_utilizador") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ----------------------------
--- Foreign Keys structure for table telegram_messages
+-- Foreign Keys structure for table tbl_instancia
 -- ----------------------------
-ALTER TABLE "public"."telegram_messages" ADD CONSTRAINT "telegram_messages_from_user_id_fkey" FOREIGN KEY ("from_user_id") REFERENCES "public"."telegram_users" ("user_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."telegram_messages" ADD CONSTRAINT "telegram_messages_peer_user_id_fkey" FOREIGN KEY ("peer_user_id") REFERENCES "public"."telegram_users" ("user_id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_instancia" ADD CONSTRAINT "fk_instancia_funil" FOREIGN KEY ("id_funil") REFERENCES "public"."tbl_funil" ("id_funil") ON DELETE SET NULL ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_instancia" ADD CONSTRAINT "fk_instancia_provider" FOREIGN KEY ("cd_provider") REFERENCES "public"."tbl_provider" ("cd_provider") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."tbl_instancia" ADD CONSTRAINT "fk_instancia_status" FOREIGN KEY ("cd_status") REFERENCES "public"."tbl_status" ("cd_status") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- ----------------------------
+-- Foreign Keys structure for table tbl_mensagem
+-- ----------------------------
+ALTER TABLE "public"."tbl_mensagem" ADD CONSTRAINT "fk_mensagem_chat" FOREIGN KEY ("id_chat") REFERENCES "public"."tbl_chat" ("id_chat") ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_mensagem" ADD CONSTRAINT "fk_mensagem_provider" FOREIGN KEY ("cd_provider") REFERENCES "public"."tbl_provider" ("cd_provider") ON DELETE NO ACTION ON UPDATE NO ACTION;
