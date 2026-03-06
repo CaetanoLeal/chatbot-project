@@ -130,7 +130,7 @@ app.post("/webhook", async (req, res) => {
       })
 
       /* ===== BUSCA INSTÂNCIA ===== */
-      const instancia = await InstanceModel.getByNome(msg.nome)
+      const instancia = await InstanceModel.getByNome(msg.instance?.name)
       if (!instancia) {
         return res.status(200).json({ success: true })
       }
@@ -250,12 +250,12 @@ app.post("/webhook", async (req, res) => {
       await chatService.saveUnifiedMessage({
         idChat,
         cdProvider: 1,
-        idMensagemExterna: msg.message?.key?.id,
+        idMensagemExterna: msg.whatsapp?.messageId,
         fromMe: false,
         conteudo: body,
         tipo: "text",
         payload: msg.message,
-        dhEnvio: new Date(msg.messageTimestamp * 1000)
+        dhEnvio: new Date(msg.whatsapp.timestamp * 1000)
       })
 
       /* ===== FLUXO FUNIL NORMAL ===== */
