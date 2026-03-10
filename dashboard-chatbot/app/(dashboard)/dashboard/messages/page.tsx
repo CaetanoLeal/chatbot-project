@@ -20,6 +20,7 @@ type ChatThread = {
   id: string
   contactName: string
   contactNumber: string
+  instanceName: string
   platform: Platform
   messages: ChatMessage[]
 }
@@ -76,6 +77,7 @@ export default function MessagesPage() {
         id: chat.id_chat,
         contactName: chat.no_utilizador || "Sem nome",
         contactNumber: chat.nu_telefone || "-",
+        instanceName: chat.no_instancia || "Instância",
         platform: chat.cd_provider === 1 ? "whatsapp" : "telegram",
         messages: []
       }))
@@ -176,6 +178,9 @@ export default function MessagesPage() {
               </div>
               <div className="text-xs text-zinc-500">
                 {chat.contactNumber}
+              </div>
+              <div className="text-xs text-zinc-400">
+                {chat.instanceName}
               </div>
               <div className="text-sm text-zinc-500 truncate">
                 {chat.messages.at(-1)?.content || ""}

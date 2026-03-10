@@ -130,7 +130,7 @@ app.post("/webhook", async (req, res) => {
       })
 
       /* ===== BUSCA INSTÂNCIA ===== */
-      const instancia = await InstanceModel.getByNome(msg.instance?.name)
+      const instancia = await InstanceModel.getByName(msg.instance?.name)
       if (!instancia) {
         return res.status(200).json({ success: true })
       }
@@ -230,13 +230,16 @@ app.post("/webhook", async (req, res) => {
         return res.status(200).json({ success: true })
       }
 
+      const nome = msg.whatsapp?.pushName || null
+
       const idUtilizador = await helper.getOrCreateUtilizador({
         cdWhatsapp: telefone,
-        telefone
+        telefone,
+        nome
       })
 
       /* ===== BUSCA INSTÂNCIA ===== */
-      const instancia = await InstanceModel.getByNome(msg.nome)
+      const instancia = await InstanceModel.getByName(msg.nome)
       if (!instancia) {
         return res.status(200).json({ success: true })
       }
@@ -247,6 +250,12 @@ app.post("/webhook", async (req, res) => {
         idInstancia: instancia.id_instancia
       })
 
+      const ts = Number(msg.whatsapp?.timestamp)
+
+      const dhEnvio = !isNaN(ts)
+        ? new Date(ts * 1000)
+        : new Date()
+
       await chatService.saveUnifiedMessage({
         idChat,
         cdProvider: 1,
@@ -255,7 +264,7 @@ app.post("/webhook", async (req, res) => {
         conteudo: body,
         tipo: "text",
         payload: msg.message,
-        dhEnvio: new Date(msg.whatsapp.timestamp * 1000)
+        dhEnvio: dhEnvio
       })
 
       /* ===== FLUXO FUNIL NORMAL ===== */
@@ -311,6 +320,49 @@ app.post("/webhook", async (req, res) => {
           message: mensagem
         })
       }
+
+      return res.status(200).json({ success: true })
+    }
+
+    /* ================= WHATSAPP ENVIADA ================= */
+    if (msg.event === "message.sent" && msg.whatsapp && msg.message) {
+
+      const body = msg.message.text || ""
+
+      const telefone = helper.extrairNumeroWhatsapp({
+        jid: msg.whatsapp.jid
+      })
+
+      if (!telefone) {
+        return res.status(200).json({ success: true })
+      }
+
+      const idUtilizador = await helper.getOrCreateUtilizador({
+        cdWhatsapp: telefone,
+        telefone
+      })
+
+      const instancia = await InstanceModel.getByName(msg.instance?.name)
+      if (!instancia) {
+        return res.status(200).json({ success: true })
+      }
+
+      const idChat = await chatService.getOrCreateChat({
+        idUtilizador,
+        cdProvider: 1,
+        idInstancia: instancia.id_instancia
+      })
+
+      await chatService.saveUnifiedMessage({
+        idChat,
+        cdProvider: 1,
+        idMensagemExterna: msg.whatsapp?.messageId,
+        fromMe: true,
+        conteudo: body,
+        tipo: "text",
+        payload: msg.message,
+        dhEnvio: new Date(msg.whatsapp.timestamp * 1000)
+      })
 
       return res.status(200).json({ success: true })
     }

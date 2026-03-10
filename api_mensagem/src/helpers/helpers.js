@@ -35,7 +35,7 @@ async function getEstadoConversa(idUtilizador, idFunil) {
   return r.rows[0].cd_mensagem_chatbot
 }
 
-async function getOrCreateUtilizador({ cdTelegram, cdWhatsapp, telefone }) {
+async function getOrCreateUtilizador({ cdTelegram, cdWhatsapp, telefone, nome }) {
   const campo = cdTelegram ? "cd_telegram" : "cd_whatsapp"
   const valor = cdTelegram || cdWhatsapp
 
@@ -53,11 +53,12 @@ async function getOrCreateUtilizador({ cdTelegram, cdWhatsapp, telefone }) {
   await db.query(
     `
     INSERT INTO tbl_utilizador
-    (id_utilizador, nu_telefone, cd_whatsapp, cd_telegram)
-    VALUES ($1,$2,$3,$4)
+    (id_utilizador, no_utilizador, nu_telefone, cd_whatsapp, cd_telegram)
+    VALUES ($1,$2,$3,$4,$5)
     `,
     [
       idUtilizador,
+      nome ?? null,
       telefone ?? null,
       cdWhatsapp ?? null,
       cdTelegram ?? null

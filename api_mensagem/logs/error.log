@@ -340,3 +340,13 @@
 [2026-03-06 18:46:46] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
 [2026-03-06 18:52:37] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
 [2026-03-06 18:53:57] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:10:50] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:11:41] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:11:53] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:11:54] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:14:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-10 16:15:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-10 16:16:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-10 16:20:47] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:21:09] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:32:23] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"

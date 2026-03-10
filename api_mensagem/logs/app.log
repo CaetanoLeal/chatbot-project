@@ -599,3 +599,36 @@
 [2026-03-06 18:52:37] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
 [2026-03-06 18:53:57] [INFO]: 🆕 Utilizador criado (3c76b609-543c-4442-9c5a-b7b1d21fbb27)
 [2026-03-06 18:53:57] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:03:03] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-10 16:03:03] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-10 16:03:04] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Mar 10 2026 16:03:03 GMT+0000 (Coordinated Universal Time)
+[2026-03-10 16:03:04] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-10 16:10:50] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:11:41] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:11:53] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:11:54] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:14:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-10 16:15:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-10 16:16:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-10 16:20:47] [INFO]: 🆕 Utilizador criado (041bf7fc-6bf3-472f-8616-a62016dc3388)
+[2026-03-10 16:20:47] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:21:09] [INFO]: 🆕 Utilizador criado (09a99b55-2a45-45bd-80fc-f699f615eac4)
+[2026-03-10 16:21:09] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-10 16:30:01] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-10 16:30:01] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-10 16:30:02] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-10 16:30:02] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Mar 10 2026 16:30:02 GMT+0000 (Coordinated Universal Time)
+[2026-03-10 16:32:19] [INFO]: 🆕 Utilizador criado (cf937ca4-1725-43ac-9706-ef91b91ea2d5)
+[2026-03-10 16:32:23] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-10 18:51:06] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-10 18:51:07] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-10 18:51:07] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Mar 10 2026 18:51:07 GMT+0000 (Coordinated Universal Time)
+[2026-03-10 18:51:07] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-10 18:56:36] [INFO]: 🆕 Utilizador criado (8486c76c-14ec-4508-b5f5-e66680875286)
+[2026-03-10 18:56:38] [INFO]: 🆕 Utilizador criado (9897e37c-4d11-4891-865c-b135a7f538df)
+[2026-03-10 19:59:55] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-10 19:59:55] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-10 19:59:56] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Mar 10 2026 19:59:56 GMT+0000 (Coordinated Universal Time)
+[2026-03-10 19:59:56] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-10 20:03:48] [INFO]: 🆕 Utilizador criado (438f6ba9-dc81-4cf5-a442-e46593d2b4e1)
+[2026-03-10 20:05:19] [INFO]: 🆕 Utilizador criado (9e284962-5a2c-4eee-a3a5-97c95f04695a)
