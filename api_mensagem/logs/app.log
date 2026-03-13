@@ -632,3 +632,238 @@
 [2026-03-10 19:59:56] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
 [2026-03-10 20:03:48] [INFO]: 🆕 Utilizador criado (438f6ba9-dc81-4cf5-a442-e46593d2b4e1)
 [2026-03-10 20:05:19] [INFO]: 🆕 Utilizador criado (9e284962-5a2c-4eee-a3a5-97c95f04695a)
+[2026-03-12 16:24:35] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-12 16:24:39] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-12 16:24:39] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-12 16:24:39] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-12 16:40:01] [INFO]: 🆕 Utilizador criado (e0d4fbc1-93eb-43fb-adc4-94299ffe2b3a)
+[2026-03-12 16:40:06] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 16:40:06] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 16:40:53] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 16:40:53] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 16:41:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 16:41:49] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 16:42:32] [INFO]: 🆕 Utilizador criado (dc210068-fc1f-4f8c-902f-0019e53ed3c7)
+[2026-03-12 16:44:43] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 16:44:43] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 16:45:32] [INFO]: 🆕 Utilizador criado (4f4ae07a-3737-492b-acbb-dc386aefc401)
+[2026-03-12 16:45:32] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 16:45:32] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 16:45:38] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 16:45:38] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 16:46:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 16:46:42] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 16:51:43] [INFO]: 🆕 Utilizador criado (04466fa2-c9d0-47f4-9005-fa0b4a411f70)
+[2026-03-12 16:52:55] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 16:52:55] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 16:53:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 16:53:02] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 16:58:22] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 16:58:22] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 17:11:40] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 17:11:40] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 17:23:09] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 17:23:09] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 17:28:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:28:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:29:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:30:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:30:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:30:30] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 17:30:30] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 17:30:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:30:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:31:17] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 17:31:17] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 17:31:33] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:38:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 17:38:18] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-12 17:47:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:48:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 17:50:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 19:12:41] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-12 19:12:42] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-12 19:12:42] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Mar 12 2026 19:12:42 GMT+0000 (Coordinated Universal Time)
+[2026-03-12 19:12:42] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-12 19:13:11] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-12 19:13:12] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-12 19:13:12] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-12 19:13:12] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-12 22:45:26] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-12 22:45:27] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-12 22:45:27] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Mar 12 2026 22:45:27 GMT+0000 (Coordinated Universal Time)
+[2026-03-12 22:45:27] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-12 22:47:23] [INFO]: 🆕 Utilizador criado (29992259-87ef-460e-abe2-a0c361cdbf53)
+[2026-03-12 22:47:31] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 22:47:31] [ERROR]: ❌ Webhook error: timeout of 8000ms exceeded
+[2026-03-12 22:48:51] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 22:48:51] [ERROR]: ❌ Webhook error: timeout of 8000ms exceeded
+[2026-03-12 22:50:39] [INFO]: 🆕 Utilizador criado (f4414036-a91d-4251-b3ab-ba19bc82aa89)
+[2026-03-12 23:01:50] [INFO]: 🆕 Utilizador criado (f07d685b-959d-44b0-95b8-9a4161f05be7)
+[2026-03-12 23:01:52] [INFO]: 🆕 Utilizador criado (8c3b825f-9b84-453b-a0ef-32363f401f6f)
+[2026-03-12 23:02:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 23:02:01] [ERROR]: ❌ Webhook error: timeout of 8000ms exceeded
+[2026-03-12 23:02:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 23:02:01] [ERROR]: ❌ Webhook error: timeout of 8000ms exceeded
+[2026-03-12 23:02:09] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 23:02:09] [ERROR]: ❌ Webhook error: timeout of 8000ms exceeded
+[2026-03-12 23:02:11] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 23:02:11] [ERROR]: ❌ Webhook error: timeout of 8000ms exceeded
+[2026-03-12 23:02:13] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 23:02:13] [ERROR]: ❌ Webhook error: timeout of 8000ms exceeded
+[2026-03-12 23:03:43] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-12 23:03:43] [ERROR]: ❌ Webhook error: timeout of 8000ms exceeded
+[2026-03-12 23:11:48] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:12:17] [INFO]: 🆕 Utilizador criado (e4aeca7d-a72c-4a3d-996b-5e7c81e7cc84)
+[2026-03-12 23:12:20] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-12 23:17:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:24:14] [INFO]: 🆕 Utilizador criado (4e0d16ee-10ca-4771-9276-a393a7b3e72d)
+[2026-03-12 23:31:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:31:52] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:37:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:38:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:38:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:38:14] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:38:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:38:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:39:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:39:54] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:40:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:44:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:44:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:46:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-12 23:49:42] [INFO]: 🆕 Utilizador criado (18b563c3-a6f7-4977-acf3-ffbda2290871)
+[2026-03-13 00:09:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:10:06] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:10:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:20:39] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:24:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:25:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:25:14] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:29:01] [INFO]: 🆕 Utilizador criado (adf2fc2b-1a4e-4173-b311-b290918e0763)
+[2026-03-13 00:33:18] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:33:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:35:15] [INFO]: 🆕 Utilizador criado (3fe18cf4-0074-4063-8f6e-9492eaba8d65)
+[2026-03-13 00:39:11] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 00:39:11] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 00:40:19] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 00:40:19] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 00:40:21] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 00:40:21] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 00:40:38] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 00:40:38] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 00:47:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:47:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:47:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:48:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:52:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:55:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 00:55:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:16:37] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:17:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:18:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:18:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:22:07] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 01:22:07] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 01:22:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:26:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:29:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:34:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:37:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:41:42] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:42:30] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 01:47:17] [INFO]: 🆕 Utilizador criado (6f7197b3-4e57-4637-8558-fdd628ab0c72)
+[2026-03-13 01:48:43] [INFO]: 🆕 Utilizador criado (d84b9bfb-0040-4afd-9a76-4ad93f725abe)
+[2026-03-13 06:14:36] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-13 06:14:37] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-13 06:14:37] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-13 06:14:37] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-13 06:28:41] [INFO]: 🆕 Utilizador criado (032de3a4-d11a-4727-8362-b3b6069e38fa)
+[2026-03-13 06:30:34] [INFO]: 🆕 Utilizador criado (f181f103-c9d2-4ac5-88c0-6ef3a08f3506)
+[2026-03-13 06:30:34] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-13 06:31:14] [INFO]: 🆕 Utilizador criado (18a33888-6316-400e-a79f-2d69b920511a)
+[2026-03-13 17:01:31] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-13 17:01:31] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-13 17:01:31] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Mar 13 2026 17:01:31 GMT+0000 (Coordinated Universal Time)
+[2026-03-13 17:01:31] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-13 17:13:00] [INFO]: 🆕 Utilizador criado (d3b41824-b21a-47d0-a18b-34f8aa144ecd)
+[2026-03-13 17:14:06] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-13 17:16:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 17:16:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 17:16:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 17:16:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 17:16:25] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 17:16:39] [INFO]: 🆕 Utilizador criado (2f231c38-4015-437c-b6bc-b910dc61f509)
+[2026-03-13 17:19:51] [INFO]: 🆕 Utilizador criado (efb7a58f-8094-476c-b666-8b04924e6715)
+[2026-03-13 17:19:52] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-13 17:32:02] [INFO]: 🆕 Utilizador criado (e664a3cb-8a65-49c0-846e-d324d12ba42d)
+[2026-03-13 18:06:57] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 18:06:57] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 18:10:24] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:10:28] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:13:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:13:41] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:13:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:13:49] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:13:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:14:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:14:57] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:14:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:15:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:15:16] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:15:17] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:18:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:18:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:20:40] [INFO]: 🆕 Utilizador criado (0596ad16-d703-404f-87fa-be9d96ebb32e)
+[2026-03-13 18:20:40] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 18:20:40] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 18:43:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 18:50:30] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 18:50:30] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 19:01:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:02:10] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:03:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:03:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:04:02] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:04:29] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:04:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:04:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:05:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:06:31] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-13 19:19:24] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-13 19:19:25] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-13 19:19:25] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-13 19:19:25] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-13 19:24:55] [INFO]: 🆕 Utilizador criado (a88b1856-d990-4f0e-8d81-0c20f5ffdb22)
+[2026-03-13 19:25:09] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-13 19:25:15] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-13 19:31:45] [INFO]: 🆕 Utilizador criado (b0099713-e1a8-48fb-81b0-0713a1b0083e)
+[2026-03-13 19:33:48] [INFO]: 🆕 Utilizador criado (99e2fee7-e78d-408f-a9df-eb50ea9f4104)
+[2026-03-13 19:34:11] [INFO]: 🆕 Utilizador criado (a6175612-6f8d-4807-8cbe-020187c4e5cd)
+[2026-03-13 19:35:34] [INFO]: 🆕 Utilizador criado (00bab57b-69ef-472e-aaf3-d32fc0fe484d)
+[2026-03-13 19:35:34] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 19:35:34] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 19:35:41] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 19:35:41] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 19:43:12] [INFO]: 🆕 Utilizador criado (0fc2d339-8cea-4675-9993-932a12847363)
+[2026-03-13 19:58:39] [INFO]: 🆕 Utilizador criado (9278e2bd-4e3a-48b3-89ff-4ec788917307)
+[2026-03-13 20:09:46] [INFO]: 🆕 Utilizador criado (42bd1931-b90c-4255-bca0-70756048d8d8)
+[2026-03-13 20:20:45] [INFO]: 🆕 Utilizador criado (ec83231c-cb2e-4b35-9d57-d4b2911b66e2)
+[2026-03-13 20:20:45] [ERROR]: ❌ Webhook error: duplicate key value violates unique constraint "uq_chat_unica"
+[2026-03-13 20:25:16] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 20:25:16] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 20:25:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 20:25:18] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 20:25:46] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 20:25:46] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 20:26:13] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-13 20:26:13] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-13 20:56:03] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-13 20:56:04] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-13 20:56:04] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-13 20:56:04] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-13 21:36:54] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-13 21:36:55] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-13 21:36:55] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-13 21:36:55] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-13 21:39:48] [INFO]: 🆕 Utilizador criado (de23907a-ab50-4938-9c69-33e79f0ef53c)

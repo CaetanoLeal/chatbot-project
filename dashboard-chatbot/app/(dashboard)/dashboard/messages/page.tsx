@@ -1,6 +1,10 @@
+//app/(dashboard)/dashboard/messages/page.tsx
 "use client"
 
 import { useState, useEffect } from "react"
+import { io } from "socket.io-client"
+
+const socket = io("http://localhost:3001")
 
 /* =====================
    TYPES
@@ -22,6 +26,8 @@ type ChatThread = {
   contactNumber: string
   instanceName: string
   platform: Platform
+  photo?: string
+  lastSeen?: string
   messages: ChatMessage[]
 }
 
@@ -36,7 +42,16 @@ function PlatformBadge({ platform }: { platform: Platform }) {
   )
 }
 
-function Avatar({ name }: { name: string }) {
+function Avatar({ name, photo }: { name: string; photo?: string }) {
+  if (photo) {
+    return (
+      <img
+        src={photo}
+        className="w-10 h-10 rounded-full object-cover"
+      />
+    )
+  }
+
   const initials = name
     ?.split(" ")
     .map((n) => n[0])
@@ -45,7 +60,7 @@ function Avatar({ name }: { name: string }) {
     .toUpperCase()
 
   return (
-    <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-semibold shrink-0">
+    <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-semibold">
       {initials || "?"}
     </div>
   )
@@ -66,6 +81,45 @@ export default function MessagesPage() {
     loadChats()
   }, [])
 
+  /* =====================
+     ATUALIZAR EM TEMPO REAL
+  ===================== */
+  useEffect(() => {
+    socket.on("NEW_MESSAGE", (data) => {
+
+      const newMessage: ChatMessage = {
+        id: Date.now().toString(),
+        platform: "whatsapp",
+        fromMe: data.fromMe,
+        senderName: data.fromMe ? "Atendimento" : data.telefone,
+        content: data.conteudo,
+        timestamp: new Date().toLocaleString()
+      }
+
+      setThreads((prev) =>
+        prev.map((chat) => {
+          if (chat.id !== data.idChat) return chat
+
+          const updated = {
+            ...chat,
+            messages: [...chat.messages, newMessage]
+          }
+
+          if (activeChat?.id === chat.id) {
+            setActiveChat(updated)
+          }
+
+          return updated
+        })
+      )
+
+    })
+
+    return () => {
+      socket.off("NEW_MESSAGE")
+    }
+  }, [activeChat])
+
   async function loadChats() {
     try {
       const res = await fetch("http://localhost:3001/api/chats")
@@ -79,6 +133,8 @@ export default function MessagesPage() {
         contactNumber: chat.nu_telefone || "-",
         instanceName: chat.no_instancia || "Instância",
         platform: chat.cd_provider === 1 ? "whatsapp" : "telegram",
+        photo: chat.ds_foto_perfil || null,
+        lastSeen: chat.dh_last_seen || null,
         messages: []
       }))
 
@@ -170,8 +226,10 @@ export default function MessagesPage() {
               activeChat?.id === chat.id ? "bg-zinc-200" : ""
             }`}
           >
-            <Avatar name={chat.contactName} />
-
+            <Avatar 
+              name={chat.contactName} 
+              photo={chat.photo}
+            />
             <div className="flex-1">
               <div className="font-medium text-zinc-800">
                 {chat.contactName}
@@ -203,13 +261,18 @@ export default function MessagesPage() {
             {/* Header */}
             <div className="border-b p-4 flex justify-between items-center bg-white">
               <div className="flex items-center gap-3">
-                <Avatar name={activeChat.contactName} />
+                <Avatar 
+                  name={activeChat.contactName}
+                  photo={activeChat.photo}
+                />
                 <div>
                   <div className="font-semibold text-zinc-800">
                     {activeChat.contactName}
                   </div>
                   <div className="text-sm text-zinc-500">
-                    {activeChat.contactNumber}
+                    {activeChat.lastSeen
+                      ? `visto por último ${new Date(activeChat.lastSeen).toLocaleString()}`
+                      : activeChat.contactNumber}
                   </div>
                 </div>
               </div>
@@ -225,7 +288,7 @@ export default function MessagesPage() {
                     msg.fromMe ? "justify-end" : "justify-start"
                   }`}
                 >
-                  {!msg.fromMe && <Avatar name={msg.senderName} />}
+                  {!msg.fromMe && <Avatar name={activeChat.contactName} photo={activeChat.photo} />}
 
                   <div
                     className={`max-w-md px-4 py-2 rounded text-sm ${

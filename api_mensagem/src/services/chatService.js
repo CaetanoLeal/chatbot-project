@@ -128,9 +128,34 @@ async function getMessagesByChat(idChat) {
   return rows
 }
 
+// ATUALIZAR INFORMAÇÕES DE CONTATO (FOTO DE PERFIL, ÚLTIMO VISTO)
+async function updateChatContactInfo({
+  idChat,
+  fotoPerfil,
+  lastSeen
+}) {
+
+  await db.query(
+    `
+    UPDATE tbl_chat
+    SET
+      ds_foto_perfil = COALESCE($1, ds_foto_perfil),
+      dh_last_seen = COALESCE($2, dh_last_seen),
+      dt_updated_at = NOW()
+    WHERE id_chat = $3
+    `,
+    [
+      fotoPerfil,
+      lastSeen,
+      idChat
+    ]
+  )
+}
+
 module.exports = {
   getOrCreateChat,
   saveUnifiedMessage,
   listChats,
-  getMessagesByChat
+  getMessagesByChat,
+  updateChatContactInfo
 }

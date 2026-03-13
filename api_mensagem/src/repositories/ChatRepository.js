@@ -1,3 +1,4 @@
+//repository/ChatRepository.js
 const db = require("../config/db")
 
 async function listChats() {
@@ -6,6 +7,8 @@ async function listChats() {
       c.*,
       u.no_utilizador,
       u.nu_telefone,
+      c.ds_foto_perfil,
+      c.dh_last_seen,
       p.ds_provider,
       i.no_instancia
     FROM tbl_chat c

@@ -152,6 +152,13 @@ app.post("/webhook", async (req, res) => {
         dhEnvio: new Date(msg.date * 1000)
       })
 
+      io.emit("NEW_MESSAGE", {
+        idChat,
+        conteudo: msg.message,
+        fromMe: false,
+        telefone
+      })
+
       /* ===== FLUXO FUNIL NORMAL ===== */
 
       const jaPassou = await helper.hasFunilUtilizador(
@@ -212,6 +219,18 @@ app.post("/webhook", async (req, res) => {
     /* ================= WHATSAPP ================= */
     if (msg.event === "message.received" && msg.whatsapp && msg.message) {
 
+      const jid = msg.whatsapp?.jid
+
+      /* IGNORA GRUPOS */
+      if (jid?.endsWith("@g.us")) {
+        return res.status(200).json({ success: true })
+      }
+
+        /* IGNORA MENSAGENS DO PRÓPRIO BOT */
+      if (msg.message?.raw?.key?.fromMe) {
+        return res.status(200).json({ success: true })
+      }
+
       const body = msg.message.text || ""
 
       if (!body || msg.message?.raw?.protocolMessage) {
@@ -230,7 +249,9 @@ app.post("/webhook", async (req, res) => {
         return res.status(200).json({ success: true })
       }
 
-      const nome = msg.whatsapp?.pushName || null
+      const nome =
+        msg.whatsapp?.pushName ||
+        telefone
 
       const idUtilizador = await helper.getOrCreateUtilizador({
         cdWhatsapp: telefone,
@@ -250,11 +271,35 @@ app.post("/webhook", async (req, res) => {
         idInstancia: instancia.id_instancia
       })
 
+      /* ==========================
+        FOTO E LAST SEEN
+      ========================== */
+
+      const fotoPerfil = msg.whatsapp?.profilePicture || null
+
+      const lastSeen = msg.whatsapp?.lastSeen
+        ? new Date(msg.whatsapp.lastSeen * 1000)
+        : null
+
+      await chatService.updateChatContactInfo({
+        idChat,
+        fotoPerfil,
+        lastSeen
+      })
+
+      /* ==========================
+        DATA DA MENSAGEM
+      ========================== */
+
       const ts = Number(msg.whatsapp?.timestamp)
 
       const dhEnvio = !isNaN(ts)
         ? new Date(ts * 1000)
         : new Date()
+
+      /* ==========================
+        SALVA MENSAGEM
+      ========================== */
 
       await chatService.saveUnifiedMessage({
         idChat,
@@ -264,10 +309,23 @@ app.post("/webhook", async (req, res) => {
         conteudo: body,
         tipo: "text",
         payload: msg.message,
-        dhEnvio: dhEnvio
+        dhEnvio
       })
 
-      /* ===== FLUXO FUNIL NORMAL ===== */
+      /* ==========================
+        SOCKET REALTIME
+      ========================== */
+
+      io.emit("NEW_MESSAGE", {
+        idChat,
+        conteudo: body,
+        fromMe: false,
+        telefone
+      })
+
+      /* ==========================
+        FLUXO FUNIL NORMAL
+      ========================== */
 
       const jaPassou = await helper.hasFunilUtilizador(
         idUtilizador,
@@ -275,12 +333,14 @@ app.post("/webhook", async (req, res) => {
       )
 
       if (jaPassou) {
+
         const estadoChatbot = await helper.getEstadoConversa(
           idUtilizador,
           idFunil
         )
 
         if (estadoChatbot && estadoChatbot > 0) {
+
           await helper.processarRespostaChatbot({
             idUtilizador,
             texto: body,
@@ -290,7 +350,9 @@ app.post("/webhook", async (req, res) => {
                 message
               })
           })
+
         } else {
+
           await helper.processarRespostaCadastro({
             idUtilizador,
             texto: body,
@@ -300,6 +362,7 @@ app.post("/webhook", async (req, res) => {
                 message
               })
           })
+
         }
 
         return res.status(200).json({ success: true })
@@ -342,7 +405,7 @@ app.post("/webhook", async (req, res) => {
         telefone
       })
 
-      const instancia = await InstanceModel.getByName(msg.instance?.name)
+      const instancia = await InstanceModel.getByName(msg.nome)
       if (!instancia) {
         return res.status(200).json({ success: true })
       }
@@ -362,6 +425,14 @@ app.post("/webhook", async (req, res) => {
         tipo: "text",
         payload: msg.message,
         dhEnvio: new Date(msg.whatsapp.timestamp * 1000)
+      })
+
+      // socket realtime
+      io.emit("NEW_MESSAGE", {
+        idChat,
+        conteudo: body,
+        fromMe: true,
+        telefone
       })
 
       return res.status(200).json({ success: true })
