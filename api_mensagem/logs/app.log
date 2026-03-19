@@ -867,3 +867,1685 @@
 [2026-03-13 21:36:55] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-03-13 21:36:55] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
 [2026-03-13 21:39:48] [INFO]: 🆕 Utilizador criado (de23907a-ab50-4938-9c69-33e79f0ef53c)
+[2026-03-16 19:12:05] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-16 19:12:06] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-16 19:12:07] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-16 19:12:07] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-17 18:09:14] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-17 18:09:15] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-17 18:09:15] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-17 18:09:15] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-17 18:17:45] [INFO]: 🆕 Utilizador criado (11f99c9b-2c9a-4b8a-b785-00e5c41159b8)
+[2026-03-17 18:18:11] [INFO]: 🆕 Utilizador criado (d2e414cb-a246-46aa-9383-17b89bcbb962)
+[2026-03-17 18:26:39] [INFO]: 🆕 Utilizador criado (76852811-0525-481c-ad4a-cb62ed2e6bf4)
+[2026-03-17 18:38:39] [INFO]: 🆕 Utilizador criado (10dd3a54-6448-4b7d-a7b2-1dd8b1bac40f)
+[2026-03-17 19:01:45] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 19:01:59] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 19:02:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 19:02:23] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 19:02:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 19:02:51] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 19:03:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 19:03:27] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 19:03:47] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 19:18:06] [INFO]: 🆕 Utilizador criado (0f41ac08-1e37-41ea-bdc2-37c91f0939f4)
+[2026-03-17 19:18:44] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 19:18:44] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 19:20:48] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 19:20:48] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 19:33:34] [INFO]: 🆕 Utilizador criado (6963ceda-91bc-4d2a-94ca-bfd582b20a94)
+[2026-03-17 19:33:34] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 19:33:34] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 19:36:07] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 19:36:07] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 19:44:37] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 19:44:37] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 19:55:57] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-17 19:55:58] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-17 19:55:58] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-17 19:55:58] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-17 20:09:25] [INFO]: 🆕 Utilizador criado (22b8a838-3bb4-4d71-b633-7ed024f376d5)
+[2026-03-17 20:09:43] [INFO]: 🆕 Utilizador criado (8eae2052-c465-46a6-b990-720075a02128)
+[2026-03-17 20:17:02] [INFO]: 🆕 Utilizador criado (321fffca-8713-4c45-b9a0-67e0c118f313)
+[2026-03-17 20:30:53] [INFO]: 🆕 Utilizador criado (566ffb3c-5970-40a8-b696-42e0e5b12593)
+[2026-03-17 20:31:08] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 20:31:08] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 20:36:02] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-17 20:36:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-17 20:36:02] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Mar 17 2026 20:36:02 GMT+0000 (Coordinated Universal Time)
+[2026-03-17 20:36:03] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-17 20:43:38] [INFO]: 🆕 Utilizador criado (3c5080ef-d978-4222-a34b-70f47d073e35)
+[2026-03-17 20:43:38] [INFO]: 🆕 Utilizador criado (64b1297c-58af-4188-9997-84816f756865)
+[2026-03-17 20:43:38] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-17 20:43:38] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-17 20:43:48] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-17 20:43:51] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-17 20:45:25] [INFO]: 🆕 Utilizador criado (a0b4196a-7e43-40c7-bc41-fdc2abca3a4a)
+[2026-03-17 20:46:59] [INFO]: 🆕 Utilizador criado (f65b3b99-3a0f-404c-9dc9-a0866619b6aa)
+[2026-03-17 20:47:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 20:47:01] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 20:47:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 20:47:02] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 20:47:10] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 20:47:10] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 20:47:28] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 20:47:28] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 20:47:43] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 20:47:43] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 20:47:53] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-17 20:47:53] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-17 20:50:50] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-17 20:50:51] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-17 20:50:51] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-17 20:50:51] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-17 20:53:20] [INFO]: 🆕 Utilizador criado (624ee610-a0de-4d85-b74d-1942607c4d96)
+[2026-03-17 20:53:20] [ERROR]: ❌ Webhook error: InstanceModel.getByNome is not a function
+[2026-03-17 20:54:27] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-17 20:54:28] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-17 20:54:28] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Mar 17 2026 20:54:28 GMT+0000 (Coordinated Universal Time)
+[2026-03-17 20:54:28] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-17 20:56:23] [INFO]: 🆕 Utilizador criado (7fd5c1c2-eb10-4ece-99c3-f6432e8fc85b)
+[2026-03-17 20:56:23] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-17 20:57:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 20:57:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 20:57:22] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 20:58:17] [INFO]: 🆕 Utilizador criado (7d06dad2-70aa-44f0-bc71-5c361c07b814)
+[2026-03-17 20:58:17] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-17 21:01:55] [INFO]: 🆕 Utilizador criado (3006e262-17d8-493a-84a0-ea05cb7ca6bb)
+[2026-03-17 21:01:55] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-17 21:02:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 21:03:04] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-17 21:05:28] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-17 21:05:28] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-17 21:05:28] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-17 21:05:28] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-17 21:08:13] [INFO]: 🆕 Utilizador criado (be2bd6b5-418d-4ffa-a31f-304981e33ccf)
+[2026-03-17 21:08:13] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-17 21:08:18] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-17 21:08:18] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "f5e31f22-b46c-4770-8ae0-0c3b9dfd6050",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "95631808938003@lid",
+    "jidAlt": null,
+    "messageId": "3A2A08B0605A1FDC0FE3",
+    "pushName": "Leonan Valois",
+    "timestamp": 1773781710,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/534426096_899748299255809_8599375375464566609_n.jpg?ccb=11-4&oh=01_Q5Aa4AEr5X4VtTRAL41Unu1JL6ufmUc-gU_nNJAzdvKcnFZSFg&oe=69C6CB76&_nc_sid=5e03e0&_nc_cat=110",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "Oie",
+    "raw": {
+      "conversation": "Oie",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "z+k5VvJKmNUCEQ==",
+          "senderTimestamp": "1773406211",
+          "recipientKeyHash": "4Ayej7NWw0X9Pg==",
+          "recipientTimestamp": "1773771301"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "wEBIB2Zxc41HUYZRZESr7eqvffB/IW9iZVrypqmB/9w="
+      }
+    }
+  }
+}
+[2026-03-17 21:08:18] [INFO]: 📞 JID: 95631808938003@lid
+[2026-03-17 21:08:18] [INFO]: 👤 fromMe detectado: false
+[2026-03-17 21:08:18] [INFO]: 💬 Body extraído: "Oie"
+[2026-03-17 21:08:18] [INFO]: 💾 Mensagem raw salva
+[2026-03-17 21:08:18] [INFO]: 📱 Telefone extraído: 95631808938003
+[2026-03-17 21:08:18] [INFO]: 👤 Nome: Leonan Valois
+[2026-03-17 21:08:18] [INFO]: 🆕 Utilizador criado (85d07916-577d-4bb2-a657-35fcac1ca7b5)
+[2026-03-17 21:08:18] [INFO]: 👤 Utilizador ID: 85d07916-577d-4bb2-a657-35fcac1ca7b5
+[2026-03-17 21:08:18] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-17 21:08:18] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-17 21:08:18] [INFO]: 💬 Chat ID: d18a7f68-3ee4-414f-a7c3-b85d59ad52d9
+[2026-03-17 21:08:18] [INFO]: 🕒 Data mensagem: Tue Mar 17 2026 21:08:30 GMT+0000 (Coordinated Universal Time)
+[2026-03-17 21:08:18] [INFO]: 💾 Mensagem salva no banco
+[2026-03-17 21:08:18] [INFO]: 📡 Evento socket emitido
+[2026-03-17 21:08:18] [INFO]: 🔁 Já passou no funil? false
+[2026-03-17 21:08:18] [INFO]: 🆕 Criando funil para usuário
+[2026-03-17 21:08:18] [INFO]: 📨 Mensagem inicial:
+[2026-03-17 21:08:18] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-17 21:08:19] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-17 21:09:51] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-17 21:09:51] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "f5e31f22-b46c-4770-8ae0-0c3b9dfd6050",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559180625187@s.whatsapp.net",
+    "jidAlt": null,
+    "messageId": "ACE08371CF7F1BDF7CDC8764D4E76E75",
+    "pushName": "Cae",
+    "timestamp": 1773781803,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/534426916_2733709416980417_5815243121987960728_n.jpg?ccb=11-4&oh=01_Q5Aa4AHgamWTSDMFj1i9Z_X0YYSujRdRuIhbopcMq_dmeDvnTw&oe=69C6D58B&_nc_sid=5e03e0&_nc_cat=104",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "Teste",
+    "raw": {
+      "conversation": "Teste"
+    }
+  }
+}
+[2026-03-17 21:09:51] [INFO]: 📞 JID: 559180625187@s.whatsapp.net
+[2026-03-17 21:09:51] [INFO]: 👤 fromMe detectado: false
+[2026-03-17 21:09:51] [INFO]: 💬 Body extraído: "Teste"
+[2026-03-17 21:09:51] [INFO]: 💾 Mensagem raw salva
+[2026-03-17 21:09:51] [INFO]: 📱 Telefone extraído: 559180625187
+[2026-03-17 21:09:51] [INFO]: 👤 Nome: Cae
+[2026-03-17 21:09:51] [INFO]: 🆕 Utilizador criado (ff5605f0-4e58-4b96-95d2-e0b542946d2c)
+[2026-03-17 21:09:51] [INFO]: 👤 Utilizador ID: ff5605f0-4e58-4b96-95d2-e0b542946d2c
+[2026-03-17 21:09:51] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-17 21:09:51] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-17 21:09:51] [INFO]: 💬 Chat ID: 385ac95b-708d-4503-b2ff-9a0ddb02f75a
+[2026-03-17 21:09:51] [INFO]: 🕒 Data mensagem: Tue Mar 17 2026 21:10:03 GMT+0000 (Coordinated Universal Time)
+[2026-03-17 21:09:51] [INFO]: 💾 Mensagem salva no banco
+[2026-03-17 21:09:51] [INFO]: 📡 Evento socket emitido
+[2026-03-17 21:09:51] [INFO]: 🔁 Já passou no funil? false
+[2026-03-17 21:09:51] [INFO]: 🆕 Criando funil para usuário
+[2026-03-17 21:09:51] [INFO]: 📨 Mensagem inicial:
+[2026-03-17 21:09:51] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-17 21:09:51] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:15:08] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-18 18:15:09] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-18 18:15:09] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Mar 18 2026 18:15:09 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:15:09] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-18 18:20:54] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:20:54] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "95631808938003@lid",
+    "jidAlt": null,
+    "messageId": "3A7B97FD3BA1CD26CE5C",
+    "pushName": "Leonan Valois",
+    "timestamp": 1773858067,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/534426096_899748299255809_8599375375464566609_n.jpg?ccb=11-4&oh=01_Q5Aa4AHYDxdoY6fDTgb7mbQYBOSuT6_JcGKKG0YGvrbYSOU4DA&oe=69C7E4B6&_nc_sid=5e03e0&_nc_cat=110",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "Oi amoreco",
+    "raw": {
+      "conversation": "Oi amoreco",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "z+k5VvJKmNUCEQ==",
+          "senderTimestamp": "1773406211",
+          "recipientKeyHash": "fLZrArE449hMGA==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "ewBiin+4IZcIBeFpjrL3BNPYLx1vpzf7/ESodmDac4Y="
+      }
+    }
+  }
+}
+[2026-03-18 18:20:54] [INFO]: 📞 JID: 95631808938003@lid
+[2026-03-18 18:20:54] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:20:54] [INFO]: 💬 Body extraído: "Oi amoreco"
+[2026-03-18 18:20:54] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:20:54] [INFO]: 📱 Telefone extraído: 95631808938003
+[2026-03-18 18:20:54] [INFO]: 👤 Nome: Leonan Valois
+[2026-03-18 18:20:54] [INFO]: 🆕 Utilizador criado (6025519e-be8b-445d-bcc8-6b8890daf58c)
+[2026-03-18 18:20:54] [INFO]: 👤 Utilizador ID: 6025519e-be8b-445d-bcc8-6b8890daf58c
+[2026-03-18 18:20:54] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:20:54] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:20:54] [INFO]: 💬 Chat ID: 820b5eff-b371-4229-a4d6-eb3cea04ec79
+[2026-03-18 18:20:54] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:21:07 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:20:54] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:20:54] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:20:54] [INFO]: 🔁 Já passou no funil? false
+[2026-03-18 18:20:54] [INFO]: 🆕 Criando funil para usuário
+[2026-03-18 18:20:54] [INFO]: 📨 Mensagem inicial:
+[2026-03-18 18:20:54] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:20:55] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:20:55] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "95631808938003@lid",
+    "jidAlt": null,
+    "messageId": "3A185337CF975C9CBAC0",
+    "pushName": "Leonan Valois",
+    "timestamp": 1773858068,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/534426096_899748299255809_8599375375464566609_n.jpg?ccb=11-4&oh=01_Q5Aa4AHYDxdoY6fDTgb7mbQYBOSuT6_JcGKKG0YGvrbYSOU4DA&oe=69C7E4B6&_nc_sid=5e03e0&_nc_cat=110",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "Príncipe",
+    "raw": {
+      "conversation": "Príncipe",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "z+k5VvJKmNUCEQ==",
+          "senderTimestamp": "1773406211",
+          "recipientKeyHash": "fLZrArE449hMGA==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "YIUFy7CGTDsRzv6KHeQsIgswnWAc/TwCOSL8ot0J5WU="
+      }
+    }
+  }
+}
+[2026-03-18 18:20:55] [INFO]: 📞 JID: 95631808938003@lid
+[2026-03-18 18:20:55] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:20:55] [INFO]: 💬 Body extraído: "Príncipe"
+[2026-03-18 18:20:55] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:20:55] [INFO]: 📱 Telefone extraído: 95631808938003
+[2026-03-18 18:20:55] [INFO]: 👤 Nome: Leonan Valois
+[2026-03-18 18:20:55] [INFO]: 👤 Utilizador ID: 6025519e-be8b-445d-bcc8-6b8890daf58c
+[2026-03-18 18:20:55] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:20:55] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:20:55] [INFO]: 💬 Chat ID: 820b5eff-b371-4229-a4d6-eb3cea04ec79
+[2026-03-18 18:20:55] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:21:08 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:20:55] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:20:55] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:20:55] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:20:55] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:20:55] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:20:56] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:20:56] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:20:57] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:20:57] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "95631808938003@lid",
+    "jidAlt": null,
+    "messageId": "3A69DA22B19BDB09FA15",
+    "pushName": "Leonan Valois",
+    "timestamp": 1773858071,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/534426096_899748299255809_8599375375464566609_n.jpg?ccb=11-4&oh=01_Q5Aa4AHYDxdoY6fDTgb7mbQYBOSuT6_JcGKKG0YGvrbYSOU4DA&oe=69C7E4B6&_nc_sid=5e03e0&_nc_cat=110",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "Gatinho",
+    "raw": {
+      "conversation": "Gatinho",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "z+k5VvJKmNUCEQ==",
+          "senderTimestamp": "1773406211",
+          "recipientKeyHash": "fLZrArE449hMGA==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "ElJdmlnjMVHMsL0SpQVaofsJhDPUSTjgYJZ4gz8YTtk="
+      }
+    }
+  }
+}
+[2026-03-18 18:20:57] [INFO]: 📞 JID: 95631808938003@lid
+[2026-03-18 18:20:57] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:20:57] [INFO]: 💬 Body extraído: "Gatinho"
+[2026-03-18 18:20:57] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:20:57] [INFO]: 📱 Telefone extraído: 95631808938003
+[2026-03-18 18:20:57] [INFO]: 👤 Nome: Leonan Valois
+[2026-03-18 18:20:57] [INFO]: 👤 Utilizador ID: 6025519e-be8b-445d-bcc8-6b8890daf58c
+[2026-03-18 18:20:57] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:20:57] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:20:57] [INFO]: 💬 Chat ID: 820b5eff-b371-4229-a4d6-eb3cea04ec79
+[2026-03-18 18:20:57] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:21:11 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:20:57] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:20:57] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:20:57] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:20:57] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:20:57] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:20:57] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:20:59] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:20:59] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "95631808938003@lid",
+    "jidAlt": null,
+    "messageId": "3A3F276491C5D238938C",
+    "pushName": "Leonan Valois",
+    "timestamp": 1773858072,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/534426096_899748299255809_8599375375464566609_n.jpg?ccb=11-4&oh=01_Q5Aa4AHYDxdoY6fDTgb7mbQYBOSuT6_JcGKKG0YGvrbYSOU4DA&oe=69C7E4B6&_nc_sid=5e03e0&_nc_cat=110",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "Delícia",
+    "raw": {
+      "conversation": "Delícia",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "z+k5VvJKmNUCEQ==",
+          "senderTimestamp": "1773406211",
+          "recipientKeyHash": "fLZrArE449hMGA==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "zISDd2HKvh24/bUp18V+h4Rk2Ep1iHrxwedAIezAhhw="
+      }
+    }
+  }
+}
+[2026-03-18 18:20:59] [INFO]: 📞 JID: 95631808938003@lid
+[2026-03-18 18:20:59] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:20:59] [INFO]: 💬 Body extraído: "Delícia"
+[2026-03-18 18:20:59] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:20:59] [INFO]: 📱 Telefone extraído: 95631808938003
+[2026-03-18 18:20:59] [INFO]: 👤 Nome: Leonan Valois
+[2026-03-18 18:20:59] [INFO]: 👤 Utilizador ID: 6025519e-be8b-445d-bcc8-6b8890daf58c
+[2026-03-18 18:20:59] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:20:59] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:20:59] [INFO]: 💬 Chat ID: 820b5eff-b371-4229-a4d6-eb3cea04ec79
+[2026-03-18 18:20:59] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:21:12 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:20:59] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:20:59] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:20:59] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:20:59] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:20:59] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:20:59] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:21:13] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:21:13] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "559180625187@s.whatsapp.net",
+    "jidAlt": null,
+    "messageId": "AC8F20A261EB35C7CE9E7C66DABE7733",
+    "pushName": "Cae",
+    "timestamp": 1773858085,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/534426916_2733709416980417_5815243121987960728_n.jpg?ccb=11-4&oh=01_Q5Aa4AGK34AVa07TwKVKzI_Z3_35E0FfLP_HXCUrNa7NlaqwHA&oe=69C7EECB&_nc_sid=5e03e0&_nc_cat=104",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "Oi",
+    "raw": {
+      "conversation": "Oi"
+    }
+  }
+}
+[2026-03-18 18:21:13] [INFO]: 📞 JID: 559180625187@s.whatsapp.net
+[2026-03-18 18:21:13] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:21:13] [INFO]: 💬 Body extraído: "Oi"
+[2026-03-18 18:21:13] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:21:13] [INFO]: 📱 Telefone extraído: 559180625187
+[2026-03-18 18:21:13] [INFO]: 👤 Nome: Cae
+[2026-03-18 18:21:13] [INFO]: 🆕 Utilizador criado (bf39260f-a81d-4e5f-a9bd-1937c5e2121a)
+[2026-03-18 18:21:13] [INFO]: 👤 Utilizador ID: bf39260f-a81d-4e5f-a9bd-1937c5e2121a
+[2026-03-18 18:21:13] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:21:13] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:21:13] [INFO]: 💬 Chat ID: 91ec3d8c-c05b-44a9-9ace-22d1595e06d8
+[2026-03-18 18:21:13] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:21:25 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:21:13] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:21:13] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:21:13] [INFO]: 🔁 Já passou no funil? false
+[2026-03-18 18:21:13] [INFO]: 🆕 Criando funil para usuário
+[2026-03-18 18:21:13] [INFO]: 📨 Mensagem inicial:
+[2026-03-18 18:21:13] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:21:13] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:23:33] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:23:33] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363404701403742@newsletter",
+    "jidAlt": null,
+    "messageId": "2A8ABACFAF785D1201BD",
+    "pushName": null,
+    "timestamp": 1773858154,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "sticker",
+    "text": "[Sticker]",
+    "raw": {
+      "stickerMessage": {
+        "url": "https://mmg.whatsapp.net/v/t62.15575-24/552955296_4402062803346639_9138719688772729653_n.enc?ccb=11-4&oh=01_Q5Aa4AH70wExHrYXp9slN2GDm5hAxD8vV9CMfXxp9G_X3jIXsQ&oe=69DC14E3&_nc_sid=5e03e0&mms3=true",
+        "fileSha256": "5Oz2eZEWkmLaI+XxY1Z3s5EUTg9MBZErNI/7I5Teln0=",
+        "mimetype": "image/webp",
+        "height": 512,
+        "width": 512,
+        "directPath": "/m1/v/t24/An-g5DHehJVLHmy_V0kDG06jvkPPH2bq-QlqmVnpegsERTk1bOxqx8XUhVcau8EmFcPiZVz8txfY78aU9m9AiRwlNHKxYZuNqhklVDgM3pfEw30_Wyg8DWFJ5FDSYBgfhaAxZw?ccb=10-5&oh=01_Q5Aa4AEYEetdCEaW6V8C7WYXERvoLVIysXOZE8gVX8eslk4qAQ&oe=69E2765F&_nc_sid=5e03e0",
+        "fileLength": "91208",
+        "isAnimated": false,
+        "stickerSentTs": "1773858153179",
+        "isAvatar": false,
+        "isAiSticker": false,
+        "isLottie": false,
+        "accessibilityLabel": ""
+      }
+    }
+  }
+}
+[2026-03-18 18:23:33] [INFO]: 📞 JID: 120363404701403742@newsletter
+[2026-03-18 18:23:33] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:23:33] [INFO]: 💬 Body extraído: "[Sticker]"
+[2026-03-18 18:23:33] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:23:33] [INFO]: 📱 Telefone extraído: 120363404701403742
+[2026-03-18 18:23:33] [INFO]: 👤 Nome: 120363404701403742
+[2026-03-18 18:23:33] [INFO]: 🆕 Utilizador criado (15effcd8-52ef-4760-857a-58b107d1659c)
+[2026-03-18 18:23:33] [INFO]: 👤 Utilizador ID: 15effcd8-52ef-4760-857a-58b107d1659c
+[2026-03-18 18:23:33] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:23:33] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:23:33] [INFO]: 💬 Chat ID: 97e4343c-613e-4f70-9fb5-04438b8eec35
+[2026-03-18 18:23:33] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:22:34 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:23:33] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:23:33] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:23:33] [INFO]: 🔁 Já passou no funil? false
+[2026-03-18 18:23:33] [INFO]: 🆕 Criando funil para usuário
+[2026-03-18 18:23:33] [INFO]: 📨 Mensagem inicial:
+[2026-03-18 18:23:33] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:23:34] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:29:24] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:29:24] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363404701403742@newsletter",
+    "jidAlt": null,
+    "messageId": "2A4163701A7CD43EB86A",
+    "pushName": null,
+    "timestamp": 1773858564,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "sticker",
+    "text": "[Sticker]",
+    "raw": {
+      "stickerMessage": {
+        "url": "https://mmg.whatsapp.net/v/t62.15575-24/578740697_2342637599591223_5678192924194857905_n.enc?ccb=11-4&oh=01_Q5Aa3AFD62q3V_65_Am5OILcLPN1UQU5R_yvFNQrbqeXSlF0lA&oe=6937194E&_nc_sid=5e03e0&mms3=true",
+        "fileSha256": "6ANqyyCLmyGCP2jcNKDmouiw6zC+STVZ7otnR2n4QQA=",
+        "mimetype": "image/webp",
+        "directPath": "/m1/v/t24/An-G1Fg_i4HKrb59jrnGWVZfb5PDxb13w3aBdiy4r_NvToat7MRhS_Iu-9ddonCi7P2F8hrKfAANJUypcFoLiRNz1_Jee92wcXYUT8aLx-iJ4HEMyeiHBhp_BnWDEBj5yJWyXA?ccb=10-5&oh=01_Q5Aa4AGSW6jBDlYJsj2k6LqhWCMW1RwHKuSeYXHNfRVuZhDCRg&oe=69E24897&_nc_sid=5e03e0",
+        "fileLength": "26682",
+        "isAnimated": true,
+        "stickerSentTs": "1773858563275",
+        "isAvatar": false,
+        "isAiSticker": false,
+        "isLottie": false,
+        "accessibilityLabel": ""
+      }
+    }
+  }
+}
+[2026-03-18 18:29:24] [INFO]: 📞 JID: 120363404701403742@newsletter
+[2026-03-18 18:29:24] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:29:24] [INFO]: 💬 Body extraído: "[Sticker]"
+[2026-03-18 18:29:24] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:29:24] [INFO]: 📱 Telefone extraído: 120363404701403742
+[2026-03-18 18:29:24] [INFO]: 👤 Nome: 120363404701403742
+[2026-03-18 18:29:24] [INFO]: 👤 Utilizador ID: 15effcd8-52ef-4760-857a-58b107d1659c
+[2026-03-18 18:29:24] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:29:24] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:29:24] [INFO]: 💬 Chat ID: 97e4343c-613e-4f70-9fb5-04438b8eec35
+[2026-03-18 18:29:24] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:29:24 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:29:24] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:29:24] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:29:24] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:29:24] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:29:24] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:29:25] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:29:51] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:29:51] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363404701403742@newsletter",
+    "jidAlt": null,
+    "messageId": "2A46E191745DE6A69DB7",
+    "pushName": null,
+    "timestamp": 1773858592,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "sticker",
+    "text": "[Sticker]",
+    "raw": {
+      "stickerMessage": {
+        "url": "https://mmg.whatsapp.net/v/t62.15575-24/578977664_1884065402213534_3776960938845203480_n.enc?ccb=11-4&oh=01_Q5Aa3AGI01Pl0xn_0gL03tNwkMKBB6ZWPAR6IkNO4tyB5Vo4SQ&oe=6936F4A5&_nc_sid=5e03e0&mms3=true",
+        "fileSha256": "CkNKBtTCdWWA+0HNpwf1/ZTz0J0z+pWmSG9CcKcJImA=",
+        "mimetype": "image/webp",
+        "directPath": "/m1/v/t24/An_JPF3ui8mM3NYfCE5hVUGlxRnYGuj8m1nN41QlziZNAzfzGk3pgr7kpag4zZwWXBfqEJBzXFwsQKTIo5RFVbdGKuVZr440Mm83_eYjnvEijo-YUusoa2SvdvEgLbqYSxyDLQ?ccb=10-6&oh=01_Q5Aa4AG7X00g1QOiLgeeOfw5rV-leJFiSqVcm3oCuq09pW6dGw&oe=69E266AC&_nc_sid=5e03e0",
+        "fileLength": "40642",
+        "isAnimated": false,
+        "stickerSentTs": "1773858576113",
+        "isAvatar": false,
+        "isAiSticker": false,
+        "isLottie": false,
+        "accessibilityLabel": ""
+      }
+    }
+  }
+}
+[2026-03-18 18:29:51] [INFO]: 📞 JID: 120363404701403742@newsletter
+[2026-03-18 18:29:51] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:29:51] [INFO]: 💬 Body extraído: "[Sticker]"
+[2026-03-18 18:29:52] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:29:52] [INFO]: 📱 Telefone extraído: 120363404701403742
+[2026-03-18 18:29:52] [INFO]: 👤 Nome: 120363404701403742
+[2026-03-18 18:29:52] [INFO]: 👤 Utilizador ID: 15effcd8-52ef-4760-857a-58b107d1659c
+[2026-03-18 18:29:52] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:29:52] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:29:52] [INFO]: 💬 Chat ID: 97e4343c-613e-4f70-9fb5-04438b8eec35
+[2026-03-18 18:29:52] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:29:52 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:29:52] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:29:52] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:29:52] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:29:52] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:29:52] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:29:52] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:30:12] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:30:12] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "jidAlt": "263698258088009@lid",
+    "messageId": "A501FF3B979319683573BBB819E7C86C",
+    "pushName": "Delivery Ananindeua",
+    "timestamp": 1773858564,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "image",
+    "text": "[Imagem]",
+    "raw": {
+      "imageMessage": {
+        "url": "https://mmg.whatsapp.net/v/t62.7118-24/559189697_940038968603036_8762567582288017787_n.enc?ccb=11-4&oh=01_Q5Aa4AExCRglEpMXy2Cq3LchQiLkkSr3wHPRYWzgiwTygukrWg&oe=69E263F4&_nc_sid=5e03e0&mms3=true",
+        "mimetype": "image/jpeg",
+        "fileSha256": "KKj3ig9tHzPid7z4xpRjrKKrAutT3D7f2bx3aLXcgEU=",
+        "fileLength": "129605",
+        "height": 1599,
+        "width": 899,
+        "mediaKey": "C8QlJC9a2a3kTl9H4AOy6fGrEoDl7SjNcWQcjAT8Jcs=",
+        "fileEncSha256": "RWoU/PDW+uKlzGlIpQU+eSmZiz9Hz9U+MnRZQVTHnfY=",
+        "directPath": "/v/t62.7118-24/559189697_940038968603036_8762567582288017787_n.enc?ccb=11-4&oh=01_Q5Aa4AExCRglEpMXy2Cq3LchQiLkkSr3wHPRYWzgiwTygukrWg&oe=69E263F4&_nc_sid=5e03e0&_nc_hot=1773858486",
+        "mediaKeyTimestamp": "1773858417",
+        "jpegThumbnail": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABsbGxscGx4hIR4qLSgtKj04MzM4PV1CR0JHQl2NWGdYWGdYjX2Xe3N7l33gsJycsOD/2c7Z//////////////8BGxsbGxwbHiEhHiotKC0qPTgzMzg9XUJHQkdCXY1YZ1hYZ1iNfZd7c3uXfeCwnJyw4P/Zztn////////////////CABEIADwAIQMBIgACEQEDEQH/xAAvAAABBQEAAAAAAAAAAAAAAAAAAQMEBQYCAQEBAQEAAAAAAAAAAAAAAAAAAQID/9oADAMBAAIQAxAAAACli7WKuUW/gpEOTPTcctpvm4zKaMSOEurk19gnSIlQgEbm5/rHS96oJ2sOlCH/xAAmEAACAgEDAwMFAAAAAAAAAAABAgARAwQSIQUQQRMUMSJTYWJx/9oACAEBAAE/AMqlbUiiO/ns+h02UlnTmP0zRw9HQsdmWarp76amuxLiGhzHHmKK5mtA9u5PYORjJAgORmAuEWRNSAcLRsWTcfoPzNG4y4iw8mAUTLrmMQyGWfxOm0uA/wBgIMJ4MsMpqV+00JAxEX5hdaiut1GNggGbJyCaJETLk3VuMGsy7wJmyumEsPmevm+4Z//EABkRAQACAwAAAAAAAAAAAAAAAAEAEQIQMP/aAAgBAgEBPwAOJkVq5//EABgRAQEBAQEAAAAAAAAAAAAAAAEQEQAC/9oACAEDAQE/AF2bd5r5V5n/2Q==",
+        "contextInfo": {
+          "forwardingScore": 1,
+          "isForwarded": true,
+          "pairedMediaType": "NOT_PAIRED_MEDIA",
+          "forwardOrigin": "UNKNOWN"
+        },
+        "scansSidecar": "hoLEJZv+gMTxzb+RD2mSxo5pgoC4/+lnZZIFm/6ugBN213XtIj+mKw==",
+        "scanLengths": [
+          12706,
+          53121,
+          25120,
+          38658
+        ],
+        "midQualityFileSha256": "IU6LcgacyTKJWuOqa/Z+Ec9YzkaBt7w0MLUZsTsO6yg="
+      },
+      "messageContextInfo": {
+        "messageSecret": "xWEh5PvnOi4twymfVj/6Dkp6ulsENznFKDfC/JDcYlY="
+      }
+    }
+  }
+}
+[2026-03-18 18:30:12] [INFO]: 📞 JID: status@broadcast
+[2026-03-18 18:30:12] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:30:12] [INFO]: 💬 Body extraído: "[Imagem]"
+[2026-03-18 18:30:12] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:30:12] [INFO]: 📱 Telefone extraído: 263698258088009
+[2026-03-18 18:30:12] [INFO]: 👤 Nome: Delivery Ananindeua
+[2026-03-18 18:30:12] [INFO]: 🆕 Utilizador criado (0059e40b-5e90-4feb-931a-0967e69baee4)
+[2026-03-18 18:30:12] [INFO]: 👤 Utilizador ID: 0059e40b-5e90-4feb-931a-0967e69baee4
+[2026-03-18 18:30:12] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:30:12] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:30:12] [INFO]: 💬 Chat ID: b2572e4b-dd28-4b64-a36f-1493a58e79c7
+[2026-03-18 18:30:12] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:29:24 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:30:12] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:30:12] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:30:12] [INFO]: 🔁 Já passou no funil? false
+[2026-03-18 18:30:12] [INFO]: 🆕 Criando funil para usuário
+[2026-03-18 18:30:12] [INFO]: 📨 Mensagem inicial:
+[2026-03-18 18:30:12] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:30:12] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:30:23] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:30:23] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "120363404701403742@newsletter",
+    "jidAlt": null,
+    "messageId": "2A148EE5D0763C3E01F9",
+    "pushName": null,
+    "timestamp": 1773858626,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "sticker",
+    "text": "[Sticker]",
+    "raw": {
+      "stickerMessage": {
+        "url": "https://mmg.whatsapp.net/v/t62.15575-24/580814017_1513614863300239_6122663321161774491_n.enc?ccb=11-4&oh=01_Q5Aa3AHQHPcyTqUPganQe0Mak5H6q500M7hrkyPy5lVNiOE1NQ&oe=69370EC9&_nc_sid=5e03e0&mms3=true",
+        "fileSha256": "rAIrcR0inshiZIL8wVaExNeeEKHz1Dk/rrSk1WK8OfQ=",
+        "mimetype": "image/webp",
+        "directPath": "/m1/v/t24/An-Pxqxo5rjB7SUmFsCRconvjwztVVKWOOT-1Mf-fD4tgMkoOb_c-rRBbUR3KmUh5ANRwsmmMK4BO4b4Njb32Sk0OlWziJitSjPuvn2etahMsVStb4fVmHWgQVV15AZY9j5Qdg?ccb=10-5&oh=01_Q5Aa4AHqyjCTnEkfYN3ajhmPhPGT_Gm3CFjtN1YyiYOfVcBQ6A&oe=69E2765C&_nc_sid=5e03e0",
+        "fileLength": "65308",
+        "isAnimated": false,
+        "stickerSentTs": "1773858624179",
+        "isAvatar": false,
+        "isAiSticker": false,
+        "isLottie": false,
+        "accessibilityLabel": ""
+      }
+    }
+  }
+}
+[2026-03-18 18:30:23] [INFO]: 📞 JID: 120363404701403742@newsletter
+[2026-03-18 18:30:23] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:30:23] [INFO]: 💬 Body extraído: "[Sticker]"
+[2026-03-18 18:30:24] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:30:24] [INFO]: 📱 Telefone extraído: 120363404701403742
+[2026-03-18 18:30:24] [INFO]: 👤 Nome: 120363404701403742
+[2026-03-18 18:30:24] [INFO]: 👤 Utilizador ID: 15effcd8-52ef-4760-857a-58b107d1659c
+[2026-03-18 18:30:24] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:30:24] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:30:24] [INFO]: 💬 Chat ID: 97e4343c-613e-4f70-9fb5-04438b8eec35
+[2026-03-18 18:30:24] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:30:26 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:30:24] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:30:24] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:30:24] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:30:24] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:30:24] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:30:24] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:36:36] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:36:36] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "jidAlt": "75119162568875@lid",
+    "messageId": "AC295661DAC2CAC35B86C579E3F9920D",
+    "pushName": "Clívia  Leal  🌟🫶🍀💮🍄",
+    "timestamp": 1773859009,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "https://youtu.be/PwZ_2oODcuY?si=dtIClqljdQ7jzoOo",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "https://youtu.be/PwZ_2oODcuY?si=dtIClqljdQ7jzoOo",
+        "matchedText": "https://youtu.be/PwZ_2oODcuY?si=dtIClqljdQ7jzoOo",
+        "description": "- Apoie no PIX: apoie@plantaobrasil.net- Apoie o Plantão Brasil no Apoie-se: http://apoie.se/plantaobrasilFaça parte do grupo de distribuição de conteúdo de ...",
+        "title": "ALEXANDRE DÁ XEQUE-MATE E MANDA PRENDER SENADOR!!! BOLSONARlSTA FOI PEGO NO CASO MASTER E SE DEU MAL",
+        "textArgb": 4294967295,
+        "backgroundArgb": 4249710040,
+        "font": "SYSTEM",
+        "previewType": "VIDEO",
+        "jpegThumbnail": "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",
+        "contextInfo": {
+          "forwardingScore": 0,
+          "featureEligibilities": {
+            "canBeReshared": true
+          },
+          "statusSourceType": "TEXT"
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT"
+      },
+      "messageContextInfo": {
+        "messageSecret": "MJ20i6tn+VvTfy3YNcZeLQBeRYBn4IqtlimAnE+sz8s="
+      }
+    }
+  }
+}
+[2026-03-18 18:36:36] [INFO]: 📞 JID: status@broadcast
+[2026-03-18 18:36:36] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:36:36] [INFO]: 💬 Body extraído: "https://youtu.be/PwZ_2oODcuY?si=dtIClqljdQ7jzoOo"
+[2026-03-18 18:36:36] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:36:36] [INFO]: 📱 Telefone extraído: 75119162568875
+[2026-03-18 18:36:36] [INFO]: 👤 Nome: Clívia  Leal  🌟🫶🍀💮🍄
+[2026-03-18 18:36:36] [INFO]: 🆕 Utilizador criado (f389f1c6-aafd-488f-bc07-d47b9bb2e232)
+[2026-03-18 18:36:36] [INFO]: 👤 Utilizador ID: f389f1c6-aafd-488f-bc07-d47b9bb2e232
+[2026-03-18 18:36:36] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:36:36] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:36:36] [INFO]: 💬 Chat ID: 989e708d-d9c4-4242-b108-5c103f78d6d9
+[2026-03-18 18:36:36] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:36:49 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:36:36] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:36:36] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:36:36] [INFO]: 🔁 Já passou no funil? false
+[2026-03-18 18:36:36] [INFO]: 🆕 Criando funil para usuário
+[2026-03-18 18:36:36] [INFO]: 📨 Mensagem inicial:
+[2026-03-18 18:36:36] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:36:37] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:37:36] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:37:36] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "108980701544679@lid",
+    "jidAlt": null,
+    "messageId": "ACB71E541351406B0298F13339B70A37",
+    "pushName": "gustavo",
+    "timestamp": 1773859068,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/491869070_732865369266445_4409827903730831695_n.jpg?ccb=11-4&oh=01_Q5Aa4AH5BCuTyFcFW9X8uDhDmFXp8J4RRK5z8GHfLaevZcGbDQ&oe=69C7F425&_nc_sid=5e03e0&_nc_cat=108",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "fala barbeiro",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "fala barbeiro",
+        "previewType": "NONE",
+        "contextInfo": {
+          "expiration": 0,
+          "ephemeralSettingTimestamp": "1713728682",
+          "entryPointConversionSource": "global_search_new_chat",
+          "entryPointConversionApp": "whatsapp",
+          "entryPointConversionDelaySeconds": 4,
+          "disappearingMode": {
+            "initiator": "CHANGED_IN_CHAT",
+            "trigger": "UNKNOWN"
+          }
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT"
+      },
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "h0iW7NdSk+UEOA==",
+          "senderTimestamp": "1773185087",
+          "recipientKeyHash": "fLZrArE449hMGA==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "Tu+6cH6TPUS8n6rSG8qJz4/1KT02Ar/0xfke6BM5us8="
+      }
+    }
+  }
+}
+[2026-03-18 18:37:36] [INFO]: 📞 JID: 108980701544679@lid
+[2026-03-18 18:37:36] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:37:36] [INFO]: 💬 Body extraído: "fala barbeiro"
+[2026-03-18 18:37:36] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:37:36] [INFO]: 📱 Telefone extraído: 108980701544679
+[2026-03-18 18:37:36] [INFO]: 👤 Nome: gustavo
+[2026-03-18 18:37:36] [INFO]: 🆕 Utilizador criado (7892fb23-e951-4c7f-9d0c-37da9a2f965e)
+[2026-03-18 18:37:36] [INFO]: 👤 Utilizador ID: 7892fb23-e951-4c7f-9d0c-37da9a2f965e
+[2026-03-18 18:37:36] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:37:36] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:37:36] [INFO]: 💬 Chat ID: 68c6b794-3a50-4f3c-9cec-037e6912553c
+[2026-03-18 18:37:36] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:37:48 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:37:36] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:37:36] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:37:36] [INFO]: 🔁 Já passou no funil? false
+[2026-03-18 18:37:36] [INFO]: 🆕 Criando funil para usuário
+[2026-03-18 18:37:36] [INFO]: 📨 Mensagem inicial:
+[2026-03-18 18:37:36] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:37:37] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:37:37] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "jidAlt": "75119162568875@lid",
+    "messageId": "ACC5ED9930DB42AC05616D65B0B6C47A",
+    "pushName": "Clívia  Leal  🌟🫶🍀💮🍄",
+    "timestamp": 1773859071,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "https://youtu.be/EJc7jVNZvsk?si=e3h5EsJ670wWqnqM",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "https://youtu.be/EJc7jVNZvsk?si=e3h5EsJ670wWqnqM",
+        "matchedText": "https://youtu.be/EJc7jVNZvsk?si=e3h5EsJ670wWqnqM",
+        "description": "Ajude-nos com a obra de evangelizacão#oração #novena #paieterno ngthSeconds\\\":\\\"1795\\\",\\\"keywords\\\":[\\\"padre\\\",\\\"reginaldo\\\",\\\"manzotti\\\"],\\\"channelId\\\":\\\"UC...",
+        "title": "Mensagem Papa Francisco",
+        "textArgb": 4294967295,
+        "backgroundArgb": 4280563264,
+        "font": "SYSTEM",
+        "previewType": "VIDEO",
+        "jpegThumbnail": "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",
+        "contextInfo": {
+          "forwardingScore": 0,
+          "featureEligibilities": {
+            "canBeReshared": true
+          },
+          "statusSourceType": "TEXT"
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT"
+      },
+      "messageContextInfo": {
+        "messageSecret": "suq4p9pxPznAqmejwhWVmuYSU8U0COgTQ1/OctMV9SA="
+      }
+    }
+  }
+}
+[2026-03-18 18:37:37] [INFO]: 📞 JID: status@broadcast
+[2026-03-18 18:37:37] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:37:37] [INFO]: 💬 Body extraído: "https://youtu.be/EJc7jVNZvsk?si=e3h5EsJ670wWqnqM"
+[2026-03-18 18:37:37] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:37:37] [INFO]: 📱 Telefone extraído: 75119162568875
+[2026-03-18 18:37:37] [INFO]: 👤 Nome: Clívia  Leal  🌟🫶🍀💮🍄
+[2026-03-18 18:37:37] [INFO]: 👤 Utilizador ID: f389f1c6-aafd-488f-bc07-d47b9bb2e232
+[2026-03-18 18:37:37] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:37:37] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:37:37] [INFO]: 💬 Chat ID: 989e708d-d9c4-4242-b108-5c103f78d6d9
+[2026-03-18 18:37:37] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:37:51 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:37:37] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:37:37] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:37:38] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:37:38] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:37:38] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:37:39] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:37:39] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "108980701544679@lid",
+    "jidAlt": null,
+    "messageId": "ACFBF67321C254B117E5228E3561E69D",
+    "pushName": "gustavo",
+    "timestamp": 1773859072,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/491869070_732865369266445_4409827903730831695_n.jpg?ccb=11-4&oh=01_Q5Aa4AH5BCuTyFcFW9X8uDhDmFXp8J4RRK5z8GHfLaevZcGbDQ&oe=69C7F425&_nc_sid=5e03e0&_nc_cat=108",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "tô querendo tirar as pontas",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "tô querendo tirar as pontas",
+        "previewType": "NONE",
+        "contextInfo": {
+          "expiration": 0,
+          "ephemeralSettingTimestamp": "1713728682",
+          "entryPointConversionSource": "global_search_new_chat",
+          "entryPointConversionApp": "whatsapp",
+          "entryPointConversionDelaySeconds": 9,
+          "disappearingMode": {
+            "initiator": "CHANGED_IN_CHAT",
+            "trigger": "CHAT_SETTING",
+            "initiatedByMe": false
+          }
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT"
+      },
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "h0iW7NdSk+UEOA==",
+          "senderTimestamp": "1773185087",
+          "recipientKeyHash": "fLZrArE449hMGA==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "ZK4MGX3Tvauew4ED6mfi2B1Qc7vacW/FFyoYdlk3bRM="
+      }
+    }
+  }
+}
+[2026-03-18 18:37:39] [INFO]: 📞 JID: 108980701544679@lid
+[2026-03-18 18:37:39] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:37:39] [INFO]: 💬 Body extraído: "tô querendo tirar as pontas"
+[2026-03-18 18:37:39] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:37:39] [INFO]: 📱 Telefone extraído: 108980701544679
+[2026-03-18 18:37:39] [INFO]: 👤 Nome: gustavo
+[2026-03-18 18:37:39] [INFO]: 👤 Utilizador ID: 7892fb23-e951-4c7f-9d0c-37da9a2f965e
+[2026-03-18 18:37:39] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:37:39] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:37:39] [INFO]: 💬 Chat ID: 68c6b794-3a50-4f3c-9cec-037e6912553c
+[2026-03-18 18:37:39] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:37:52 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:37:39] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:37:39] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:37:39] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:37:39] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:37:39] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:37:42] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:37:42] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "108980701544679@lid",
+    "jidAlt": null,
+    "messageId": "ACF8B3D9034B343647A0D39A6D8BF5F8",
+    "pushName": "gustavo",
+    "timestamp": 1773859075,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/491869070_732865369266445_4409827903730831695_n.jpg?ccb=11-4&oh=01_Q5Aa4AH5BCuTyFcFW9X8uDhDmFXp8J4RRK5z8GHfLaevZcGbDQ&oe=69C7F425&_nc_sid=5e03e0&_nc_cat=108",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "sticker",
+    "text": "[Sticker]",
+    "raw": {
+      "stickerMessage": {
+        "url": "https://mmg.whatsapp.net/v/t62.15575-24/608845426_1475398377587482_252052037115317163_n.enc?ccb=11-4&oh=01_Q5Aa4AFLPGfbMThc0Y-5z7K2vgWRHA1vQ5Hpg1SmYzUsUYOXEA&oe=69E2617E&_nc_sid=5e03e0&mms3=true",
+        "fileSha256": "Pql85s6Cf3bTLWs/HMs5TzgIr6puowFQWvKKsBvEYa0=",
+        "fileEncSha256": "jBusXm1/cbjk/7vv85LR74ElFhhGgHPneQiMvX9XU70=",
+        "mediaKey": "RTjV07D5jPFfVFGkgW1ZDSOQEkzlJBTpNNvMILMQflY=",
+        "mimetype": "image/webp",
+        "directPath": "/v/t62.15575-24/608845426_1475398377587482_252052037115317163_n.enc?ccb=11-4&oh=01_Q5Aa4AFLPGfbMThc0Y-5z7K2vgWRHA1vQ5Hpg1SmYzUsUYOXEA&oe=69E2617E&_nc_sid=5e03e0",
+        "fileLength": "10778",
+        "mediaKeyTimestamp": "1773701788",
+        "isAnimated": false,
+        "contextInfo": {
+          "expiration": 0,
+          "ephemeralSettingTimestamp": "1713728682",
+          "entryPointConversionSource": "global_search_new_chat",
+          "entryPointConversionApp": "whatsapp",
+          "entryPointConversionDelaySeconds": 11,
+          "disappearingMode": {
+            "initiator": "CHANGED_IN_CHAT",
+            "trigger": "CHAT_SETTING",
+            "initiatedByMe": false
+          }
+        },
+        "stickerSentTs": "1773859075003",
+        "isAvatar": false,
+        "isAiSticker": false,
+        "isLottie": false
+      },
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "h0iW7NdSk+UEOA==",
+          "senderTimestamp": "1773185087",
+          "recipientKeyHash": "fLZrArE449hMGA==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "fbkLZwBMIwnbNcoM7m4m3CEQgsWtJSVCtAQKxJ/lxFo="
+      }
+    }
+  }
+}
+[2026-03-18 18:37:42] [INFO]: 📞 JID: 108980701544679@lid
+[2026-03-18 18:37:42] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:37:42] [INFO]: 💬 Body extraído: "[Sticker]"
+[2026-03-18 18:37:42] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:37:42] [INFO]: 📱 Telefone extraído: 108980701544679
+[2026-03-18 18:37:42] [INFO]: 👤 Nome: gustavo
+[2026-03-18 18:37:42] [INFO]: 👤 Utilizador ID: 7892fb23-e951-4c7f-9d0c-37da9a2f965e
+[2026-03-18 18:37:42] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:37:42] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:37:42] [INFO]: 💬 Chat ID: 68c6b794-3a50-4f3c-9cec-037e6912553c
+[2026-03-18 18:37:42] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:37:55 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:37:42] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:37:42] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:37:42] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:37:42] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:37:42] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:37:44] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 18:37:44] [ERROR]: ❌ ERRO AO ENVIAR:
+[2026-03-18 18:37:46] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 18:37:46] [ERROR]: ❌ ERRO AO ENVIAR:
+[2026-03-18 18:37:47] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 18:37:47] [ERROR]: ❌ ERRO AO ENVIAR:
+[2026-03-18 18:37:50] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 18:37:50] [ERROR]: ❌ ERRO AO ENVIAR:
+[2026-03-18 18:40:39] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-18 18:40:39] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-18 18:40:41] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:40:41] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "108980701544679@lid",
+    "jidAlt": null,
+    "messageId": "AC20DD14E8602FEC17F86D2AA28F671D",
+    "pushName": "gustavo",
+    "timestamp": 1773859205,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/491869070_732865369266445_4409827903730831695_n.jpg?ccb=11-4&oh=01_Q5Aa4AH5BCuTyFcFW9X8uDhDmFXp8J4RRK5z8GHfLaevZcGbDQ&oe=69C7F425&_nc_sid=5e03e0&_nc_cat=108",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "tu tá livre quando",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "tu tá livre quando",
+        "previewType": "NONE",
+        "contextInfo": {
+          "expiration": 0,
+          "ephemeralSettingTimestamp": "1713728682",
+          "disappearingMode": {
+            "initiator": "CHANGED_IN_CHAT",
+            "trigger": "CHAT_SETTING",
+            "initiatedByMe": false
+          }
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT"
+      },
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "h0iW7NdSk+UEOA==",
+          "senderTimestamp": "1773185087",
+          "recipientKeyHash": "fLZrArE449hMGA==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "vBa99Bd5ItZ+a3jW9VLofN5Rcz+ll4Knr36Q9cIxMnc="
+      }
+    }
+  }
+}
+[2026-03-18 18:40:41] [INFO]: 📞 JID: 108980701544679@lid
+[2026-03-18 18:40:41] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:40:41] [INFO]: 💬 Body extraído: "tu tá livre quando"
+[2026-03-18 18:40:41] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:40:41] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "108980701544679@lid",
+    "jidAlt": null,
+    "messageId": "AC1EA7E417CBB8096D0CB4B0BC71CC9A",
+    "pushName": "gustavo",
+    "timestamp": 1773859206,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/491869070_732865369266445_4409827903730831695_n.jpg?ccb=11-4&oh=01_Q5Aa4AH5BCuTyFcFW9X8uDhDmFXp8J4RRK5z8GHfLaevZcGbDQ&oe=69C7F425&_nc_sid=5e03e0&_nc_cat=108",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "?",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "?",
+        "previewType": "NONE",
+        "contextInfo": {
+          "expiration": 0,
+          "ephemeralSettingTimestamp": "1713728682",
+          "disappearingMode": {
+            "initiator": "CHANGED_IN_CHAT",
+            "trigger": "CHAT_SETTING",
+            "initiatedByMe": false
+          }
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT"
+      },
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "h0iW7NdSk+UEOA==",
+          "senderTimestamp": "1773185087",
+          "recipientKeyHash": "fLZrArE449hMGA==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "JKlTN/F+SXTtMteqeZDaM1fJwskZ1XpuDwnh6ikgS3g="
+      }
+    }
+  }
+}
+[2026-03-18 18:40:41] [INFO]: 📞 JID: 108980701544679@lid
+[2026-03-18 18:40:41] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:40:41] [INFO]: 💬 Body extraído: "?"
+[2026-03-18 18:40:41] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:40:41] [INFO]: 📱 Telefone extraído: 108980701544679
+[2026-03-18 18:40:41] [INFO]: 👤 Nome: gustavo
+[2026-03-18 18:40:41] [INFO]: 👤 Utilizador ID: 7892fb23-e951-4c7f-9d0c-37da9a2f965e
+[2026-03-18 18:40:41] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:40:41] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:40:41] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:40:41] [INFO]: 📱 Telefone extraído: 108980701544679
+[2026-03-18 18:40:41] [INFO]: 👤 Nome: gustavo
+[2026-03-18 18:40:41] [INFO]: 💬 Chat ID: 68c6b794-3a50-4f3c-9cec-037e6912553c
+[2026-03-18 18:40:41] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:40:05 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:40:41] [INFO]: 👤 Utilizador ID: 7892fb23-e951-4c7f-9d0c-37da9a2f965e
+[2026-03-18 18:40:41] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:40:41] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:40:41] [INFO]: 💬 Chat ID: 68c6b794-3a50-4f3c-9cec-037e6912553c
+[2026-03-18 18:40:41] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:40:06 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:40:41] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:40:41] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:40:41] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:40:41] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:40:41] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:40:41] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:40:41] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:40:41] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:40:41] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:40:41] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:40:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 18:40:49] [ERROR]: ❌ ERRO AO ENVIAR:
+[2026-03-18 18:40:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 18:40:49] [ERROR]: ❌ ERRO AO ENVIAR:
+[2026-03-18 18:41:41] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:41:41] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "jidAlt": "75119162568875@lid",
+    "messageId": "ACED9793D42EF9236AC7C24142468639",
+    "pushName": "Clívia  Leal  🌟🫶🍀💮🍄",
+    "timestamp": 1773859209,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "https://youtu.be/6gFscZYsIJ0?si=OLm2d7kNeMtkUf1g",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "https://youtu.be/6gFscZYsIJ0?si=OLm2d7kNeMtkUf1g",
+        "matchedText": "https://youtu.be/6gFscZYsIJ0?si=OLm2d7kNeMtkUf1g",
+        "description": "“Bolsonaro e os filhos desviavam salário dos funcionários para abastecer os cofres da família”, dizO programa eleitoral do ex-presidente Lula mostrou o esque...",
+        "title": "CORRUPÇÃO TAMANHO FAMÍLIA! O VÍDEO DE LULA QUE TIROU O SONO DA FAMILÍCIA! (1/3/2026)",
+        "textArgb": 4294967295,
+        "backgroundArgb": 4290163495,
+        "font": "SYSTEM",
+        "previewType": "VIDEO",
+        "jpegThumbnail": "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",
+        "contextInfo": {
+          "forwardingScore": 0,
+          "featureEligibilities": {
+            "canBeReshared": true
+          },
+          "statusSourceType": "TEXT"
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT"
+      },
+      "messageContextInfo": {
+        "messageSecret": "k6JMCO3zbkEB0E55+JW6OsxfqrU9bnDO4CCJDlXuV5s="
+      }
+    }
+  }
+}
+[2026-03-18 18:41:41] [INFO]: 📞 JID: status@broadcast
+[2026-03-18 18:41:41] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:41:41] [INFO]: 💬 Body extraído: "https://youtu.be/6gFscZYsIJ0?si=OLm2d7kNeMtkUf1g"
+[2026-03-18 18:41:41] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:41:41] [INFO]: 📱 Telefone extraído: 75119162568875
+[2026-03-18 18:41:41] [INFO]: 👤 Nome: Clívia  Leal  🌟🫶🍀💮🍄
+[2026-03-18 18:41:41] [INFO]: 👤 Utilizador ID: f389f1c6-aafd-488f-bc07-d47b9bb2e232
+[2026-03-18 18:41:41] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:41:41] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:41:41] [INFO]: 💬 Chat ID: 989e708d-d9c4-4242-b108-5c103f78d6d9
+[2026-03-18 18:41:41] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:40:09 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:41:41] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:41:41] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:41:41] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:41:41] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:41:41] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:41:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 18:41:49] [ERROR]: ❌ ERRO AO ENVIAR:
+[2026-03-18 18:42:37] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:42:37] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "081d0451-f125-47f7-8cc7-6c1ccf121bfd",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "jidAlt": "75119162568875@lid",
+    "messageId": "ACB7DF51FB5A46796C4028D9CE41A555",
+    "pushName": "Clívia  Leal  🌟🫶🍀💮🍄",
+    "timestamp": 1773859370,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "https://www.instagram.com/p/DWArSH2jl1C/?igsh=bjh3cHJhZm5jZThl",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "https://www.instagram.com/p/DWArSH2jl1C/?igsh=bjh3cHJhZm5jZThl",
+        "matchedText": "https://www.instagram.com/p/DWArSH2jl1C/?igsh=bjh3cHJhZm5jZThl",
+        "title": "M de Fátima Aragão O no Instagram",
+        "textArgb": 4294967295,
+        "backgroundArgb": 4289628020,
+        "font": "SYSTEM",
+        "previewType": "NONE",
+        "jpegThumbnail": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCACMAIwDASIAAhEBAxEB/8QAHAAAAQUBAQEAAAAAAAAAAAAAAAQFBgcIAwIB/8QAPRAAAQQCAQMCBQMCBAIKAwAAAQIDBAUGEQAHEiETMRQiMkFRFWFxI4FCUpGhCHQWJTM1OFN1gpLxsbK0/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANOptIKrVdYmWybBDYeVH7x6gQToK17639+LOZe/WplLeZPbUF+rJJ8fGW3W5au1ZSor8/SNfKCVaP8Afk46UZHYSM5TVN5G5kdY9TonPPr7FfDvlQHZtIGtgn5T5GuBb7tlBaVIS7MjIVHSFvBTqQWkn2KvPgfueff1CF6LD3xcf0n1BLK/VT2uE+wSd+Sf25n3PPOR9aARsGkieP8A2r4wB2XjVjhWFz/UXENxCtKp9WyCwpKgtsn8oUof2P8AHA04LetNgYAsIZnDyY/rJ9T/AOO98+xretlTHIkawhvS2vrZbeSpaP5SDsczvVGkxrqKlpL9Hfxbic+4icyoGfXuFJKu/wBz2DR8+NcXdHxV47nsSgjJorwPsvvxbqvIVIQneyh/W/PnQO/twND8OZ86pZXliOo9rUVFiisZhwmn4hdmNRm3FHypavUHzje06BHtznld5lcmbmrreQya40dKxYoYihCkF70ypQ2Qdp2DwND8OUFEyyfe5TDjXuWLxuIilhzmuxTbYlOuDaztY8ge2h+eNWQ5vfx7C8sG8jcZtYN01BiUOkakMFSRvt13HYJV3D8cDSXDY3rY3+OZvyHIsqDGd3LGRTI6KK5bjxoiEI7ChRR3JV42RpXj+/FsGZJZ6t569JyKRGkNV0d6JGUtCQ/tha+0JI2Qkn7fnzwNB8OZ9r8iuK/pJWZDeZDZyp976DDKWS0ymOoqIB71DSdgfMo7/bks6BZFa3cPJI1xNM011gWGHS4l09mt670gBevzrzwLW4coDEsutp9Hkd/JyRxzJIyZ3o47tACC2D2Ds13nWvf78b8VzO6EqIiLlDt4J2PyLCaCEH4CQlBKddo+X5vl0eBo/gCCPBB5nfE7zKU2mCKm5JMmIyasluPtLQgJaW20VJUjQ9969+HShcVzDI67HqLIrpZee9SMqUykoPqK9wob8+/9+Be8Cjqa4agVsKMCkoPosJR8p9x4Htz1V09bVBwVcCJDDh7liO0lvuP5Oh55UFZYuQuoGGpVY26oCqmc+6bdXY6e1Y+Z0eB4868e3GzFeoFo/l90GotfY2cytdnQlxpTy2dNeAzpSUjz/mT9+BertVXvLkrdgxVrlJCH1KaSS6kewV4+YfseEiqr5LkVyRBiuri+WFLaSote30kj5fYe345TVv1VdyDHbIVcJKojOOrspzqXlIWy6dhLKSPIPgnfvoc6OdTbxhow8cp4ctunqI9hYLmylpUUrR3BDegdq0D5V/8AYW1Gx6mizHJcaqgNSnAQt5EdCVq377IG/PPtbRVNW847W1kKI659a2GEoKv5IHIL1NyeQ90Qm5HSPPw3n4bchlaDpaO7R8H8+eV3ief2WL2eQvW8m/frYdOia3BvO0SXXCrXc2U7Hp/bf+3Av+0o6q1W2u0rYUxbf0KkMpcKf42OdV1VesyCuDFUZKA09tpJ9VA8dqvHkfseUpk/UHIXMayGoyCviV1g9RLs4b9fIUsJRr6VbAIUNjyPHFELqTc1cjEqZUWvZiSK2EszrN5xHxKloT3BCkpKe4e+lHyTwLclY/Ty/h/iqqA98MAln1I6VemB7BOx4H8c9uUlW7YosHK6Guej6ZCmUlxP8K1vlU2HVy1izJtkmliKxSFaiofeMhQld5V2lxKNdvaCfbezzjcdWshguXc5qir3KOmtEV0lxUlQec71JAKE9uvHeN7PAt5dPWrbktrr4ikSV+o8kspIdV/mUNeT4Hk88v0lVImpmP1sNyWlHppeWykrCfbt3revPtyrs26szMdyUsRmqidVtSWYzyG3nTJQXCASdJ7EkE+xO+KmupV07kGUNN0sX9Fx15wS5ZfIWtAb7kpQjX1Eg7PsBrgWQ9TVj9amver4jkBOgmMplJbGvbSda52g18OAFiDEjxgvXcGWwjehob1+AAOVlhfUi7sb6giZFTwokXIYi5lc5FkKcUhKQFdroIHnSgdjxxN1J6sTsbyuTS01bFlOwoiZb/xC3Ap3uJ022EJPzaHurxwLPapKtmyXYNV0NE9wELkJZSHFb/Ktb58iUVTCMgxKyEwZAIe9NhKfUB9+7Q8/35AesGQTT0XduqZ+VWSpKIjjax8rrQccRsH99KIPIhR5tdvZRhWOW0t1q4gz5UK0bSrQlJTHUptwj7hWgf54F4t1Ve2qKpuDFQqKkpjlLSQWQRohHj5QR+OIV4njq3FuLoqtS1qKlKMVBKifcnxzP0zOf0mNg11KelsQW7ezEhoPrdLoRsAeffz7D7b5eeGX8+6xyHZ2TEWKuYn1mmWVlztaP09yvYq1768cDvfYbUX1w1ZWTbrj7cN6D2hekKadGlgj86+/GjFOmFDjNnDsILli9JiR1xGTKklwIaVr5APYAa8cY8J6i3GR5JYsOxqSNVQZ0mI4VTD8SUtEjvDZHt4H+/H2n6o41byHGor8kaYcktLdjqQiQ239amyfq1r7cD7XdMMbrqjIa2Iw+iPelZl/1Pm0oEEJP+EDZ0Ptvia56TY5auMLcNhHUiKiC6Y0pTfxLKBpKHdfUPH7c8t9X8TcqDaCRKTXB1pgSFRlBCluAkAH767TvXtzrN6q45DZiLdFiXJLCpQYREWXW2QdFxadbSnf3PAf73FKu6xN3G5LS26tbSWexlXaUpGtAH7e3GCq6UYzBE8vtzLF2bG+DddnyVPL9H/ICfYfxzlI6iw4+TykKmRV0jNIm3220tTpSVkd2/pKdfb33xbG6k0synetILFpLhodDKVMQlqLpI3tA18yf39uAjg9JccixLFhbllLM2J8Ap2VKLi2mP8Ay0Ej5RzrY9LaKxNeiZItHIUFDCG4Rln0FekAEFSdeT4G/bfJFjGTVeS0KbeqfKoRKgouJ7CgpOlBQPsRxhpuqGNW8lbUR+SB6Lj7TjjCkIkIb+tTaj9WtcDlK6U41KvlWbqJmlyRNchCQoRnHx7OKb9if9uKpnTehmVNzXPJlfDW01M+Tp3R9VJSR2nXgbQPHGZjrXiD6mUsuWLin2vVjhMJw/EAe4b8fMR53r20eTLHMnq8hx1u7rn916kqUVuJ7Snt33BQPsRo8CLT+kWNTp86S8qyCJkhEt2OiUpLJeSRpzt/Pj775IazD6muev3GmnHBeOerMQ6ruSo9vboD7DXGiu6o43OgT57a5rVfDa9ZUt6KtDTie7t/pqI+bZ9tcZsm6rxU4lZT8cSoWUF6Oh2LPYU2pKHVgBRTsHRBOjwHvFemdDjVszYQjPfejNKZiplSS6iK2fdLYP0j/XijJcAqr66FsqRZV9l6QYckV8ksqdbB2Eq17j/fnyT1DoYcXIHZT7o/QA18fponsLiQU9v59+NsLPHl51kVc+0FVNbXMTmyy0pTyu8bI0D5/YAcCTZJi9dkWNmjsvWVBPp77XNLPYoKT838pHG6x6fUNhnEDLXmXU3MJBQhba+1KgUqT8yfudKPETfVPGzUW1g+uZFbqvT+LakxlNuthagEntPnRJHHyiyusuqORcRVvN17BX3PPtFsFKRsrG/dOvO+Ayx+mGOMipSGpDiKyU/LYS453Are+vuGvI8+Bx5xnFION1pr6tySmIHFOIbW53BvuOylOx4Tv2H23yC1vV2NdZ/T1tSkppJMKRJeflR1tr/pjYUgnwUHz50eOK+smMgJUhm4caWO5t1Fe4pDid67knXkeD54HLDelkCrYyJy1iwHrOzmzHW5zbI9Zpl/fyhZGxoE/wCvI3hXR6VQJLMiPVOLYiSI0ewS6+XlFxBSCUFXYnwrzocvHhwKpl9NZz/THFMaTIiiRUzI8h5wg9jgbKiQP53zj1I6XP5BmjeQwm4MsLh/BvQ5jrradBWwtKmyD+xB8ctzhwKdsulUx2ZYLhOwo0d/GU0bTKO7tbWFlWxvZ7fOvffHHLcCuLHG8Vrq6Wx6dWlCZURxxxtmUAjt8lBB0D51y0eMtxkkCpu6irm+qmRaLW3HWE7QVJGykn7Ej2/jgRjppgb2L4HYY5YSG3RKfkq72AQAh3xob87A5D8H6PSsfHoyY9U8Y8V+PHsEuv8ArKK0lIJQVdifB86HLTrcrq7G3uq9hxQXULQ3LdWAlpKlJ7tBW/JA9/xx3RNirZbdRJZU04dIWFgpUf2P34FWYz0zn1UrAXXpUZYx6JJjvhIP9RTiVAFP8d3H/CsIep+ns7HJ8hC1SnJJLjW9BLqlEf3APJg5ZwG2m3XJsVLTh7ULU6kBR/AO/PPS58NEpEZcqOmQsbS0XAFq/gb3wKlR04yWw6cyMMuptYmAzHQ1DfjoX3qUhYUkrG/A0NED88RN9I5q8atYfwtRAnylRgHo7z7velpfce4uKP4GgPbzy6TNih0NGSz6hUUBHeNlQGyNfnX24R5kaS44iPIZdW2dLShYUUn8ED24FL5f0tySxmZkzUWFc3W5KhgvF9Ci40ppAToa8aOvfi7Iumd7Nl5JJq7dEF6xrosNpbZUlSS1ruBI8gKHjxy4eHAoRfRm1dosuiperorl5HjNttNFxaGVNOBR2pRKlbA9/wA8uK5pUWmJTqRavSRKhriFSR9IUgp2P9ePPDgUpT9L8idm0v6/PrjDrauTVJEVCgtSHEdoWSfv+3Giu6OWddBZhKqKGf6CfTTJcnS21OAexKUq0D+w8c0Fw4Bw4cOAcOHDgHIF1mp5tjizM6mjuSbeplNTorTY2tZSodyR/KSRye8OBnaRhV4OmlRNsamVOmTLr9Zva1sf1XULUT2duxvtHb8v88bHcLt7GoU3Gx+ygUM3KosiPXFBQ5Gi67XVlIO2wdk/tzTnDgUPlOJxKXqFGclYZNu8WRWiNBjQWPXTFe79q2kkdu9/VyM9QqHJLrJrB6Ni0tmVFnxXIj8WAnRjpKdqL++4qHkdqfxs+3NPcOBSNNgcmVkfUa0fr3WbV2Uv9IlPBSQnua0Vt/bydAn9hyPdO6Gyqskx+dX4lbVKqisfbuluNdv6g7odqUef6pKgSD+/NH8OAipJy7OoiTXYkiEt9tLhjSE9rjRI+lQ+xHFvDhwDhw4cA4cOHAOHDhwDhw4cA4cOHAOHDhwDhw4cA4cOHAOHDhwDhw4cA4cOHAz5a9R8poaLKKWRNYm3ldZxq2NaFlKQQ+Nha0D5e5I/tvkgam5ThfUOgo5+RPZDFvWJAHxTCEKZfbbKwpJQB8p1rR5JmelONpxOxoX0SpLVi568qW+8VyXXQdhwr/zA+3PFB0xh1tx+q2F1c3Fk3HVFjPzXwpUZCho9mgNK1/i9+BFujl7dTsmkQstyKxTfJacW9SyYjbbX1DTjKwNqSB49/v8AtxbcTsjy7qlc41UZA9QV1NEZdWuMyhbshx3yNlYOkgD2H/1IsW6cxqXI0Xk26t7mwZYVGjuWDwX6LajsgaA2T+Tz7lnTmHe5ALyFa2lJbqZ+GdkV7oQXm/slYIIOvseBWK81zSy6eodZlSQ9W3TtdbWFdGQt5TDaQfUQ2RrfzDeh9uWVQ5ImJ0ndv2bhzIhGivSEy3GktKdKe4hKkpAAI0En+OeUdMokLHYNTQXVzTpjOLdU/FfHqSFL+pTuxpRP+3HzF8OqsdxIY7FQ49XlLiXfXV3Ke9QkrKj++zwILhy8oRh7WdXeUyJrbtauyXUojNJYALZWhCVAdw0NDe/PIg9kWbVHTis6kSsoVLS+406/TmM2mP6K19vYggdwUAfffLPxPpsxjbwZjX11IpkIW21VSXwthCVe6da2QNnQPGqJ0XpmHIkZy1uZFDEfElinekd0ZCwdga1spB+xPAjMzqDe0XVq2VZy1OYciQ1AWgoSPg3HGwpDhOt9pVsHZ+/G26vMtf6PyMsiZXNiS4cp1ktNsNKS8PifTSSSnxpJ+345bU3p9UTxk6JvqvNZAE/EoVrSClISko8eCNAg/kcQxumFUx01XhQlzFVylBZeUoF3fqBz31r3H44EQ6g3t1ieEUFSjK1qvrqUAizlpabLLQHeska7dD5U+3+LiW6yi8vehbOX0uSP11hWxnfikx2m1pkPIISe7uB0Ngka/wA3LGs+ntNbZLX3Fw2LD4GGYbESS2lxlIJBK+0j6vAG+I2ul9OxjmTUUV6QxV3jynlsN9qUxyoAKDY1oDwPH7cCLfHZHQzunsWVkkuyFzOUqSt5ltBLZY7g38qfYKG9+/nkRoupeTQY+WC9sFOMSRYpp5RQkeg9HK9N+2j4AI3v25dtlhsKfKxqQ68+ldC56kcJI0s9hR83j8H7cYLLpHRWOGzMdlOylR5E5ywD4UA404tRUe069vJH8cCHwuo9pW5Fh4s1WVhDnY23LfYhxg6tb5CP6hCRse5/bzxpjdSMln4wG4U5yPYXGULqY0mSwnuhMFXj5Na7gPHnf35btLgdfUXNRZR35C3q2sFU0lZGlNjt8nx9XyjjdJ6U0cmhsat92YUS7Fdql9DgQ7HfUrfc2oDxrgRdq1y3Fs6kYoq6cyBU6ndnQHZbKEONPoOgklIAKT+/7cg8PNJTMdLeS9T7uiuE+JUGTVMkoX9+35fo/HLgpemMOvkWU6VdXNhczYph/qMiR/WYaP2aIGknejv8jkdtugdJeyvi8ivb+zmBIbDzshIUED2T9P7n/XgLG+qchfSzHct/TWg7azWoio/ee1sLdUjYP3+nfJViWVOXuTZRVuRktIppKI6VhWy4FICtn8e/K3reluVt01Hic2dVKxepsETESGwv4l1KHCtKCkjtHknzvkgg41mtFnGR2dKKF6tuJbb6hJddDqEpQlJ0Ep1vwfvwO1n1QVC6oMY38AhVSX24T1h3n5JLjalob17f4df340ZT1ctaTIcjYapociqonGEyXFSux5YdHjsSRpR8Hxxrl9FbSfSWcuTdOpyWTPNihKH1fCh0L2gka3sJ8b1ztb9HJ1xdZFfTV14vJDkSRWvAqUlpxpJ70rBGu1R1+fA4FhdRMvexfBzfQoiJLpUylDLqikH1FADZHt78ZKvqTLhW0uqzaqbq5rUBdk05He9Vp5lAJVokA9w17ccupWNW+WdPP0qMYbNspbDp71q9EKQtKiNgb14/HGKJ07ub67lW2cy4JeVWuVkeNXhXYyhYIUsqV5Kj/HARM9Vr+PV1eSXGOMRcTsXkNtvIklT7SHDpDi0a1o+/g/fks6sZnJwuorJMGLGkvzp7UFIku+m2gr3pSlfYDXk8hA6cZlYY7T4fdz6g4zXOtEyGAv4l9po/IgpI7U+NAnfJd1mw6wzKjqo1UIC3YVizNU1OJ9J1KN7QrQOwd6/jgI8V6n/qGPZRYXESPHVQFQeciv8ArMO6R3fIv7/j+eJ8f6pS7Dp3kd5Oqm4ttTNKdcheoSCPTDiDv30QR/vyMq6Q5G/j1pVrl1cCNc2LD0yJBK0ssR0EFSWgR9SiAfsPHF8vpHawZOTM0lqZFfeU6oTv6g8pTiXx4bVsD6Qkkf34DjU9Xv1LEqazRXobnybVqrmRFrO46lgnf7+NEfzxPI6qZA1JyeYzjsaTQ4/OXDlOtySH9J0SsII0fBB9+Jb7pFZO5JjdnTS4rDTPwqrZhZUEvLYACHEaH1aKh51z4905zJTuYVkWdTxqPI7ByU6+e9chDawAUhOgneh+eBIrPqd6N1PjQYjb8RnHRetPFZBc2VaRr8aHv+/EeL9Trd5/GlZRRx4MDIkJVAlRpBcAUpHelCwQCCRz5adMphu7B2tejIgOYwKKOlxR7gsFWlHx9OiP34lxjp5k7y8Rj5ZMq01mMoR8MzBC1KecQjsSpalAa8edAcD7K6qX8mFdXtBjkeZi9Q8428+5JKHnkt/9ottOtaA2fPJjlGat1vTCRmFayJLSYiJbTSz29wV26B/HvyBudOsyrKa+xbHp1QMbt3nlevIC/iIzb31oSkDSvBIBJHJllWEOy+kMjDqZ1tLvwSIjLj5IT8pT5VoH31wGvHupNim8rqvMadmscs4i5kGRHf8AVbdCU96kHYBCgnzzhSZtm+UwRbYzjtT+jvLUIy5sxSHHEg67iEpIAPPFJ0/yCxvqizzWXXFFPCciQoteFFO1o7FLUpWiT2/bXOeNY91Fw2pbo6L/AKOT6qKpQjOy3HW3Q2TsJUEgjx+eBNr/ADvHaBqnctLANIt1JRCKW1L9Uq1r6QdD5h5P550us2oKXJK2hspwZtLEgRmuxRCtnQ2oDQ2RobI5ldcl2yqcZTMWXP0lUKNFJ90oM1aPP79raB/bnrrhksxrqNljXpx1uMOQhHfUlXqMemoLSUHegSSd+DwNNZD1GxrH7sVNlNdE/tSpTbMdx30wr6SsoSQnf78bZfWDDYlwqrfnS0zgop9IQHyTo62NI8jf39uQHrE9IxRVVnNFJei3Fh8NHmNggsSEa/xoI+2/GiOSOzWXf+InE1qABXQPqOvyV8CTxOp2LS8iXRxpklyxQ/8ADLQmG8Upc/BX29o/154p+q2H29yiqhWpM1bqmEJcjuNpW4n3SFKSEk+PbfK76V177/UfNZbdtZR2mcheCobLiQw98qfK0lJJ/sR7crno8t626mVdNPfccq49jOntR/ASl5KvCtgbPv8Ac8DUOX5jSYizHcvJSmjIUUMtttLdW4QNnSUgk8jWedREVGIV+R08muTWyF69SwbfSV++kpQhBUCdK8keNex55630zMnGjeNSJMS2pkrkQ5MZYSpKu3yDsEEH7jlH5vnVpaUXTaxtGoctx+LJeeacbIacX8zfcUpI+xJ/ngaMkZnX0OIwLnKZ8RkSUoKVRgtaXFKG0pbTruV4/bf8cVYhmlFlyZH6HMLrkYgPMuNKacb37bQoAgH88zzgc9+0b6JCcQ6lqVNbSlQ2NIbPaf5HjX8Dln1SQj/iYuQgBIVj6FKA8dx9VGif34EjveqOJUN7Jp7WxcYnRggvD4Z1SGwobSVLCSkAj9+KMl6i4xjgrDZ2CtWSFORDHYcf9VKdbI7En/MOQepQhzqx1aQ4hK0GuhbSobB/oucrGljPT4vR5lqwmwXDEsQJERYS4gBSfAJBGtePb24GmZ2U1MDE1ZJLfW1UJZTILqml9wQdaJRru+48a3xrx/qRit9HnPQLVARCa9aQJDa2FNt/5yFgHX78j3WxtTPQW9bW86+pEFCS66QVrIUnyogDyeUXuRedH8zym0lvP2piR68K+VKEspcSQkBIH+vA0fjnVDE8itWq6ssVmU8CphL0dxoPAe/YVpAV/bj9R5HWXrE52qfLyIT7kV4lCk9riDpSfI86/I5WHVVttmX0o9BtDXZcxUJ7BrtTpIKR+2uL+h3/AHPmn/r07/8AbgdIPVymr6kWWT2bSI8p1z4Yw4chaENpX2aUrs+rY/A/bk2x7KqrIKxE+rdecirJSlTjC2ySPfwoA8odX/hUsv8Amz//AGJ5fccf9Xwf+Xb/APxwP//Z",
+        "contextInfo": {
+          "forwardingScore": 0,
+          "featureEligibilities": {
+            "canBeReshared": true
+          },
+          "statusSourceType": "TEXT"
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT",
+        "faviconMMSMetadata": {
+          "thumbnailDirectPath": "/v/t62.36144-24/654587439_1711816329805459_3873626636928299184_n.enc?ccb=11-4&oh=01_Q5Aa4AGoLN9lSwWIqwDwRpFhal4qulRNlfQ1NAaIc3MxhXPoqg&oe=69E2690C&_nc_sid=5e03e0",
+          "thumbnailSha256": "la38YMEo2eTCld+7N0X/1r4bUXBqj9iBdyriEqoX1EU=",
+          "thumbnailEncSha256": "wv764EAt6pB8rE3GBSPIKucmBGYeNPrLJoD7EqtmvtQ=",
+          "mediaKey": "1at1ZEJ4Nn0iztUU1o6+ht20u44rLF5I56yOCog5XHo=",
+          "mediaKeyTimestamp": "1773859367",
+          "thumbnailHeight": 32,
+          "thumbnailWidth": 32
+        },
+        "linkPreviewMetadata": {
+          "socialMediaPostType": "SINGLE_IMAGE"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "3m0Bwd8hxJT8PVFGSiNr0zOqmSCHBENsS07lYVjDu98="
+      }
+    }
+  }
+}
+[2026-03-18 18:42:37] [INFO]: 📞 JID: status@broadcast
+[2026-03-18 18:42:37] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:42:37] [INFO]: 💬 Body extraído: "https://www.instagram.com/p/DWArSH2jl1C/?igsh=bjh3cHJhZm5jZThl"
+[2026-03-18 18:42:37] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:42:37] [INFO]: 📱 Telefone extraído: 75119162568875
+[2026-03-18 18:42:37] [INFO]: 👤 Nome: Clívia  Leal  🌟🫶🍀💮🍄
+[2026-03-18 18:42:37] [INFO]: 👤 Utilizador ID: f389f1c6-aafd-488f-bc07-d47b9bb2e232
+[2026-03-18 18:42:37] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:42:37] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:42:37] [INFO]: 💬 Chat ID: 989e708d-d9c4-4242-b108-5c103f78d6d9
+[2026-03-18 18:42:37] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:42:50 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:42:37] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:42:37] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:42:37] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:42:37] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:42:37] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:42:42] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:45:34] [INFO]: 🆕 Utilizador criado (90a311a0-4434-4b93-973f-e43e78b643e2)
+[2026-03-18 18:45:35] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-18 18:45:35] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:45:35] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "c918b07e-88ee-4370-b1f8-5fdf8a82f7ea",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "95631808938003@lid",
+    "jidAlt": null,
+    "messageId": "3A394A704B4EA470225C",
+    "pushName": "Leonan Valois",
+    "timestamp": 1773859522,
+    "profilePicture": "https://pps.whatsapp.net/v/t61.24694-24/534426096_899748299255809_8599375375464566609_n.jpg?ccb=11-4&oh=01_Q5Aa4AFpLSXWB-XNlb441z1cBHPGtKVrgez1Bs2LRrN-g0m77w&oe=69C81CF6&_nc_sid=5e03e0&_nc_cat=110",
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "Oi",
+    "raw": {
+      "conversation": "Oi",
+      "messageContextInfo": {
+        "deviceListMetadata": {
+          "senderKeyHash": "z+k5VvJKmNUCEQ==",
+          "senderTimestamp": "1773406211",
+          "recipientKeyHash": "OsLI/8i4lfUQ7A==",
+          "recipientTimestamp": "1773857990"
+        },
+        "deviceListMetadataVersion": 2,
+        "messageSecret": "a2cUlIDxioctgFH7N1sA71V67gaugZar55OuOaeDc1I="
+      }
+    }
+  }
+}
+[2026-03-18 18:45:35] [INFO]: 📞 JID: 95631808938003@lid
+[2026-03-18 18:45:35] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:45:35] [INFO]: 💬 Body extraído: "Oi"
+[2026-03-18 18:45:36] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:45:36] [INFO]: 📱 Telefone extraído: 95631808938003
+[2026-03-18 18:45:36] [INFO]: 👤 Nome: Leonan Valois
+[2026-03-18 18:45:36] [INFO]: 🆕 Utilizador criado (d64dbc63-9f77-400f-84b3-381f5bce2e5c)
+[2026-03-18 18:45:36] [INFO]: 👤 Utilizador ID: d64dbc63-9f77-400f-84b3-381f5bce2e5c
+[2026-03-18 18:45:36] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:45:36] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:45:36] [INFO]: 💬 Chat ID: 90d82462-59a1-4bb5-ade7-37a30fda5867
+[2026-03-18 18:45:36] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:45:22 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:45:36] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:45:36] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:45:36] [INFO]: 🔁 Já passou no funil? false
+[2026-03-18 18:45:36] [INFO]: 🆕 Criando funil para usuário
+[2026-03-18 18:45:36] [INFO]: 📨 Mensagem inicial:
+[2026-03-18 18:45:36] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:45:37] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:45:43] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:45:43] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "c918b07e-88ee-4370-b1f8-5fdf8a82f7ea",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "jidAlt": null,
+    "messageId": "AC7BF5B646B8B9C46FD021E4B38FC0E2",
+    "pushName": null,
+    "timestamp": {
+      "low": 1773859477,
+      "high": 0,
+      "unsigned": true
+    },
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "https://www.instagram.com/p/DVRs6KwAKjM/?igsh=eGp2MXQ0ZGVtb2Rv",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "https://www.instagram.com/p/DVRs6KwAKjM/?igsh=eGp2MXQ0ZGVtb2Rv",
+        "matchedText": "https://www.instagram.com/p/DVRs6KwAKjM/?igsh=eGp2MXQ0ZGVtb2Rv",
+        "title": "Deputado Maurici no Instagram: \"Ajude no Impeachment do governador Tarcísio de Freitas! Assine o abaixo-assinado. Link na bio 👊🏻\"",
+        "textArgb": 4294967295,
+        "backgroundArgb": 4290163495,
+        "font": "SYSTEM",
+        "previewType": "VIDEO",
+        "contextInfo": {
+          "forwardingScore": 0,
+          "featureEligibilities": {
+            "canBeReshared": true
+          },
+          "statusSourceType": "TEXT"
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT",
+        "faviconMMSMetadata": {
+          "thumbnailDirectPath": "/v/t62.36144-24/555516267_898632649911798_3993948528899663491_n.enc?ccb=11-4&oh=01_Q5Aa4AEP3U2Pa2m3vBQDlFnRAww1J5rtsLWZWi5ziOaouz_TaA&oe=69E25937&_nc_sid=5e03e0",
+          "thumbnailSha256": "la38YMEo2eTCld+7N0X/1r4bUXBqj9iBdyriEqoX1EU=",
+          "thumbnailEncSha256": "F1BslAczieUeFCPa5IhM6Hs0v6aMyDkzlj7nW8CF5xI=",
+          "mediaKey": "acUn995D+fec3Sn+78+BQ1N+UMPBA129Q/sxYyqQ35E=",
+          "mediaKeyTimestamp": "1773859434",
+          "thumbnailHeight": 32,
+          "thumbnailWidth": 32
+        },
+        "linkPreviewMetadata": {
+          "linkMediaDuration": 30,
+          "socialMediaPostType": "LONG_VIDEO"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "1gHEI4YkX91GYl/2Zp9YI9Wda2r8KB0Q+l/DgUARBgk="
+      }
+    }
+  }
+}
+[2026-03-18 18:45:43] [INFO]: 📞 JID: status@broadcast
+[2026-03-18 18:45:43] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:45:43] [INFO]: 💬 Body extraído: "https://www.instagram.com/p/DVRs6KwAKjM/?igsh=eGp2MXQ0ZGVtb2Rv"
+[2026-03-18 18:45:43] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:45:43] [INFO]: 📱 Telefone extraído: status
+[2026-03-18 18:45:43] [INFO]: 👤 Nome: status
+[2026-03-18 18:45:43] [INFO]: 🆕 Utilizador criado (c0fd1ede-53a2-4141-ae32-86d3b1b004b0)
+[2026-03-18 18:45:43] [INFO]: 👤 Utilizador ID: c0fd1ede-53a2-4141-ae32-86d3b1b004b0
+[2026-03-18 18:45:43] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:45:43] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:45:43] [INFO]: 💬 Chat ID: 2d90a96c-3f96-49de-901c-c0a32db677fe
+[2026-03-18 18:45:43] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:45:43 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:45:43] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:45:43] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:45:43] [INFO]: 🔁 Já passou no funil? false
+[2026-03-18 18:45:43] [INFO]: 🆕 Criando funil para usuário
+[2026-03-18 18:45:43] [INFO]: 📨 Mensagem inicial:
+[2026-03-18 18:45:43] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:45:43] [INFO]: ✅ Mensagem enviada com sucesso
+[2026-03-18 18:45:46] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:45:46] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "c918b07e-88ee-4370-b1f8-5fdf8a82f7ea",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "jidAlt": "75119162568875@lid",
+    "messageId": "ACD00E7A4DC8175B68A94077280C1CC6",
+    "pushName": "Clívia  Leal  🌟🫶🍀💮🍄",
+    "timestamp": 1773859559,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "https://www.instagram.com/p/DV_yCkKCd0X/?igsh=bnl6dGxwY25xZDg0",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "https://www.instagram.com/p/DV_yCkKCd0X/?igsh=bnl6dGxwY25xZDg0",
+        "matchedText": "https://www.instagram.com/p/DV_yCkKCd0X/?igsh=bnl6dGxwY25xZDg0",
+        "title": "FÃS DO LULA ❤🇧🇷 no Instagram",
+        "textArgb": 4294967295,
+        "backgroundArgb": 4285818730,
+        "font": "SYSTEM",
+        "previewType": "NONE",
+        "jpegThumbnail": "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",
+        "contextInfo": {
+          "forwardingScore": 0,
+          "featureEligibilities": {
+            "canBeReshared": true
+          },
+          "statusSourceType": "TEXT"
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT",
+        "faviconMMSMetadata": {
+          "thumbnailDirectPath": "/v/t62.36144-24/610205036_1596755148269779_577231408321287319_n.enc?ccb=11-4&oh=01_Q5Aa4AEMs6FojfnknfpFHn08V87ZAOico2wIWsSzs7DQ7P_B6w&oe=69E27CAB&_nc_sid=5e03e0",
+          "thumbnailSha256": "la38YMEo2eTCld+7N0X/1r4bUXBqj9iBdyriEqoX1EU=",
+          "thumbnailEncSha256": "eisq/T97qoTB+QbAAJABbFbvya6lHxRbzk3Ps2VqCmg=",
+          "mediaKey": "iB+N5SKMCh4mtLbXWuKOg2b4apSUC1y0InvVlvUOvlw=",
+          "mediaKeyTimestamp": "1773859551",
+          "thumbnailHeight": 32,
+          "thumbnailWidth": 32
+        },
+        "linkPreviewMetadata": {
+          "socialMediaPostType": "SINGLE_IMAGE"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "/Y4lWDnJ9OSVi+P5pahR4bBxYIpMxFX5Ob99JKTgJOU="
+      }
+    }
+  }
+}
+[2026-03-18 18:45:46] [INFO]: 📞 JID: status@broadcast
+[2026-03-18 18:45:46] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:45:46] [INFO]: 💬 Body extraído: "https://www.instagram.com/p/DV_yCkKCd0X/?igsh=bnl6dGxwY25xZDg0"
+[2026-03-18 18:45:46] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:45:46] [INFO]: 📱 Telefone extraído: 75119162568875
+[2026-03-18 18:45:46] [INFO]: 👤 Nome: Clívia  Leal  🌟🫶🍀💮🍄
+[2026-03-18 18:45:46] [INFO]: 🆕 Utilizador criado (5ade0698-2b63-49a6-bfb3-ccffb12acafe)
+[2026-03-18 18:45:46] [INFO]: 👤 Utilizador ID: 5ade0698-2b63-49a6-bfb3-ccffb12acafe
+[2026-03-18 18:45:46] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:45:46] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:45:46] [INFO]: 💬 Chat ID: 13e387cb-d24b-4549-8508-2b88504502c8
+[2026-03-18 18:45:46] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:45:59 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:45:46] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:45:46] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:45:46] [INFO]: 🔁 Já passou no funil? false
+[2026-03-18 18:45:46] [INFO]: 🆕 Criando funil para usuário
+[2026-03-18 18:45:46] [INFO]: 📨 Mensagem inicial:
+[2026-03-18 18:45:46] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:45:46] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 18:45:46] [ERROR]: ❌ ERRO AO ENVIAR:
+[2026-03-18 18:47:25] [INFO]: 📩 [WHATSAPP] Nova mensagem recebida
+[2026-03-18 18:47:25] [INFO]: {
+  "event": "message.received",
+  "nome": "caetano_bot",
+  "instance": {
+    "id": "c918b07e-88ee-4370-b1f8-5fdf8a82f7ea",
+    "name": "caetano_bot"
+  },
+  "whatsapp": {
+    "jid": "status@broadcast",
+    "jidAlt": "75119162568875@lid",
+    "messageId": "AC23777EF7898AF1EB5103C2C3895F7D",
+    "pushName": "Clívia  Leal  🌟🫶🍀💮🍄",
+    "timestamp": 1773859658,
+    "lastSeen": null
+  },
+  "message": {
+    "type": "text",
+    "text": "https://www.instagram.com/p/DWALjyWj9_v/?igsh=MWd1cmI1YXVjZWp2eQ==",
+    "raw": {
+      "extendedTextMessage": {
+        "text": "https://www.instagram.com/p/DWALjyWj9_v/?igsh=MWd1cmI1YXVjZWp2eQ==",
+        "matchedText": "https://www.instagram.com/p/DWALjyWj9_v/?igsh=MWd1cmI1YXVjZWp2eQ==",
+        "title": "PT - Partido dos Trabalhadores no Instagram: \"🚨🚨🚨\"",
+        "textArgb": 4294967295,
+        "backgroundArgb": 4283864831,
+        "font": "SYSTEM",
+        "previewType": "NONE",
+        "jpegThumbnail": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCACMAIwDASIAAhEBAxEB/8QAHAAAAgMBAQEBAAAAAAAAAAAAAAYEBQcDAgEI/8QAPxAAAgIBBAEDAwMCAwQHCQAAAQIDBAUABhESIRMxQQdRYRQiMhWBFkJxIyRDkQgXJVJzobEzNnJ0gqKzwdH/xAAXAQEBAQEAAAAAAAAAAAAAAAAAAQQC/8QAGhEBAQADAQEAAAAAAAAAAAAAAAECAxESBP/aAAwDAQACEQMRAD8A/VGjRo0Bo0aNAaNGjQGjRo0Bo0aNAaNGjQGjRo0Bo0aNAaNGjQKU/wBRtqw5FKL5VDak6lEWJ27ggEEEDgjyPP51M3DvPA7euR1MxfFexJH6qp6bMenPHbwDwOdVibYko7z23Pj4VXEYzGS0hy/leSgQcHyfC++l36mbWzOV3fFkMdjrF2qca1Rv0+SFNlcuT5Puy8fHGiNNp36l2rDZq2IpYJkDxurAhlI5BH9tdfXi6B/VToTwG7Dg6xal9PM9VxeTaevWs5FMTXqUuJusYcKyygDkcHqQOTxzqnm+nm6v6GsCUpmZL888Mf6uEhEeKML2j46Edlb2IK+4550G3S7jxUWQ/QyWgtr10rBCp8yMndVB44PK+ddMlnsXjJ0hv3YYJX9lduDrNaOztx/4irXbsURjTJ07TFZuVCR1fTcqCef5/Hz76nbz2nlbW4bVyhUguJaVQryNwYCF6n3+Nafl1a9mfnZlyMv17turD1qx7Wmo6yIGQhlI5BHsdetV23aL4zCUqUsnqSQRBGb7kf8A61Y6z5SS2RpwtuMtnKNGjRqOho0aNAaNGjQGjRo0Bo0aNApXIMvIs1WB7HKVlXkMoXno3sffnt1866VKuYjcKHnWESuzBmTkj/aEAHj2J9PTTo1eufJSijz5EYk9QjkgglR4PHufx58cefxq9wUM9fHIlocS8knzz86sNGosnBo0aNFGjRo0Bo0aNAaNGjQGjRo0Bo0aNAaNGjQZT9RN85TCf0tqs9WCSpWTJ5WAlWMkPZQ0SE/PBkII/wC6PvrSKt9rNsLFXZqbQrNHbDAo/b4A9/bg/wB9LNT6f4OJ7VjNwVctNLFFAJLtdH9JEQIFXkHjk8n/AFOrTaWDfBUKtKPKTW6dSBa0ccir+3qTwSR5544H9tAtxvuPNbl3RDQ3C9CHGzpFXgFWKRDzEr/uJHb3P31Bq/VVFxlETU45sl+lNm2gspCkYV2T9vc/uJKMQB8DV7a2hbbM5i1jdx2KK5J1exDHAjFSECeGPkeBqNa+m1NJK0mHtCm0dNaMhlrpP3jUkq37vZwWb9359tBzf6lxSG/NQxFq1jaEcM1m2JFUJHLGrggHyxAPkfjVqN7VWoWrUdaVkgya4zjkfuY9OGH4/eNLtfYeRmze5YHvz1cHd/Sxen0RjZjSBFYg+6kkEHx7aspNgq+QsLBmZosfJkI8m1NY1JEqhfHb36noDxoIOG+oOSbAyXMnioUl/qFuqrNaSGJUildB2dvHP7ePyQT4GpcH1FXKY6rYwOJs3TNS/XShZFUwpyQPf+TcqeAPfjXz/q4EVxLFbKkNHatWIlmrJKI/XkMjgA/IYnhvtoxv07kxFKvBi87YruldqckphVmkiLFh+Aw7Hhvz7aCBt36jWpdqU70uNnyP6bHw2snaiZUEZZAx6r/mIHkgcaZN5ZyxSr7ZnxcwEWQy1au7dQe8MgYkefbngedVFf6ailimxmOzVmvQsVI6dxBGpaZUXpyD/kYr4J86v907WTNYrGU6tyTHnHWYrVeSNA/VowQo4PuPOgj7z3KNu5LGmQzNC8FqZ4o1UiQRRhvJPke/jj++qz/rGEHqrksNaqTNUjuVYvUVzYV3CBfH8W7Mvg/fUnIbHnywhOZzc9uWGOxEjiBI+FmQIRwPtxz/AH10zOyKWVtRPJcljnhx604+vHKdZFdZP9QyD8aBRym/Nxw7rmqf06WuYpKMf6HlHLmUzdur/YhU8/HU6v7P1KhqhqlnHGDNJZNV6c1lEVT0D9/UPjqVIPP9tfLH08s2shNk7W4bL5SR67rMsCKqej36gL9j6h5/vr1J9PIbTf1B8kJ801lrD3JK6OjkoI+npnx1CqAPPPI99B6pfUiC++OjoY2eeaz6pmCyp1rCJwshZvYgc8jj38ar8j9SLEmGaWviLNMXsdau4607K4ZY4i4Yr8E+CAfvpixGzIMfZq2XtSWZYa88DhkVFk9Vgx8AcADjgAfGkPC7OzuSvY/H5KO/Tw2PoWqSif0j0EqCNQjKxL8L/mYL4A8aB42Xuyzl7MGPyeOmpXHoR3kZ3VhMhPUngfxPPx+dZvvjfWbob0zVGDN3qdetMiRRV8aJ1CmJG5LdD55Y+OftrW6G3Yaeaq5JZ3Z6+OGOCkDgqGDdv9fGqe3sqjZzGTvNfkWS5OJXQccIRGicf8kB/voEffmRyVfCWsZby6ZiC3RhtmVY1X0mFiIeOv8Albt45+2p2JzWSyG4reEq34sPCJ7thrEUKcyFJFUL58fPJPufGn+Pbm28XWmhTH4+tDZKh1Kqofg8gefgHyBrvkNt4O9X63cbUliEjTfvQeGb+Tc/n5++gyLJ37+QycJTLQKy5fFK9ulGqrY7J5Yk+4/Htq7xu7svJuvDFbNmfF5HITVO0scMcTKqSEemoYycgoP3MAD/AHGtAbEYC3WKfpaEsErRjhQpVmj/AIccfK8ePtxrxBtbbyWjbhxdIWFl9X1VQcq4+Qfg/fjQKn1N3FksfkpKmGs2lmrY570kVeOLhRyQryPKwHXlWHVQWOlVMvk3yG6s/UzENGeHDULzQemrCd/SkbqefPU+3j761jJYnAZq2s2QrUbliBOvZ+rFUPng/j58+NQ5dt7T7QzS4/GcxdYo3YL46/xX+320GfvvTc9vLXbVWvYhr070FX9O71Y4SrCMv3aSRZOx7nrwv24515ydnPZWWhcsZ2SCBd1NRigiiVQsaPKoJPuTwOPtrTreFwEuZhvWqdFsn4Mcjhe5I9iPuR8H41yFfCXcfLHboww1hcd/TsoE7TK55kH3JPJB+edAoV945B62ADWof1FvN3Kcq9RyYo1sFRx8cemnn/8AuqiruPcM2EwZfK2rOSyVaW88NOtCpSNeqj98jKqqC3n3Yk+PA08YOrtTIx1s/Vo04ZrbtLHLKipIX5ZCR+T59vfnVhewe3bC06tynQYVuUrxuACnPuoH2PjxoF6HdORP0fTcPCPkjT9QngFQ3PHYgeOB76R9wZfL7c3ldlgyRy1yTEVIo5lSMPGJbTKfBIT7kcke/nWsYafb74y7SxhqLQqTPWniC9Y0fn9ykHxx5/00Utq7dhrTLUxVEQWU6SdYwRIvvwT8jQVH06yeYt2czTzQlK1Hj9B7Elcz8OvJV1hdgOCOQTxyD+NJu2MpnMokNHH5GPFwLVv2j6FZDy6XJEXwfHHA8/fWiYuxgMJka+FxMMEL2lkn4gA68p17Fzz7+R76sMdj8QnMmOgq+FaMtCAeAzFmHj7sST+dBmNTfGesY7GQGSJcluGlRmxxEY4jeQD1zx8hB2fXzHbv3NZzcdoRzLRbLSUGjmerHAIlZk5BMnqlxx246+fIA1eWd37axtmQtgciKu33aob8dINDTAUBuGB5ChSOeB7aakxG3lzK5BKtAZOT96ycL3bkcdh+SPHOgyXJ7iztrbucqZTJWYLNnE2LUDRpFJDIEK/ugljY/t6twQwB/cCPbVxi786XcrDJ+nnaKeJPWaFe0n+7QnliPc+f/TT9U2/tqtPZjq0Mek1qNo5UVV5dCf3Lx9j8j210ip7epdoo1x8JBHZeyg8gBRz/AGAH9tAsb1qRruxbeaxFrLYp6DQwJBXM/pzduTyo9iw4Ab8e41FzGFz7/RGDFj1my6QwetGp7yGNZVZ4/cdm9MFeOfPt86Zdu7mGc3BYhqGKTGGhWu15QpDOJex88n24A+Nfd7Zy/jpsRi8HHXbLZadoYZLIJihVELvIwBBbgDwARySPOgzI7fvz4PMRYinfNi7ZrLj5DR/RR1Z1B5sdOSVVR7kj93HHzpu21isxFtWqotS4s1UlW/VlrLIbUgJ7SCQ+QG9wR99XFTI57BJfbdJr5CnCiPBboVmjeRmbqYzD2Y888cEHgg/HGvE2/sR+hkNivdWX9WuOeoYCZfWdOyr1H3X50GX4fGNk9qYf/D2GvVr0OLs/rbDQsgnDwMqoG/4hZypHHPHHxqw3BtSWjPiAtCcYoYn0vShxxuEWiR3LLyOrMOB3P2Pkad8LvzApBWq1aV6nTV3qIXrFI45YwSYv/iAU/jUin9RsHPDHYmFupTmrtZgsWYCiTIo5YqfkgfHz8aDOruCylO3jSKWQuZOOtRjEdyn60cxTjkidCPQdfPYkkEjng86n18RLTzE1rcWFu38a9jICKJK7TFHewWRuo/7y8cN/5jTw31BxMME73ob1J440lSKxAVeVHYKpQfPLMB+OfOrzB5mPL1ppI61qtJC3R4rMRRgeOR+COD7jQYLS2vlq+KqRZajfSNsYIK0Ix36t45O8hZOew9NvKnsfH58aZrWz7j4LdM9jHz2cyDV/STuvMpKRRcshHz2DckfnUnGfU/KTbCzWQu1acGbpqZ4IwrelNAZeivx25+CD599O1ne+MgyT1WittDHOtWS2sJMKTNwAhb78kD7cnjQZlldu3orFr0sfYhpJuCa1bCUTOJYnjb0nCePUUMfIHPHPPGnTa2HyUX0yytGq1mG1YFo1BPEIGjD89AEBPQc+QOeQDrthvqLBcoRvZxt1b01mxDDUhiLvIsLcM4H2HK8n7njTfhMrVzWLgv49y9eYEqSOCCDwQQfYggjjQYdlMDPflpf4a25kaMlfFyQXC0Bh9R+0ZaME8dmKq47DweffT9saop3bevYnF2cXhmpRwtHNAYPUnDE8hDx7L4LceefnVjkN51cVm8jUvO03pS14IYK9dmk7yozAE88Nz18cAcfOiPf2Mlgj9CtkJbrTyVjSSAmZHjAL8r8AAg8/kaDNM5gpZ/8AGlSXHbpkvXb00lNKqyCpLyi9C3/DKlh55+NG5cfnZ7sstjGWFycFyjKTTx5cSJG0RkkE5PgeHHRQD4+eTpx299SIrNOS/lpoYaoFlljjrv6jKlkxR8eT+4/tHXjksfj21frvWoYDzjsqLYmEP6Q1T6nJUtz9uOoJ55/HvoEY7Utpj6d2pjZY8wdxvMZ+pEiwMzjkn36cEfjXTAxYGjhqdXP7QyNnLRJ1tS/0p5u8nJ7N3APbk+efzpwO/sXJXqtThu2rFhZHFeGAtJGsbdXZx8AMQP8AX21TYr6s7fhwuOm3Hka9S9ah9f0lRgOhZgp488fx+dB025tTNbWoVTSsVLNyOpRxpBRuvpxP1d/ceShJ/BHzpi3hgLGXOMu4u0lTL4ycz1ZZU7xnspR0dQQSrKxHjyPB+NZ3S3jlpZcjksPXleK/JUmIaJrDVY3rB/EQILeSAeP9dXeK3hm9wOK2FmxazVqf6mxNJHIVkbu6hApIZP4HnnyCeNBJyu0Nw5ulkJcrl663ZxDHHWriRaqxpIHZG89j39mPjx4/1i4L6dW8ffM7zY2GA5SDJiCpCyKhSIxlAD/9J5+fOq+L6gZ/J4zK5XGwUIKWNpwXHimVmeXsnZkBBAHseD5+PGpWQ3/kocyjVlhmxwvQ03RK0hC9yqkmbkKGBb+IB/10FnkNkzrhGhSyrvFk7OTACn9wkMhCD8/v41RYfYeW3DtLCU9zW4IK9THelAkETLKrvGFBk5PHKj4Huft7am1d37juLWMa42L+o5KbHVCyMfTETSdpH8+eRHwFHHn502bJzVvLQ5SvkkhF7GXXpTPCCI5SFRwyg+37XHI+CDoF69szO5d3tZe9intxVhVgiWqXgkXurP6ivz/LqBwP4/B1c7C2zPtyrfSeSBVsy+olWsXMFcdeOE7Hnz7n2H41E3Dmc+d12MTg2x8SQY8XWktKzdj2I6+COB49/jS9B9Qszl9v38/ia9OCjjMdDfnrWQxebtD6rKrAgLwvgEg8nQd859LGyWxcfh4cgtfJ02cLbVOVeJ5CzxsPlSCP9CoOuj/TUjPzzxph3pz3hdeaar6lpf3Biik/t4JHhj5APgc8HV7s7O5TPZrLtItaLE1JBDEnVvWYmNHBY88DjsRxqgo7iyk+4JMJg46lazNbuzPPZ7yL0haNeAvb+RMg9iAAD40EmpsnMYu7XyGLvUTeqy20jE8bmOSCw6yFW4PIZWQcEeOPGrvamIyO3v0GMWSGxQEM01qcoVZrDyBv2+eAp7P44+B50oY3eu6MvMa9RMXXmhx0t2Z3V3Uskzx9VAI8EL7/ABruN95q/jsplMdDRhp4irBPZhmDM87PEJWCkEdQFYAEg8nnQX9zZktjd82ZFpAj2q1j0+p5AijdCOfz35/tqI2y8lSztrNYe5U/Xy3prCpZRjGYpI41KnjzyDGDzquk3tmpTn7URx9ehRtxUoBJHI8sjyRQyfxX3I9Q+B7/AI41wq763BZQ0YYKoyQyyY8S2IHiUo8HqhzHySCPtz5/HOg9J9LrhoKs+WiN5C86TrCQvrm3+pVivP8AHsACOfbVhmto7izTVrGVv4y00U5c4543FRl6dRzx+5mB/d58ef76ud6Zy7haOMhrzQC/ak9Mn9O8xbhSWKRr5Pn7kAA++s+bf11JYc9dgb1aOLyQeunZFkeKaFVJXzx/58cnQX+D2Dmdv+hYxV7GfrI0sVmV4GWEwyyCQcKDyrKw8DyCDpfyf0Ggy0dF7menhtQ1xDKYYV6yMGY9gD7eGA4/GrSTfu46mNyZsUo5LEUdeSCaSrLXjLSTLGyEN5PHbkEe+kb6hZ3emP3deq/15Yigj5Sv6iRgmNT4Hb86DZ59sbcyly2I4JYbkEqM8teSSB42EfVejKR46eOF8ffUWrtPaeWrGKlHKBSeSpLJBYlidiT2kSRgQXBJ5PJPJOkjIQS47PyUsvbyX+Fq1yKGxK00n8RVAQu4PIUuDyeeOeOdL9KxEkD1A1qHHS3bs1exdewqy+UCABOHd+PK8nyPPk6DbptuYKrj8kjVI4qlqusVlVJAMSJ1A4B8AL48aqq+y9rZeCPIV455Ktl0uRKlqVI+/giVU7ABvA88c6zGneW3hIn3fcyg/wCxlTHlWmUtZDSLIOF8tL/D9rcnj++q+FsqkMUN+5JStx06a4qMix6hHpLyYkQhWbv2DBuePngaDdLG08NPilxrVmWus7WUMcrq8crMWLq4PZTyx9j868U9qY/HvjRj/UgjpyyTlfUZjM7g9mdieWJJ55POs0xluxD9RIu9ixduS5BkkgZpobFdOOPKcmNoR7g+PceedTvrFO0GbgkNuZfTpM0NVmmiWaTt/wAKSI/+28AdWB9x+dA153Y1TO7tkymSklNZqQqelDPJCzDsSwYoRypB44OpuS2Rt/IzpJYpEKsaQvDFK8cUsafwSRFIV1HwCDrO8zuC1ANwY+WTIw5O1ksdLVr8OXWErX7kEeAoIkDceOeeffVVav2KuYzhgtW7NmSPImQ95op6ihJCvqISYyg4UIy8e6nz50G50MdUoTW5akQje1L60xBJ7PwBz+PAGknfm2IPRpz45YIG/WM7MXnWQyzcJyskR7KCeAR/Ej34451nq3Lkm33m2LaylmwcF3yTSNK5WctF5Ab2k6eseF/H41LxT2zXs/0nIS2Ma1/GL/upsFAxsD1OHkYseV47AeB8+50Gh7A2ph8Zg4RBJDcmFd6UtiJyVZTIzMg8/DM35/OptnYe3bEkLPUdAkSQMkdiREmjT+CyKG4kA+O3OshjNeljqWJHr1o/1WQeV7M1n0/VEihI+EIZnKt2Ucge58nXO3lLU2GwFu5ety248TGBUnM8JmmEjhvSdD5m5AUq4P8Al+50G23NpYa1WuwyVmRbllbkrRysjesqqqurA8qQEUeOPbVZgNt7XF65LjEkls1Loaw0k8rkWVj/AJEsfLdHHJ888j7ai/UOVjisE95rNfDtZQ5IxuyssZQ8dmTyB268kazrAtSiuXGyE2Rj2fLmLLes7TJ3PowiIu44bpwG6kng8DQbDvHG4e1jjkM400MOMSSz+pgleN4VCnuQyHtx1B5A99Ke1Y/p9etjHYmOQy2a84SC3FYjEsUnUy9RKAGB4Unjn765R/rrP0P3KtgW5Q9LIrS/UBjM9frIIewP7iSvHv59udKuNvSSZPbFrGZHJbgmo1JhNWNQxioprHllfqB37BUAPPPY6DUqmx8DXrWIf0804n9MO1izJK/WNuyKGZiQqkcgDxrjuL6e7a3FlHyGUpySW3UKzx2ZI+QBwOQrAc8eOdY9RyNz0cqlC7Pxb27O4FeSw5FpWQ8F3PmUKW56gcfbVF9bIdwbc3PQrbWt52OpNjop5vSnmkDTFnDEnk8EhV8aD9NYHN47P0jbxNgWa3br6iqQpP4JHkefcaX/AKjbzbaMNE16JvSys0s0atwYq0Y5ll/PUEcD5J1L2TOY9u7aqoqCJsXC3geRxGnt/wA9KuawFbdX1EzsWTsXUjp46KCNa1hogUk7Fw3HvzwP+Wg0exfqVsa9+eeOOmkfqtMx4UJxzzz9uNKVL6jYa1mb8CWI1x1OjHbksyBkKl5GXqVYA+ygj786V0lktf8AR3teu7Oa1WSNGJ8kRSELz9/CgHS79RJTkN35QSgJ0oYc/wCyJQnm2x8kHn5/9NBrX+Otuf0/9ackiwev+m/dG4cS8dghQjsCR5A4866R7roZKjG2AsQW7lkSrVikJjDPH4YNyOV6/II51mzUa9L6givCjt6ebpqZJZXkd/8AdnYdixPt2I8ceONe9vyGH6hqyAc/1nLe/wD4aHQPsu/tu1KteS5k4u8sbSf7KN25CMVdgACeoYEc/GvWd3VthoP6bkcjEYshAFPTkqY5R1UlgOFDc+CSNZh9JpDbpVLEqr6km37bngeOTbcnjUTZmUmw+xs1PXjgldcTiHAnTuv7oUQgj5HHnj76DU6W7MNiMZDBcswxrC8leGOsJJiEiPXkgLyOOByeOAfnU3de6quE2Tb3FXKW68df1oepJWXn+PkA+DyPOspwyNey2bqTyzLWqwZC2scUjRhn/UuP3FSCRwB4540x+/8A0b1P3woP/wBugbKm+MMP0le/fgjvSpGZFRXMcbOAVUsRwvPPgNwdTYNwR/0HJ5OYwPHSknVv07Mw4jYjg8gHt48jggH5OstykzRbW+oFZQpQ5SFexHLf7RYefP458fbTZstQuw9yqOSBeyY8/wDiyaCVhPqPiZduYrIZy1BTsXoTYEUSyOI07Ect+3kAexYgDnng8a7ZXflLFZiOnZ9GVZ7sVSMwMzMneLv2cdeB+OCeQedZnRx8FhZ5ZmnPpbMqzBFndFYr6v7SFI5U/I1JxIVM/QEahEGUxgCgk8D+nnx586DWcfu3CZDKnG1LqyW+XVV6MFcoeGCsRwxHzwTxr3nt04fAzrDlLfpSMhl6rGz9UB47N1B6r+TwNZLsztYy302yliWaa5kVuTTM8jFQep8KvPVR+ANXH1IVruQ3kLEs3pY7BrNDEkjIpZhJz2CkdvYeDoNahkjmhSWFleN1DKynkMD5BGveqfZv/uhg/wD5GD/8a6uNB//Z",
+        "contextInfo": {
+          "forwardingScore": 0,
+          "featureEligibilities": {
+            "canBeReshared": true
+          },
+          "statusSourceType": "TEXT"
+        },
+        "inviteLinkGroupTypeV2": "DEFAULT",
+        "faviconMMSMetadata": {
+          "thumbnailDirectPath": "/v/t62.36144-24/561409349_1608186623577782_2204763106235417005_n.enc?ccb=11-4&oh=01_Q5Aa4AEW3R7SsTp4cJBf9d7QU5r6KxZtuvi_2Af1M1BAWA8zrw&oe=69E2723B&_nc_sid=5e03e0",
+          "thumbnailSha256": "la38YMEo2eTCld+7N0X/1r4bUXBqj9iBdyriEqoX1EU=",
+          "thumbnailEncSha256": "TX5GjmAiy4oNv3M6M5eD8gDalVb8bCwTGaIGNLzhiBM=",
+          "mediaKey": "LSPRH+aD+pb1Rqj/WtyqGZwY+toErJYMEhGwaqemkQ4=",
+          "mediaKeyTimestamp": "1773859618",
+          "thumbnailHeight": 32,
+          "thumbnailWidth": 32
+        },
+        "linkPreviewMetadata": {
+          "socialMediaPostType": "SINGLE_IMAGE"
+        }
+      },
+      "messageContextInfo": {
+        "messageSecret": "hqPBZQJfUfLY7VXmkXuPDSyeXbAA20xXYD0MhIASyzs="
+      }
+    }
+  }
+}
+[2026-03-18 18:47:25] [INFO]: 📞 JID: status@broadcast
+[2026-03-18 18:47:25] [INFO]: 👤 fromMe detectado: false
+[2026-03-18 18:47:25] [INFO]: 💬 Body extraído: "https://www.instagram.com/p/DWALjyWj9_v/?igsh=MWd1cmI1YXVjZWp2eQ=="
+[2026-03-18 18:47:25] [INFO]: 💾 Mensagem raw salva
+[2026-03-18 18:47:25] [INFO]: 📱 Telefone extraído: 75119162568875
+[2026-03-18 18:47:25] [INFO]: 👤 Nome: Clívia  Leal  🌟🫶🍀💮🍄
+[2026-03-18 18:47:25] [INFO]: 👤 Utilizador ID: 5ade0698-2b63-49a6-bfb3-ccffb12acafe
+[2026-03-18 18:47:25] [INFO]: 🏷️ Instância recebida: caetano_bot
+[2026-03-18 18:47:25] [INFO]: 🏷️ Instância encontrada: caetano_bot
+[2026-03-18 18:47:25] [INFO]: 💬 Chat ID: 13e387cb-d24b-4549-8508-2b88504502c8
+[2026-03-18 18:47:25] [INFO]: 🕒 Data mensagem: Wed Mar 18 2026 18:47:38 GMT+0000 (Coordinated Universal Time)
+[2026-03-18 18:47:25] [INFO]: 💾 Mensagem salva no banco
+[2026-03-18 18:47:25] [INFO]: 📡 Evento socket emitido
+[2026-03-18 18:47:25] [INFO]: 🔁 Já passou no funil? true
+[2026-03-18 18:47:25] [INFO]: 📊 Estado chatbot: 0
+[2026-03-18 18:47:25] [INFO]: 📤 Tentando enviar mensagem:
+[2026-03-18 18:47:25] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 18:47:25] [ERROR]: ❌ ERRO AO ENVIAR:
+[2026-03-18 18:47:39] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-18 18:47:39] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-18 18:47:39] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-18 18:47:39] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-18 19:02:20] [INFO]: 🆕 Utilizador criado (d88e8f91-bb00-44b0-9dd5-ef34c4a271e7)
+[2026-03-18 19:02:51] [INFO]: 🆕 Utilizador criado (8b2bc7bd-e67f-4a60-b982-0158588a2eda)
+[2026-03-18 19:53:09] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-18 19:53:10] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-18 19:53:11] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-18 19:53:11] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-18 19:59:49] [INFO]: 🆕 Utilizador criado (86dd0389-2047-4754-b67a-aca20809c7b3)
+[2026-03-18 20:05:37] [INFO]: 🆕 Utilizador criado (422e88bc-9115-41dc-9003-bbe8d6cf554d)
+[2026-03-18 20:05:40] [INFO]: 🆕 Utilizador criado (5f79bdfc-aedb-4045-b57b-4a6bec75152c)
+[2026-03-18 20:25:01] [INFO]: 🆕 Utilizador criado (d122ec0f-b04c-414f-b858-440752d75579)
+[2026-03-18 20:43:55] [INFO]: 🆕 Utilizador criado (30221488-707f-4c45-86ab-f181e3bb619c)
+[2026-03-18 20:44:21] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 20:44:21] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-18 20:44:21] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 20:44:21] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-18 20:44:34] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 20:44:34] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-18 20:44:35] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 20:44:35] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-18 20:44:40] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 20:44:40] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-18 20:44:54] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 20:44:54] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-18 20:44:55] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-18 20:44:55] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-19 17:18:27] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-19 17:18:27] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-19 17:18:27] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Mar 19 2026 17:18:27 GMT+0000 (Coordinated Universal Time)
+[2026-03-19 17:18:27] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-19 18:13:17] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-19 18:13:18] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-19 18:13:18] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-19 18:13:18] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-19 18:20:02] [INFO]: 🆕 Utilizador criado (a78ba6eb-67fe-4b37-b210-963ba5677ce8)
+[2026-03-19 18:20:02] [ERROR]: ❌ Webhook error: duplicate key value violates unique constraint "uq_chat_unica"
+[2026-03-19 18:20:17] [INFO]: 🆕 Utilizador criado (9c155bdd-03ce-47ee-be43-113f6445ccdd)
+[2026-03-19 18:22:36] [INFO]: 🆕 Utilizador criado (3e648ab0-3c1a-41f4-ab30-3a33afd07f61)
+[2026-03-19 18:23:01] [INFO]: 🆕 Utilizador criado (2d32e168-32ce-42d4-9438-f5fc1e341421)
+[2026-03-19 18:23:47] [INFO]: 🆕 Utilizador criado (ac71212f-bb95-4fb9-8491-9f29672cb017)
+[2026-03-19 18:23:55] [INFO]: 🆕 Utilizador criado (bc748b80-0b99-486c-9f46-6b37242273e2)

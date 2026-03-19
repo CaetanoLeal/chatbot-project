@@ -7,15 +7,33 @@ const {
   FUNIL_EXPIRACAO_MIN
 } = require("../constants/chatbot.constants.js")
 
-function extrairNumeroWhatsapp({ jid, jidAlt }) {
-  const raw = jid || jidAlt
-  if (!raw) return null
+function extrairNumeroWhatsapp({ jid, jidAlt, raw }) {
+  const candidatos = [
+    jidAlt,
+    jid,
+    raw?.key?.participant,
+    raw?.key?.remoteJid
+  ]
 
-  const numero = raw.split("@")[0]
+  for (const item of candidatos) {
+    if (!item) continue
 
-  if (!numero) return null
+    // PRIORIDADE: jid válido
+    if (item.includes("@s.whatsapp.net")) {
+      return item.split("@")[0].split(":")[0]
+    }
+  }
 
-  return numero.split(":")[0]
+  // fallback (último caso)
+  for (const item of candidatos) {
+    if (!item) continue
+
+    if (item.includes("@")) {
+      return item.split("@")[0].split(":")[0]
+    }
+  }
+
+  return null
 }
 
 async function getEstadoConversa(idUtilizador, idFunil) {
