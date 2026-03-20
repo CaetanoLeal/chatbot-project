@@ -2549,3 +2549,11 @@
 [2026-03-19 18:23:01] [INFO]: 🆕 Utilizador criado (2d32e168-32ce-42d4-9438-f5fc1e341421)
 [2026-03-19 18:23:47] [INFO]: 🆕 Utilizador criado (ac71212f-bb95-4fb9-8491-9f29672cb017)
 [2026-03-19 18:23:55] [INFO]: 🆕 Utilizador criado (bc748b80-0b99-486c-9f46-6b37242273e2)
+[2026-03-20 17:43:12] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-20 17:43:12] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-20 17:43:12] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Mar 20 2026 17:43:12 GMT+0000 (Coordinated Universal Time)
+[2026-03-20 17:43:12] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-20 18:49:20] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-20 18:49:20] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-20 18:49:20] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-20 18:49:20] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up

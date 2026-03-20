@@ -1,4 +1,7 @@
-//app/(dashboard)/dashboard/page.tsx
+"use client"
+
+import { useEffect, useState } from "react"
+
 function getGreeting() {
   const hour = new Date().getHours()
 
@@ -11,6 +14,16 @@ function getGreeting() {
 export default function DashboardPage() {
   const greeting = getGreeting()
 
+  const [data, setData] = useState<any>(null)
+
+  useEffect(() => {
+    fetch("http://localhost:3001/api/dashboard")
+      .then(res => res.json())
+      .then(res => setData(res))
+  }, [])
+
+  if (!data) return <div className="p-6">Carregando...</div>
+
   return (
     <div className="p-6 space-y-10">
       {/* Header */}
@@ -20,18 +33,18 @@ export default function DashboardPage() {
             Visão Geral
           </h1>
           <p className="text-sm text-zinc-500 mt-1">
-            {greeting} (nome do usuario), Seja bem vindo
+            {greeting}, Seja bem vindo
           </p>
         </div>
 
-        <select className="border rounded px-3 py-2 text-sm">
+        <select className="border rounded px-3 py-2 text-sm text-zinc-500 font-bold">
           <option>Hoje</option>
           <option>Este mês</option>
           <option>Este ano</option>
         </select>
       </div>
 
-      {/* RELATÓRIO DE ATENDIMENTO */}
+      {/* RELATÓRIO */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-zinc-700">
           Relatório de Atendimento
@@ -40,20 +53,16 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <DashboardCard
             title="Atendimentos realizados"
-            value="120"
+            value={data.atendimentos}
           />
           <DashboardCard
             title="Mensagens recebidas"
-            value="1.245"
+            value={data.mensagens}
           />
-        </div>
-
-        <div className="bg-white rounded shadow p-6 text-center text-zinc-400">
-          Espaço reservado para gráfico de atendimentos
         </div>
       </section>
 
-      {/* DADOS DE INSTÂNCIAS */}
+      {/* INSTÂNCIAS */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-zinc-700">
           Dados de Instâncias
@@ -62,39 +71,37 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <DashboardCard
             title="Instâncias ativas"
-            value="3"
+            value={data.instanciasAtivas}
           />
           <DashboardCard
             title="Instância mais ativa"
-            value="WhatsApp - 55****1234"
+            value={
+              data.instanciaMaisAtiva
+                ? `${data.instanciaMaisAtiva.no_instancia} (${data.instanciaMaisAtiva.total})`
+                : "Nenhuma"
+            }
           />
         </div>
       </section>
 
       {/* FUNIS */}
       <section className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-zinc-700">
-            Dados de Funis
-          </h2>
-
-          <a
-            href="/funnels"
-            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700"
-          >
-            <span className="text-lg leading-none">+</span>
-            Criar novo funil
-          </a>
-        </div>
+        <h2 className="text-lg font-semibold text-zinc-700">
+          Dados de Funis
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <DashboardCard
             title="Funis criados"
-            value="5"
+            value={data.funis}
           />
           <DashboardCard
-            title="Funil com maior conversão"
-            value="Funil de Vendas (42%)"
+            title="Funil mais utilizado"
+            value={
+              data.funilMaisUsado
+                ? `${data.funilMaisUsado.no_funil} (${data.funilMaisUsado.total})`
+                : "Nenhum"
+            }
           />
         </div>
       </section>
@@ -107,12 +114,12 @@ function DashboardCard({
   value,
 }: {
   title: string
-  value: string
+  value: any
 }) {
   return (
     <div className="bg-white rounded shadow p-4">
-      <p className="text-sm text-zinc-500">{title}</p>
-      <p className="text-2xl font-bold mt-2">{value}</p>
+      <p className="text-sm text-zinc-900">{title}</p>
+      <p className="text-2xl font-bold mt-2 text-zinc-400">{value}</p>
     </div>
   )
 }
