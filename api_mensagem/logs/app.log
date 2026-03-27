@@ -2557,3 +2557,175 @@
 [2026-03-20 18:49:20] [INFO]: 🚀 Servidor rodando na porta 3001
 [2026-03-20 18:49:20] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-03-20 18:49:20] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-23 17:48:33] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-23 17:48:34] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-23 17:48:34] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Mar 23 2026 17:48:34 GMT+0000 (Coordinated Universal Time)
+[2026-03-23 17:48:34] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-24 16:21:22] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-24 16:21:22] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-24 16:21:23] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Mar 24 2026 16:21:22 GMT+0000 (Coordinated Universal Time)
+[2026-03-24 16:21:23] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-25 16:36:34] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-25 16:36:34] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-25 16:36:34] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Mar 25 2026 16:36:34 GMT+0000 (Coordinated Universal Time)
+[2026-03-25 16:36:35] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-25 17:54:28] [INFO]: 🆕 Utilizador criado (959a3818-ab8f-4de4-a1b4-d42ca6aa7b2e)
+[2026-03-25 17:54:28] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 17:54:28] [ERROR]: ❌ Webhook error: Request failed with status code 404
+[2026-03-25 17:56:32] [INFO]: 🆕 Utilizador criado (fee22b6b-c143-4a99-a3c2-37bacdefd2f3)
+[2026-03-25 17:56:32] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 17:56:32] [ERROR]: ❌ Webhook error: Request failed with status code 404
+[2026-03-25 17:56:40] [INFO]: 🆕 Utilizador criado (f44c0c34-3afd-4b5f-847a-2276289ab1df)
+[2026-03-25 17:59:55] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-25 17:59:56] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-25 17:59:56] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-25 17:59:56] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-25 18:02:19] [INFO]: 🆕 Utilizador criado (0158c0e6-52a8-44c5-b493-3ddd0e8b0cb3)
+[2026-03-25 18:03:20] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-25 18:03:20] [INFO]: 🆕 Utilizador criado (9580e1fb-65e7-40ce-8313-fd5e18ad5ff4)
+[2026-03-25 18:04:20] [INFO]: 🆕 Utilizador criado (1b0181c1-f696-4a75-9f75-010e74833d77)
+[2026-03-25 18:04:20] [INFO]: 🆕 Utilizador criado (d3ebd163-87c4-43c6-9bb8-c1bfdab5e5a9)
+[2026-03-25 18:04:22] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-25 18:05:21] [INFO]: 🆕 Utilizador criado (dfaec189-f4e4-4393-9ccf-b01dc06cf22b)
+[2026-03-25 18:05:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 18:05:29] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-25 18:06:05] [INFO]: 🆕 Utilizador criado (2a7be50e-d38e-4883-aef7-cd04b824a62a)
+[2026-03-25 18:06:06] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 18:06:06] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-25 18:06:13] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 18:06:13] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-25 18:06:30] [INFO]: 🆕 Utilizador criado (af617ab6-3514-4a32-90d2-7d7296dc2b88)
+[2026-03-25 18:25:19] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-25 18:25:50] [INFO]: 🆕 Utilizador criado (f7603416-9154-417e-ae1b-954524a0b05d)
+[2026-03-25 18:26:47] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 18:26:47] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-25 18:29:52] [INFO]: 🆕 Utilizador criado (7791c56c-e9de-492e-b566-7b173f05ef95)
+[2026-03-25 18:43:54] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-25 18:43:56] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-25 18:43:56] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Mar 25 2026 18:43:56 GMT+0000 (Coordinated Universal Time)
+[2026-03-25 18:43:56] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-25 19:41:27] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-25 19:41:29] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-25 19:41:29] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-25 19:41:29] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-25 19:52:34] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-25 19:52:34] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-25 19:52:35] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-25 19:52:35] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-25 19:56:13] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-26 17:22:17] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-26 17:22:17] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-26 17:22:18] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Mar 26 2026 17:22:18 GMT+0000 (Coordinated Universal Time)
+[2026-03-26 17:22:18] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-26 18:52:50] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-26 18:52:51] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-26 18:52:51] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Mar 26 2026 18:52:51 GMT+0000 (Coordinated Universal Time)
+[2026-03-26 18:52:51] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-26 18:56:09] [INFO]: 🆕 Utilizador criado (70aeda72-e63f-44f6-b7b9-565490882396)
+[2026-03-26 18:56:09] [INFO]: 🆕 Utilizador criado (228a4eba-4ca6-4bc8-81c1-0b17806d9f66)
+[2026-03-26 18:56:19] [ERROR]: ❌ Webhook error: sendAndSaveMessage is not defined
+[2026-03-26 18:57:51] [INFO]: 🆕 Utilizador criado (9ac1d842-3172-4f71-a17c-1f239e3116fe)
+[2026-03-26 19:01:26] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-26 19:01:27] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-26 19:01:27] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-26 19:01:27] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-26 19:09:27] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-26 19:09:28] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-26 19:09:28] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-26 19:09:28] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-26 19:11:52] [INFO]: 🆕 Utilizador criado (550ef00d-b3ff-4fdc-bacc-38f7c4e3b065)
+[2026-03-26 19:12:00] [INFO]: 🆕 Utilizador criado (0cbe81f8-a479-4dcc-80a4-e174d6e9ce37)
+[2026-03-26 19:13:58] [INFO]: 🆕 Utilizador criado (c580823f-272d-4ac6-82d7-60ac890da8bb)
+[2026-03-26 19:15:49] [INFO]: 🆕 Utilizador criado (fc0ab675-e24d-4e93-a493-96308a49063f)
+[2026-03-26 21:02:56] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-26 21:02:58] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-26 21:02:58] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-26 21:02:58] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 17:05:27] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-27 17:05:28] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-27 17:05:28] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Mar 27 2026 17:05:28 GMT+0000 (Coordinated Universal Time)
+[2026-03-27 17:05:28] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-27 18:23:19] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-27 18:23:21] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-27 18:23:21] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 18:23:21] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-27 18:27:02] [INFO]: 🆕 Utilizador criado (c818ffde-ac12-4acc-8e84-12bc3447c7ac)
+[2026-03-27 18:27:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-27 18:27:02] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-03-27 18:27:52] [INFO]: 🆕 Utilizador criado (01e39db9-1215-409f-848b-70ad9dbed683)
+[2026-03-27 18:28:35] [INFO]: 🆕 Utilizador criado (a9db82a6-144b-40a0-8e74-fe0d81cbed58)
+[2026-03-27 18:47:30] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-27 18:47:30] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-27 18:47:31] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Mar 27 2026 18:47:30 GMT+0000 (Coordinated Universal Time)
+[2026-03-27 18:47:31] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-27 18:55:24] [INFO]: 🆕 Utilizador criado (432ee2a8-bc06-4d0c-b081-142b6d3eff56)
+[2026-03-27 18:58:48] [INFO]: 🆕 Utilizador criado (d51594e0-74e4-499a-abe9-46dc15d0c938)
+[2026-03-27 19:13:13] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-27 19:13:14] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-27 19:13:14] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 19:13:14] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-27 19:16:18] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-27 19:16:19] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-27 19:16:19] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 19:16:19] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-27 19:18:21] [INFO]: 🆕 Utilizador criado (e2864034-4bf3-4a55-9aaf-8ddb0bd98632)
+[2026-03-27 19:18:22] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:18:22] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:19:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:19:50] [INFO]: 🆕 Utilizador criado (99a88eb4-ff1e-48a9-8076-d795f51341ab)
+[2026-03-27 19:19:50] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:20:09] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:26:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:27:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:27:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:27:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:27:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:30:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:30:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:31:41] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:32:19] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:43:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:45:34] [INFO]: 🆕 Utilizador criado (b99ae3d1-7588-40b1-aa62-667e316d5177)
+[2026-03-27 19:45:35] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:48:32] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:16:44] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-27 20:16:46] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-27 20:16:46] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Mar 27 2026 20:16:46 GMT+0000 (Coordinated Universal Time)
+[2026-03-27 20:16:46] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-27 20:22:10] [INFO]: 🆕 Utilizador criado (efc62897-fcdf-4ad7-94da-4a792454f67a)
+[2026-03-27 20:22:11] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:11] [INFO]: 🆕 Utilizador criado (be5a4a1c-ab1d-4824-9e89-2462003700b4)
+[2026-03-27 20:23:11] [INFO]: 🆕 Utilizador criado (bfc44a11-dabb-41fc-af08-a1c133b7821c)
+[2026-03-27 20:23:11] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [INFO]: 🆕 Utilizador criado (52d2c9b6-a741-4bd6-9b92-a507c64ddfd4)
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:33] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:36] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:33:33] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-27 20:33:34] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-27 20:33:34] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-27 20:33:34] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Mar 27 2026 20:33:34 GMT+0000 (Coordinated Universal Time)
+[2026-03-27 20:36:51] [INFO]: 🆕 Utilizador criado (08ee61d9-d0bc-4c18-b7bb-b1248687cda2)
+[2026-03-27 20:36:52] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:52:47] [INFO]: 🆕 Utilizador criado (84eb0b2b-e377-4bcd-95fc-72fc46944c70)
+[2026-03-27 20:52:47] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:52:50] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:53:08] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:53:47] [INFO]: 🆕 Utilizador criado (cf7ca7dc-d65e-4a38-af28-a6e7d2f3c9f1)
+[2026-03-27 20:53:48] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:53:50] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 22:09:29] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-27 22:09:29] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-27 22:09:29] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Mar 27 2026 22:09:29 GMT+0000 (Coordinated Universal Time)
+[2026-03-27 22:09:29] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-27 22:14:31] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-27 22:14:31] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-27 22:14:31] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 22:14:31] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-27 22:16:09] [INFO]: 🆕 Utilizador criado (43954d8a-658e-41c8-a7b8-634bbe83be95)
+[2026-03-27 22:17:09] [INFO]: 🆕 Utilizador criado (858ca11c-173b-4d9c-8414-a5bd8a3b054e)
+[2026-03-27 22:18:17] [INFO]: 🆕 Utilizador criado (c621a3f0-e30d-48c1-ac54-87cc2281f6f3)

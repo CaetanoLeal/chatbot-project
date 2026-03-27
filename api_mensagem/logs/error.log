@@ -629,3 +629,74 @@
 [2026-03-19 18:20:02] [ERROR]: ❌ Webhook error: duplicate key value violates unique constraint "uq_chat_unica"
 [2026-03-20 18:49:20] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-03-20 18:49:20] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-25 17:54:28] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 17:54:28] [ERROR]: ❌ Webhook error: Request failed with status code 404
+[2026-03-25 17:56:32] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 17:56:32] [ERROR]: ❌ Webhook error: Request failed with status code 404
+[2026-03-25 17:59:56] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-25 17:59:56] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-25 18:03:20] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-25 18:04:22] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-25 18:05:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 18:05:29] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-25 18:06:06] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 18:06:06] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-25 18:06:13] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 18:06:13] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-25 18:25:19] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-25 18:26:47] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-25 18:26:47] [ERROR]: ❌ Webhook error: Request failed with status code 400
+[2026-03-25 19:41:29] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-25 19:41:29] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-25 19:52:35] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-25 19:52:35] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-25 19:56:13] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-26 18:56:19] [ERROR]: ❌ Webhook error: sendAndSaveMessage is not defined
+[2026-03-26 19:01:27] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-26 19:01:27] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-26 19:09:28] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-26 19:09:28] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-26 21:02:58] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-26 21:02:58] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 18:23:21] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 18:23:21] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-27 18:27:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-03-27 18:27:02] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-03-27 19:13:14] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 19:13:14] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-27 19:16:19] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 19:16:19] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-27 19:18:22] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:18:22] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:19:05] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:19:50] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:20:09] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:26:40] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:27:12] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:27:15] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:27:21] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:27:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:30:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:30:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:31:41] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:32:19] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:43:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-03-27 19:45:35] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 19:48:32] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:22:11] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:11] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:12] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:33] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:23:36] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:36:52] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:52:47] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:52:50] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:53:08] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:53:48] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 20:53:50] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-27 22:14:31] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-27 22:14:31] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up

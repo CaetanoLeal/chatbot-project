@@ -393,7 +393,8 @@ app.post("/webhook", async (req, res) => {
       const body = msg.message.text || ""
 
       const telefone = helper.extrairNumeroWhatsapp({
-        jid: msg.whatsapp.jid
+        jid: msg.whatsapp.jid,
+        jidAlt: msg.whatsapp.jidAlt
       })
 
       if (!telefone) {
