@@ -2729,3 +2729,91 @@
 [2026-03-27 22:16:09] [INFO]: 🆕 Utilizador criado (43954d8a-658e-41c8-a7b8-634bbe83be95)
 [2026-03-27 22:17:09] [INFO]: 🆕 Utilizador criado (858ca11c-173b-4d9c-8414-a5bd8a3b054e)
 [2026-03-27 22:18:17] [INFO]: 🆕 Utilizador criado (c621a3f0-e30d-48c1-ac54-87cc2281f6f3)
+[2026-03-30 17:30:28] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-30 17:30:28] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-30 17:30:28] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Mar 30 2026 17:30:28 GMT+0000 (Coordinated Universal Time)
+[2026-03-30 17:30:29] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-30 18:51:03] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-30 18:51:04] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-30 18:51:04] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-30 18:51:04] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-30 18:52:24] [ERROR]: Erro ao salvar mensagem Telegram: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-03-30 18:52:24] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-03-30 18:52:33] [ERROR]: Erro ao salvar mensagem Telegram: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-03-30 18:52:33] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-03-30 18:57:22] [ERROR]: Erro ao salvar mensagem Telegram: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-03-30 18:57:22] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-03-30 18:58:19] [INFO]: Mensagem Telegram salva: id=1652
+[2026-03-30 18:58:19] [INFO]: 🆕 Utilizador criado (abe197d0-494d-4141-924b-3e49a04c0541)
+[2026-03-30 18:58:19] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-03-30 19:02:24] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-30 19:02:24] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-30 19:02:24] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-30 19:02:24] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-30 19:03:42] [INFO]: Mensagem Telegram salva: id=1655
+[2026-03-30 19:03:42] [ERROR]: ❌ Webhook error: telefone is not defined
+[2026-03-30 20:01:03] [INFO]: Mensagem Telegram salva: id=1656
+[2026-03-30 20:01:03] [ERROR]: ❌ Webhook error: telefone is not defined
+[2026-03-30 20:01:13] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-30 20:01:14] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-30 20:01:14] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-30 20:01:14] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-30 20:59:59] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-30 21:00:00] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-30 21:00:00] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-30 21:00:00] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-30 21:08:01] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-30 21:08:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-30 21:08:02] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-30 21:08:02] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-30 21:08:34] [INFO]: 🆕 Utilizador criado (b27de30a-8969-48e3-9e79-5ac3e67208f9)
+[2026-03-30 21:11:29] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-30 21:11:29] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-30 21:11:30] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-03-30 21:11:30] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-03-30 21:21:59] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-30 21:22:00] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-30 21:22:00] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-03-30 21:22:00] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Mar 30 2026 21:22:00 GMT+0000 (Coordinated Universal Time)
+[2026-03-31 16:04:54] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-03-31 16:04:54] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-03-31 16:04:55] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Mar 31 2026 16:04:55 GMT+0000 (Coordinated Universal Time)
+[2026-03-31 16:04:55] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-04-01 16:50:34] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-01 16:50:34] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-01 16:50:34] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Apr 01 2026 16:50:34 GMT+0000 (Coordinated Universal Time)
+[2026-04-01 16:50:34] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-04-02 17:38:31] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-02 17:38:32] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-02 17:38:32] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Apr 02 2026 17:38:32 GMT+0000 (Coordinated Universal Time)
+[2026-04-02 17:38:32] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-04-02 18:04:10] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-02 18:04:11] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-02 18:04:11] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-04-02 18:04:11] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-04-02 18:07:08] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-02 18:07:08] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-02 18:07:08] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-04-02 18:07:08] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-04-02 18:09:36] [INFO]: Mensagem Telegram salva: id=1681
+[2026-04-02 18:09:36] [INFO]: 🆕 Utilizador criado (8b4814f1-bc09-4ab1-94b0-ec7186a6ae05)
+[2026-04-02 18:09:40] [INFO]: Mensagem Telegram salva: id=1683
+[2026-04-02 18:09:44] [INFO]: Mensagem Telegram salva: id=1685
+[2026-04-02 19:53:04] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-02 19:53:05] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-02 19:53:05] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-04-02 19:53:05] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-04-02 20:10:56] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-02 20:10:57] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-02 20:10:57] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Apr 02 2026 20:10:57 GMT+0000 (Coordinated Universal Time)
+[2026-04-02 20:10:57] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-04-02 20:19:26] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-02 20:19:27] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-02 20:19:27] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-04-02 20:19:27] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-04-02 20:27:28] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-02 20:27:28] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-02 20:27:28] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-04-02 20:27:28] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-04-02 20:29:53] [INFO]: Mensagem Telegram salva: id=1700
+[2026-04-02 20:29:53] [INFO]: 🆕 Utilizador criado (21271712-1d1f-469e-bc1a-1c1c71470311)

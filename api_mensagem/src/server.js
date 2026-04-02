@@ -112,15 +112,57 @@ app.post("/webhook", async (req, res) => {
     }
 
     /* ================= TELEGRAM ================= */
-    if (msg.className === "Message" && msg.peerId?.className === "PeerUser") {
+    if (msg.event === "message.received" && msg.provider === "telegram") {
+      const message = msg.message;
 
-      if (msg.out === true) {
-        return res.status(200).json({ success: true })
-      }
+      if (message.out === true) {
 
-      await TelegramMessageModel.saveTelegramMessage(msg)
+      const userId = message.peerId?.userId?.toString()
+      if (!userId) return res.status(200).json({ success: true })
 
-      const telegramUserId = msg.fromId?.userId?.toString()
+      const idUtilizador = await helper.getOrCreateUtilizador({
+        cdTelegram: userId
+      })
+
+      const instancia = await InstanceModel.getByName(msg.instance?.name)
+      if (!instancia) return res.status(200).json({ success: true })
+
+      const idChat = await chatService.getOrCreateChat({
+        idUtilizador,
+        cdProvider: 2,
+        idInstancia: instancia.id_instancia
+      })
+
+      const conteudo = message.message || "[mensagem não textual]"
+
+      const dhEnvio = message.date
+        ? new Date(message.date * 1000)
+        : new Date()
+
+      await chatService.saveUnifiedMessage({
+        idChat,
+        cdProvider: 2,
+        idMensagemExterna: message.id?.toString(),
+        fromMe: true,
+        conteudo,
+        tipo: "text",
+        payload: msg,
+        dhEnvio
+      })
+
+      io.emit("NEW_MESSAGE", {
+        idChat,
+        conteudo,
+        fromMe: true,
+        contato: userId
+      })
+
+      return res.status(200).json({ success: true })
+    }
+
+      await TelegramMessageModel.saveTelegramMessage(message)
+
+      const telegramUserId = message.fromId?.userId?.toString()
       if (!telegramUserId) {
         return res.status(400).json({ success: false })
       }
@@ -141,24 +183,30 @@ app.post("/webhook", async (req, res) => {
         idInstancia: instancia.id_instancia
       })
 
+      const dhEnvio = msg.message?.date && !isNaN(msg.message.date)
+        ? new Date(msg.message.date * 1000)
+        : new Date();
+
+      const conteudo = msg.message?.message || "[mensagem não textual]"
+
       await chatService.saveUnifiedMessage({
         idChat,
         cdProvider: 2,
-        idMensagemExterna: msg.id?.toString(),
+        idMensagemExterna: msg.message?.id?.toString(),
         fromMe: false,
-        conteudo: msg.message,
+        conteudo,
         tipo: "text",
         payload: msg,
-        dhEnvio: new Date(msg.date * 1000)
+        dhEnvio
       })
 
       io.emit("NEW_MESSAGE", {
         idChat,
-        conteudo: msg.message,
+        conteudo: conteudo,
         fromMe: false,
-        telefone
+        telegramUserId
       })
-
+  
       /* ===== FLUXO FUNIL NORMAL ===== */
 
       const jaPassou = await helper.hasFunilUtilizador(
@@ -175,7 +223,7 @@ app.post("/webhook", async (req, res) => {
         if (estadoChatbot && estadoChatbot > 0) {
           await helper.processarRespostaChatbot({
             idUtilizador,
-            texto: msg.message,
+            texto: conteudo,
             sendMessage: (message) =>
               sendMessage.sendTelegramMessage({
                 userId: telegramUserId,
@@ -185,7 +233,7 @@ app.post("/webhook", async (req, res) => {
         } else {
           await helper.processarRespostaCadastro({
             idUtilizador,
-            texto: msg.message,
+            texto: conteudo,
             sendMessage: (message) =>
               sendMessage.sendTelegramMessage({
                 userId: telegramUserId,
@@ -212,6 +260,63 @@ app.post("/webhook", async (req, res) => {
           message: mensagem
         })
       }
+
+      return res.status(200).json({ success: true })
+    }
+
+    /* ================= TELEGRAM ENVIADA ================= */
+    if (msg.event === "message.sent" && msg.provider === "telegram") {
+
+      const message = msg.message
+
+      const userId = (
+        msg.telegram?.peerId?.userId ||
+        msg.telegram?.peerId?.chatId ||
+        msg.telegram?.peerId?.channelId
+      )?.toString()
+
+      if (!userId) {
+        return res.status(200).json({ success: true })
+      }
+
+      const idUtilizador = await helper.getOrCreateUtilizador({
+        cdTelegram: userId
+      })
+
+      const instancia = await InstanceModel.getByName(msg.nome)
+      if (!instancia) {
+        return res.status(200).json({ success: true })
+      }
+
+      const idChat = await chatService.getOrCreateChat({
+        idUtilizador,
+        cdProvider: 2,
+        idInstancia: instancia.id_instancia
+      })
+
+      const conteudo = message?.text || "[mensagem não textual]"
+
+      const dhEnvio = msg.telegram?.date
+        ? new Date(msg.telegram.date * 1000)
+        : new Date()
+
+      await chatService.saveUnifiedMessage({
+        idChat,
+        cdProvider: 2,
+        idMensagemExterna: msg.telegram?.messageId?.toString(),
+        fromMe: true,
+        conteudo,
+        tipo: "text",
+        payload: msg,
+        dhEnvio
+      })
+
+      io.emit("NEW_MESSAGE", {
+        idChat,
+        conteudo,
+        fromMe: true,
+        contato: userId
+      })
 
       return res.status(200).json({ success: true })
     }

@@ -36,6 +36,14 @@ function extrairNumeroWhatsapp({ jid, jidAlt, raw }) {
   return null
 }
 
+function extrairIdentificadorTelegram(msg) {
+  return (
+    msg?.fromId?.userId?.toString() ||
+    msg?.peerId?.userId?.toString() ||
+    null
+  );
+}
+
 async function getEstadoConversa(idUtilizador, idFunil) {
   const r = await db.query(
     `

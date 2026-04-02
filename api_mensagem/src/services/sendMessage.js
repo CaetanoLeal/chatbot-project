@@ -24,7 +24,7 @@ async function sendTelegramMessage({ userId, message }) {
   try {
     await axios.post(
       "http://telegram-bot:3002/send-message",
-      { nome: "Bot", userId, message },
+      { nome: "teste", userId, message },
       { timeout: TIMEOUT }
     )
   } catch (err) {
