@@ -1,3 +1,4 @@
+// controllers/ChatController.js
 const chatService = require("../services/chatService")
 
 async function list(req, res) {

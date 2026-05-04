@@ -132,6 +132,11 @@ app.post("/webhook", async (req, res) => {
         cdProvider: 2,
         idInstancia: instancia.id_instancia
       })
+      await chatService.updateChatContactInfo({
+        idChat,
+        fotoPerfil: msg.contact?.photo || null,
+        lastSeen: null
+      })
 
       const conteudo = message.message || "[mensagem não textual]"
 
@@ -162,13 +167,18 @@ app.post("/webhook", async (req, res) => {
 
       await TelegramMessageModel.saveTelegramMessage(message)
 
-      const telegramUserId = message.fromId?.userId?.toString()
-      if (!telegramUserId) {
-        return res.status(400).json({ success: false })
-      }
+        const telegramUserId = message.fromId?.userId?.toString()
+        if (!telegramUserId) {
+          return res.status(400).json({ success: false })
+        }
+
+        const nome = msg.contact?.firstName
+        ? `${msg.contact.firstName} ${msg.contact.lastName || ""}`.trim()
+        : null;
 
       const idUtilizador = await helper.getOrCreateUtilizador({
-        cdTelegram: telegramUserId
+        cdTelegram: telegramUserId,
+        nome
       })
 
       /* ===== BUSCA INSTÂNCIA ===== */

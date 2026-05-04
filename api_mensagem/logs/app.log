@@ -2817,3 +2817,40 @@
 [2026-04-02 20:27:28] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
 [2026-04-02 20:29:53] [INFO]: Mensagem Telegram salva: id=1700
 [2026-04-02 20:29:53] [INFO]: 🆕 Utilizador criado (21271712-1d1f-469e-bc1a-1c1c71470311)
+[2026-04-28 17:52:22] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-28 17:52:22] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-28 17:52:22] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Apr 28 2026 17:52:22 GMT+0000 (Coordinated Universal Time)
+[2026-04-28 17:52:22] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-04-28 18:38:16] [INFO]: Mensagem Telegram salva: id=1719
+[2026-04-28 18:38:16] [INFO]: 🆕 Utilizador criado (cee3e4cf-2000-435b-98c8-1f65f8eeb181)
+[2026-04-28 18:39:22] [INFO]: Mensagem Telegram salva: id=1721
+[2026-04-28 18:39:28] [INFO]: Mensagem Telegram salva: id=1723
+[2026-04-28 18:39:31] [INFO]: Mensagem Telegram salva: id=1725
+[2026-04-28 20:13:01] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-28 20:13:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-28 20:13:02] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-04-28 20:13:02] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-04-28 20:14:16] [INFO]: Mensagem Telegram salva: id=1728
+[2026-04-28 20:14:25] [INFO]: 🆕 Utilizador criado (5948fddc-3aeb-451b-b067-4806db367ce3)
+[2026-04-28 20:14:56] [INFO]: Mensagem Telegram salva: id=1730
+[2026-04-28 20:14:56] [INFO]: 🆕 Utilizador criado (77bf9bd6-b4e1-44b4-91aa-3d46cee7c59d)
+[2026-04-28 20:27:14] [INFO]: Mensagem Telegram salva: id=1732
+[2026-04-29 17:27:16] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-29 17:27:16] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-29 17:27:16] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed Apr 29 2026 17:27:16 GMT+0000 (Coordinated Universal Time)
+[2026-04-29 17:27:16] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-04-30 17:29:13] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-04-30 17:29:13] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-04-30 17:29:13] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu Apr 30 2026 17:29:13 GMT+0000 (Coordinated Universal Time)
+[2026-04-30 17:29:13] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-04-30 19:29:28] [INFO]: Mensagem Telegram salva: id=1736
+[2026-04-30 19:30:08] [INFO]: Mensagem Telegram salva: id=1737
+[2026-04-30 19:30:14] [INFO]: 🆕 Utilizador criado (fb681f7f-2244-421d-a5d4-cfa802b1de24)
+[2026-04-30 19:31:27] [INFO]: 🆕 Utilizador criado (723992cb-3215-4ecb-808a-b1b942b72345)
+[2026-04-30 19:31:39] [INFO]: Mensagem Telegram salva: id=1740
+[2026-04-30 19:31:49] [INFO]: Mensagem Telegram salva: id=1742
+[2026-04-30 19:33:23] [INFO]: Mensagem Telegram salva: id=1745
+[2026-05-04 16:10:35] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-04 16:10:35] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-04 16:10:36] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon May 04 2026 16:10:36 GMT+0000 (Coordinated Universal Time)
+[2026-05-04 16:10:36] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c

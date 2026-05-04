@@ -1,4 +1,3 @@
-//app/(dashboard)/dashboard/instances/components/ConnectInstanceModal.tsx
 "use client"
 
 import { io, Socket } from "socket.io-client"
@@ -15,9 +14,15 @@ export default function ConnectInstanceModal({
   const [funnel, setFunnel] = useState("")
   const [platform, setPlatform] = useState<InstancePlatform | "">("")
   const [funis, setFunis] = useState<any[]>([])
+
   const [qrCode, setQrCode] = useState<string | null>(null)
   const [status, setStatus] = useState<string>("")
   const [loading, setLoading] = useState(false)
+
+  // 🔥 TELEGRAM STATES
+  const [phone, setPhone] = useState("")
+  const [code, setCode] = useState("")
+  const [step, setStep] = useState<"idle" | "code">("idle")
 
   const socketRef = useRef<Socket | null>(null)
 
@@ -44,7 +49,7 @@ export default function ConnectInstanceModal({
   }, [])
 
   /* =====================================================
-     SOCKET.IO (CRIADO UMA ÚNICA VEZ)
+     SOCKET.IO
   ===================================================== */
   useEffect(() => {
     const socket = io("http://localhost:3000")
@@ -56,9 +61,6 @@ export default function ConnectInstanceModal({
     })
 
     socket.on("INSTANCE_QR", (data) => {
-      console.log("📲 QR recebido:", data)
-
-      // só atualiza se for a instância atual
       if (data?.nome === nameRef.current) {
         setQrCode(data.qrCode)
         setStatus("Escaneie o QR Code")
@@ -85,12 +87,12 @@ export default function ConnectInstanceModal({
 
   const nameRef = useRef(name)
 
-    useEffect(() => {
+  useEffect(() => {
     nameRef.current = name
-    }, [name])
+  }, [name])
 
   /* =====================================================
-     CRIAR INSTÂNCIA
+     CRIAR INSTÂNCIA / TELEGRAM LOGIN
   ===================================================== */
   const handleCreateInstance = async () => {
     if (!name || !funnel || !platform) {
@@ -98,6 +100,46 @@ export default function ConnectInstanceModal({
       return
     }
 
+    // ================= TELEGRAM =================
+    if (platform === "telegram") {
+      if (!phone) {
+        alert("Informe o telefone com DDI")
+        return
+      }
+
+      setLoading(true)
+      setStatus("Enviando código...")
+
+      try {
+        const res = await fetch("http://localhost:3002/iniciar-login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nome: name,
+            webhook: "http://api_mensagem:3001/webhook",
+            phoneNumber: phone,
+          }),
+        })
+
+        const data = await res.json()
+
+        if (data.status === "aguardando_codigo") {
+          setStep("code")
+          setStatus("Digite o código enviado no Telegram")
+        }
+      } catch (err) {
+        console.error(err)
+        setStatus("Erro ao iniciar login")
+      } finally {
+        setLoading(false)
+      }
+
+      return
+    }
+
+    // ================= WHATSAPP =================
     setLoading(true)
     setQrCode(null)
     setStatus("Criando instância...")
@@ -121,7 +163,6 @@ export default function ConnectInstanceModal({
       if (data.status) {
         setStatus("Aguardando QR...")
 
-        // 🔥 Fallback: busca QR via HTTP após 2 segundos
         setTimeout(async () => {
           try {
             const qrRes = await fetch(
@@ -134,13 +175,51 @@ export default function ConnectInstanceModal({
               setStatus("Escaneie o QR Code")
             }
           } catch (err) {
-            console.error("Erro ao buscar QR via HTTP", err)
+            console.error("Erro ao buscar QR", err)
           }
         }, 2000)
       }
     } catch (err) {
       console.error(err)
       setStatus("Erro ao criar instância")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  /* =====================================================
+     CONFIRMAR CÓDIGO TELEGRAM
+  ===================================================== */
+  const handleConfirmCode = async () => {
+    if (!code) {
+      alert("Digite o código")
+      return
+    }
+
+    setLoading(true)
+    setStatus("Confirmando código...")
+
+    try {
+      const res = await fetch("http://localhost:3002/confirmar-codigo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          phoneNumber: phone,
+          phoneCode: code,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (data.status?.includes("conectado")) {
+        setStatus("Conectado ✅")
+        setStep("idle")
+      }
+    } catch (err) {
+      console.error(err)
+      setStatus("Erro ao confirmar código")
     } finally {
       setLoading(false)
     }
@@ -199,9 +278,12 @@ export default function ConnectInstanceModal({
           <select
             className="border rounded px-3 py-2 w-full text-black bg-white"
             value={platform}
-            onChange={(e) =>
+            onChange={(e) => {
               setPlatform(e.target.value as InstancePlatform)
-            }
+              setStep("idle")
+              setStatus("")
+              setQrCode(null)
+            }}
           >
             <option value="">Selecione</option>
             <option value="whatsapp">WhatsApp</option>
@@ -209,14 +291,52 @@ export default function ConnectInstanceModal({
           </select>
         </div>
 
-        {/* Botão criar */}
-        <button
-          onClick={handleCreateInstance}
-          disabled={loading}
-          className="bg-green-600 text-white px-4 py-2 rounded w-full"
-        >
-          {loading ? "Conectando..." : "Conectar"}
-        </button>
+        {/* TELEGRAM - TELEFONE */}
+        {platform === "telegram" && step === "idle" && (
+          <div>
+            <label className="text-sm font-medium">
+              Telefone (com DDI)
+            </label>
+            <input
+              placeholder="+5591999999999"
+              className="border rounded px-3 py-2 w-full text-black bg-white"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+        )}
+
+        {/* TELEGRAM - CÓDIGO */}
+        {platform === "telegram" && step === "code" && (
+          <div>
+            <label className="text-sm font-medium">
+              Código do Telegram
+            </label>
+            <input
+              className="border rounded px-3 py-2 w-full text-black bg-white"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+            />
+
+            <button
+              onClick={handleConfirmCode}
+              className="bg-blue-600 text-white px-4 py-2 rounded w-full mt-2"
+            >
+              Confirmar código
+            </button>
+          </div>
+        )}
+
+        {/* Botão principal */}
+        {platform !== "telegram" || step === "idle" ? (
+          <button
+            onClick={handleCreateInstance}
+            disabled={loading}
+            className="bg-green-600 text-white px-4 py-2 rounded w-full"
+          >
+            {loading ? "Conectando..." : "Conectar"}
+          </button>
+        ) : null}
 
         {/* QR WhatsApp */}
         {platform === "whatsapp" && qrCode && (
@@ -228,6 +348,7 @@ export default function ConnectInstanceModal({
           </div>
         )}
 
+        {/* STATUS */}
         {!qrCode && status && (
           <p className="text-center text-sm text-zinc-600">
             {status}
