@@ -2854,3 +2854,35 @@
 [2026-05-04 16:10:35] [INFO]: 🚀 Servidor rodando na porta 3001
 [2026-05-04 16:10:36] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon May 04 2026 16:10:36 GMT+0000 (Coordinated Universal Time)
 [2026-05-04 16:10:36] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-05-05 17:49:37] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-05 17:49:38] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-05 17:49:38] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue May 05 2026 17:49:38 GMT+0000 (Coordinated Universal Time)
+[2026-05-05 17:49:38] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-05-05 18:42:41] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-05 18:42:42] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-05 18:42:42] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-05 18:42:42] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-06 15:35:49] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-06 15:35:49] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-06 15:35:49] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Wed May 06 2026 15:35:49 GMT+0000 (Coordinated Universal Time)
+[2026-05-06 15:35:49] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-05-07 17:28:03] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-07 17:28:04] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-07 17:28:04] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu May 07 2026 17:28:04 GMT+0000 (Coordinated Universal Time)
+[2026-05-07 17:28:04] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-05-07 17:28:12] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-07 17:28:12] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-07 17:28:12] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-07 17:28:12] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-07 18:16:34] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-07 18:16:35] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-07 18:16:35] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-05-07 18:16:35] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu May 07 2026 18:16:35 GMT+0000 (Coordinated Universal Time)
+[2026-05-07 18:29:15] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-07 18:29:15] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-07 18:29:16] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu May 07 2026 18:29:16 GMT+0000 (Coordinated Universal Time)
+[2026-05-07 18:29:16] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-05-07 19:13:37] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-07 19:13:38] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-07 19:13:38] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-07 19:13:38] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up

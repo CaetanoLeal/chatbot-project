@@ -221,7 +221,7 @@ app.post("/webhook", async (req, res) => {
 
       const jaPassou = await helper.hasFunilUtilizador(
         idUtilizador,
-        idFunil
+        idFunilInstancia
       )
 
       if (jaPassou) {
@@ -444,7 +444,7 @@ app.post("/webhook", async (req, res) => {
 
       const jaPassou = await helper.hasFunilUtilizador(
         idUtilizador,
-        idFunil
+        idFunilInstancia
       )
 
       if (jaPassou) {
