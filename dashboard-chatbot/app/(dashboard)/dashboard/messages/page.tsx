@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react"
 import { io } from "socket.io-client"
 
-const socket = io("http://localhost:3001")
+const socket = io("http://45.228.143.12:3001")
 
 /* =====================
    TYPES
@@ -122,7 +122,7 @@ export default function MessagesPage() {
 
   async function loadChats() {
     try {
-      const res = await fetch("http://localhost:3001/api/chats")
+      const res = await fetch("http://45.228.143.12:3001/api/chats")
       const json = await res.json()
 
       if (!json.success) return
@@ -154,7 +154,7 @@ export default function MessagesPage() {
   async function loadMessages(chat: ChatThread) {
     try {
       const res = await fetch(
-        `http://localhost:3001/api/chats/${chat.id}/messages`
+        `http://45.228.143.12:3001/api/chats/${chat.id}/messages`
       )
       const json = await res.json()
 

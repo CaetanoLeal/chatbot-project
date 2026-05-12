@@ -23,7 +23,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: Server
+      POSTGRES_DB: chatbot
     ports:
       - "5432:5432"
     volumes:
@@ -95,7 +95,7 @@ services:
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: postgres
-      DB_NAME: Server
+      DB_NAME: chatbot
     networks:
       - chatbot-network
     depends_on:

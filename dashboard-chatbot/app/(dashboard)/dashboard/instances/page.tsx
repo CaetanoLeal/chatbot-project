@@ -44,7 +44,7 @@ export default function InstancesPage() {
   useEffect(() => {
     async function fetchInstances() {
       try {
-        const response = await fetch("http://localhost:3001/api/instancias")
+        const response = await fetch("http://45.228.143.12:3001/api/instancias")
 
         const result = await response.json()
 

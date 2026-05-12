@@ -11,7 +11,7 @@ export default function EditFunnelPage() {
   useEffect(() => {
     async function carregar() {
       try {
-        const res = await fetch(`http://localhost:3001/api/funis/${id}`)
+        const res = await fetch(`http://45.228.143.12:3001/api/funis/${id}`)
 
         if (!res.ok) {
           throw new Error("Erro ao buscar funil")

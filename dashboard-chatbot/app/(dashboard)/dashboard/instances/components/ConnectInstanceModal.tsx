@@ -32,7 +32,7 @@ export default function ConnectInstanceModal({
   useEffect(() => {
     async function loadFunis() {
       try {
-        const res = await fetch("http://localhost:3001/api/funis")
+        const res = await fetch("http://45.228.143.12:3001/api/funis")
         const data = await res.json()
 
         if (Array.isArray(data)) {
@@ -52,7 +52,7 @@ export default function ConnectInstanceModal({
      SOCKET.IO
   ===================================================== */
   useEffect(() => {
-    const socket = io("http://localhost:3000")
+    const socket = io("http://45.228.143.12:3000")
 
     socketRef.current = socket
 
@@ -111,7 +111,7 @@ export default function ConnectInstanceModal({
       setStatus("Enviando código...")
 
       try {
-        const res = await fetch("http://localhost:3002/iniciar-login", {
+        const res = await fetch("http://45.228.143.12:3002/iniciar-login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -145,7 +145,7 @@ export default function ConnectInstanceModal({
     setStatus("Criando instância...")
 
     try {
-      const res = await fetch("http://localhost:3000/instances/create", {
+      const res = await fetch("http://45.228.143.12:3000/instances/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -166,7 +166,7 @@ export default function ConnectInstanceModal({
         setTimeout(async () => {
           try {
             const qrRes = await fetch(
-              `http://localhost:3000/instances/${name}/qrcode`
+              `http://45.228.143.12:3000/instances/${name}/qrcode`
             )
             const qrData = await qrRes.json()
 
@@ -200,7 +200,7 @@ export default function ConnectInstanceModal({
     setStatus("Confirmando código...")
 
     try {
-      const res = await fetch("http://localhost:3002/confirmar-codigo", {
+      const res = await fetch("http://45.228.143.12:3002/confirmar-codigo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -16,7 +16,7 @@ export default function FunnelsPage() {
   useEffect(() => {
     async function carregarFunis() {
       try {
-        const response = await fetch('http://localhost:3001/api/funis')
+        const response = await fetch('http://45.228.143.12:3001/api/funis')
         const data = await response.json()
         setFunnels(data)
       } catch (error) {
