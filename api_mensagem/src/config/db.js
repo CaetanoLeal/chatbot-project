@@ -5,11 +5,15 @@ const logger = require("../../logger");
 require("dotenv").config();
 
 const pool = new Pool({
-  host: process.env.DB_HOST || '45.228.143.12',
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
-  database: process.env.DB_NAME || 'chatbot',
-  port: Number(process.env.DB_PORT || 5432),
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: Number(process.env.DB_PORT),
+
+  
+  idleTimeoutMillis: Number(process.env.DB_IDLE_TIMEOUT),
+  connectionTimeoutMillis: Number(process.env.DB_CONNECTION_TIMEOUT),
 });
 
 // Teste de conexão simplificado

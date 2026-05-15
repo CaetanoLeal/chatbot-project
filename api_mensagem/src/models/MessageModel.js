@@ -1,6 +1,8 @@
 //MessageModel.js
 const db = require("../config/db");
 
+require("dotenv").config();
+
 class MessageModel {
   /**
    * Salva qualquer mensagem WhatsApp (entrada ou saída)
@@ -115,7 +117,7 @@ class MessageModel {
     messageId,
     from,
     body,
-    raw?.message?.type || 'text',
+    raw?.message?.type || env.chatbot.defaultMessageType,
     from,
     from,
     false,

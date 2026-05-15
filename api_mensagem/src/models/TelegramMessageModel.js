@@ -34,14 +34,14 @@ const TelegramMessageModel = {
       msg.SUBCLASS_OF_ID || null,
       msg.className || null,
       msg.classType || null,
-      msg.fromId?.userId || null,  // ✅ corrigido
-      msg.peerId?.userId || null,  // ✅ corrigido
+      msg.fromId?.userId || null,
+      msg.peerId?.userId || null,
       msg.out || false,
       msg.mentioned || false,
       msg.mediaUnread || false,
       msg.silent || false,
       msg.ttlPeriod || null,
-      msg.date ? new Date(msg.date * 1000) : null,  // ✅ corrigido
+      msg.date ? new Date(msg.date * 1000) : null,
       msg.message || null,
       msg.fwdFrom ? JSON.stringify(msg.fwdFrom) : null,
       msg.viaBotId || null,
@@ -51,7 +51,7 @@ const TelegramMessageModel = {
       msg.views || null,
       msg.forwards || null,
       msg.replies ? JSON.stringify(msg.replies) : null,
-      msg.editDate ? new Date(msg.editDate * 1000) : null,  // ✅ idem
+      msg.editDate ? new Date(msg.editDate * 1000) : null,
       msg.pinned || false,
       msg.groupedId || null,
       msg.restrictionReason ? JSON.stringify(msg.restrictionReason) : null,

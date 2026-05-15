@@ -1,42 +1,89 @@
-// src/services/sendMessage.js
-const axios = require("axios")
-const logger = require("../../logger")
+const axios = require("axios");
+const logger = require("../../logger");
+const env = require("../config/env");
 
-const TIMEOUT = 8000
+const TIMEOUT = env.http.timeout;
 
-async function sendWhatsAppMessage({ telefone, message }) {
+async function sendWhatsAppMessage({
+  telefone,
+  message,
+  instanceName
+}) {
   try {
+
+    const instance =
+      instanceName ||
+      env.instances.defaultWhatsappInstance;
+
+    const url =
+      `${env.apis.whatsapp}` +
+      `/instances/${instance}` +
+      `${env.routes.whatsappMessageRoute}`;
+
     await axios.post(
-      "http://chatbot-erp:3000/instances/caetano_bot/message",
-      { number: telefone, message },
-      { timeout: TIMEOUT }
-    )
+      url,
+      {
+        number: telefone,
+        message
+      },
+      {
+        timeout: TIMEOUT
+      }
+    );
+
   } catch (err) {
-    logger.error("❌ Erro ao enviar mensagem WhatsApp", {
-      telefone,
-      error: err.message
-    })
-    throw err
+
+    logger.error(
+      "❌ Erro ao enviar mensagem WhatsApp",
+      {
+        telefone,
+        error: err.message
+      }
+    );
+
+    throw err;
   }
 }
 
-async function sendTelegramMessage({ userId, message }) {
+async function sendTelegramMessage({
+  userId,
+  message,
+  nome = "Sistema"
+}) {
+
   try {
+
+    const url =
+      `${env.apis.telegram}` +
+      `${env.routes.telegramMessageRoute}`;
+
     await axios.post(
-      "http://telegram-bot:3002/send-message",
-      { nome: "teste", userId, message },
-      { timeout: TIMEOUT }
-    )
+      url,
+      {
+        nome,
+        userId,
+        message
+      },
+      {
+        timeout: TIMEOUT
+      }
+    );
+
   } catch (err) {
-    logger.error("❌ Erro ao enviar mensagem Telegram", {
-      userId,
-      error: err.message
-    })
-    throw err
+
+    logger.error(
+      "❌ Erro ao enviar mensagem Telegram",
+      {
+        userId,
+        error: err.message
+      }
+    );
+
+    throw err;
   }
 }
 
 module.exports = {
   sendWhatsAppMessage,
   sendTelegramMessage
-}
+};

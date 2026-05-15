@@ -2898,3 +2898,31 @@
 [2026-05-08 20:10:31] [INFO]: 🚀 Servidor rodando na porta 3001
 [2026-05-08 20:10:31] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-05-08 20:10:31] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-14 19:10:05] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-14 19:10:05] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-14 19:10:05] [ERROR]: ❌ Erro de conexão com PostgreSQL: password authentication failed for user "postgres"
+[2026-05-14 19:10:05] [ERROR]: ❌ Erro ao buscar id_funil: password authentication failed for user "postgres"
+[2026-05-14 19:18:35] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-14 19:18:36] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-14 19:18:36] [ERROR]: ❌ Erro ao buscar id_funil: password authentication failed for user "postgres"
+[2026-05-14 19:18:36] [ERROR]: ❌ Erro de conexão com PostgreSQL: password authentication failed for user "postgres"
+[2026-05-14 19:25:04] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-14 19:25:05] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-14 19:25:05] [ERROR]: ❌ Erro de conexão com PostgreSQL: password authentication failed for user "postgres"
+[2026-05-14 19:25:05] [ERROR]: ❌ Erro ao buscar id_funil: password authentication failed for user "postgres"
+[2026-05-14 19:28:06] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-14 19:28:07] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-14 19:28:07] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-14 19:28:07] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-14 19:29:07] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-14 19:29:08] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-14 19:29:08] [ERROR]: ❌ Erro de conexão com PostgreSQL: password authentication failed for user "postgres"
+[2026-05-14 19:29:08] [ERROR]: ❌ Erro ao buscar id_funil: password authentication failed for user "postgres"
+[2026-05-14 19:31:22] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-14 19:31:22] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-14 19:31:22] [ERROR]: ❌ Erro de conexão com PostgreSQL: password authentication failed for user "postgres"
+[2026-05-14 19:31:22] [ERROR]: ❌ Erro ao buscar id_funil: password authentication failed for user "postgres"
+[2026-05-14 19:33:17] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-14 19:33:18] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-14 19:33:18] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu May 14 2026 19:33:18 GMT+0000 (Coordinated Universal Time)
+[2026-05-14 19:33:18] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c

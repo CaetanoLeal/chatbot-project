@@ -1,3 +1,4 @@
+//src/controllers/dashboardController.js
 const db = require("../config/db")
 
 exports.getDashboard = async (req, res) => {

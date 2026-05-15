@@ -1,3 +1,4 @@
+//src/routes/chat.routes.js
 const { Router } = require("express")
 const ChatController = require("../controllers/ChatController")
 

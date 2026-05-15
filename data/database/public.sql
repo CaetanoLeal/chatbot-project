@@ -4,7 +4,7 @@
  Source Server         : chatbot
  Source Server Type    : PostgreSQL
  Source Server Version : 150014 (150014)
- Source Host           : localhost:5432
+ Source Host           : localhost:3004:5432
  Source Catalog        : chatbot
  Source Schema         : public
 

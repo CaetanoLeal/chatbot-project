@@ -8,7 +8,7 @@ services:
     container_name: dashboard-chatbot
     restart: always
     ports:
-      - "3003:3000"
+      - "${DASHBOARD_PORT}:3000"
     volumes:
       - ./dashboard-chatbot:/app
     networks:
@@ -21,11 +21,11 @@ services:
     container_name: db_chatbot
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: chatbot
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT}:5432"
     volumes:
       - ./data/db:/var/lib/postgresql/data
     networks:
@@ -37,15 +37,15 @@ services:
       dockerfile: Dockerfile
     container_name: api_mensagem
     ports:
-      - "3001:3001"
+      - "${API_PORT}:3001"
     volumes:
       - ./api_mensagem:/app
     environment:
       DB_HOST: db_chatbot
       DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-      DB_NAME: chatbot
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
     networks:
       - chatbot-network
     depends_on:
@@ -58,23 +58,23 @@ services:
     container_name: chatbot-erp
     restart: always
     environment:
-      NODE_ENV: production
-      CHROMIUM_PATH: /usr/bin/chromium
-      HOST_UID: 1000
-      HOST_GID: 1000
+      NODE_ENV: ${NODE_ENV}
+      CHROMIUM_PATH: ${CHROMIUM_PATH}
+      HOST_UID: ${HOST_UID}
+      HOST_GID: ${HOST_GID}
       DB_HOST: db_chatbot
       DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-      DB_NAME: chatbot
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
     ports:
-      - "3000:3000"
+      - "${CHATBOT_PORT}:3000"
     volumes:
       - ./chatbot-erp:/usr/src/app
     networks:
       - chatbot-network
     tty: true
-    shm_size: 1gb # evita travamento do Chrome
+    shm_size: 1gb
     depends_on:
       - api_mensagem
       - db_chatbot
@@ -86,16 +86,16 @@ services:
     container_name: telegram-bot
     restart: always
     ports:
-      - "3002:3002"
+      - "${TELEGRAM_PORT}:3002"
     volumes:
       - ./telegram-bot:/app
     environment:
-      NODE_ENV: production
+      NODE_ENV: ${NODE_ENV}
       DB_HOST: db_chatbot
       DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-      DB_NAME: chatbot
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
     networks:
       - chatbot-network
     depends_on:
