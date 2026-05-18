@@ -1,8 +1,10 @@
 const axios = require("axios");
 const logger = require("../../logger");
-const env = require("../config/env");
 
-const TIMEOUT = env.http.timeout;
+require("dotenv").config();
+
+const TIMEOUT =
+  process.env.REQUEST_TIMEOUT || 15000;
 
 async function sendWhatsAppMessage({
   telefone,
@@ -13,12 +15,12 @@ async function sendWhatsAppMessage({
 
     const instance =
       instanceName ||
-      env.instances.defaultWhatsappInstance;
+      process.env.DEFAULT_WHATSAPP_INSTANCE;
 
     const url =
-      `${env.apis.whatsapp}` +
+      `${process.env.WHATSAPP_API_URL}` +
       `/instances/${instance}` +
-      `${env.routes.whatsappMessageRoute}`;
+      `${process.env.WHATSAPP_MESSAGE_ROUTE}`;
 
     await axios.post(
       url,
@@ -54,8 +56,8 @@ async function sendTelegramMessage({
   try {
 
     const url =
-      `${env.apis.telegram}` +
-      `${env.routes.telegramMessageRoute}`;
+      `${process.env.TELEGRAM_API_URL}` +
+      `${process.env.TELEGRAM_MESSAGE_ROUTE}`;
 
     await axios.post(
       url,
