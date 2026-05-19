@@ -233,21 +233,23 @@ app.post("/webhook", async (req, res) => {
         if (estadoChatbot && estadoChatbot > 0) {
           await helper.processarRespostaChatbot({
             idUtilizador,
-            texto: conteudo,
+            texto: body,
             sendMessage: (message) =>
-              sendMessage.sendTelegramMessage({
-                userId: telegramUserId,
-                message
+              sendMessage.sendWhatsAppMessage({
+                telefone,
+                message,
+                instanceName: msg.nome
               })
           })
         } else {
           await helper.processarRespostaCadastro({
             idUtilizador,
-            texto: conteudo,
+            texto: body,
             sendMessage: (message) =>
-              sendMessage.sendTelegramMessage({
-                userId: telegramUserId,
-                message
+              sendMessage.sendWhatsAppMessage({
+                telefone,
+                message,
+                instanceName: msg.nome
               })
           })
         }
@@ -462,7 +464,8 @@ app.post("/webhook", async (req, res) => {
             sendMessage: (message) =>
               sendMessage.sendWhatsAppMessage({
                 telefone,
-                message
+                message,
+                instanceName: msg.nome
               })
           })
 
@@ -474,7 +477,8 @@ app.post("/webhook", async (req, res) => {
             sendMessage: (message) =>
               sendMessage.sendWhatsAppMessage({
                 telefone,
-                message
+                message,
+                instanceName: msg.nome
               })
           })
 
@@ -495,7 +499,8 @@ app.post("/webhook", async (req, res) => {
       if (mensagem) {
         await sendMessage.sendWhatsAppMessage({
           telefone,
-          message: mensagem
+          message,
+          instanceName: msg.nome
         })
       }
 

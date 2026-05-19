@@ -1,3 +1,4 @@
+//src/services/sendMessage.js
 const axios = require("axios");
 const logger = require("../../logger");
 
@@ -13,14 +14,16 @@ async function sendWhatsAppMessage({
 }) {
   try {
 
-    const instance =
-      instanceName ||
-      process.env.DEFAULT_WHATSAPP_INSTANCE;
+    if (!instanceName) {
+      throw new Error(
+        "instanceName é obrigatório para envio WhatsApp"
+      )
+    }
 
     const url =
       `${process.env.WHATSAPP_API_URL}` +
-      `/instances/${instance}` +
-      `${process.env.WHATSAPP_MESSAGE_ROUTE}`;
+      `/instances/${instanceName}` +
+      `${process.env.WHATSAPP_MESSAGE_ROUTE}`
 
     await axios.post(
       url,
@@ -31,7 +34,7 @@ async function sendWhatsAppMessage({
       {
         timeout: TIMEOUT
       }
-    );
+    )
 
   } catch (err) {
 
@@ -39,11 +42,12 @@ async function sendWhatsAppMessage({
       "❌ Erro ao enviar mensagem WhatsApp",
       {
         telefone,
+        instanceName,
         error: err.message
       }
-    );
+    )
 
-    throw err;
+    throw err
   }
 }
 
