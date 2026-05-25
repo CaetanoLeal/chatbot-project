@@ -122,7 +122,7 @@ export default function MessagesPage() {
 
   async function loadChats() {
     try {
-      const res = await fetch("http://localhost:3001/api/chats")
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chats`)
       const json = await res.json()
 
       if (!json.success) return

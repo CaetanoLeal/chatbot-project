@@ -55,7 +55,7 @@ export default function ContactsPage() {
       try {
         setLoading(true)
 
-        const response = await fetch("http://localhost:3001/api/contacts")
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts`)
 
         if (!response.ok) {
           throw new Error("Erro ao buscar contatos")

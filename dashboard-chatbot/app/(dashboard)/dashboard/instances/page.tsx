@@ -44,7 +44,7 @@ export default function InstancesPage() {
   useEffect(() => {
     async function fetchInstances() {
       try {
-        const response = await fetch("http://localhost:3001/api/instancias")
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/instancias`)
 
         const result = await response.json()
 

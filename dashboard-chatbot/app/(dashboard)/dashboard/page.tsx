@@ -17,7 +17,7 @@ export default function DashboardPage() {
   const [data, setData] = useState<any>(null)
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/dashboard")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard`)
       .then(res => res.json())
       .then(res => setData(res))
   }, [])

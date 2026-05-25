@@ -32,7 +32,7 @@ export default function ConnectInstanceModal({
   useEffect(() => {
     async function loadFunis() {
       try {
-        const res = await fetch("http://localhost:3001/api/funis")
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funis`)
         const data = await res.json()
 
         if (Array.isArray(data)) {
