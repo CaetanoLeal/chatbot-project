@@ -176,8 +176,8 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
 
       const endpoint =
         mode === "create"
-          ? "http://localhost:3001/api/funis"
-          : `http://localhost:3001/api/funis/${funilId}`
+          ? `${process.env.NEXT_PUBLIC_API_URL}/api/funis`
+          : `${process.env.NEXT_PUBLIC_API_URL}/api/funis/${funilId}`
 
       const method = mode === "create" ? "POST" : "PUT"
 
@@ -432,7 +432,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
           <button
             onClick={async () => {
               await fetch(
-                `http://localhost:3001/api/funis/${funilId}/estrutura`,
+                `${process.env.NEXT_PUBLIC_API_URL}/api/funis/${funilId}/estrutura`,
                 {
                   method: "PUT",
                   headers: { "Content-Type": "application/json" },

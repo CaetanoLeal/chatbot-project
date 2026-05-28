@@ -1,5 +1,5 @@
 import axios from "axios"
 
 export const api = axios.create({
-  baseURL: "http://localhost:3001", // api_mensagem
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}`, // api_mensagem
 })

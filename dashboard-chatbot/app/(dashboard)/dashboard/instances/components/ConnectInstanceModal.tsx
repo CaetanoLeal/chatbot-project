@@ -52,7 +52,7 @@ export default function ConnectInstanceModal({
      SOCKET.IO
   ===================================================== */
   useEffect(() => {
-    const socket = io("http://localhost:3000")
+    const socket = io(`${process.env.NEXT_PUBLIC_WHATSAPP_URL}`)
 
     socketRef.current = socket
 
@@ -111,14 +111,14 @@ export default function ConnectInstanceModal({
       setStatus("Enviando código...")
 
       try {
-        const res = await fetch("http://localhost:3002/iniciar-login", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_TELEGRAM_URL}/iniciar-login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
             nome: name,
-            webhook: "http://api_mensagem:3001/webhook",
+            webhook: `${process.env.NEXT_PUBLIC_WEBHOOK_URL}`,
             phoneNumber: phone,
           }),
         })
@@ -145,14 +145,14 @@ export default function ConnectInstanceModal({
     setStatus("Criando instância...")
 
     try {
-      const res = await fetch("http://localhost:3000/instances/create", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_WHATSAPP_URL}/instances/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name,
-          webhookUrl: "http://api_mensagem:3001/webhook",
+          webhookUrl: `${process.env.NEXT_PUBLIC_WEBHOOK_URL}`,
           id_funil: funnel,
           platform,
         }),
@@ -166,7 +166,7 @@ export default function ConnectInstanceModal({
         setTimeout(async () => {
           try {
             const qrRes = await fetch(
-              `http://localhost:3000/instances/${name}/qrcode`
+              `${process.env.NEXT_PUBLIC_WHATSAPP_URL}/instances/${name}/qrcode`
             )
             const qrData = await qrRes.json()
 
@@ -200,7 +200,7 @@ export default function ConnectInstanceModal({
     setStatus("Confirmando código...")
 
     try {
-      const res = await fetch("http://localhost:3002/confirmar-codigo", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_TELEGRAM_URL}/confirmar-codigo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

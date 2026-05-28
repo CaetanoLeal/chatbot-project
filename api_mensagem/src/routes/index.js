@@ -5,6 +5,8 @@ const instanceRoutes = require('./instance.routes')
 const contactRoutes = require('./contact.routes')
 const chatRoutes = require("./chat.routes")
 const dashboardRoutes = require("./dashboard.routes")
+const funilia = require("./funilIa.routes")
+const funilIAModelo = require("./funilIaModelo.routes")
 
 const router = Router()
 
@@ -13,5 +15,7 @@ router.use('/instancias', instanceRoutes)
 router.use('/contacts', contactRoutes)
 router.use("/chats", chatRoutes)
 router.use("/dashboard", dashboardRoutes)
+router.use("/funil-ia", funilia)
+router.use("/funil-ia-modelo", funilIAModelo)
 
 module.exports = router

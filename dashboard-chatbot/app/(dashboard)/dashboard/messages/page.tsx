@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react"
 import { io } from "socket.io-client"
 
-const socket = io("http://localhost:3001")
+const socket = io(`${process.env.NEXT_PUBLIC_API_URL}`)
 
 /* =====================
    TYPES
@@ -154,7 +154,7 @@ export default function MessagesPage() {
   async function loadMessages(chat: ChatThread) {
     try {
       const res = await fetch(
-        `http://localhost:3001/api/chats/${chat.id}/messages`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/chats/${chat.id}/messages`
       )
       const json = await res.json()
 
