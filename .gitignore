@@ -1,3 +1,5 @@
 /data/db
 .env
 api_mensagem/.env
+api_mensagem/logs
+api_mensagem/node_modules

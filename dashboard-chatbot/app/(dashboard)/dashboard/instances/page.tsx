@@ -11,6 +11,7 @@ type Instance = {
   number: string
   platforms: InstancePlatform[]
   funnel: string
+  profilePicture?: string | null
 }
 
 function PlatformBadge({ platform }: { platform: InstancePlatform }) {
@@ -52,12 +53,15 @@ export default function InstancesPage() {
           throw new Error("Erro ao buscar instâncias")
         }
 
-        const formatted: Instance[] = result.data.map((item: any) => ({
-          id: item.id,
+        const formatted: Instance[] = result.data.map((item: any, index: number) => ({
+          id: item.id || index,
           name: item.name,
           number: item.number || "Não informado",
-          platforms: [item.platform as InstancePlatform],
-          funnel: "Sem funil"
+          platforms: [
+            item.platform?.toLowerCase() as InstancePlatform
+          ],
+          funnel: "Sem funil",
+          profilePicture: item.fotoPerfil || null
         }))
 
         setInstances(formatted)
@@ -112,8 +116,18 @@ export default function InstancesPage() {
               key={instance.id}
               className="bg-white rounded shadow p-4 flex gap-4"
             >
-              <div className="w-14 h-14 rounded-full bg-zinc-200 flex items-center justify-center text-zinc-500 text-sm">
-                IMG
+              <div className="w-14 h-14 rounded-full overflow-hidden bg-zinc-200 flex items-center justify-center">
+                {instance.profilePicture ? (
+                  <img
+                    src={instance.profilePicture}
+                    alt={instance.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-zinc-500 text-sm">
+                    IMG
+                  </span>
+                )}
               </div>
 
               <div className="flex-1 space-y-1">
@@ -126,9 +140,9 @@ export default function InstancesPage() {
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-2">
-                  {instance.platforms.map((platform) => (
+                  {instance.platforms.map((platform, index) => (
                     <PlatformBadge
-                      key={platform}
+                      key={`${platform}-${index}`}
                       platform={platform}
                     />
                   ))}

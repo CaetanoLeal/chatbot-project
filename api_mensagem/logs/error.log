@@ -765,3 +765,43 @@
 [2026-05-19 19:46:29] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
 [2026-05-19 20:01:12] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-05-19 20:01:12] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-28 19:25:38] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-28 19:25:38] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-28 19:38:41] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:44:13] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:44:26] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:45:20] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:48:32] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:55:38] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:55:41] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:59:10] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:59:19] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 20:02:54] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-28 20:02:54] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 16:51:04] [ERROR]: ❌ Webhook error: null value in column "no_instancia" of relation "tbl_instancia" violates not-null constraint
+[2026-05-29 16:51:12] [ERROR]: ❌ Webhook error: null value in column "no_instancia" of relation "tbl_instancia" violates not-null constraint
+[2026-05-29 16:51:58] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:06:23] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:06:30] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:06:35] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:06:41] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:07:53] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:19:35] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:22:50] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:25:59] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 17:25:59] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 17:28:16] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:34:09] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:41:22] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 18:40:52] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 18:40:52] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 20:04:47] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 20:04:47] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 20:40:33] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 20:40:33] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 20:48:43] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 20:48:43] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 20:51:00] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 20:51:00] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 21:33:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-05-29 21:33:18] [ERROR]: ❌ Webhook error: Request failed with status code 404

@@ -11,7 +11,6 @@ const routes = require('./routes')
 const sendMessage = require("./services/sendMessage")
 const chatService = require("./services/chatService")
 const constants = require("./constants/chatbot.constants")
-const idFunil = constants.DEFAULT_FUNIL_ID
 
 const TelegramMessageModel = require("./models/TelegramMessageModel")
 const MessageModels = require("./models/MessageModel")
@@ -53,7 +52,7 @@ app.post("/webhook", async (req, res) => {
           : InstanceModel.PROVIDER.TELEGRAM
 
       await InstanceModel.saveOrUpdateInstance({
-        no_instancia: msg.nome,
+        no_instancia: msg.instance?.name,
         cd_provider: provider,
         cd_status: InstanceModel.STATUS.INATIVO,
         ds_webhook: msg.webhook || null,
@@ -72,19 +71,19 @@ app.post("/webhook", async (req, res) => {
           : InstanceModel.PROVIDER.TELEGRAM
 
       await InstanceModel.saveOrUpdateInstance({
-        no_instancia: msg.nome,
+        no_instancia: msg.instance?.name,
         cd_provider: provider,
         cd_status: InstanceModel.STATUS.ATIVO,
         session_string: msg.session_string || null,
         nu_telefone: msg.phoneNumber || null,
         ds_webhook: msg.webhook || null,
-        ds_foto_perfil: null,
+        ds_foto_perfil: msg.profilePicture || null,
         ds_auth_path: msg.ds_auth_path || null,
         id_funil: msg.id_funil || null
       })
 
       io.emit("INSTANCE_CONNECTED", {
-        nome: msg.nome,
+        nome: msg.instance?.name,
         telefone: msg.phoneNumber
       })
 
@@ -99,13 +98,13 @@ app.post("/webhook", async (req, res) => {
           : InstanceModel.PROVIDER.TELEGRAM
 
       await InstanceModel.saveOrUpdateInstance({
-        no_instancia: msg.nome,
+        no_instancia: msg.instance?.name,
         cd_provider: provider,
         cd_status: InstanceModel.STATUS.DESCONECTADO
       })
 
       io.emit("INSTANCE_DISCONNECTED", {
-        nome: msg.nome
+        nome: msg.instance?.name
       })
 
       return res.status(200).json({ success: true })
@@ -221,13 +220,13 @@ app.post("/webhook", async (req, res) => {
 
       const jaPassou = await helper.hasFunilUtilizador(
         idUtilizador,
-        idFunilInstancia
+        instancia.id_funil
       )
 
       if (jaPassou) {
         const estadoChatbot = await helper.getEstadoConversa(
           idUtilizador,
-          idFunil
+          instancia.id_funil
         )
 
         if (estadoChatbot && estadoChatbot > 0) {
@@ -238,7 +237,7 @@ app.post("/webhook", async (req, res) => {
               sendMessage.sendWhatsAppMessage({
                 telefone,
                 message,
-                instanceName: msg.nome
+                instanceName: msg.instance?.name
               })
           })
         } else {
@@ -249,7 +248,7 @@ app.post("/webhook", async (req, res) => {
               sendMessage.sendWhatsAppMessage({
                 telefone,
                 message,
-                instanceName: msg.nome
+                instanceName: msg.instance?.name
               })
           })
         }
@@ -259,11 +258,11 @@ app.post("/webhook", async (req, res) => {
 
       await helper.createFunilUtilizador(
         idUtilizador,
-        idFunil
+        instancia.id_funil
       )
 
       const mensagem = await helper.getMensagemInicialComBotoes(
-        idFunil
+        instancia.id_funil
       )
 
       if (mensagem) {
@@ -295,7 +294,7 @@ app.post("/webhook", async (req, res) => {
         cdTelegram: userId
       })
 
-      const instancia = await InstanceModel.getByName(msg.nome)
+      const instancia = await InstanceModel.getByName(msg.instance?.name)
       if (!instancia) {
         return res.status(200).json({ success: true })
       }
@@ -377,7 +376,7 @@ app.post("/webhook", async (req, res) => {
       })
 
       /* ===== BUSCA INSTÂNCIA ===== */
-      const instancia = await InstanceModel.getByName(msg.nome)
+      const instancia = await InstanceModel.getByName(msg.instance?.name)
       if (!instancia) {
         return res.status(200).json({ success: true })
       }
@@ -446,14 +445,14 @@ app.post("/webhook", async (req, res) => {
 
       const jaPassou = await helper.hasFunilUtilizador(
         idUtilizador,
-        idFunilInstancia
+        instancia.id_funil
       )
 
       if (jaPassou) {
 
         const estadoChatbot = await helper.getEstadoConversa(
           idUtilizador,
-          idFunil
+          instancia.id_funil
         )
 
         if (estadoChatbot && estadoChatbot > 0) {
@@ -465,7 +464,7 @@ app.post("/webhook", async (req, res) => {
               sendMessage.sendWhatsAppMessage({
                 telefone,
                 message,
-                instanceName: msg.nome
+                instanceName: msg.instance?.name
               })
           })
 
@@ -478,7 +477,7 @@ app.post("/webhook", async (req, res) => {
               sendMessage.sendWhatsAppMessage({
                 telefone,
                 message,
-                instanceName: msg.nome
+                instanceName: msg.instance?.name
               })
           })
 
@@ -489,18 +488,18 @@ app.post("/webhook", async (req, res) => {
 
       await helper.createFunilUtilizador(
         idUtilizador,
-        idFunil
+        instancia.id_funil
       )
 
       const mensagem = await helper.getMensagemInicialComBotoes(
-        idFunil
+        instancia.id_funil
       )
 
       if (mensagem) {
         await sendMessage.sendWhatsAppMessage({
           telefone,
-          message,
-          instanceName: msg.nome
+          message: mensagem,
+          instanceName: msg.instance?.name
         })
       }
 
@@ -526,7 +525,7 @@ app.post("/webhook", async (req, res) => {
         telefone
       })
 
-      const instancia = await InstanceModel.getByName(msg.nome)
+      const instancia = await InstanceModel.getByName(msg.instance?.name)
       if (!instancia) {
         return res.status(200).json({ success: true })
       }

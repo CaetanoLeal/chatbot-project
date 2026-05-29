@@ -2970,3 +2970,75 @@
 [2026-05-28 16:28:18] [INFO]: 🚀 Servidor rodando na porta 3001
 [2026-05-28 16:28:18] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Thu May 28 2026 16:28:18 GMT+0000 (Coordinated Universal Time)
 [2026-05-28 16:28:18] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-05-28 19:25:37] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-28 19:25:38] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-28 19:25:38] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-28 19:25:38] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-28 19:32:11] [INFO]: 🆕 Utilizador criado (e8214196-8435-4c96-9467-f75f456b44b0)
+[2026-05-28 19:38:41] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:44:13] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:44:26] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:45:20] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:48:32] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:55:15] [INFO]: 🆕 Utilizador criado (eb5a8b91-e42c-4d86-a1d1-d2bc76a75134)
+[2026-05-28 19:55:38] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:55:41] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:59:10] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 19:59:19] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-28 20:02:54] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-28 20:02:54] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-28 20:02:54] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-28 20:02:54] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 16:40:55] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-29 16:40:55] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-29 16:40:55] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri May 29 2026 16:40:55 GMT+0000 (Coordinated Universal Time)
+[2026-05-29 16:40:55] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-05-29 16:51:04] [ERROR]: ❌ Webhook error: null value in column "no_instancia" of relation "tbl_instancia" violates not-null constraint
+[2026-05-29 16:51:12] [ERROR]: ❌ Webhook error: null value in column "no_instancia" of relation "tbl_instancia" violates not-null constraint
+[2026-05-29 16:51:58] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:06:23] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:06:30] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:06:35] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:06:41] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:07:53] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:13:28] [INFO]: 🆕 Utilizador criado (fa388215-f6dc-4e03-be8c-a88b4b5ae58f)
+[2026-05-29 17:19:35] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:22:50] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:25:58] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-29 17:25:59] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-29 17:25:59] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 17:25:59] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 17:28:16] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:32:40] [INFO]: 🆕 Utilizador criado (0f10a752-1bd4-43f2-8983-cc08120c931d)
+[2026-05-29 17:34:09] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 17:41:22] [ERROR]: ❌ Webhook error: env is not defined
+[2026-05-29 18:40:51] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-29 18:40:52] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-29 18:40:52] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 18:40:52] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 18:48:26] [INFO]: 🆕 Utilizador criado (bcdd37a0-33c8-4b06-87e5-3ea3e543eb34)
+[2026-05-29 20:04:45] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-29 20:04:47] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-29 20:04:47] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 20:04:47] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 20:28:55] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-29 20:28:56] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-29 20:28:56] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri May 29 2026 20:28:56 GMT+0000 (Coordinated Universal Time)
+[2026-05-29 20:28:56] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-05-29 20:40:32] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-29 20:40:33] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-29 20:40:33] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 20:40:33] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 20:48:42] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-29 20:48:43] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-29 20:48:43] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 20:48:43] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 20:51:00] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-05-29 20:51:00] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-05-29 20:51:00] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-05-29 20:51:00] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-05-29 21:26:25] [INFO]: 🆕 Utilizador criado (42eb5ac6-d6f2-47b0-9800-39df5df980c5)
+[2026-05-29 21:31:07] [INFO]: 🆕 Utilizador criado (cf8bbbe7-883f-436d-8159-dc6c81318951)
+[2026-05-29 21:33:18] [INFO]: 🆕 Utilizador criado (7e47c11b-cc4a-4a92-9833-8349981908c4)
+[2026-05-29 21:33:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-05-29 21:33:18] [ERROR]: ❌ Webhook error: Request failed with status code 404

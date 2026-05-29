@@ -117,7 +117,7 @@ class MessageModel {
     messageId,
     from,
     body,
-    raw?.message?.type || env.chatbot.defaultMessageType,
+    raw?.message?.type || process.env.DEFAULT_MESSAGE_TYPE,
     from,
     from,
     false,
