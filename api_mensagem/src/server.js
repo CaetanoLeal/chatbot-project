@@ -337,8 +337,18 @@ app.post("/webhook", async (req, res) => {
 
       const jid = msg.whatsapp?.jid
 
-      /* IGNORA GRUPOS */
-      if (jid?.endsWith("@g.us")) {
+      const isStatus = helper.isStatusBroadcast(
+        jid,
+        msg.whatsapp?.jidAlt,
+        msg.message?.raw?.key?.remoteJid,
+        msg.message?.raw?.key?.participant
+      )
+
+      /* IGNORA GRUPOS E STATUS */
+      if (
+        jid?.endsWith("@g.us") ||
+        isStatus
+      ) {
         return res.status(200).json({ success: true })
       }
 

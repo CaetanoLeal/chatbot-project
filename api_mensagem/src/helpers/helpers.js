@@ -367,6 +367,14 @@ async function processarRespostaChatbot({
   }
 }
 
+function isStatusBroadcast(...jids) {
+  return jids.some(jid =>
+    typeof jid === "string" &&
+    jid.includes("status@broadcast")
+  )
+}
+
+
 module.exports = {
   extrairNumeroWhatsapp,
   getEstadoConversa,
@@ -376,5 +384,6 @@ module.exports = {
   getMensagemInicialComBotoes,
   processarRespostaCadastro,
   getMensagemChatbotComBotoes,
-  processarRespostaChatbot
+  processarRespostaChatbot,
+  isStatusBroadcast
 }
