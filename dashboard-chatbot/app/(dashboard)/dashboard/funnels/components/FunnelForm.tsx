@@ -48,9 +48,9 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
     initialData?.description ?? ""
   )
 
-  const [welcomeMessage, setWelcomeMessage] = useState<Mensagem>(
+  const [welcomeMessage, setWelcomeMessage] = useState<Mensagem>(() =>
     initialData?.welcomeMessage ?? {
-      id: crypto.randomUUID(), // 👈 ID temporário
+      id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}`,
       cd_mensagem: 1,
       ds_mensagem: "",
       cd_mensagem_destino: null,
@@ -95,7 +95,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
       botoes: [
         ...welcomeMessage.botoes,
         {
-          id: crypto.randomUUID(),
+          id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`,
           cd_botao: welcomeMessage.botoes.length + 1,
           ds_botao: "",
           cd_mensagem_destino: null,
@@ -120,7 +120,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
     setMessages([
       ...messages,
       {
-        id: crypto.randomUUID(), // ID temporário
+        id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`,
         cd_mensagem: nextCd,
         ds_mensagem: "",
         cd_mensagem_destino: null,
@@ -138,7 +138,7 @@ export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
             botoes: [
               ...msg.botoes,
               {
-                id: crypto.randomUUID(),
+                id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`,
                 cd_botao: msg.botoes.length + 1,
                 ds_botao: "",
                 cd_mensagem_destino: null,
