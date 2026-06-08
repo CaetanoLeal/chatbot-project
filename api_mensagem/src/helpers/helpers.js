@@ -167,6 +167,7 @@ async function getMensagemInicialComBotoes(idFunil) {
 
 async function processarRespostaCadastro({
   idUtilizador,
+  idFunil,
   texto,
   sendMessage
 }) {
@@ -188,7 +189,7 @@ async function processarRespostaCadastro({
       AND cd_mensagem = 1
     LIMIT 1
     `,
-    [DEFAULT_FUNIL_ID]
+    [idFunil]
   )
 
   if (rCadastro.rows.length === 0) return
@@ -225,12 +226,12 @@ async function processarRespostaCadastro({
     WHERE id_utilizador = $2
       AND id_funil = $3
     `,
-    [cd_mensagem_destino, idUtilizador, DEFAULT_FUNIL_ID]
+    [cd_mensagem_destino, idUtilizador, idFunil]
   )
 
   // 4️⃣ Envia próxima mensagem
   const mensagem = await getMensagemChatbotComBotoes({
-    idFunil: DEFAULT_FUNIL_ID,
+    idFunil: idFunil,
     cdMensagem: cd_mensagem_destino
   })
 
@@ -279,6 +280,7 @@ async function getMensagemChatbotComBotoes({ idFunil, cdMensagem }) {
 
 async function processarRespostaChatbot({
   idUtilizador,
+  idFunil,
   texto,
   sendMessage
 }) {
@@ -300,7 +302,7 @@ async function processarRespostaChatbot({
       AND id_funil = $2
     LIMIT 1
     `,
-    [idUtilizador, DEFAULT_FUNIL_ID]
+    [idUtilizador, idFunil]
   )
 
   if (rEstado.rows.length === 0) return
@@ -316,7 +318,7 @@ async function processarRespostaChatbot({
       AND cd_mensagem = $2
     LIMIT 1
     `,
-    [DEFAULT_FUNIL_ID, cdMensagemAtual]
+    [idFunil, cdMensagemAtual]
   )
 
   if (rMensagemAtual.rows.length === 0) return
@@ -353,12 +355,12 @@ async function processarRespostaChatbot({
     WHERE id_utilizador = $2
       AND id_funil = $3
     `,
-    [cdDestino, idUtilizador, DEFAULT_FUNIL_ID]
+    [cdDestino, idUtilizador, idFunil]
   )
 
   // 5️⃣ Próxima mensagem
   const mensagem = await getMensagemChatbotComBotoes({
-    idFunil: DEFAULT_FUNIL_ID,
+    idFunil: idFunil,
     cdMensagem: cdDestino
   })
 

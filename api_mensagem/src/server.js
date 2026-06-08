@@ -232,6 +232,7 @@ app.post("/webhook", async (req, res) => {
         if (estadoChatbot && estadoChatbot > 0) {
           await helper.processarRespostaChatbot({
             idUtilizador,
+            idFunil: instancia.id_funil,
             texto: body,
             sendMessage: (message) =>
               sendMessage.sendWhatsAppMessage({
@@ -243,6 +244,7 @@ app.post("/webhook", async (req, res) => {
         } else {
           await helper.processarRespostaCadastro({
             idUtilizador,
+            idFunil: instancia.id_funil,
             texto: body,
             sendMessage: (message) =>
               sendMessage.sendWhatsAppMessage({
@@ -469,6 +471,7 @@ app.post("/webhook", async (req, res) => {
 
           await helper.processarRespostaChatbot({
             idUtilizador,
+            idFunil: instancia.id_funil,
             texto: body,
             sendMessage: (message) =>
               sendMessage.sendWhatsAppMessage({
@@ -482,6 +485,7 @@ app.post("/webhook", async (req, res) => {
 
           await helper.processarRespostaCadastro({
             idUtilizador,
+            idFunil: instancia.id_funil,
             texto: body,
             sendMessage: (message) =>
               sendMessage.sendWhatsAppMessage({
