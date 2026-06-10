@@ -8,6 +8,7 @@ async function getOrCreateChat({
   cdProvider,
   idInstancia
 }) {
+
   const r = await db.query(
     `
     SELECT id_chat
@@ -29,10 +30,34 @@ async function getOrCreateChat({
   await db.query(
     `
     INSERT INTO tbl_chat
-    (id_chat, id_utilizador, cd_provider, id_instancia)
-    VALUES ($1,$2,$3,$4)
+    (
+      id_chat,
+      id_utilizador,
+      cd_provider,
+      id_instancia,
+      sg_chat_status,
+      nao_lidas,
+      dt_created_at,
+      dt_updated_at
+    )
+    VALUES
+    (
+      $1,
+      $2,
+      $3,
+      $4,
+      'C',
+      0,
+      NOW(),
+      NOW()
+    )
     `,
-    [idChat, idUtilizador, cdProvider, idInstancia]
+    [
+      idChat,
+      idUtilizador,
+      cdProvider,
+      idInstancia
+    ]
   )
 
   return idChat
@@ -48,16 +73,27 @@ async function saveUnifiedMessage({
   payload,
   dhEnvio
 }) {
+
   const idMensagem = uuidv4()
 
   await db.query(
     `
     INSERT INTO tbl_mensagem
-    (id_mensagem, id_chat, cd_provider,
-     id_mensagem_externa,
-     from_me, ds_conteudo, ds_tipo,
-     ds_payload, dh_envio)
-    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
+    (
+      id_mensagem,
+      id_chat,
+      cd_provider,
+      id_mensagem_externa,
+      from_me,
+      ds_conteudo,
+      ds_tipo,
+      ds_payload,
+      dh_envio
+    )
+    VALUES
+    (
+      $1,$2,$3,$4,$5,$6,$7,$8,$9
+    )
     `,
     [
       idMensagem,
@@ -72,15 +108,14 @@ async function saveUnifiedMessage({
     ]
   )
 
-  // Atualiza resumo do chat
   await db.query(
     `
     UPDATE tbl_chat
-    SET ultima_mensagem = $1,
-        dh_ultima_mensagem = $2,
-        nao_lidas = nao_lidas + $3,
-        dt_updated_at = NOW()
-    WHERE id_chat = $4
+       SET ultima_mensagem = $1,
+           dh_ultima_mensagem = $2,
+           nao_lidas = nao_lidas + $3,
+           dt_updated_at = NOW()
+     WHERE id_chat = $4
     `,
     [
       conteudo,
@@ -91,17 +126,17 @@ async function saveUnifiedMessage({
   )
 }
 
-//  LISTAR CHATS
 async function listChats() {
+
   const { rows } = await db.query(`
-    SELECT 
+    SELECT
       c.*,
       u.no_utilizador,
       u.nu_telefone,
       p.ds_provider,
       i.no_instancia
     FROM tbl_chat c
-    LEFT JOIN tbl_utilizador u 
+    LEFT JOIN tbl_utilizador u
       ON u.id_utilizador = c.id_utilizador
     LEFT JOIN tbl_provider p
       ON p.cd_provider = c.cd_provider
@@ -113,8 +148,8 @@ async function listChats() {
   return rows
 }
 
-//  LISTAR MENSAGENS DO CHAT
 async function getMessagesByChat(idChat) {
+
   const { rows } = await db.query(
     `
     SELECT *
@@ -128,7 +163,6 @@ async function getMessagesByChat(idChat) {
   return rows
 }
 
-// ATUALIZAR INFORMAÇÕES DE CONTATO (FOTO DE PERFIL, ÚLTIMO VISTO)
 async function updateChatContactInfo({
   idChat,
   fotoPerfil,
@@ -138,11 +172,10 @@ async function updateChatContactInfo({
   await db.query(
     `
     UPDATE tbl_chat
-    SET
-      ds_foto_perfil = COALESCE($1, ds_foto_perfil),
-      dh_last_seen = COALESCE($2, dh_last_seen),
-      dt_updated_at = NOW()
-    WHERE id_chat = $3
+       SET ds_foto_perfil = COALESCE($1, ds_foto_perfil),
+           dh_last_seen = COALESCE($2, dh_last_seen),
+           dt_updated_at = NOW()
+     WHERE id_chat = $3
     `,
     [
       fotoPerfil,
@@ -152,10 +185,50 @@ async function updateChatContactInfo({
   )
 }
 
+async function updateChatStatus({
+  idChat,
+  status
+}) {
+
+  await db.query(
+    `
+    UPDATE tbl_chat
+       SET sg_chat_status = $1,
+           dt_updated_at = NOW()
+     WHERE id_chat = $2
+    `,
+    [
+      status,
+      idChat
+    ]
+  )
+}
+
+async function getChatStatus(idChat) {
+
+  const r = await db.query(
+    `
+    SELECT sg_chat_status
+    FROM tbl_chat
+    WHERE id_chat = $1
+    LIMIT 1
+    `,
+    [idChat]
+  )
+
+  if (r.rows.length === 0) {
+    return null
+  }
+
+  return r.rows[0].sg_chat_status
+}
+
 module.exports = {
   getOrCreateChat,
   saveUnifiedMessage,
   listChats,
   getMessagesByChat,
-  updateChatContactInfo
+  updateChatContactInfo,
+  updateChatStatus,
+  getChatStatus
 }

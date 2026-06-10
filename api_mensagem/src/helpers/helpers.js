@@ -122,6 +122,10 @@ async function createFunilUtilizador(idUtilizador, idFunil) {
     `,
     [uuidv4(), idFunil, idUtilizador, now, exp]
   )
+  await updateChatStatus({
+    idUtilizador,
+    status: 'C'
+  })
 }
 
 async function getMensagemInicialComBotoes(idFunil) {
@@ -228,16 +232,29 @@ async function processarRespostaCadastro({
     `,
     [cd_mensagem_destino, idUtilizador, idFunil]
   )
+  await updateChatStatus({
+    idUtilizador,
+    status: 'B'
+  })
 
   // 4️⃣ Envia próxima mensagem
   const mensagem = await getMensagemChatbotComBotoes({
     idFunil: idFunil,
     cdMensagem: cd_mensagem_destino
   })
+  
+  if (mensagem && !mensagem.possuiBotoes) {
+    await finalizarChat({
+      idUtilizador,
+      idFunil
+    })
+  }
 
   if (mensagem) {
     await sendMessage(mensagem.textoFinal)
   }
+  
+
 }
 
 async function getMensagemChatbotComBotoes({ idFunil, cdMensagem }) {
@@ -275,7 +292,7 @@ async function getMensagemChatbotComBotoes({ idFunil, cdMensagem }) {
       .join("\n")
   }
 
-  return { textoFinal, id_funil_chatbot }
+  return { textoFinal, id_funil_chatbot, possuiBotoes: rBotoes.rows.length > 0 }
 }
 
 async function processarRespostaChatbot({
@@ -364,6 +381,13 @@ async function processarRespostaChatbot({
     cdMensagem: cdDestino
   })
 
+  if (mensagem && !mensagem.possuiBotoes) {
+    await finalizarChat({
+      idUtilizador,
+      idFunil
+    })
+  }
+
   if (mensagem) {
     await sendMessage(mensagem.textoFinal)
   }
@@ -374,6 +398,93 @@ function isStatusBroadcast(...jids) {
     typeof jid === "string" &&
     jid.includes("status@broadcast")
   )
+}
+
+async function finalizarChat({
+  idUtilizador,
+  idFunil
+}) {
+
+  await db.query(
+    `
+    UPDATE tbl_funil_utilizador
+       SET cd_mensagem_chatbot = 0
+     WHERE id_utilizador = $1
+       AND id_funil = $2
+    `,
+    [idUtilizador, idFunil]
+  )
+
+  await updateChatStatus({
+    idUtilizador,
+    status: 'F'
+  })
+}
+
+async function getTipoDestino({
+  idFunil,
+  cdMensagemDestino
+}) {
+
+  const rChatbot = await db.query(
+    `
+    SELECT 1
+    FROM tbl_funil_chatbot
+    WHERE id_funil = $1
+      AND cd_mensagem = $2
+    LIMIT 1
+    `,
+    [idFunil, cdMensagemDestino]
+  )
+
+  if (rChatbot.rows.length > 0) {
+    return "CHATBOT"
+  }
+
+  const rCadastro = await db.query(
+    `
+    SELECT 1
+    FROM tbl_funil_cadastro_resposta
+    WHERE cd_mensagem_destino = $1
+    LIMIT 1
+    `,
+    [cdMensagemDestino]
+  )
+
+  if (rCadastro.rows.length > 0) {
+    return "CADASTRO"
+  }
+
+  return null
+}
+
+async function getChatStatus(idChat) {
+
+  const r = await db.query(`
+    SELECT sg_chat_status
+    FROM tbl_chat
+    WHERE id_chat = $1
+    LIMIT 1
+  `,[idChat])
+
+  if(r.rows.length === 0){
+    return null
+  }
+
+  return r.rows[0].sg_chat_status
+}
+
+async function updateChatStatus({
+  idUtilizador,
+  status
+}) {
+
+  await db.query(`
+    UPDATE tbl_chat
+       SET sg_chat_status = $1
+     WHERE id_utilizador = $2
+  `,[status,idUtilizador])
+
 }
 
 
@@ -387,5 +498,8 @@ module.exports = {
   processarRespostaCadastro,
   getMensagemChatbotComBotoes,
   processarRespostaChatbot,
-  isStatusBroadcast
+  isStatusBroadcast,
+  finalizarChat,
+  getChatStatus,
+  updateChatStatus
 }

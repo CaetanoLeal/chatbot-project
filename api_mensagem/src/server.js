@@ -218,63 +218,109 @@ app.post("/webhook", async (req, res) => {
   
       /* ===== FLUXO FUNIL NORMAL ===== */
 
-      const jaPassou = await helper.hasFunilUtilizador(
+            const possuiFunil =
+      await helper.hasFunilUtilizador(
         idUtilizador,
         instancia.id_funil
       )
+      
+      if (!possuiFunil) {
 
-      if (jaPassou) {
-        const estadoChatbot = await helper.getEstadoConversa(
+        await helper.createFunilUtilizador(
           idUtilizador,
           instancia.id_funil
         )
 
-        if (estadoChatbot && estadoChatbot > 0) {
-          await helper.processarRespostaChatbot({
-            idUtilizador,
-            idFunil: instancia.id_funil,
-            texto: body,
-            sendMessage: (message) =>
-              sendMessage.sendWhatsAppMessage({
-                telefone,
-                message,
-                instanceName: msg.instance?.name
-              })
+        const mensagem =
+          await helper.getMensagemInicialComBotoes(
+            instancia.id_funil
+          )
+
+        if (mensagem) {
+
+          await sendMessage.sendWhatsAppMessage({
+            telefone,
+            message: mensagem,
+            instanceName: msg.instance?.name
           })
-        } else {
-          await helper.processarRespostaCadastro({
-            idUtilizador,
-            idFunil: instancia.id_funil,
-            texto: body,
-            sendMessage: (message) =>
-              sendMessage.sendWhatsAppMessage({
-                telefone,
-                message,
-                instanceName: msg.instance?.name
-              })
-          })
+
         }
 
-        return res.status(200).json({ success: true })
-      }
-
-      await helper.createFunilUtilizador(
-        idUtilizador,
-        instancia.id_funil
-      )
-
-      const mensagem = await helper.getMensagemInicialComBotoes(
-        instancia.id_funil
-      )
-
-      if (mensagem) {
-        await sendMessage.sendTelegramMessage({
-          userId: telegramUserId,
-          message: mensagem
+        return res.status(200).json({
+          success: true
         })
       }
 
-      return res.status(200).json({ success: true })
+      const status = await helper.getChatStatus(idChat)
+
+        switch (status) {
+
+          // Atendimento humano
+          case 'A':
+          case 'I':
+          case 'P':
+          case 'F':
+            return res.status(200).json({
+              success: true
+            })
+
+          // Cadastro
+          case 'C':
+            await helper.processarRespostaCadastro({
+              idUtilizador,
+              idFunil: instancia.id_funil,
+              texto: body,
+              sendMessage: (message) =>
+                sendMessage.sendWhatsAppMessage({
+                  telefone,
+                  message,
+                  instanceName: msg.instance?.name
+                })
+            })
+
+            return res.status(200).json({ success: true })
+
+          // Chatbot
+          case 'B':
+            await helper.processarRespostaChatbot({
+              idUtilizador,
+              idFunil: instancia.id_funil,
+              texto: body,
+              sendMessage: (message) =>
+                sendMessage.sendWhatsAppMessage({
+                  telefone,
+                  message,
+                  instanceName: msg.instance?.name
+                })
+            })
+
+            return res.status(200).json({ success: true })
+
+          // Primeiro contato
+          default:
+
+            await helper.createFunilUtilizador(
+              idUtilizador,
+              instancia.id_funil
+            )
+
+            const mensagem =
+              await helper.getMensagemInicialComBotoes(
+                instancia.id_funil
+              )
+
+            if (mensagem) {
+              await sendMessage.sendWhatsAppMessage({
+                telefone,
+                message: mensagem,
+                instanceName: msg.instance?.name
+              })
+            }
+
+            return res.status(200).json({
+              success: true
+            })
+        }
     }
 
     /* ================= TELEGRAM ENVIADA ================= */
@@ -455,69 +501,110 @@ app.post("/webhook", async (req, res) => {
         FLUXO FUNIL NORMAL
       ========================== */
 
-      const jaPassou = await helper.hasFunilUtilizador(
+      const possuiFunil =
+      await helper.hasFunilUtilizador(
         idUtilizador,
         instancia.id_funil
       )
 
-      if (jaPassou) {
+      if (!possuiFunil) {
 
-        const estadoChatbot = await helper.getEstadoConversa(
+        await helper.createFunilUtilizador(
           idUtilizador,
           instancia.id_funil
         )
 
-        if (estadoChatbot && estadoChatbot > 0) {
+        const mensagem =
+          await helper.getMensagemInicialComBotoes(
+            instancia.id_funil
+          )
 
-          await helper.processarRespostaChatbot({
-            idUtilizador,
-            idFunil: instancia.id_funil,
-            texto: body,
-            sendMessage: (message) =>
-              sendMessage.sendWhatsAppMessage({
-                telefone,
-                message,
-                instanceName: msg.instance?.name
-              })
-          })
+        if (mensagem) {
 
-        } else {
-
-          await helper.processarRespostaCadastro({
-            idUtilizador,
-            idFunil: instancia.id_funil,
-            texto: body,
-            sendMessage: (message) =>
-              sendMessage.sendWhatsAppMessage({
-                telefone,
-                message,
-                instanceName: msg.instance?.name
-              })
+          await sendMessage.sendWhatsAppMessage({
+            telefone,
+            message: mensagem,
+            instanceName: msg.instance?.name
           })
 
         }
 
-        return res.status(200).json({ success: true })
-      }
-
-      await helper.createFunilUtilizador(
-        idUtilizador,
-        instancia.id_funil
-      )
-
-      const mensagem = await helper.getMensagemInicialComBotoes(
-        instancia.id_funil
-      )
-
-      if (mensagem) {
-        await sendMessage.sendWhatsAppMessage({
-          telefone,
-          message: mensagem,
-          instanceName: msg.instance?.name
+        return res.status(200).json({
+          success: true
         })
       }
+      
+      const status = await helper.getChatStatus(idChat)
 
-      return res.status(200).json({ success: true })
+        switch (status) {
+
+          // Atendimento humano
+          case 'A':
+          case 'I':
+          case 'P':
+          case 'F':
+            return res.status(200).json({
+              success: true
+            })
+
+          // Cadastro
+          case 'C':
+            await helper.processarRespostaCadastro({
+              idUtilizador,
+              idFunil: instancia.id_funil,
+              texto: body,
+              sendMessage: (message) =>
+                sendMessage.sendWhatsAppMessage({
+                  telefone,
+                  message,
+                  instanceName: msg.instance?.name
+                })
+            })
+
+            return res.status(200).json({ success: true })
+
+          // Chatbot
+          case 'B':
+            await helper.processarRespostaChatbot({
+              idUtilizador,
+              idFunil: instancia.id_funil,
+              texto: body,
+              sendMessage: (message) =>
+                sendMessage.sendWhatsAppMessage({
+                  telefone,
+                  message,
+                  instanceName: msg.instance?.name
+                })
+            })
+
+            return res.status(200).json({ success: true })
+
+          // Primeiro contato
+          default:
+
+            await helper.createFunilUtilizador(
+              idUtilizador,
+              instancia.id_funil
+            )
+
+            const mensagem =
+              await helper.getMensagemInicialComBotoes(
+                instancia.id_funil
+              )
+
+            if (mensagem) {
+              await sendMessage.sendWhatsAppMessage({
+                telefone,
+                message: mensagem,
+                instanceName: msg.instance?.name
+              })
+            }
+
+            return res.status(200).json({
+              success: true
+            })
+        }
+
     }
 
     /* ================= WHATSAPP ENVIADA ================= */
