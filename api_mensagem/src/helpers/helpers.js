@@ -47,7 +47,7 @@ function extrairIdentificadorTelegram(msg) {
 async function getEstadoConversa(idUtilizador, idFunil) {
   const r = await db.query(
     `
-    SELECT cd_mensagem_chatbot
+    SELECT cd_mensagem
     FROM tbl_funil_utilizador
     WHERE id_utilizador = $1
       AND id_funil = $2
@@ -58,7 +58,7 @@ async function getEstadoConversa(idUtilizador, idFunil) {
 
   if (r.rows.length === 0) return null
 
-  return r.rows[0].cd_mensagem_chatbot
+  return r.rows[0].cd_mensagem
 }
 
 async function getOrCreateUtilizador({ cdTelegram, cdWhatsapp, telefone, nome }) {
@@ -115,10 +115,17 @@ async function createFunilUtilizador(idUtilizador, idFunil) {
   await db.query(
     `
     INSERT INTO tbl_funil_utilizador
-    (id_funil_utilizador, id_funil, id_utilizador,
-     cd_mensagem_cadastro, cd_mensagem_chatbot,
-     dh_mensagem, dh_expiracao)
-    VALUES ($1,$2,$3,1,0,$4,$5)
+    (
+      id_funil_utilizador,
+      id_funil,
+      id_utilizador,
+      cd_mensagem,
+      cd_mensagem_cadastro,
+      cd_mensagem_chatbot,
+      dh_mensagem,
+      dh_expiracao
+    )
+    VALUES ($1,$2,$3,1,1,0,$4,$5)
     `,
     [uuidv4(), idFunil, idUtilizador, now, exp]
   )
@@ -225,7 +232,7 @@ async function processarRespostaCadastro({
   await db.query(
     `
     UPDATE tbl_funil_utilizador
-    SET cd_mensagem_chatbot = $1,
+    SET cd_mensagem = $1,
         dh_mensagem = NOW()
     WHERE id_utilizador = $2
       AND id_funil = $3
@@ -238,8 +245,8 @@ async function processarRespostaCadastro({
   })
 
   // 4️⃣ Envia próxima mensagem
-  const mensagem = await getMensagemChatbotComBotoes({
-    idFunil: idFunil,
+  const mensagem = await getMensagemFunil({
+    idFunil,
     cdMensagem: cd_mensagem_destino
   })
   
@@ -313,7 +320,7 @@ async function processarRespostaChatbot({
   // 1️⃣ Estado atual
   const rEstado = await db.query(
     `
-    SELECT cd_mensagem_chatbot
+    SELECT cd_mensagem
     FROM tbl_funil_utilizador
     WHERE id_utilizador = $1
       AND id_funil = $2
@@ -324,7 +331,7 @@ async function processarRespostaChatbot({
 
   if (rEstado.rows.length === 0) return
 
-  const cdMensagemAtual = rEstado.rows[0].cd_mensagem_chatbot
+  const cdMensagemAtual = rEstado.rows[0].cd_mensagem
 
   // 2️⃣ ID da mensagem atual
   const rMensagemAtual = await db.query(
@@ -367,7 +374,7 @@ async function processarRespostaChatbot({
   await db.query(
     `
     UPDATE tbl_funil_utilizador
-    SET cd_mensagem_chatbot = $1,
+    SET cd_mensagem = $1,
         dh_mensagem = NOW()
     WHERE id_utilizador = $2
       AND id_funil = $3
@@ -376,8 +383,8 @@ async function processarRespostaChatbot({
   )
 
   // 5️⃣ Próxima mensagem
-  const mensagem = await getMensagemChatbotComBotoes({
-    idFunil: idFunil,
+  const mensagem = await getMensagemFunil({
+    idFunil,
     cdMensagem: cdDestino
   })
 
@@ -408,7 +415,7 @@ async function finalizarChat({
   await db.query(
     `
     UPDATE tbl_funil_utilizador
-       SET cd_mensagem_chatbot = 0
+       SET cd_mensagem = 0
      WHERE id_utilizador = $1
        AND id_funil = $2
     `,
@@ -487,6 +494,139 @@ async function updateChatStatus({
 
 }
 
+async function getMensagemFunil({
+  idFunil,
+  cdMensagem
+}) {
+
+  /* ==========================
+     CHATBOT
+  ========================== */
+
+  let r = await db.query(
+    `
+    SELECT
+      id_funil_chatbot AS id_registro,
+      ds_mensagem,
+      'CHATBOT' AS tipo
+    FROM tbl_funil_chatbot
+    WHERE id_funil = $1
+      AND cd_mensagem = $2
+    LIMIT 1
+    `,
+    [idFunil, cdMensagem]
+  )
+
+  if (r.rows.length > 0) {
+
+    const registro = r.rows[0]
+
+    const rBotoes = await db.query(
+      `
+      SELECT
+        cd_botao,
+        ds_botao
+      FROM tbl_funil_chatbot_botao
+      WHERE id_funil_chatbot = $1
+      ORDER BY cd_botao
+      `,
+      [registro.id_registro]
+    )
+
+    let textoFinal = registro.ds_mensagem
+
+    if (rBotoes.rows.length > 0) {
+      textoFinal += "\n\n"
+      textoFinal += rBotoes.rows
+        .map(b => `${b.cd_botao} - ${b.ds_botao}`)
+        .join("\n")
+    }
+
+    return {
+      tipo: "CHATBOT",
+      textoFinal,
+      possuiBotoes: rBotoes.rows.length > 0
+    }
+  }
+
+  /* ==========================
+     CADASTRO
+  ========================== */
+
+  r = await db.query(
+    `
+    SELECT
+      id_funil_cadastro AS id_registro,
+      ds_mensagem,
+      'CADASTRO' AS tipo
+    FROM tbl_funil_cadastro
+    WHERE id_funil = $1
+      AND cd_mensagem = $2
+    LIMIT 1
+    `,
+    [idFunil, cdMensagem]
+  )
+
+  if (r.rows.length > 0) {
+
+    const registro = r.rows[0]
+
+    const rBotoes = await db.query(
+      `
+      SELECT
+        cd_botao,
+        ds_botao
+      FROM tbl_funil_cadastro_botao
+      WHERE id_funil_cadastro = $1
+      ORDER BY cd_botao
+      `,
+      [registro.id_registro]
+    )
+
+    let textoFinal = registro.ds_mensagem
+
+    if (rBotoes.rows.length > 0) {
+      textoFinal += "\n\n"
+      textoFinal += rBotoes.rows
+        .map(b => `${b.cd_botao} - ${b.ds_botao}`)
+        .join("\n")
+    }
+
+    return {
+      tipo: "CADASTRO",
+      textoFinal,
+      possuiBotoes: rBotoes.rows.length > 0
+    }
+  }
+
+  /* ==========================
+     CADASTRO RESPOSTA
+  ========================== */
+
+  r = await db.query(
+    `
+    SELECT
+      ds_mensagem,
+      'CADASTRO_RESPOSTA' AS tipo
+    FROM tbl_funil_cadastro_resposta
+    WHERE cd_mensagem = $1
+    LIMIT 1
+    `,
+    [cdMensagem]
+  )
+
+  if (r.rows.length > 0) {
+
+    return {
+      tipo: "CADASTRO_RESPOSTA",
+      textoFinal: r.rows[0].ds_mensagem,
+      possuiBotoes: false
+    }
+  }
+
+  return null
+}
+
 
 module.exports = {
   extrairNumeroWhatsapp,
@@ -501,5 +641,6 @@ module.exports = {
   isStatusBroadcast,
   finalizarChat,
   getChatStatus,
-  updateChatStatus
+  updateChatStatus,
+  getMensagemFunil
 }

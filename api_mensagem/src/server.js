@@ -218,7 +218,7 @@ app.post("/webhook", async (req, res) => {
   
       /* ===== FLUXO FUNIL NORMAL ===== */
 
-            const possuiFunil =
+      const possuiFunil =
       await helper.hasFunilUtilizador(
         idUtilizador,
         instancia.id_funil
