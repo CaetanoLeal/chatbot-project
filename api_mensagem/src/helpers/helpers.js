@@ -27,7 +27,7 @@ function extrairNumeroWhatsapp({ jid, jidAlt, raw }) {
   // fallback (último caso)
   for (const item of candidatos) {
     if (!item) continue
-
+e
     if (item.includes("@")) {
       return item.split("@")[0].split(":")[0]
     }
@@ -244,6 +244,12 @@ async function processarRespostaCadastro({
     status: 'B'
   })
 
+  console.log(
+  "[CADASTRO]",
+  "destino:",
+  cd_mensagem_destino
+)
+
   // 4️⃣ Envia próxima mensagem
   const mensagem = await getMensagemFunil({
     idFunil,
@@ -382,6 +388,12 @@ async function processarRespostaChatbot({
     [cdDestino, idUtilizador, idFunil]
   )
 
+  console.log(
+    "[CHATBOT]",
+    "destino:",
+    cdDestino
+  )
+
   // 5️⃣ Próxima mensagem
   const mensagem = await getMensagemFunil({
     idFunil,
@@ -398,6 +410,18 @@ async function processarRespostaChatbot({
   if (mensagem) {
     await sendMessage(mensagem.textoFinal)
   }
+
+  console.log(
+    "[FUNIL]",
+    "procurando cdMensagem:",
+    cdMensagem
+  )
+
+  console.log(
+  "[FUNIL]",
+  "CADASTRO_RESPOSTA:",
+  r.rows
+)
 }
 
 function isStatusBroadcast(...jids) {

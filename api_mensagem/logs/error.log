@@ -815,3 +815,4 @@
 [2026-06-05 18:16:32] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
 [2026-06-05 18:16:32] [ERROR]: ❌ Webhook error: Request failed with status code 404
 [2026-06-10 20:14:07] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-19 16:38:31] [ERROR]: ❌ Erro ao buscar id_funil: relation "tbl_funil" does not exist

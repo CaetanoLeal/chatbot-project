@@ -3068,3 +3068,11 @@
 [2026-06-10 20:14:04] [INFO]: 🆕 Utilizador criado (0f054360-97f5-4257-a886-4f50c3385224)
 [2026-06-10 20:14:07] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
 [2026-06-10 20:15:05] [INFO]: 🆕 Utilizador criado (65e27715-8e4c-4d38-a05d-df6638e18338)
+[2026-06-15 17:05:47] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-15 17:05:47] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-15 17:05:48] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jun 15 2026 17:05:48 GMT+0000 (Coordinated Universal Time)
+[2026-06-15 17:05:48] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-06-19 16:38:31] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-19 16:38:31] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-19 16:38:31] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Jun 19 2026 16:38:31 GMT+0000 (Coordinated Universal Time)
+[2026-06-19 16:38:31] [ERROR]: ❌ Erro ao buscar id_funil: relation "tbl_funil" does not exist

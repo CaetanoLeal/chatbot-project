@@ -1,331 +1,205 @@
-//src/server.js
-const express = require("express")
+/**
+ * src/server.js
+ *
+ * Servidor principal — webhook WhatsApp + Telegram
+ * Refatorado para usar funil.helper.js com nova modelagem.
+ */
+
+"use strict"
+
+const express    = require("express")
 const bodyParser = require("body-parser")
-const dotenv = require("dotenv")
-const cors = require('cors')
+const dotenv     = require("dotenv")
+const cors       = require("cors")
+const http       = require("http")
+const { Server } = require("socket.io")
 
-const logger = require("../logger")
-const helper = require("./helpers/helpers")
-const routes = require('./routes')
-
+const logger      = require("../logger")
+const funil       = require("./helpers/funil.helper")
+const routes      = require("./routes")
 const sendMessage = require("./services/sendMessage")
 const chatService = require("./services/chatService")
-const constants = require("./constants/chatbot.constants")
 
 const TelegramMessageModel = require("./models/TelegramMessageModel")
-const MessageModels = require("./models/MessageModel")
-const InstanceModel = require("./models/InstanceModel")
+const MessageModels        = require("./models/MessageModel")
+const InstanceModel        = require("./models/InstanceModel")
 
 dotenv.config()
 
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
+app.use("/api", routes)
 
+/* ============================================================
+   HELPERS INTERNOS DO WEBHOOK
+   ============================================================ */
 
-let gTipo = constants.TIPO.NENHUM
+/** Resolve a instância ou retorna null e loga aviso. */
+async function resolverInstancia(instanceName, res) {
+  const instancia = await InstanceModel.getByName(instanceName)
+  if (!instancia) {
+    logger.warn(`⚠️ Instância não encontrada: ${instanceName}`)
+  }
+  return instancia
+}
 
-app.use('/api', routes)
+/** Faz emit no socket e salva mensagem unificada. */
+async function registrarMensagem({ idChat, cdProvider, idMensagemExterna, fromMe, conteudo, tipo, payload, dhEnvio, io, contato }) {
+  await chatService.saveUnifiedMessage({
+    idChat, cdProvider, idMensagemExterna, fromMe, conteudo, tipo, payload, dhEnvio
+  })
+  io.emit("NEW_MESSAGE", { idChat, conteudo, fromMe, contato })
+}
 
-/*
-=====================================================
+/* ============================================================
    WEBHOOK
-=====================================================
-*/
+   ============================================================ */
 app.post("/webhook", async (req, res) => {
+  // Responde imediatamente para não travar o provider
+  res.status(200).json({ success: true })
+
+  const msg = req.body
+
   try {
-    const msg = req.body
 
-    gTipo =
-      msg.className === "Message"
-        ? constants.TIPO.TELEGRAM
-        : msg.event === "message.received"
-        ? constants.TIPO.WHATSAPP
-        : constants.TIPO.NENHUM
-
-    /* ================= INSTÂNCIA ================= */
+    /* ─────────────────────────────────────────────
+       EVENTOS DE INSTÂNCIA
+    ───────────────────────────────────────────── */
     if (msg.event === "instance.created") {
-
-      const provider =
-        msg.provider === "whatsapp"
-          ? InstanceModel.PROVIDER.WHATSAPP
-          : InstanceModel.PROVIDER.TELEGRAM
-
       await InstanceModel.saveOrUpdateInstance({
-        no_instancia: msg.instance?.name,
-        cd_provider: provider,
-        cd_status: InstanceModel.STATUS.INATIVO,
-        ds_webhook: msg.webhook || null,
-        ds_auth_path: msg.ds_auth_path || null,
-        id_funil: msg.id_funil || null
+        no_instancia  : msg.instance?.name,
+        cd_provider   : msg.provider === "whatsapp" ? InstanceModel.PROVIDER.WHATSAPP : InstanceModel.PROVIDER.TELEGRAM,
+        cd_status     : InstanceModel.STATUS.INATIVO,
+        ds_webhook    : msg.webhook || null,
+        ds_auth_path  : msg.ds_auth_path || null,
+        id_funil      : msg.id_funil || null,
       })
-
-      return res.status(200).json({ success: true })
+      return
     }
 
     if (msg.event === "instance.connected") {
-
-      const provider =
-        msg.provider === "whatsapp"
-          ? InstanceModel.PROVIDER.WHATSAPP
-          : InstanceModel.PROVIDER.TELEGRAM
-
       await InstanceModel.saveOrUpdateInstance({
-        no_instancia: msg.instance?.name,
-        cd_provider: provider,
-        cd_status: InstanceModel.STATUS.ATIVO,
-        session_string: msg.session_string || null,
-        nu_telefone: msg.phoneNumber || null,
-        ds_webhook: msg.webhook || null,
-        ds_foto_perfil: msg.profilePicture || null,
-        ds_auth_path: msg.ds_auth_path || null,
-        id_funil: msg.id_funil || null
+        no_instancia   : msg.instance?.name,
+        cd_provider    : msg.provider === "whatsapp" ? InstanceModel.PROVIDER.WHATSAPP : InstanceModel.PROVIDER.TELEGRAM,
+        cd_status      : InstanceModel.STATUS.ATIVO,
+        session_string : msg.session_string || null,
+        nu_telefone    : msg.phoneNumber || null,
+        ds_webhook     : msg.webhook || null,
+        ds_foto_perfil : msg.profilePicture || null,
+        ds_auth_path   : msg.ds_auth_path || null,
+        id_funil       : msg.id_funil || null,
       })
-
-      io.emit("INSTANCE_CONNECTED", {
-        nome: msg.instance?.name,
-        telefone: msg.phoneNumber
-      })
-
-      return res.status(200).json({ success: true })
+      io.emit("INSTANCE_CONNECTED", { nome: msg.instance?.name, telefone: msg.phoneNumber })
+      return
     }
 
     if (msg.event === "instance.disconnected") {
-
-      const provider =
-        msg.provider === "whatsapp"
-          ? InstanceModel.PROVIDER.WHATSAPP
-          : InstanceModel.PROVIDER.TELEGRAM
-
       await InstanceModel.saveOrUpdateInstance({
-        no_instancia: msg.instance?.name,
-        cd_provider: provider,
-        cd_status: InstanceModel.STATUS.DESCONECTADO
+        no_instancia : msg.instance?.name,
+        cd_provider  : msg.provider === "whatsapp" ? InstanceModel.PROVIDER.WHATSAPP : InstanceModel.PROVIDER.TELEGRAM,
+        cd_status    : InstanceModel.STATUS.DESCONECTADO,
       })
-
-      io.emit("INSTANCE_DISCONNECTED", {
-        nome: msg.instance?.name
-      })
-
-      return res.status(200).json({ success: true })
+      io.emit("INSTANCE_DISCONNECTED", { nome: msg.instance?.name })
+      return
     }
 
-    /* ================= TELEGRAM ================= */
+    /* ─────────────────────────────────────────────
+       TELEGRAM — MENSAGEM RECEBIDA (entrada do usuário)
+    ───────────────────────────────────────────── */
     if (msg.event === "message.received" && msg.provider === "telegram") {
-      const message = msg.message;
+      const message = msg.message
 
+      /* Mensagens enviadas pelo próprio bot (out = true) → apenas registra */
       if (message.out === true) {
+        const userId = message.peerId?.userId?.toString()
+        if (!userId) return
 
-      const userId = message.peerId?.userId?.toString()
-      if (!userId) return res.status(200).json({ success: true })
+        const idUtilizador = await funil.getOrCreateUtilizador({ cdTelegram: userId })
+        const instancia    = await resolverInstancia(msg.instance?.name)
+        if (!instancia) return
 
-      const idUtilizador = await helper.getOrCreateUtilizador({
-        cdTelegram: userId
-      })
+        const idChat = await chatService.getOrCreateChat({
+          idUtilizador,
+          cdProvider  : 2,
+          idInstancia : instancia.id_instancia,
+        })
 
-      const instancia = await InstanceModel.getByName(msg.instance?.name)
-      if (!instancia) return res.status(200).json({ success: true })
+        await chatService.updateChatContactInfo({ idChat, fotoPerfil: msg.contact?.photo || null, lastSeen: null })
 
-      const idChat = await chatService.getOrCreateChat({
-        idUtilizador,
-        cdProvider: 2,
-        idInstancia: instancia.id_instancia
-      })
-      await chatService.updateChatContactInfo({
-        idChat,
-        fotoPerfil: msg.contact?.photo || null,
-        lastSeen: null
-      })
+        await registrarMensagem({
+          idChat,
+          cdProvider        : 2,
+          idMensagemExterna : message.id?.toString(),
+          fromMe            : true,
+          conteudo          : message.message || "[mensagem não textual]",
+          tipo              : "text",
+          payload           : msg,
+          dhEnvio           : message.date ? new Date(message.date * 1000) : new Date(),
+          io,
+          contato           : userId,
+        })
+        return
+      }
 
-      const conteudo = message.message || "[mensagem não textual]"
-
-      const dhEnvio = message.date
-        ? new Date(message.date * 1000)
-        : new Date()
-
-      await chatService.saveUnifiedMessage({
-        idChat,
-        cdProvider: 2,
-        idMensagemExterna: message.id?.toString(),
-        fromMe: true,
-        conteudo,
-        tipo: "text",
-        payload: msg,
-        dhEnvio
-      })
-
-      io.emit("NEW_MESSAGE", {
-        idChat,
-        conteudo,
-        fromMe: true,
-        contato: userId
-      })
-
-      return res.status(200).json({ success: true })
-    }
-
+      /* Mensagem recebida do usuário */
       await TelegramMessageModel.saveTelegramMessage(message)
 
-        const telegramUserId = message.fromId?.userId?.toString()
-        if (!telegramUserId) {
-          return res.status(400).json({ success: false })
-        }
+      const telegramUserId = message.fromId?.userId?.toString()
+      if (!telegramUserId) return
 
-        const nome = msg.contact?.firstName
-        ? `${msg.contact.firstName} ${msg.contact.lastName || ""}`.trim()
-        : null;
+      const nome = msg.contact?.firstName
+        ? `${msg.contact.firstName} ${msg.contact.lastName ?? ""}`.trim()
+        : null
 
-      const idUtilizador = await helper.getOrCreateUtilizador({
-        cdTelegram: telegramUserId,
-        nome
-      })
+      const idUtilizador = await funil.getOrCreateUtilizador({ cdTelegram: telegramUserId, nome })
 
-      /* ===== BUSCA INSTÂNCIA ===== */
-      const instancia = await InstanceModel.getByName(msg.instance?.name)
-      if (!instancia) {
-        return res.status(200).json({ success: true })
-      }
+      const instancia = await resolverInstancia(msg.instance?.name)
+      if (!instancia) return
 
       const idChat = await chatService.getOrCreateChat({
         idUtilizador,
-        cdProvider: 2,
-        idInstancia: instancia.id_instancia
+        cdProvider  : 2,
+        idInstancia : instancia.id_instancia,
       })
 
-      const dhEnvio = msg.message?.date && !isNaN(msg.message.date)
-        ? new Date(msg.message.date * 1000)
-        : new Date();
-
+      const dhEnvio  = msg.message?.date ? new Date(msg.message.date * 1000) : new Date()
       const conteudo = msg.message?.message || "[mensagem não textual]"
 
-      await chatService.saveUnifiedMessage({
+      await registrarMensagem({
         idChat,
-        cdProvider: 2,
-        idMensagemExterna: msg.message?.id?.toString(),
-        fromMe: false,
+        cdProvider        : 2,
+        idMensagemExterna : msg.message?.id?.toString(),
+        fromMe            : false,
         conteudo,
-        tipo: "text",
-        payload: msg,
-        dhEnvio
+        tipo              : "text",
+        payload           : msg,
+        dhEnvio,
+        io,
+        contato           : telegramUserId,
       })
 
-      io.emit("NEW_MESSAGE", {
-        idChat,
-        conteudo: conteudo,
-        fromMe: false,
-        telegramUserId
-      })
-  
-      /* ===== FLUXO FUNIL NORMAL ===== */
-
-      const possuiFunil =
-      await helper.hasFunilUtilizador(
+      /* ---- Motor do funil ---- */
+      await funil.processarMensagem({
         idUtilizador,
-        instancia.id_funil
-      )
-      
-      if (!possuiFunil) {
+        idFunil     : instancia.id_funil,
+        idChat,
+        texto       : conteudo,
+        sendMessage : (text) =>
+          sendMessage.sendTelegramMessage({
+            chatId       : telegramUserId,
+            message      : text,
+            instanceName : msg.instance?.name,
+          }),
+      })
 
-        await helper.createFunilUtilizador(
-          idUtilizador,
-          instancia.id_funil
-        )
-
-        const mensagem =
-          await helper.getMensagemInicialComBotoes(
-            instancia.id_funil
-          )
-
-        if (mensagem) {
-
-          await sendMessage.sendWhatsAppMessage({
-            telefone,
-            message: mensagem,
-            instanceName: msg.instance?.name
-          })
-
-        }
-
-        return res.status(200).json({
-          success: true
-        })
-      }
-
-      const status = await helper.getChatStatus(idChat)
-
-        switch (status) {
-
-          // Atendimento humano
-          case 'A':
-          case 'I':
-          case 'P':
-          case 'F':
-            return res.status(200).json({
-              success: true
-            })
-
-          // Cadastro
-          case 'C':
-            await helper.processarRespostaCadastro({
-              idUtilizador,
-              idFunil: instancia.id_funil,
-              texto: body,
-              sendMessage: (message) =>
-                sendMessage.sendWhatsAppMessage({
-                  telefone,
-                  message,
-                  instanceName: msg.instance?.name
-                })
-            })
-
-            return res.status(200).json({ success: true })
-
-          // Chatbot
-          case 'B':
-            await helper.processarRespostaChatbot({
-              idUtilizador,
-              idFunil: instancia.id_funil,
-              texto: body,
-              sendMessage: (message) =>
-                sendMessage.sendWhatsAppMessage({
-                  telefone,
-                  message,
-                  instanceName: msg.instance?.name
-                })
-            })
-
-            return res.status(200).json({ success: true })
-
-          // Primeiro contato
-          default:
-
-            await helper.createFunilUtilizador(
-              idUtilizador,
-              instancia.id_funil
-            )
-
-            const mensagem =
-              await helper.getMensagemInicialComBotoes(
-                instancia.id_funil
-              )
-
-            if (mensagem) {
-              await sendMessage.sendWhatsAppMessage({
-                telefone,
-                message: mensagem,
-                instanceName: msg.instance?.name
-              })
-            }
-
-            return res.status(200).json({
-              success: true
-            })
-        }
+      return
     }
 
-    /* ================= TELEGRAM ENVIADA ================= */
+    /* ─────────────────────────────────────────────
+       TELEGRAM — MENSAGEM ENVIADA (confirmação)
+    ───────────────────────────────────────────── */
     if (msg.event === "message.sent" && msg.provider === "telegram") {
-
       const message = msg.message
 
       const userId = (
@@ -334,366 +208,181 @@ app.post("/webhook", async (req, res) => {
         msg.telegram?.peerId?.channelId
       )?.toString()
 
-      if (!userId) {
-        return res.status(200).json({ success: true })
-      }
+      if (!userId) return
 
-      const idUtilizador = await helper.getOrCreateUtilizador({
-        cdTelegram: userId
-      })
+      const idUtilizador = await funil.getOrCreateUtilizador({ cdTelegram: userId })
 
-      const instancia = await InstanceModel.getByName(msg.instance?.name)
-      if (!instancia) {
-        return res.status(200).json({ success: true })
-      }
+      const instancia = await resolverInstancia(msg.instance?.name)
+      if (!instancia) return
 
       const idChat = await chatService.getOrCreateChat({
         idUtilizador,
-        cdProvider: 2,
-        idInstancia: instancia.id_instancia
+        cdProvider  : 2,
+        idInstancia : instancia.id_instancia,
       })
 
-      const conteudo = message?.text || "[mensagem não textual]"
-
-      const dhEnvio = msg.telegram?.date
-        ? new Date(msg.telegram.date * 1000)
-        : new Date()
-
-      await chatService.saveUnifiedMessage({
+      await registrarMensagem({
         idChat,
-        cdProvider: 2,
-        idMensagemExterna: msg.telegram?.messageId?.toString(),
-        fromMe: true,
-        conteudo,
-        tipo: "text",
-        payload: msg,
-        dhEnvio
+        cdProvider        : 2,
+        idMensagemExterna : msg.telegram?.messageId?.toString(),
+        fromMe            : true,
+        conteudo          : message?.text || "[mensagem não textual]",
+        tipo              : "text",
+        payload           : msg,
+        dhEnvio           : msg.telegram?.date ? new Date(msg.telegram.date * 1000) : new Date(),
+        io,
+        contato           : userId,
       })
 
-      io.emit("NEW_MESSAGE", {
-        idChat,
-        conteudo,
-        fromMe: true,
-        contato: userId
-      })
-
-      return res.status(200).json({ success: true })
+      return
     }
 
-    /* ================= WHATSAPP ================= */
+    /* ─────────────────────────────────────────────
+       WHATSAPP — MENSAGEM RECEBIDA
+    ───────────────────────────────────────────── */
     if (msg.event === "message.received" && msg.whatsapp && msg.message) {
-
       const jid = msg.whatsapp?.jid
 
-      const isStatus = helper.isStatusBroadcast(
-        jid,
-        msg.whatsapp?.jidAlt,
-        msg.message?.raw?.key?.remoteJid,
-        msg.message?.raw?.key?.participant
-      )
-
-      /* IGNORA GRUPOS E STATUS */
+      /* Ignora grupos, status e mensagens do próprio bot */
       if (
         jid?.endsWith("@g.us") ||
-        isStatus
+        funil.isStatusBroadcast(jid, msg.whatsapp?.jidAlt, msg.message?.raw?.key?.remoteJid, msg.message?.raw?.key?.participant) ||
+        msg.message?.raw?.key?.fromMe ||
+        msg.message?.raw?.protocolMessage
       ) {
-        return res.status(200).json({ success: true })
-      }
-
-        /* IGNORA MENSAGENS DO PRÓPRIO BOT */
-      if (msg.message?.raw?.key?.fromMe) {
-        return res.status(200).json({ success: true })
+        return
       }
 
       const body = msg.message.text || ""
-
-      if (!body || msg.message?.raw?.protocolMessage) {
-        return res.status(200).json({ success: true })
-      }
+      if (!body) return
 
       await MessageModels.saveMessageFromBaileys(msg)
 
-      const telefone = helper.extrairNumeroWhatsapp({
-        jid: msg.whatsapp.jid,
-        jidAlt: msg.whatsapp.jidAlt
+      const telefone = funil.extrairNumeroWhatsapp({
+        jid    : msg.whatsapp.jid,
+        jidAlt : msg.whatsapp.jidAlt,
       })
 
       if (!telefone) {
         logger.warn("⚠️ Não foi possível extrair número do WhatsApp")
-        return res.status(200).json({ success: true })
+        return
       }
 
-      const nome =
-        msg.whatsapp?.pushName ||
-        telefone
+      const nome         = msg.whatsapp?.pushName || telefone
+      const idUtilizador = await funil.getOrCreateUtilizador({ cdWhatsapp: telefone, telefone, nome })
 
-      const idUtilizador = await helper.getOrCreateUtilizador({
-        cdWhatsapp: telefone,
-        telefone,
-        nome
-      })
-
-      /* ===== BUSCA INSTÂNCIA ===== */
-      const instancia = await InstanceModel.getByName(msg.instance?.name)
-      if (!instancia) {
-        return res.status(200).json({ success: true })
-      }
+      const instancia = await resolverInstancia(msg.instance?.name)
+      if (!instancia) return
 
       const idChat = await chatService.getOrCreateChat({
         idUtilizador,
-        cdProvider: 1,
-        idInstancia: instancia.id_instancia
+        cdProvider  : 1,
+        idInstancia : instancia.id_instancia,
       })
-
-      /* ==========================
-        FOTO E LAST SEEN
-      ========================== */
-
-      const fotoPerfil = msg.whatsapp?.profilePicture || null
-
-      const lastSeen = msg.whatsapp?.lastSeen
-        ? new Date(msg.whatsapp.lastSeen * 1000)
-        : null
 
       await chatService.updateChatContactInfo({
         idChat,
-        fotoPerfil,
-        lastSeen
+        fotoPerfil : msg.whatsapp?.profilePicture || null,
+        lastSeen   : msg.whatsapp?.lastSeen ? new Date(msg.whatsapp.lastSeen * 1000) : null,
       })
 
-      /* ==========================
-        DATA DA MENSAGEM
-      ========================== */
+      const ts      = Number(msg.whatsapp?.timestamp)
+      const dhEnvio = !isNaN(ts) ? new Date(ts * 1000) : new Date()
 
-      const ts = Number(msg.whatsapp?.timestamp)
-
-      const dhEnvio = !isNaN(ts)
-        ? new Date(ts * 1000)
-        : new Date()
-
-      /* ==========================
-        SALVA MENSAGEM
-      ========================== */
-
-      await chatService.saveUnifiedMessage({
+      await registrarMensagem({
         idChat,
-        cdProvider: 1,
-        idMensagemExterna: msg.whatsapp?.messageId,
-        fromMe: false,
-        conteudo: body,
-        tipo: "text",
-        payload: msg.message,
-        dhEnvio
+        cdProvider        : 1,
+        idMensagemExterna : msg.whatsapp?.messageId,
+        fromMe            : false,
+        conteudo          : body,
+        tipo              : "text",
+        payload           : msg.message,
+        dhEnvio,
+        io,
+        contato           : telefone,
       })
 
-      /* ==========================
-        SOCKET REALTIME
-      ========================== */
-
-      io.emit("NEW_MESSAGE", {
-        idChat,
-        conteudo: body,
-        fromMe: false,
-        telefone
-      })
-
-      /* ==========================
-        FLUXO FUNIL NORMAL
-      ========================== */
-
-      const possuiFunil =
-      await helper.hasFunilUtilizador(
+      /* ---- Motor do funil ---- */
+      await funil.processarMensagem({
         idUtilizador,
-        instancia.id_funil
-      )
-
-      if (!possuiFunil) {
-
-        await helper.createFunilUtilizador(
-          idUtilizador,
-          instancia.id_funil
-        )
-
-        const mensagem =
-          await helper.getMensagemInicialComBotoes(
-            instancia.id_funil
-          )
-
-        if (mensagem) {
-
-          await sendMessage.sendWhatsAppMessage({
+        idFunil     : instancia.id_funil,
+        idChat,
+        texto       : body,
+        sendMessage : (text) =>
+          sendMessage.sendWhatsAppMessage({
             telefone,
-            message: mensagem,
-            instanceName: msg.instance?.name
-          })
+            message      : text,
+            instanceName : msg.instance?.name,
+          }),
+      })
 
-        }
-
-        return res.status(200).json({
-          success: true
-        })
-      }
-      
-      const status = await helper.getChatStatus(idChat)
-
-        switch (status) {
-
-          // Atendimento humano
-          case 'A':
-          case 'I':
-          case 'P':
-          case 'F':
-            return res.status(200).json({
-              success: true
-            })
-
-          // Cadastro
-          case 'C':
-            await helper.processarRespostaCadastro({
-              idUtilizador,
-              idFunil: instancia.id_funil,
-              texto: body,
-              sendMessage: (message) =>
-                sendMessage.sendWhatsAppMessage({
-                  telefone,
-                  message,
-                  instanceName: msg.instance?.name
-                })
-            })
-
-            return res.status(200).json({ success: true })
-
-          // Chatbot
-          case 'B':
-            await helper.processarRespostaChatbot({
-              idUtilizador,
-              idFunil: instancia.id_funil,
-              texto: body,
-              sendMessage: (message) =>
-                sendMessage.sendWhatsAppMessage({
-                  telefone,
-                  message,
-                  instanceName: msg.instance?.name
-                })
-            })
-
-            return res.status(200).json({ success: true })
-
-          // Primeiro contato
-          default:
-
-            await helper.createFunilUtilizador(
-              idUtilizador,
-              instancia.id_funil
-            )
-
-            const mensagem =
-              await helper.getMensagemInicialComBotoes(
-                instancia.id_funil
-              )
-
-            if (mensagem) {
-              await sendMessage.sendWhatsAppMessage({
-                telefone,
-                message: mensagem,
-                instanceName: msg.instance?.name
-              })
-            }
-
-            return res.status(200).json({
-              success: true
-            })
-        }
-
+      return
     }
 
-    /* ================= WHATSAPP ENVIADA ================= */
+    /* ─────────────────────────────────────────────
+       WHATSAPP — MENSAGEM ENVIADA (confirmação)
+    ───────────────────────────────────────────── */
     if (msg.event === "message.sent" && msg.whatsapp && msg.message) {
-
       const body = msg.message.text || ""
 
-      const telefone = helper.extrairNumeroWhatsapp({
-        jid: msg.whatsapp.jid,
-        jidAlt: msg.whatsapp.jidAlt
+      const telefone = funil.extrairNumeroWhatsapp({
+        jid    : msg.whatsapp.jid,
+        jidAlt : msg.whatsapp.jidAlt,
       })
 
-      if (!telefone) {
-        return res.status(200).json({ success: true })
-      }
+      if (!telefone) return
 
-      const idUtilizador = await helper.getOrCreateUtilizador({
-        cdWhatsapp: telefone,
-        telefone
-      })
+      const idUtilizador = await funil.getOrCreateUtilizador({ cdWhatsapp: telefone, telefone })
 
-      const instancia = await InstanceModel.getByName(msg.instance?.name)
-      if (!instancia) {
-        return res.status(200).json({ success: true })
-      }
+      const instancia = await resolverInstancia(msg.instance?.name)
+      if (!instancia) return
 
       const idChat = await chatService.getOrCreateChat({
         idUtilizador,
-        cdProvider: 1,
-        idInstancia: instancia.id_instancia
+        cdProvider  : 1,
+        idInstancia : instancia.id_instancia,
       })
 
-      await chatService.saveUnifiedMessage({
+      await registrarMensagem({
         idChat,
-        cdProvider: 1,
-        idMensagemExterna: msg.whatsapp?.messageId,
-        fromMe: true,
-        conteudo: body,
-        tipo: "text",
-        payload: msg.message,
-        dhEnvio: new Date(msg.whatsapp.timestamp * 1000)
+        cdProvider        : 1,
+        idMensagemExterna : msg.whatsapp?.messageId,
+        fromMe            : true,
+        conteudo          : body,
+        tipo              : "text",
+        payload           : msg.message,
+        dhEnvio           : new Date(msg.whatsapp.timestamp * 1000),
+        io,
+        contato           : telefone,
       })
 
-      // socket realtime
-      io.emit("NEW_MESSAGE", {
-        idChat,
-        conteudo: body,
-        fromMe: true,
-        telefone
-      })
-
-      return res.status(200).json({ success: true })
+      return
     }
 
-    return res.status(400).json({ success: false })
   } catch (err) {
-    logger.error(`❌ Webhook error: ${err.message}`)
-    return res.status(500).json({ success: false })
+    logger.error(`❌ Webhook error: ${err.message}`, { stack: err.stack })
   }
 })
 
-app.get("/", (_, res) =>
-  res.send("🚀 API de Mensagens ativa e rodando!")
-)
+/* ============================================================
+   ROTAS PADRÃO
+   ============================================================ */
+app.get("/", (_, res) => res.send("🚀 API de Mensagens ativa e rodando!"))
 
 app.use((err, req, res, next) => {
   logger.error("🔥 Erro não tratado:", err)
-
-  return res.status(500).json({
-    success: false,
-    message: "Erro interno do servidor"
-  })
+  return res.status(500).json({ success: false, message: "Erro interno do servidor" })
 })
 
 app.use((req, res) => {
-  return res.status(404).json({
-    success: false,
-    message: "Rota não encontrada"
-  })
+  return res.status(404).json({ success: false, message: "Rota não encontrada" })
 })
 
-const http = require("http")
-const { Server } = require("socket.io")
-
+/* ============================================================
+   HTTP + SOCKET.IO
+   ============================================================ */
 const server = http.createServer(app)
-
-const io = new Server(server, {
-  cors: { origin: "*" }
-})
+const io     = new Server(server, { cors: { origin: "*" } })
 
 const PORT = process.env.PORT || 3001
 
