@@ -83,6 +83,15 @@ function extrairNumeroWhatsapp({ jid, jidAlt, raw } = {}) {
   return null
 }
 
+function toBoolean(value) {
+  return (
+    value === true ||
+    value === "true" ||
+    value === 1 ||
+    value === "1"
+  )
+}
+
 /**
  * Extrai o ID numérico do utilizador Telegram.
  */
@@ -138,6 +147,20 @@ async function getOrCreateUtilizador({ cdTelegram, cdWhatsapp, telefone, nome })
 /* ============================================================
    ESTADO DO CHAT
    ============================================================ */
+
+function isMensagemFinal(mensagem, tipo) {
+  if (mensagem.cdMensagemDestino !== null) return false
+
+  if (tipo === "CADASTRO" || tipo === "CHATBOT") {
+    return !mensagem.possuiBotoes && !mensagem.isAguardar
+  }
+
+  if (tipo === "CADASTRO_RESPOSTA") {
+    return false // resposta livre nunca é final sozinha
+  }
+
+  return false
+}
 
 async function getChatStatus(idChat) {
   const { rows } = await db.query(
@@ -196,7 +219,48 @@ async function createFunilUtilizador(idUtilizador, idFunil, idChat) {
     [uuidv4(), idFunil, idUtilizador, now, exp]
   )
 
-  await updateChatStatus({ idChat, status: CHAT_STATUS.CADASTRO })
+  const primeiraMensagem =
+    await getMensagemFunil({
+      idFunil,
+      cdMensagem: 1
+    })
+
+  if (primeiraMensagem) {
+
+    let status = CHAT_STATUS.CADASTRO
+
+    if (
+      primeiraMensagem.tipo === TIPO.CHATBOT
+    ) {
+      status = primeiraMensagem.possuiBotoes
+        ? CHAT_STATUS.CHATBOT
+        : primeiraMensagem.isAguardar
+          ? CHAT_STATUS.AGUARDANDO
+          : CHAT_STATUS.CHATBOT
+    }
+
+    else if (
+      primeiraMensagem.tipo === TIPO.CADASTRO
+    ) {
+      status = primeiraMensagem.possuiBotoes
+        ? CHAT_STATUS.CADASTRO
+        : primeiraMensagem.isAguardar
+          ? CHAT_STATUS.AGUARDANDO
+          : CHAT_STATUS.CADASTRO
+    }
+
+    else if (
+      primeiraMensagem.tipo ===
+      TIPO.CADASTRO_RESPOSTA
+    ) {
+      status = CHAT_STATUS.AGUARDANDO
+    }
+
+    await updateChatStatus({
+      idChat,
+      status
+    })
+  }
 }
 
 /**
@@ -396,10 +460,10 @@ function _montarRetorno({ tipo, registro, botoes, cdMensagem }) {
   return {
     tipo,
     textoFinal,
-    possuiBotoes      : botoes.length > 0,
-    isAguardar        : registro.is_aguardar ?? false,
-    cdMensagemDestino : registro.cd_mensagem_destino ?? null,
-    idRegistro        : registro.id_registro,
+    possuiBotoes: botoes.length > 0,
+    isAguardar: toBoolean(registro.is_aguardar),
+    cdMensagemDestino: registro.cd_mensagem_destino ?? null,
+    idRegistro: registro.id_registro,
     cdMensagem,
   }
 }
@@ -480,6 +544,10 @@ async function avancarMensagem({
 
   await atualizarEstadoConversa(idUtilizador, idFunil, cdMensagemDestino)
 
+  logger.info(
+    `[FUNIL] Procurando mensagem destino ${cdMensagemDestino}`
+  )
+
   const mensagem = await getMensagemFunil({ idFunil, cdMensagem: cdMensagemDestino })
 
   if (!mensagem) {
@@ -487,17 +555,33 @@ async function avancarMensagem({
     return null
   }
 
+  const final = isMensagemFinal(mensagem, mensagem.tipo)
+
+  if (final) {
+    await updateChatStatus({ idChat, status: CHAT_STATUS.FINALIZADO })
+    return { ...mensagem, deveFinalizarApos: true }
+  }
+
+  logger.info(
+    `[FUNIL] Mensagem encontrada: ${JSON.stringify(mensagem)}`
+  )
+  
+
   // Define o status correto do chat
   if (mensagem.tipo === TIPO.CHATBOT) {
-    const novoStatus = mensagem.isAguardar
-      ? CHAT_STATUS.AGUARDANDO
-      : CHAT_STATUS.CHATBOT
+    const novoStatus = mensagem.possuiBotoes
+      ? CHAT_STATUS.CHATBOT
+      : mensagem.isAguardar
+        ? CHAT_STATUS.AGUARDANDO
+        : CHAT_STATUS.CHATBOT
     await updateChatStatus({ idChat, status: novoStatus })
 
   } else if (mensagem.tipo === TIPO.CADASTRO) {
-    const novoStatus = mensagem.isAguardar
-      ? CHAT_STATUS.AGUARDANDO
-      : CHAT_STATUS.CADASTRO
+    const novoStatus = mensagem.possuiBotoes
+      ? CHAT_STATUS.CADASTRO
+      : mensagem.isAguardar
+        ? CHAT_STATUS.AGUARDANDO
+        : CHAT_STATUS.CADASTRO
     await updateChatStatus({ idChat, status: novoStatus })
 
   } else if (mensagem.tipo === TIPO.CADASTRO_RESPOSTA) {
@@ -542,31 +626,65 @@ async function processarRespostaBotao({
   if (cdMensagemAtual === null) return
 
   // Busca o registro atual para obter o id do registro
-  const mensagemAtual = await getMensagemFunil({ idFunil, cdMensagem: cdMensagemAtual })
+  const mensagemAtual = await getMensagemFunil({
+    idFunil,
+    cdMensagem: cdMensagemAtual
+  })
+
+  if (!mensagemAtual) {
+    return
+  }
+    
   if (!mensagemAtual) return
 
   // Busca o botão pressionado
   let cdDestino = null
+  let botaoSelecionado = null
 
   if (mensagemAtual.tipo === TIPO.CHATBOT) {
     const { rows } = await db.query(
       `SELECT cd_mensagem_destino
-         FROM tbl_funil_chatbot_botao
-        WHERE id_funil_chatbot = $1 AND cd_botao = $2
+        FROM tbl_funil_chatbot_botao
+        WHERE id_funil_chatbot = $1
+          AND cd_botao = $2
         LIMIT 1`,
       [mensagemAtual.idRegistro, cdBotao]
     )
-    cdDestino = rows[0]?.cd_mensagem_destino ?? null
+
+    botaoSelecionado = rows[0] ?? null
+    cdDestino = botaoSelecionado?.cd_mensagem_destino ?? null
 
   } else if (mensagemAtual.tipo === TIPO.CADASTRO) {
+
     const { rows } = await db.query(
-      `SELECT cd_mensagem_destino
-         FROM tbl_funil_cadastro_botao
-        WHERE id_funil_cadastro = $1 AND cd_botao = $2
-        LIMIT 1`,
+      `SELECT
+          cd_mensagem_destino,
+          id_campo_personalizado,
+          ds_resultado
+      FROM tbl_funil_cadastro_botao
+      WHERE id_funil_cadastro = $1
+        AND cd_botao = $2
+      LIMIT 1`,
       [mensagemAtual.idRegistro, cdBotao]
     )
-    cdDestino = rows[0]?.cd_mensagem_destino ?? null
+
+    botaoSelecionado = rows[0] ?? null
+    cdDestino = botaoSelecionado?.cd_mensagem_destino ?? null
+  }
+
+  if (
+    botaoSelecionado?.id_campo_personalizado
+  ) {
+    const idFunilUtilizador =
+      await getIdFunilUtilizador(idUtilizador, idFunil)
+
+    await salvarCampoPersonalizado({
+      idFunilUtilizador,
+      idCampoPersonalizado:
+        botaoSelecionado.id_campo_personalizado,
+      valor:
+        botaoSelecionado.ds_resultado
+    })
   }
 
   if (cdDestino === null) {
@@ -608,6 +726,12 @@ async function processarRespostaLivre({
 
   const mensagemAtual = await getMensagemFunil({ idFunil, cdMensagem: cdMensagemAtual })
   if (!mensagemAtual) return
+
+  // Se a mensagem atual possui botões, trate como resposta de botão.
+  if (mensagemAtual.possuiBotoes) {
+    await processarRespostaBotao({ idUtilizador, idFunil, idChat, texto, sendMessage })
+    return
+  }
 
   // Salva campo personalizado se houver
   if (mensagemAtual.idCampoPersonalizado) {

@@ -816,3 +816,14 @@
 [2026-06-05 18:16:32] [ERROR]: ❌ Webhook error: Request failed with status code 404
 [2026-06-10 20:14:07] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
 [2026-06-19 16:38:31] [ERROR]: ❌ Erro ao buscar id_funil: relation "tbl_funil" does not exist
+[2026-06-22 19:09:46] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-22 19:09:46] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-22 19:12:44] [ERROR]: ❌ Webhook error: insert or update on table "tbl_chat" violates foreign key constraint "fk_chat_chat_status"
+[2026-06-22 19:18:51] [ERROR]: ❌ Webhook error: insert or update on table "tbl_chat" violates foreign key constraint "fk_chat_chat_status"
+[2026-06-22 19:19:19] [ERROR]: ❌ Webhook error: insert or update on table "tbl_chat" violates foreign key constraint "fk_chat_chat_status"
+[2026-06-22 19:19:46] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-06-22 19:19:46] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-06-22 19:21:41] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-06-22 20:03:00] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-22 20:16:11] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-22 20:16:11] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up

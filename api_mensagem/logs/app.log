@@ -3076,3 +3076,75 @@
 [2026-06-19 16:38:31] [INFO]: 🚀 Servidor rodando na porta 3001
 [2026-06-19 16:38:31] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Fri Jun 19 2026 16:38:31 GMT+0000 (Coordinated Universal Time)
 [2026-06-19 16:38:31] [ERROR]: ❌ Erro ao buscar id_funil: relation "tbl_funil" does not exist
+[2026-06-22 14:14:02] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-22 14:14:02] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-22 14:14:02] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jun 22 2026 14:14:02 GMT+0000 (Coordinated Universal Time)
+[2026-06-22 14:14:02] [INFO]: ✅ id_funil carregado: e1e4748f-aa5b-4981-8694-81dc5aabde9c
+[2026-06-22 19:09:46] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-22 19:09:46] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-22 19:09:46] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-22 19:09:46] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-22 19:10:39] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-22 19:10:39] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-22 19:10:40] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
+[2026-06-22 19:10:40] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jun 22 2026 19:10:40 GMT+0000 (Coordinated Universal Time)
+[2026-06-22 19:12:44] [INFO]: 🆕 Utilizador criado (e88e49bf-e632-4ff3-819f-ce9cdf123393)
+[2026-06-22 19:12:44] [ERROR]: ❌ Webhook error: insert or update on table "tbl_chat" violates foreign key constraint "fk_chat_chat_status"
+[2026-06-22 19:18:51] [INFO]: 🆕 Utilizador criado (d7a4d9e2-420c-4ae0-b3c0-c65db348fc57)
+[2026-06-22 19:18:51] [ERROR]: ❌ Webhook error: insert or update on table "tbl_chat" violates foreign key constraint "fk_chat_chat_status"
+[2026-06-22 19:19:19] [ERROR]: ❌ Webhook error: insert or update on table "tbl_chat" violates foreign key constraint "fk_chat_chat_status"
+[2026-06-22 19:19:46] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-06-22 19:19:46] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-06-22 19:21:41] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-06-22 19:23:57] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-22 19:23:57] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-22 19:23:57] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
+[2026-06-22 19:23:57] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jun 22 2026 19:23:57 GMT+0000 (Coordinated Universal Time)
+[2026-06-22 19:39:43] [INFO]: 🆕 Utilizador criado (7e2cce91-fd5b-4d8f-9d60-d3220c54c8b8)
+[2026-06-22 19:39:56] [INFO]: [FUNIL] Campo personalizado salvo — campo=45571c14-21fb-4ae9-a643-59d567a3b42b
+[2026-06-22 19:39:56] [INFO]: [FUNIL] Resposta livre recebida → destino 2
+[2026-06-22 19:40:10] [INFO]: [FUNIL] Resposta livre recebida → destino null
+[2026-06-22 19:40:10] [INFO]: [FUNIL] Finalizado — utilizador=7e2cce91-fd5b-4d8f-9d60-d3220c54c8b8
+[2026-06-22 20:00:53] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-22 20:00:53] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-22 20:00:54] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jun 22 2026 20:00:54 GMT+0000 (Coordinated Universal Time)
+[2026-06-22 20:00:54] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
+[2026-06-22 20:02:36] [INFO]: 🆕 Utilizador criado (ff3f3cc4-4209-4a03-8374-358fa245286c)
+[2026-06-22 20:02:42] [INFO]: [FUNIL] Campo personalizado salvo — campo=45571c14-21fb-4ae9-a643-59d567a3b42b
+[2026-06-22 20:02:42] [INFO]: [FUNIL] Resposta livre recebida → destino 2
+[2026-06-22 20:03:00] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-22 20:16:10] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-22 20:16:11] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-22 20:16:11] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-22 20:16:11] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-22 20:19:00] [INFO]: 🆕 Utilizador criado (4f160942-bcaa-465e-90ae-00c95018efec)
+[2026-06-22 20:19:00] [WARN]: ⚠️ Instância não encontrada: teste 2
+[2026-06-22 20:20:24] [INFO]: 🆕 Utilizador criado (f3725aae-bbcc-4b0e-9c3d-99d4b38b0ee2)
+[2026-06-22 20:20:28] [INFO]: [FUNIL] Campo personalizado salvo — campo=45571c14-21fb-4ae9-a643-59d567a3b42b
+[2026-06-22 20:20:28] [INFO]: [FUNIL] Resposta livre recebida → destino 2
+[2026-06-22 20:20:32] [INFO]: [FUNIL] Resposta livre recebida → destino null
+[2026-06-22 20:20:32] [INFO]: [FUNIL] Finalizado — utilizador=f3725aae-bbcc-4b0e-9c3d-99d4b38b0ee2
+[2026-06-22 20:49:38] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-22 20:49:38] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-22 20:49:38] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jun 22 2026 20:49:38 GMT+0000 (Coordinated Universal Time)
+[2026-06-22 20:49:38] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
+[2026-06-22 20:51:13] [INFO]: 🆕 Utilizador criado (e55f90e9-9269-472e-bd5f-adfc2715f195)
+[2026-06-22 20:51:18] [INFO]: [FUNIL] Campo personalizado salvo — campo=45571c14-21fb-4ae9-a643-59d567a3b42b
+[2026-06-22 20:51:18] [INFO]: [FUNIL] Resposta livre recebida → destino 2
+[2026-06-22 20:51:18] [INFO]: [FUNIL] Procurando mensagem destino 2
+[2026-06-22 20:51:18] [INFO]: [FUNIL] Mensagem encontrada: {"tipo":"CHATBOT","textoFinal":"é um prazer ter você aqui. O que deseja?\n\n1 - Conversar com o dono deste numero\n2 - ajudar a testar funcionalidades","possuiBotoes":true,"isAguardar":true,"cdMensagemDestino":null,"idRegistro":"7f3b73cc-980f-4241-9086-a4e8cf62262c","cdMensagem":2}
+[2026-06-22 20:51:32] [INFO]: [FUNIL] Resposta livre recebida → destino null
+[2026-06-22 20:51:32] [INFO]: [FUNIL] Finalizado — utilizador=e55f90e9-9269-472e-bd5f-adfc2715f195
+[2026-06-22 20:56:30] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-22 20:56:31] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-22 20:56:31] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Mon Jun 22 2026 20:56:31 GMT+0000 (Coordinated Universal Time)
+[2026-06-22 20:56:31] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
+[2026-06-22 20:58:09] [WARN]: [FUNIL] Mensagem não encontrada: idFunil=93a0881b-f5d3-4a2d-8dcd-77d565d58cb4 cdMensagem=0
+[2026-06-22 20:58:59] [INFO]: 🆕 Utilizador criado (f57b6a21-ed85-4a2e-af84-76a3f5bca772)
+[2026-06-22 20:58:59] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:02:15] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:10:39] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:10:43] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:11:25] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:11:39] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:11:47] [WARN]: ⚠️ Instância não encontrada: teste 6
