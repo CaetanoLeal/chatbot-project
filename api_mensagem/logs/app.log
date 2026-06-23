@@ -3175,3 +3175,132 @@
 [2026-06-23 14:24:26] [INFO]: 🚀 Servidor rodando na porta 3001
 [2026-06-23 14:24:26] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Jun 23 2026 14:24:26 GMT+0000 (Coordinated Universal Time)
 [2026-06-23 14:24:26] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
+[2026-06-23 15:44:50] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 15:44:51] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 15:44:52] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 15:44:52] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 16:02:07] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 16:02:07] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 16:02:08] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Jun 23 2026 16:02:08 GMT+0000 (Coordinated Universal Time)
+[2026-06-23 16:02:08] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
+[2026-06-23 18:24:06] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 18:24:07] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 18:24:07] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 18:24:07] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 18:26:14] [INFO]: 🆕 Utilizador criado (f3288d36-99b9-4d96-bbba-eded649846e0)
+[2026-06-23 18:26:14] [ERROR]: ❌ Webhook error: relation "tbl_mensagem_funil_tipo" does not exist
+[2026-06-23 18:29:54] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 18:29:55] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 18:29:55] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 18:29:55] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 18:31:45] [INFO]: 🆕 Utilizador criado (64ee55f1-0a67-46c1-9ef8-1e5e8268c193)
+[2026-06-23 18:31:45] [ERROR]: ❌ Webhook error: column mft.id_funil_mensagem does not exist
+[2026-06-23 18:36:16] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 18:36:17] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 18:36:17] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 18:36:17] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 18:38:09] [INFO]: 🆕 Utilizador criado (9d43119e-e41a-4f6f-bc48-436bb3c20857)
+[2026-06-23 18:38:09] [ERROR]: ❌ Webhook error: getMetadataMensagem is not defined
+[2026-06-23 18:38:40] [INFO]: 🆕 Utilizador criado (126049e9-692b-4d36-b2f4-c38a79cd68a4)
+[2026-06-23 18:38:40] [ERROR]: ❌ Webhook error: getMetadataMensagem is not defined
+[2026-06-23 19:00:03] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 19:00:04] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 19:00:04] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 19:00:04] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 19:01:51] [INFO]: 🆕 Utilizador criado (5219d6ab-6014-43e7-b887-651349ff642c)
+[2026-06-23 19:25:13] [INFO]: 🆕 Utilizador criado (4dcf1cc2-7b97-4a66-bfe4-7be376551caf)
+[2026-06-23 19:28:44] [INFO]: 🆕 Utilizador criado (d7f5067c-1a4f-4506-ae42-f64d6ceca7e1)
+[2026-06-23 19:28:45] [ERROR]: ❌ Webhook error: null value in column "id_funil" of relation "tbl_funil_utilizador" violates not-null constraint
+[2026-06-23 19:29:27] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 19:29:27] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 19:29:27] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 19:29:27] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 19:32:26] [INFO]: 🆕 Utilizador criado (960ef0b3-c97f-4a07-9468-2a5c5f1f10c0)
+[2026-06-23 19:32:37] [INFO]: [FUNIL] utilizador=960ef0b3-c97f-4a07-9468-2a5c5f1f10c0 cdMensagem=1 tipo=CADASTRO_RESPOSTA
+[2026-06-23 19:32:37] [INFO]: 💾 Campo 45571c14-21fb-4ae9-a643-59d567a3b42b = "1" salvo para 960ef0b3-c97f-4a07-9468-2a5c5f1f10c0
+[2026-06-23 19:32:37] [INFO]: [CADASTRO_RESPOSTA] destino: 2
+[2026-06-23 19:32:51] [INFO]: [FUNIL] utilizador=960ef0b3-c97f-4a07-9468-2a5c5f1f10c0 cdMensagem=2 tipo=CHATBOT
+[2026-06-23 19:32:51] [INFO]: [CHATBOT] destino: 4
+[2026-06-23 19:32:59] [INFO]: [FUNIL] utilizador=960ef0b3-c97f-4a07-9468-2a5c5f1f10c0 cdMensagem=4 tipo=CADASTRO
+[2026-06-23 19:32:59] [INFO]: 💾 Campo 37239914-5a90-4f10-a35a-368d0c434176 = "CPF" salvo para 960ef0b3-c97f-4a07-9468-2a5c5f1f10c0
+[2026-06-23 19:32:59] [INFO]: [CADASTRO] destino: 6
+[2026-06-23 19:33:11] [INFO]: [FUNIL] utilizador=960ef0b3-c97f-4a07-9468-2a5c5f1f10c0 cdMensagem=6 tipo=CADASTRO_RESPOSTA
+[2026-06-23 19:33:11] [INFO]: 💾 Campo 31f478ca-83d6-4b05-a529-653e9ab0cc00 = "07187944276" salvo para 960ef0b3-c97f-4a07-9468-2a5c5f1f10c0
+[2026-06-23 19:33:11] [INFO]: [CADASTRO_RESPOSTA] destino: 7
+[2026-06-23 19:33:12] [INFO]: ✅ Chat finalizado para utilizador 960ef0b3-c97f-4a07-9468-2a5c5f1f10c0
+[2026-06-23 19:33:58] [INFO]: [FUNIL] utilizador=960ef0b3-c97f-4a07-9468-2a5c5f1f10c0 cdMensagem=1 tipo=CADASTRO_RESPOSTA
+[2026-06-23 19:33:58] [INFO]: 💾 Campo 45571c14-21fb-4ae9-a643-59d567a3b42b = "fodase" salvo para 960ef0b3-c97f-4a07-9468-2a5c5f1f10c0
+[2026-06-23 19:33:58] [INFO]: [CADASTRO_RESPOSTA] destino: 2
+[2026-06-23 19:34:41] [INFO]: 🆕 Utilizador criado (ca600b87-34ac-413e-80b0-2c46477db7f9)
+[2026-06-23 19:34:56] [INFO]: [FUNIL] utilizador=ca600b87-34ac-413e-80b0-2c46477db7f9 cdMensagem=1 tipo=CADASTRO_RESPOSTA
+[2026-06-23 19:34:56] [INFO]: 💾 Campo 45571c14-21fb-4ae9-a643-59d567a3b42b = "Christyano" salvo para ca600b87-34ac-413e-80b0-2c46477db7f9
+[2026-06-23 19:34:56] [INFO]: [CADASTRO_RESPOSTA] destino: 2
+[2026-06-23 19:35:09] [INFO]: [FUNIL] utilizador=ca600b87-34ac-413e-80b0-2c46477db7f9 cdMensagem=2 tipo=CHATBOT
+[2026-06-23 19:35:09] [INFO]: [CHATBOT] destino: 3
+[2026-06-23 19:35:09] [INFO]: ✅ Chat finalizado para utilizador ca600b87-34ac-413e-80b0-2c46477db7f9
+[2026-06-23 20:06:43] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 20:06:44] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 20:06:44] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 20:06:44] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 20:10:09] [INFO]: 🆕 Utilizador criado (04a40b52-9a88-44ea-a85d-4569674f44b6)
+[2026-06-23 20:10:22] [ERROR]: ❌ Webhook error: column "ds_resposta_pendente" does not exist
+[2026-06-23 20:14:30] [INFO]: 🆕 Utilizador criado (4dd2769f-b544-4dbf-bb30-ee4824207601)
+[2026-06-23 20:14:35] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-06-23 20:14:35] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-06-23 20:18:41] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 20:18:42] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 20:18:42] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Jun 23 2026 20:18:42 GMT+0000 (Coordinated Universal Time)
+[2026-06-23 20:18:42] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
+[2026-06-23 20:19:58] [INFO]: 🆕 Utilizador criado (0e79b6d0-a47d-469c-9a6b-1e8bca24524f)
+[2026-06-23 20:20:04] [ERROR]: ❌ Webhook error: column "ds_resposta_pendente" does not exist
+[2026-06-23 20:22:45] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 20:22:45] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 20:22:46] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Jun 23 2026 20:22:46 GMT+0000 (Coordinated Universal Time)
+[2026-06-23 20:22:46] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
+[2026-06-23 20:23:36] [INFO]: [FUNIL] utilizador=0e79b6d0-a47d-469c-9a6b-1e8bca24524f cdMensagem=1 tipo=CADASTRO_RESPOSTA
+[2026-06-23 20:23:36] [INFO]: 💾 Campo 45571c14-21fb-4ae9-a643-59d567a3b42b = "Oi" salvo para 0e79b6d0-a47d-469c-9a6b-1e8bca24524f
+[2026-06-23 20:23:36] [INFO]: [CADASTRO_RESPOSTA] destino: 2
+[2026-06-23 20:23:44] [INFO]: [FUNIL] utilizador=0e79b6d0-a47d-469c-9a6b-1e8bca24524f cdMensagem=2 tipo=CHATBOT
+[2026-06-23 20:23:44] [INFO]: [CHATBOT] destino: 4
+[2026-06-23 20:23:49] [INFO]: [FUNIL] utilizador=0e79b6d0-a47d-469c-9a6b-1e8bca24524f cdMensagem=4 tipo=CADASTRO
+[2026-06-23 20:23:49] [INFO]: 💾 Campo 37239914-5a90-4f10-a35a-368d0c434176 = "CNPJ" salvo para 0e79b6d0-a47d-469c-9a6b-1e8bca24524f
+[2026-06-23 20:23:49] [INFO]: [CADASTRO] destino: 5
+[2026-06-23 20:23:55] [INFO]: [FUNIL] utilizador=0e79b6d0-a47d-469c-9a6b-1e8bca24524f cdMensagem=5 tipo=CADASTRO_RESPOSTA
+[2026-06-23 20:23:55] [INFO]: 💾 Campo 31f478ca-83d6-4b05-a529-653e9ab0cc00 = "02928383929" salvo para 0e79b6d0-a47d-469c-9a6b-1e8bca24524f
+[2026-06-23 20:23:55] [INFO]: [CADASTRO_RESPOSTA] destino: 7
+[2026-06-23 20:23:55] [INFO]: ✅ Chat finalizado para utilizador 0e79b6d0-a47d-469c-9a6b-1e8bca24524f
+[2026-06-23 20:24:01] [INFO]: 🆕 Utilizador criado (55c9833f-2ae3-4b7c-8794-d1a0a8e7547d)
+[2026-06-23 20:24:07] [INFO]: [FUNIL] utilizador=55c9833f-2ae3-4b7c-8794-d1a0a8e7547d cdMensagem=1 tipo=CADASTRO_RESPOSTA
+[2026-06-23 20:24:07] [INFO]: 💾 Campo 45571c14-21fb-4ae9-a643-59d567a3b42b = "LEVY LEAL" salvo para 55c9833f-2ae3-4b7c-8794-d1a0a8e7547d
+[2026-06-23 20:24:07] [INFO]: [CADASTRO_RESPOSTA] destino: 2
+[2026-06-23 20:26:22] [INFO]: 🆕 Utilizador criado (3d3b5277-6828-494a-bd34-45c54e59fa8f)
+[2026-06-23 20:26:37] [INFO]: [FUNIL] utilizador=55c9833f-2ae3-4b7c-8794-d1a0a8e7547d cdMensagem=2 tipo=CHATBOT
+[2026-06-23 20:26:41] [INFO]: [FUNIL] utilizador=55c9833f-2ae3-4b7c-8794-d1a0a8e7547d cdMensagem=2 tipo=CHATBOT
+[2026-06-23 20:26:41] [INFO]: [CHATBOT] destino: 4
+[2026-06-23 20:27:01] [INFO]: [FUNIL] utilizador=3d3b5277-6828-494a-bd34-45c54e59fa8f cdMensagem=1 tipo=CADASTRO_RESPOSTA
+[2026-06-23 20:27:01] [INFO]: 💾 Campo 45571c14-21fb-4ae9-a643-59d567a3b42b = "Amigos sigam também o canal reserva 🐶👍
+
+https://whatsapp.com/channel/0029VbDRarq6GcGH1DluWD2r" salvo para 3d3b5277-6828-494a-bd34-45c54e59fa8f
+[2026-06-23 20:27:01] [INFO]: [CADASTRO_RESPOSTA] destino: 2
+[2026-06-23 20:28:05] [INFO]: [FUNIL] utilizador=55c9833f-2ae3-4b7c-8794-d1a0a8e7547d cdMensagem=4 tipo=CADASTRO
+[2026-06-23 20:29:16] [INFO]: [FUNIL] utilizador=55c9833f-2ae3-4b7c-8794-d1a0a8e7547d cdMensagem=4 tipo=CADASTRO
+[2026-06-23 20:29:16] [INFO]: [FUNIL] utilizador=55c9833f-2ae3-4b7c-8794-d1a0a8e7547d cdMensagem=4 tipo=CADASTRO
+[2026-06-23 20:29:22] [INFO]: [FUNIL] utilizador=55c9833f-2ae3-4b7c-8794-d1a0a8e7547d cdMensagem=4 tipo=CADASTRO
+[2026-06-23 20:29:25] [INFO]: [FUNIL] utilizador=55c9833f-2ae3-4b7c-8794-d1a0a8e7547d cdMensagem=4 tipo=CADASTRO
+[2026-06-23 20:29:25] [INFO]: 💾 Campo 37239914-5a90-4f10-a35a-368d0c434176 = "CPF" salvo para 55c9833f-2ae3-4b7c-8794-d1a0a8e7547d
+[2026-06-23 20:29:25] [INFO]: [CADASTRO] destino: 6
+[2026-06-23 20:29:30] [INFO]: [FUNIL] utilizador=55c9833f-2ae3-4b7c-8794-d1a0a8e7547d cdMensagem=6 tipo=CADASTRO_RESPOSTA
+[2026-06-23 20:29:30] [INFO]: 💾 Campo 31f478ca-83d6-4b05-a529-653e9ab0cc00 = "Teu cú" salvo para 55c9833f-2ae3-4b7c-8794-d1a0a8e7547d
+[2026-06-23 20:29:30] [INFO]: [CADASTRO_RESPOSTA] destino: 7
+[2026-06-23 20:29:30] [INFO]: ✅ Chat finalizado para utilizador 55c9833f-2ae3-4b7c-8794-d1a0a8e7547d
+[2026-06-23 20:36:00] [INFO]: [FUNIL] utilizador=3d3b5277-6828-494a-bd34-45c54e59fa8f cdMensagem=2 tipo=CHATBOT
+[2026-06-23 21:03:20] [INFO]: 🆕 Utilizador criado (4f434724-0f80-4b51-8a39-0e61daa545e3)
+[2026-06-23 21:03:20] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:03:28] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:04:53] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:12:41] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:13:56] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:41:26] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:42:22] [INFO]: [FUNIL] utilizador=3d3b5277-6828-494a-bd34-45c54e59fa8f cdMensagem=2 tipo=CHATBOT
+[2026-06-23 21:42:55] [INFO]: [FUNIL] utilizador=3d3b5277-6828-494a-bd34-45c54e59fa8f cdMensagem=2 tipo=CHATBOT
+[2026-06-23 21:46:04] [INFO]: [FUNIL] utilizador=3d3b5277-6828-494a-bd34-45c54e59fa8f cdMensagem=2 tipo=CHATBOT

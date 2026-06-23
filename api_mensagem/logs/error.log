@@ -831,3 +831,32 @@
 [2026-06-22 21:44:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
 [2026-06-23 14:07:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
 [2026-06-23 14:08:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-06-23 15:44:52] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 15:44:52] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 18:24:07] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 18:24:07] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 18:26:14] [ERROR]: ❌ Webhook error: relation "tbl_mensagem_funil_tipo" does not exist
+[2026-06-23 18:29:55] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 18:29:55] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 18:31:45] [ERROR]: ❌ Webhook error: column mft.id_funil_mensagem does not exist
+[2026-06-23 18:36:17] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 18:36:17] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 18:38:09] [ERROR]: ❌ Webhook error: getMetadataMensagem is not defined
+[2026-06-23 18:38:40] [ERROR]: ❌ Webhook error: getMetadataMensagem is not defined
+[2026-06-23 19:00:04] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 19:00:04] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 19:28:45] [ERROR]: ❌ Webhook error: null value in column "id_funil" of relation "tbl_funil_utilizador" violates not-null constraint
+[2026-06-23 19:29:27] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 19:29:27] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 20:06:44] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 20:06:44] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-23 20:10:22] [ERROR]: ❌ Webhook error: column "ds_resposta_pendente" does not exist
+[2026-06-23 20:14:35] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-06-23 20:14:35] [ERROR]: ❌ Webhook error: Request failed with status code 500
+[2026-06-23 20:20:04] [ERROR]: ❌ Webhook error: column "ds_resposta_pendente" does not exist
+[2026-06-23 21:03:20] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:03:28] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:04:53] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:12:41] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:13:56] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 21:41:26] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
