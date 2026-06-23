@@ -3148,3 +3148,30 @@
 [2026-06-22 21:11:25] [WARN]: ⚠️ Instância não encontrada: teste 6
 [2026-06-22 21:11:39] [WARN]: ⚠️ Instância não encontrada: teste 6
 [2026-06-22 21:11:47] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:13:06] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:13:15] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:15:30] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:15:32] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:15:38] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:23:24] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:25:07] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:25:25] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:26:41] [INFO]: 🆕 Utilizador criado (58545ee0-598a-47fb-943d-4ece17560b7d)
+[2026-06-22 21:26:41] [WARN]: ⚠️ Instância não encontrada: teste 6
+[2026-06-22 21:44:43] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-06-22 21:44:46] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-06-23 14:04:24] [INFO]: 🆕 Utilizador criado (ab44584c-d44b-4c95-b379-d2ae31ae593e)
+[2026-06-23 14:07:58] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-06-23 14:07:58] [INFO]: 🆕 Utilizador criado (f2bbade4-bcea-472f-b60c-2515ffe73b6b)
+[2026-06-23 14:08:17] [INFO]: [FUNIL] Campo personalizado salvo — campo=45571c14-21fb-4ae9-a643-59d567a3b42b
+[2026-06-23 14:08:17] [INFO]: [FUNIL] Resposta livre recebida → destino 2
+[2026-06-23 14:08:17] [INFO]: [FUNIL] Procurando mensagem destino 2
+[2026-06-23 14:08:17] [INFO]: [FUNIL] Mensagem encontrada: {"tipo":"CHATBOT","textoFinal":"é um prazer ter você aqui. O que deseja?\n\n1 - Conversar com o dono deste numero\n2 - ajudar a testar funcionalidades","possuiBotoes":true,"isAguardar":true,"cdMensagemDestino":null,"idRegistro":"7f3b73cc-980f-4241-9086-a4e8cf62262c","cdMensagem":2}
+[2026-06-23 14:08:20] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-06-23 14:08:25] [INFO]: [FUNIL] Botão 1 → destino 3 (tipo: CHATBOT)
+[2026-06-23 14:08:25] [INFO]: [FUNIL] Procurando mensagem destino 3
+[2026-06-23 14:08:25] [INFO]: [FUNIL] Finalizado — utilizador=f2bbade4-bcea-472f-b60c-2515ffe73b6b
+[2026-06-23 14:24:26] [INFO]: ⏳ Mensagem expiradas definido para 10 minutos de inatividade.
+[2026-06-23 14:24:26] [INFO]: 🚀 Servidor rodando na porta 3001
+[2026-06-23 14:24:26] [INFO]: ✅ Conectado ao PostgreSQL. Hora do servidor: Tue Jun 23 2026 14:24:26 GMT+0000 (Coordinated Universal Time)
+[2026-06-23 14:24:26] [INFO]: ✅ id_funil carregado: 93a0881b-f5d3-4a2d-8dcd-77d565d58cb4
