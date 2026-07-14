@@ -1,19 +1,28 @@
-//src/repositories/funilChatbotBotao.repository.js
+// src/repositories/funilChatbotBotao.repository.js
 const { v4: uuid } = require('uuid')
 
 class FunilChatbotBotaoRepository {
   async criar(client, data) {
-    await client.query(`
+    await client.query(
+      `
       INSERT INTO tbl_funil_chatbot_botao
-      (id_funil_chatbot_botao, id_funil_chatbot, cd_botao, ds_botao, cd_mensagem_destino)
+        (id_funil_chatbot_botao, id_funil_chatbot, cd_botao, ds_botao, cd_mensagem_destino)
       VALUES ($1, $2, $3, $4, $5)
-    `, [
-      uuid(),
-      data.id_funil_chatbot,
-      data.cd_botao,
-      data.ds_botao,
-      data.cd_mensagem_destino
-    ])
+      `,
+      [uuid(), data.id_funil_chatbot, data.cd_botao, data.ds_botao, data.cd_mensagem_destino ?? null]
+    )
+  }
+
+  async removerPorFunil(client, id_funil) {
+    await client.query(
+      `
+      DELETE FROM tbl_funil_chatbot_botao
+      WHERE id_funil_chatbot IN (
+        SELECT id_funil_chatbot FROM tbl_funil_chatbot WHERE id_funil = $1
+      )
+      `,
+      [id_funil]
+    )
   }
 }
 

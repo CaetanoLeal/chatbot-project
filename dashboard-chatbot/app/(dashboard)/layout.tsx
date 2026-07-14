@@ -7,6 +7,8 @@ import {
   Bot,
   BookOpen,
   LogOut,
+  Headset,
+  Building2,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -72,6 +74,22 @@ export default function DashboardLayout({
             >
               <Users size={16} />
               Contatos
+            </Link>
+
+            <Link
+              href="/dashboard/sector"
+              className="flex items-center gap-2 px-2 py-2 rounded hover:bg-zinc-800"
+            >
+              <Building2 size={16} />
+              Setor
+            </Link>
+
+            <Link
+              href="/dashboard/coming"
+              className="flex items-center gap-2 px-2 py-2 rounded hover:bg-zinc-800"
+            >
+              <Headset size={16} />
+              Atendentes
             </Link>
           </nav>
         </div>

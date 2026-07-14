@@ -1,3 +1,4 @@
+//dashboard-chatbot/app/(dashboard)/dashboard/instances/page.tsx
 "use client"
 
 import { useEffect, useState } from "react"
@@ -42,38 +43,40 @@ export default function InstancesPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    async function fetchInstances() {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/instancias`)
+const fetchInstances = async () => {
+  try {
+    setLoading(true);
 
-        const result = await response.json()
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/instancias`
+    );
 
-        if (!result.success) {
-          throw new Error("Erro ao buscar instâncias")
-        }
+    const result = await response.json();
 
-        const formatted: Instance[] = result.data.map((item: any, index: number) => ({
-          id: item.id || index,
-          name: item.name,
-          number: item.number || "Não informado",
-          platforms: [
-            item.platform?.toLowerCase() as InstancePlatform
-          ],
-          funnel: "Sem funil",
-          profilePicture: item.fotoPerfil || null
-        }))
-
-        setInstances(formatted)
-      } catch (err: any) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
+    if (!result.success) {
+      throw new Error("Erro ao buscar instâncias");
     }
 
-    fetchInstances()
-  }, [])
+    const formatted: Instance[] = result.data.map((item: any, index: number) => ({
+      id: item.id || index,
+      name: item.name,
+      number: item.number || "Não informado",
+      platforms: [item.platform?.toLowerCase() as InstancePlatform],
+      funnel: "Sem funil",
+      profilePicture: item.fotoPerfil || null,
+    }));
+
+    setInstances(formatted);
+  } catch (err: any) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  fetchInstances();
+}, []);
 
   return (
     <div className="p-6 space-y-6 text-zinc-700">
@@ -160,7 +163,8 @@ export default function InstancesPage() {
       {isModalOpen && (
         <ConnectInstanceModal
           onClose={() => setIsModalOpen(false)}
-        />
+          onConnected={fetchInstances}
+       />
       )}
     </div>
   )

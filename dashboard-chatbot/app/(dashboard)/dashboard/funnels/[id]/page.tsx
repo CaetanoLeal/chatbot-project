@@ -1,37 +1,19 @@
-"use client"
+//app/(dashboard)/dashboard/funnels/[id]/page.tsx
+"use client";
 
-import { useParams } from "next/navigation"
-import { useEffect, useState } from "react"
-import FunnelForm from "../components/FunnelForm"
+import { useParams } from "next/navigation";
+import FunnelFlowBuilder from "../components/FunnelForm";
 
 export default function EditFunnelPage() {
-  const { id } = useParams()
-  const [data, setData] = useState<any>(null)
+  const params = useParams();
 
-  useEffect(() => {
-    async function carregar() {
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funis/${id}`)
+  const idFunil = Array.isArray(params.id)
+    ? params.id[0]
+    : (params.id as string);
 
-        if (!res.ok) {
-          throw new Error("Erro ao buscar funil")
-        }
-
-        const json = await res.json()
-        console.log("FUNIL RECEBIDO:", json)
-
-        setData(json)
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    if (id) carregar()
-  }, [id])
-
-  if (!data) {
-    return <div className="p-6">Carregando funil...</div>
+  if (!idFunil) {
+    return <div className="p-6">Funil não encontrado.</div>;
   }
 
-  return <FunnelForm mode="edit" initialData={data} />
+  return <FunnelFlowBuilder idFunil={idFunil} />;
 }

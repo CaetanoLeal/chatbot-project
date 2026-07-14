@@ -1,451 +1,272 @@
 //app/(dashboard)/dashboard/funnels/components/FunnelForm.tsx
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import ReactFlow, {
+  Background,
+  Controls,
+  useNodesState,
+  useEdgesState,
+  Connection,
+  Edge,
+  Node,
+  addEdge,
+  BackgroundVariant,
+  MarkerType,
+  applyNodeChanges,
+  NodeChange,
+  updateEdge,
+} from "reactflow";
+// @ts-ignore
+import "reactflow/dist/style.css";
 
-type Botao = {
-  id: string
-  cd_botao: number
-  ds_botao: string
-  cd_mensagem_destino: number | null
+import { TextNode, QuestionNode, ButtonsNode, ActionNode } from "./CustomNode";
+import { getAutoRoutedEdges } from "./AutoHandles";
+import NodeInspector from "./NodeInspector";
+import FunilConfigModal from "./FunilConfigModal";
+import * as api from "../lib/api";
+import type { Campo, Setor } from "../lib/api";
+import { funilParaFluxo, fluxoParaFunil, FlowNodeData } from "../lib/transform";
+
+const nodeTypes = {
+  textNode: TextNode,
+  questionNode: QuestionNode,
+  buttonsNode: ButtonsNode,
+  actionNode: ActionNode,
+};
+
+const edgeOptions = {
+  animated: true,
+  style: { stroke: "#94a3b8", strokeWidth: 2 },
+  markerEnd: { type: MarkerType.ArrowClosed, color: "#94a3b8" },
+};
+
+type Props = {
+  idFunil: string;
+};
+
+function proximoCodigo(nodes: Node<FlowNodeData>[], fluxo: "cadastro" | "chatbot") {
+  const codigos = nodes.filter((n) => n.data.fluxo === fluxo).map((n) => n.data.cdMensagem);
+  return codigos.length === 0 ? 0 : Math.max(...codigos) + 1;
 }
 
-type Mensagem = {
-  id: string
-  cd_mensagem: number
-  ds_mensagem: string
-  cd_mensagem_destino: number | null
-  is_aguardar: boolean
-  botoes: Botao[]
-}
+export default function FunnelFlowBuilder({ idFunil }: Props) {
+  const [nodes, setNodes] = useNodesState<FlowNodeData>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
 
-type FunnelFormProps = {
-  mode: "create" | "edit"
-  initialData?: {
-    id: string
-    name: string
-    description: string
-    welcomeMessage: Mensagem
-    messages: Mensagem[]
-  }
-}
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [funilNome, setFunilNome] = useState("");
 
+  const [campos, setCampos] = useState<Campo[]>([]);
+  const [setores, setSetores] = useState<Setor[]>([]);
 
-export default function FunnelForm({ mode, initialData }: FunnelFormProps) {
-  const isEdit = mode === "edit"
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const [configModal, setConfigModal] = useState<"campos" | "setores" | null>(null);
 
-  const [funilId, setFunilId] = useState<string | null>(
-    initialData?.id ?? null
-  )
-
-  const [saving, setSaving] = useState(false)
-
-  const [funnelName, setFunnelName] = useState(
-    initialData?.name ?? ""
-  )
-
-  const [funnelDescription, setFunnelDescription] = useState(
-    initialData?.description ?? ""
-  )
-
-  const [welcomeMessage, setWelcomeMessage] = useState<Mensagem>(() =>
-    initialData?.welcomeMessage ?? {
-      id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}`,
-      cd_mensagem: 1,
-      ds_mensagem: "",
-      cd_mensagem_destino: null,
-      is_aguardar: true,
-      botoes: [],
-    }
-  )
-
-  const [messages, setMessages] = useState<Mensagem[]>(
-    initialData?.messages ?? []
-  )
-
+  /* ===================== CARGA INICIAL DO BANCO ===================== */
   useEffect(() => {
-    if (!initialData) return
+    console.log("ID recebido:", idFunil);
+    let ativo = true;
 
-    setFunilId(initialData.id)
-    setFunnelName(initialData.name)
-    setFunnelDescription(initialData.description)
-    setWelcomeMessage(initialData.welcomeMessage)
-    setMessages(initialData.messages)
-    }, [initialData])
+    (async () => {
+      try {
+        console.log("Buscando:", idFunil);
+        setLoading(true);
+        const funil = await api.buscarFunil(idFunil);
+        console.log("FUNIL:", funil);
+        if (!ativo) return;
 
-    const isFunilCreated = Boolean(funilId)
+        const { nodes: n, edges: e } = funilParaFluxo(funil);
+        setNodes(n);
+        setEdges(getAutoRoutedEdges(n, e));
+        setCampos(funil.campos);
+        setSetores(funil.setores);
+        setFunilNome(funil.name);
+      } catch (err: any) {
+        if (ativo) setError(err.message ?? "Erro ao carregar funil");
+      } finally {
+        if (ativo) setLoading(false);
+      }
+    })();
 
-    // Bloqueia mensagens enquanto funil não existir
-    const lockMessages = mode === "create" && !isFunilCreated
+    return () => {
+      ativo = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idFunil]);
 
-    // Bloqueia dados depois que funil já foi criado
-    const lockFunnelData = mode === "create" && isFunilCreated
+  const selectedNode = useMemo(
+    () => nodes.find((n) => n.id === selectedNodeId) ?? null,
+    [nodes, selectedNodeId]
+  );
 
-  /* =====================
-     HELPERS
-  ====================== */
+  /* ===================== EDIÇÃO DO GRAFO ===================== */
+  const handleNodesChange = useCallback(
+    (changes: NodeChange[]) => {
+      setNodes((nds) => {
+        const updated = applyNodeChanges(changes, nds);
+        setEdges((eds) => getAutoRoutedEdges(updated, eds));
+        return updated;
+      });
+    },
+    [setNodes, setEdges]
+  );
 
-  function allMessages() {
-    return [welcomeMessage, ...messages]
+  const onConnect = useCallback(
+    (params: Connection | Edge) => {
+      setEdges((eds) => {
+        const novo = addEdge({ ...params, ...edgeOptions, data: { isManual: true } }, eds);
+        return getAutoRoutedEdges(nodes, novo);
+      });
+    },
+    [nodes, setEdges]
+  );
+
+  const onEdgeUpdate = useCallback(
+    (oldEdge: Edge, newConnection: Connection) => {
+      setEdges((els) =>
+        // @ts-ignore
+        updateEdge(oldEdge, { ...newConnection, data: { ...oldEdge.data, isManual: true } }, els)
+      );
+    },
+    [setEdges]
+  );
+
+  function updateNodeData(nodeId: string, patch: Partial<Node<FlowNodeData>> & { data?: Partial<FlowNodeData> }) {
+    setNodes((nds) =>
+      nds.map((n) => (n.id === nodeId ? { ...n, ...patch, data: { ...n.data, ...(patch.data ?? {}) } } : n))
+    );
   }
 
-  function addWelcomeButton() {
-    setWelcomeMessage({
-      ...welcomeMessage,
-      botoes: [
-        ...welcomeMessage.botoes,
-        {
-          id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`,
-          cd_botao: welcomeMessage.botoes.length + 1,
-          ds_botao: "",
-          cd_mensagem_destino: null,
-        },
-      ],
-    })
+  function removeNode(nodeId: string) {
+    setNodes((nds) => nds.filter((n) => n.id !== nodeId));
+    setEdges((eds) => eds.filter((e) => e.source !== nodeId && e.target !== nodeId));
+    setSelectedNodeId(null);
   }
 
-  function removeWelcomeButton(index: number) {
-    setWelcomeMessage({
-      ...welcomeMessage,
-      botoes: welcomeMessage.botoes.filter((_, i) => i !== index),
-    })
-  }
+  function addMessage(fluxo: "cadastro" | "chatbot") {
+    const cdMensagem = proximoCodigo(nodes, fluxo);
+    const prefixo = fluxo === "cadastro" ? "cad" : "bot";
+    const doMesmoFluxo = nodes.filter((n) => n.data.fluxo === fluxo);
+    const baseX = doMesmoFluxo.length > 0 ? Math.max(...doMesmoFluxo.map((n) => n.position.x)) + 380 : 0;
 
-  function addMessage() {
-    const nextCd =
-      messages.length > 0
-        ? messages[messages.length - 1].cd_mensagem + 1
-        : 2
-
-    setMessages([
-      ...messages,
-      {
-        id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`,
-        cd_mensagem: nextCd,
-        ds_mensagem: "",
-        cd_mensagem_destino: null,
-        is_aguardar: true,
-        botoes: [],
+    const novoNode: Node<FlowNodeData> = {
+      id: `${prefixo}-${cdMensagem}`,
+      type: "textNode",
+      position: { x: baseX, y: 40 },
+      data: {
+        text: "",
+        fluxo,
+        cdMensagem,
+        buttons: [],
+        isFinalizar: false,
+        idCampo: null,
+        idSetor: null,
+        sgChatStatus: null,
       },
-    ])
+    };
+
+    setNodes((nds) => [...nds, novoNode]);
+    setSelectedNodeId(novoNode.id);
   }
 
-  function addButtonToMessage(cd_mensagem: number) {
-    setMessages(messages.map(msg =>
-      msg.cd_mensagem === cd_mensagem
-        ? {
-            ...msg,
-            botoes: [
-              ...msg.botoes,
-              {
-                id: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`,
-                cd_botao: msg.botoes.length + 1,
-                ds_botao: "",
-                cd_mensagem_destino: null,
-              },
-            ],
-          }
-        : msg
-    ))
-  }
-
-  function removeButtonFromMessage(cd_mensagem: number, index: number) {
-    setMessages(messages.map(msg =>
-      msg.cd_mensagem === cd_mensagem
-        ? { ...msg, botoes: msg.botoes.filter((_, i) => i !== index) }
-        : msg
-    ))
-  }
-
-  function removeMessage(cd_mensagem: number) {
-    setMessages(messages.filter(msg => msg.cd_mensagem !== cd_mensagem))
-  }
-
-  /* =====================
-     SALVAR
-  ====================== */
-
-  async function salvarFunil() {
-    if (!funnelName) {
-      alert("Preencha o nome do funil")
-      return
-    }
-
+  /* ===================== SALVAR ===================== */
+  async function salvar() {
     try {
-      setSaving(true)
-
-      const endpoint =
-        mode === "create"
-          ? `${process.env.NEXT_PUBLIC_API_URL}/api/funis`
-          : `${process.env.NEXT_PUBLIC_API_URL}/api/funis/${funilId}`
-
-      const method = mode === "create" ? "POST" : "PUT"
-
-      const response = await fetch(endpoint, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: funnelName,
-          description: funnelDescription || null,
-          welcomeMessage,
-          messages,
-        }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || "Erro ao salvar funil")
-      }
-
-      if (mode === "create") {
-        setFunilId(data.id_funil)
-        alert("✅ Funil criado com sucesso!")
-      } else {
-        alert("✅ Funil atualizado com sucesso!")
-      }
+      setSaving(true);
+      setError(null);
+      const payload = fluxoParaFunil(nodes, edges);
+      await api.salvarEstrutura(idFunil, payload);
+      alert("✅ Fluxo salvo com sucesso!");
     } catch (err: any) {
-      alert(`❌ ${err.message}`)
+      setError(err.message ?? "Erro ao salvar");
+      alert(`❌ ${err.message ?? "Erro ao salvar"}`);
     } finally {
-      setSaving(false)
+      setSaving(false);
     }
   }
 
-  /* =====================
-     RENDER
-  ====================== */
+  if (loading) {
+    return <div className="w-full h-screen flex items-center justify-center text-zinc-400 text-sm">Carregando funil…</div>;
+  }
 
   return (
-    <div className="h-screen overflow-y-auto p-6 space-y-10 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold text-zinc-700">
-        {isEdit ? "Editar Funil" : "Criar Funil"}
-      </h1>
-
-      {/* DADOS DO FUNIL */}
-      <section
-        className={`bg-white text-zinc-700 rounded shadow p-6 space-y-4 ${
-          lockFunnelData ? "opacity-50 pointer-events-none" : ""
-        }`}
-      >
-        <h2 className="font-semibold">Dados do funil</h2>
-
-        <input
-          className="border rounded px-3 py-2 w-full"
-          placeholder="Nome do funil"
-          value={funnelName}
-          onChange={(e) => setFunnelName(e.target.value)}
-        />
-
-        <textarea
-          className="border rounded px-3 py-2 w-full"
-          placeholder="Descrição"
-          defaultValue={funnelDescription ?? ""}
-          onChange={(e) => setFunnelDescription(e.target.value)}
-        />
-      </section>
-
-      {/* BOTÃO SALVAR */}
-      <button
-        onClick={salvarFunil}
-        disabled={saving}
-        className="bg-green-600 text-white px-6 py-3 rounded disabled:opacity-50"
-      >
-        {saving
-          ? "Salvando..."
-          : isEdit
-          ? "Salvar alterações"
-          : "Salvar funil"}
-      </button>
-
-      {/* MENSAGEM DE BOAS-VINDAS */}
-      {lockMessages && (
-        <div className="bg-yellow-100 text-yellow-800 p-3 rounded text-sm">
-          ⚠️ Salve o nome e a descrição do funil antes de cadastrar mensagens.
-        </div>
-      )}
-      <section
-        className={`bg-white text-zinc-700 rounded shadow p-6 space-y-4 ${
-          lockMessages ? "opacity-50 pointer-events-none" : ""
-        }`}
-      >
-        <h2 className="font-semibold">Mensagem de boas-vindas</h2>
-
-        <textarea
-          className="border rounded px-3 py-2 w-full"
-          value={welcomeMessage.ds_mensagem}
-          onChange={(e) =>
-            setWelcomeMessage({ ...welcomeMessage, ds_mensagem: e.target.value })
-          }
-        />
-
-        {welcomeMessage.botoes.map((botao, index) => (
-          <div key={botao.id} className="flex gap-2 items-center">
-            <input
-              className="border rounded px-2 py-1 flex-1"
-              value={botao.ds_botao}
-              onChange={(e) => {
-                const botoes = [...welcomeMessage.botoes]
-                botoes[index].ds_botao = e.target.value
-                setWelcomeMessage({ ...welcomeMessage, botoes })
-              }}
-            />
-
-            <select
-              className="border rounded px-2 py-1"
-              value={botao.cd_mensagem_destino ?? ""}
-              onChange={(e) => {
-                const botoes = [...welcomeMessage.botoes]
-                botoes[index].cd_mensagem_destino =
-                e.target.value === "" ? null : Number(e.target.value)
-                setWelcomeMessage({ ...welcomeMessage, botoes })
-              }}
-            >
-              <option value="">Destino</option>
-              {allMessages().map(msg => (
-                <option key={msg.id} value={msg.cd_mensagem}>
-                  Mensagem {msg.cd_mensagem}
-                </option>
-              ))}
-            </select>
-
-            <button
-              onClick={() => removeWelcomeButton(index)}
-              className="text-red-600"
-            >
-              ✕
-            </button>
-          </div>
-        ))}
-
-        <button onClick={addWelcomeButton} className="text-blue-600 text-sm">
-          + Adicionar botão
-        </button>
-      </section>
-
-      {/* MENSAGENS DO CHATBOT */}
-      <section
-        className={`space-y-6 text-zinc-700 ${
-          lockMessages ? "opacity-50 pointer-events-none" : ""
-        }`}
-      >
-        <h2 className="font-semibold text-zinc-700">
-          Mensagens do chatbot
-        </h2>
-
-        {messages.map(msg => (
-          <div
-            key={msg.id}
-            className="bg-white rounded shadow p-6 space-y-4"
-          >
-            <div className="flex justify-between">
-              <h3 className="font-medium">Mensagem {msg.cd_mensagem}</h3>
-              <button
-                onClick={() => removeMessage(msg.cd_mensagem)}
-                className="text-red-600 text-sm"
-              >
-                Apagar mensagem
-              </button>
-            </div>
-
-            <textarea
-              className="border rounded px-3 py-2 w-full"
-              value={msg.ds_mensagem}
-              onChange={(e) =>
-                setMessages(messages.map(m =>
-                  m.cd_mensagem === msg.cd_mensagem
-                    ? { ...m, ds_mensagem: e.target.value }
-                    : m
-                ))
-              }
-            />
-
-            {msg.botoes.map((botao, index) => (
-              <div key={botao.id} className="flex gap-2 items-center">
-                <input
-                  className="border rounded px-2 py-1 flex-1"
-                  value={botao.ds_botao}
-                  onChange={(e) => {
-                    const updated = messages.map(m => {
-                      if (m.cd_mensagem === msg.cd_mensagem) {
-                        const botoes = [...m.botoes]
-                        botoes[index].ds_botao = e.target.value
-                        return { ...m, botoes }
-                      }
-                      return m
-                    })
-                    setMessages(updated)
-                  }}
-                />
-
-                <select
-                  className="border rounded px-2 py-1"
-                  value={botao.cd_mensagem_destino ?? ""}
-                  onChange={(e) => {
-                    const updated = messages.map(m => {
-                      if (m.cd_mensagem === msg.cd_mensagem) {
-                        const botoes = [...m.botoes]
-                        botoes[index].cd_mensagem_destino =
-                        e.target.value === "" ? null : Number(e.target.value)
-                        return { ...m, botoes }
-                      }
-                      return m
-                    })
-                    setMessages(updated)
-                  }}
-                >
-                  <option value="">Destino</option>
-                  {allMessages().map(m => (
-                    <option key={m.cd_mensagem} value={m.cd_mensagem}>
-                      Mensagem {m.cd_mensagem}
-                    </option>
-                  ))}
-                </select>
-
-                <button
-                  onClick={() =>
-                    removeButtonFromMessage(msg.cd_mensagem, index)
-                  }
-                  className="text-red-600"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-
-            <button
-              onClick={() => addButtonToMessage(msg.cd_mensagem)}
-              className="text-blue-600 text-sm"
-            >
-              + Adicionar botão
-            </button>
-          </div>
-        ))}
-
-        <button
-          onClick={addMessage}
-          className="bg-zinc-800 text-white px-4 py-2 rounded"
-        >
-          + Adicionar mensagem
-        </button>
-      </section>
-        {isFunilCreated && (
-          <button
-            onClick={async () => {
-              await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/funis/${funilId}/estrutura`,
-                {
-                  method: "PUT",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ welcomeMessage, messages }),
-                }
-              )
-              alert("✅ Estrutura salva com sucesso!")
-            }}
-            className="bg-blue-600 text-white px-6 py-3 rounded"
-          >
-            Salvar mensagens
+    <div className="w-full h-screen flex">
+      <div className="flex-1 relative">
+        {/* TOOLBAR */}
+        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-white rounded-lg shadow px-3 py-2">
+          <span className="text-sm font-semibold text-zinc-700">{funilNome}</span>
+          <div className="w-px h-5 bg-zinc-200 mx-1" />
+          <button onClick={() => addMessage("cadastro")} className="text-xs bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+            + Mensagem de Cadastro
           </button>
+          <button onClick={() => addMessage("chatbot")} className="text-xs bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+            + Mensagem de Chatbot
+          </button>
+          <button onClick={() => setConfigModal("campos")} className="text-xs bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+            Campos
+          </button>
+          <button onClick={() => setConfigModal("setores")} className="text-xs bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+            Setores
+          </button>
+          <button
+            onClick={salvar}
+            disabled={saving}
+            className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded disabled:opacity-50"
+          >
+            {saving ? "Salvando..." : "Salvar fluxo"}
+          </button>
+        </div>
+
+        {error && (
+          <div className="absolute top-16 left-4 z-10 bg-red-50 text-red-600 text-xs px-3 py-2 rounded shadow max-w-sm">
+            {error}
+          </div>
         )}
+
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          nodeTypes={nodeTypes}
+          onNodesChange={handleNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          onEdgeUpdate={onEdgeUpdate}
+          onNodeClick={(_, node) => setSelectedNodeId(node.id)}
+          onPaneClick={() => setSelectedNodeId(null)}
+          fitView
+          fitViewOptions={{ padding: 0.2 }}
+          minZoom={0.15}
+        >
+          <Background variant={BackgroundVariant.Dots} gap={20} />
+          <Controls />
+        </ReactFlow>
+      </div>
+
+      {selectedNode && (
+        <NodeInspector
+          node={selectedNode}
+          campos={campos}
+          setores={setores}
+          onClose={() => setSelectedNodeId(null)}
+          onChange={updateNodeData}
+          onRemove={removeNode}
+          onManageCampos={() => setConfigModal("campos")}
+          onManageSetores={() => setConfigModal("setores")}
+        />
+      )}
+
+      {configModal && (
+        <FunilConfigModal
+          idFunil={idFunil}
+          initialTab={configModal}
+          onClose={() => setConfigModal(null)}
+          onCamposChange={setCampos}
+          onSetoresChange={setSetores}
+        />
+      )}
     </div>
-  )
+  );
 }

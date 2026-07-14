@@ -1,4 +1,4 @@
-//src/repositories/funil.repository.js
+// src/repositories/funil.repository.js
 const db = require('../config/db')
 
 class FunilRepository {
@@ -15,7 +15,6 @@ class FunilRepository {
   }
 
   async buscarPorId(id_funil) {
-    // 🔹 1. Buscar dados do funil
     const { rows: funilRows } = await db.query(
       `
       SELECT
@@ -29,71 +28,73 @@ class FunilRepository {
     )
 
     if (funilRows.length === 0) return null
-
     const funil = funilRows[0]
 
-    // 🔹 2. Buscar mensagem de boas-vindas
-    const { rows: welcomeRows } = await db.query(
+    // Mensagens de CADASTRO (cd_mensagem = 0 é sempre a inicial/boas-vindas)
+    const { rows: cadastroRows } = await db.query(
       `
-      SELECT *
-      FROM tbl_funil_cadastro
-      WHERE id_funil = $1
-      ORDER BY cd_mensagem
-      LIMIT 1
+      SELECT FC.*, S.no_setor
+      FROM tbl_funil_cadastro FC
+      LEFT JOIN tbl_setor S ON S.id_setor = FC.id_setor
+      WHERE FC.id_funil = $1
+      ORDER BY FC.cd_mensagem
       `,
       [id_funil]
     )
 
-    let welcomeMessage = null
-
-    if (welcomeRows.length > 0) {
-      const welcome = welcomeRows[0]
-
-      const { rows: botoesWelcome } = await db.query(
+    const cadastro = []
+    for (const msg of cadastroRows) {
+      const { rows: botoes } = await db.query(
         `
-        SELECT 
-        id_funil_cadastro_botao AS id,
-        cd_botao,
-        ds_botao,
-        cd_mensagem_destino
+        SELECT
+          id_funil_cadastro_botao AS id,
+          cd_botao,
+          ds_botao,
+          cd_mensagem_destino
         FROM tbl_funil_cadastro_botao
         WHERE id_funil_cadastro = $1
         ORDER BY cd_botao
         `,
-        [welcome.id_funil_cadastro]
+        [msg.id_funil_cadastro]
       )
 
-      welcomeMessage = {
-        id: welcome.id_funil_cadastro,
-        cd_mensagem: welcome.cd_mensagem,
-        ds_mensagem: welcome.ds_mensagem,
-        cd_mensagem_destino: welcome.cd_mensagem_destino,
-        is_aguardar: welcome.is_aguardar,
-        botoes: botoesWelcome,
-      }
+      cadastro.push({
+        id: msg.id_funil_cadastro,
+        cd_mensagem: msg.cd_mensagem,
+        ds_mensagem: msg.ds_mensagem,
+        cd_mensagem_destino: msg.cd_mensagem_destino,
+        is_aguardar: msg.is_aguardar,
+        is_finalizar: msg.is_finalizar,
+        id_setor: msg.id_setor,
+        no_setor: msg.no_setor,
+        id_campo: msg.id_campo,
+        pos_x: msg.pos_x,
+        pos_y: msg.pos_y,
+        botoes,
+      })
     }
 
-    // 🔹 3. Buscar mensagens chatbot
-    const { rows: messageRows } = await db.query(
+    // Mensagens de CHATBOT (cd_mensagem = 0 é sempre a inicial)
+    const { rows: chatbotRows } = await db.query(
       `
-      SELECT *
-      FROM tbl_funil_chatbot
-      WHERE id_funil = $1
-      ORDER BY cd_mensagem
+      SELECT FC.*, S.no_setor
+      FROM tbl_funil_chatbot FC
+      LEFT JOIN tbl_setor S ON S.id_setor = FC.id_setor
+      WHERE FC.id_funil = $1
+      ORDER BY FC.cd_mensagem
       `,
       [id_funil]
     )
 
-    const messages = []
-
-    for (const msg of messageRows) {
+    const chatbot = []
+    for (const msg of chatbotRows) {
       const { rows: botoes } = await db.query(
         `
-        SELECT 
-        id_funil_chatbot_botao AS id,
-        cd_botao,
-        ds_botao,
-        cd_mensagem_destino
+        SELECT
+          id_funil_chatbot_botao AS id,
+          cd_botao,
+          ds_botao,
+          cd_mensagem_destino
         FROM tbl_funil_chatbot_botao
         WHERE id_funil_chatbot = $1
         ORDER BY cd_botao
@@ -101,21 +102,24 @@ class FunilRepository {
         [msg.id_funil_chatbot]
       )
 
-      messages.push({
+      chatbot.push({
         id: msg.id_funil_chatbot,
         cd_mensagem: msg.cd_mensagem,
         ds_mensagem: msg.ds_mensagem,
         cd_mensagem_destino: msg.cd_mensagem_destino,
         is_aguardar: msg.is_aguardar,
+        is_finalizar: msg.is_finalizar,
+        id_setor: msg.id_setor,
+        no_setor: msg.no_setor,
+        id_campo: msg.id_campo,
+        sg_chat_status: msg.sg_chat_status,
+        pos_x: msg.pos_x,
+        pos_y: msg.pos_y,
         botoes,
       })
     }
 
-    return {
-      ...funil,
-      welcomeMessage,
-      messages,
-    }
+    return { ...funil, cadastro, chatbot }
   }
 
   async criar({ name, description }) {
@@ -127,7 +131,6 @@ class FunilRepository {
       `,
       [name, description]
     )
-
     return rows[0]
   }
 }

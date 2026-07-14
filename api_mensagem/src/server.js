@@ -2,7 +2,6 @@
  * src/server.js
  *
  * Servidor principal — webhook WhatsApp + Telegram
- * Refatorado para usar funil.helper.js com nova modelagem.
  */
 
 "use strict"
@@ -23,6 +22,7 @@ const chatService = require("./services/chatService")
 const TelegramMessageModel = require("./models/TelegramMessageModel")
 const MessageModels        = require("./models/MessageModel")
 const InstanceModel        = require("./models/InstanceModel")
+const db                   = require("./config/db")
 
 dotenv.config()
 
@@ -32,22 +32,29 @@ app.use(bodyParser.json())
 app.use("/api", routes)
 
 /* ============================================================
+   HTTP + SOCKET.IO  (precisa estar antes de ser usado no webhook)
+   ============================================================ */
+const server = http.createServer(app)
+const io     = new Server(server, { cors: { origin: "*" } })
+
+/* ============================================================
    HELPERS INTERNOS DO WEBHOOK
    ============================================================ */
 
 /** Resolve a instância ou retorna null e loga aviso. */
-async function resolverInstancia(instanceName, res) {
+async function resolverInstancia(instanceName) {
   const instancia = await InstanceModel.getByName(instanceName)
-  if (!instancia) {
-    logger.warn(`⚠️ Instância não encontrada: ${instanceName}`)
-  }
+  if (!instancia) logger.warn(`⚠️ Instância não encontrada: ${instanceName}`)
   return instancia
 }
 
-/** Faz emit no socket e salva mensagem unificada. */
-async function registrarMensagem({ idChat, cdProvider, idMensagemExterna, fromMe, conteudo, tipo, payload, dhEnvio, io, contato }) {
+/** Emite no socket e salva mensagem unificada. */
+async function registrarMensagem({
+  idChat, cdProvider, idMensagemExterna, fromMe,
+  conteudo, tipo, payload, dhEnvio, contato,
+}) {
   await chatService.saveUnifiedMessage({
-    idChat, cdProvider, idMensagemExterna, fromMe, conteudo, tipo, payload, dhEnvio
+    idChat, cdProvider, idMensagemExterna, fromMe, conteudo, tipo, payload, dhEnvio,
   })
   io.emit("NEW_MESSAGE", { idChat, conteudo, fromMe, contato })
 }
@@ -56,7 +63,6 @@ async function registrarMensagem({ idChat, cdProvider, idMensagemExterna, fromMe
    WEBHOOK
    ============================================================ */
 app.post("/webhook", async (req, res) => {
-  // Responde imediatamente para não travar o provider
   res.status(200).json({ success: true })
 
   const msg = req.body
@@ -68,12 +74,12 @@ app.post("/webhook", async (req, res) => {
     ───────────────────────────────────────────── */
     if (msg.event === "instance.created") {
       await InstanceModel.saveOrUpdateInstance({
-        no_instancia  : msg.instance?.name,
-        cd_provider   : msg.provider === "whatsapp" ? InstanceModel.PROVIDER.WHATSAPP : InstanceModel.PROVIDER.TELEGRAM,
-        cd_status     : InstanceModel.STATUS.INATIVO,
-        ds_webhook    : msg.webhook || null,
-        ds_auth_path  : msg.ds_auth_path || null,
-        id_funil      : msg.id_funil || null,
+        no_instancia : msg.instance?.name,
+        cd_provider  : msg.provider === "whatsapp" ? InstanceModel.PROVIDER.WHATSAPP : InstanceModel.PROVIDER.TELEGRAM,
+        cd_status    : InstanceModel.STATUS.INATIVO,
+        ds_webhook   : msg.webhook || null,
+        ds_auth_path : msg.ds_auth_path || null,
+        id_funil     : msg.id_funil || null,
       })
       return
     }
@@ -105,12 +111,13 @@ app.post("/webhook", async (req, res) => {
     }
 
     /* ─────────────────────────────────────────────
-       TELEGRAM — MENSAGEM RECEBIDA (entrada do usuário)
+       TELEGRAM — MENSAGEM RECEBIDA
     ───────────────────────────────────────────── */
     if (msg.event === "message.received" && msg.provider === "telegram") {
       const message = msg.message
 
-      /* Mensagens enviadas pelo próprio bot (out = true) → apenas registra */
+      /* Mensagens enviadas pelo próprio bot/atendente → apenas registra,
+         mas verifica se isso tira o utilizador do status PENDENTE. */
       if (message.out === true) {
         const userId = message.peerId?.userId?.toString()
         if (!userId) return
@@ -136,13 +143,16 @@ app.post("/webhook", async (req, res) => {
           tipo              : "text",
           payload           : msg,
           dhEnvio           : message.date ? new Date(message.date * 1000) : new Date(),
-          io,
           contato           : userId,
         })
+
+        // Se o utilizador estava PENDENTE aguardando atendimento, esta
+        // mensagem nossa o move automaticamente para HUMANO.
+        await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
         return
       }
 
-      /* Mensagem recebida do usuário */
+      /* Mensagem recebida do utilizador */
       await TelegramMessageModel.saveTelegramMessage(message)
 
       const telegramUserId = message.fromId?.userId?.toString()
@@ -163,23 +173,21 @@ app.post("/webhook", async (req, res) => {
         idInstancia : instancia.id_instancia,
       })
 
-      const dhEnvio  = msg.message?.date ? new Date(msg.message.date * 1000) : new Date()
-      const conteudo = msg.message?.message || "[mensagem não textual]"
+      const dhEnvio  = message.date ? new Date(message.date * 1000) : new Date()
+      const conteudo = message.message || "[mensagem não textual]"
 
       await registrarMensagem({
         idChat,
         cdProvider        : 2,
-        idMensagemExterna : msg.message?.id?.toString(),
+        idMensagemExterna : message.id?.toString(),
         fromMe            : false,
         conteudo,
         tipo              : "text",
         payload           : msg,
         dhEnvio,
-        io,
         contato           : telegramUserId,
       })
 
-      /* ---- Motor do funil ---- */
       await funil.processarMensagem({
         idUtilizador,
         idFunil     : instancia.id_funil,
@@ -192,7 +200,6 @@ app.post("/webhook", async (req, res) => {
             instanceName : msg.instance?.name,
           }),
       })
-
       return
     }
 
@@ -230,10 +237,12 @@ app.post("/webhook", async (req, res) => {
         tipo              : "text",
         payload           : msg,
         dhEnvio           : msg.telegram?.date ? new Date(msg.telegram.date * 1000) : new Date(),
-        io,
         contato           : userId,
       })
 
+      // Se o utilizador estava PENDENTE aguardando atendimento, esta
+      // mensagem nossa o move automaticamente para HUMANO.
+      await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
       return
     }
 
@@ -243,10 +252,14 @@ app.post("/webhook", async (req, res) => {
     if (msg.event === "message.received" && msg.whatsapp && msg.message) {
       const jid = msg.whatsapp?.jid
 
-      /* Ignora grupos, status e mensagens do próprio bot */
       if (
         jid?.endsWith("@g.us") ||
-        funil.isStatusBroadcast(jid, msg.whatsapp?.jidAlt, msg.message?.raw?.key?.remoteJid, msg.message?.raw?.key?.participant) ||
+        funil.isStatusBroadcast(
+          jid,
+          msg.whatsapp?.jidAlt,
+          msg.message?.raw?.key?.remoteJid,
+          msg.message?.raw?.key?.participant
+        ) ||
         msg.message?.raw?.key?.fromMe ||
         msg.message?.raw?.protocolMessage
       ) {
@@ -298,11 +311,9 @@ app.post("/webhook", async (req, res) => {
         tipo              : "text",
         payload           : msg.message,
         dhEnvio,
-        io,
         contato           : telefone,
       })
 
-      /* ---- Motor do funil ---- */
       await funil.processarMensagem({
         idUtilizador,
         idFunil     : instancia.id_funil,
@@ -315,7 +326,6 @@ app.post("/webhook", async (req, res) => {
             instanceName : msg.instance?.name,
           }),
       })
-
       return
     }
 
@@ -323,8 +333,6 @@ app.post("/webhook", async (req, res) => {
        WHATSAPP — MENSAGEM ENVIADA (confirmação)
     ───────────────────────────────────────────── */
     if (msg.event === "message.sent" && msg.whatsapp && msg.message) {
-      const body = msg.message.text || ""
-
       const telefone = funil.extrairNumeroWhatsapp({
         jid    : msg.whatsapp.jid,
         jidAlt : msg.whatsapp.jidAlt,
@@ -348,14 +356,16 @@ app.post("/webhook", async (req, res) => {
         cdProvider        : 1,
         idMensagemExterna : msg.whatsapp?.messageId,
         fromMe            : true,
-        conteudo          : body,
+        conteudo          : msg.message.text || "[mensagem não textual]",
         tipo              : "text",
         payload           : msg.message,
         dhEnvio           : new Date(msg.whatsapp.timestamp * 1000),
-        io,
         contato           : telefone,
       })
 
+      // Se o utilizador estava PENDENTE aguardando atendimento, esta
+      // mensagem nossa o move automaticamente para HUMANO.
+      await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
       return
     }
 
@@ -379,13 +389,58 @@ app.use((req, res) => {
 })
 
 /* ============================================================
-   HTTP + SOCKET.IO
+   START E ROTINAS DE BACKGROUND (CRON)
    ============================================================ */
-const server = http.createServer(app)
-const io     = new Server(server, { cors: { origin: "*" } })
-
 const PORT = process.env.PORT || 3001
 
-server.listen(PORT, "0.0.0.0", () =>
+server.listen(PORT, "0.0.0.0", () => {
   logger.info(`🚀 Servidor rodando na porta ${PORT}`)
-)
+
+  /* ============================================================
+     ROTINA CRON DE EXPIRAÇÃO (A cada 60 segundos)
+     Continua restrita a utilizadores em CADASTRO/CHATBOT (C/B) —
+     ver verificarEProcessarExpiracoes no funil.helper.js
+     ============================================================ */
+  setInterval(async () => {
+    logger.info("🔍 Verificando sessões inativas do funil...")
+    
+    await funil.verificarEProcessarExpiracoes(async (idUtilizador, texto) => {
+      try {
+        const rUser = await db.query(
+          `SELECT nu_telefone, cd_telegram, cd_whatsapp FROM tbl_utilizador WHERE id_utilizador = $1`,
+          [idUtilizador]
+        )
+        if (rUser.rows.length === 0) return
+        const user = rUser.rows[0]
+
+        const rChat = await db.query(
+          `SELECT C.cd_provider, I.no_instancia
+             FROM tbl_chat C
+            INNER JOIN tbl_instancia I ON I.id_instancia = C.id_instancia
+            WHERE C.id_utilizador = $1
+            ORDER BY C.dh_ultima_mensagem DESC LIMIT 1`,
+          [idUtilizador]
+        )
+        if (rChat.rows.length === 0) return
+        const chat = rChat.rows[0]
+
+        if (chat.cd_provider === 1 && user.cd_whatsapp) {
+          await sendMessage.sendWhatsAppMessage({
+            telefone: user.cd_whatsapp,
+            message: texto,
+            instanceName: chat.no_instancia
+          })
+        } else if (chat.cd_provider === 2 && user.cd_telegram) {
+          await sendMessage.sendTelegramMessage({
+            chatId: user.cd_telegram,
+            message: texto,
+            instanceName: chat.no_instancia
+          })
+        }
+
+      } catch (err) {
+        logger.error(`❌ Falha ao enviar mensagem de expiração para o ID ${idUtilizador}:`, err)
+      }
+    })
+  }, 60000) // 60000 ms = 1 minuto
+})

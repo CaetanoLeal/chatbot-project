@@ -1,16 +1,21 @@
 //app/(dashboard)/dashboard/instances/components/ConnectInstanceModal.tsx
 "use client"
 
+import { useRouter } from "next/navigation";
 import { io, Socket } from "socket.io-client"
 import { useState, useEffect, useRef } from "react"
+
 
 type InstancePlatform = "whatsapp" | "telegram"
 
 export default function ConnectInstanceModal({
   onClose,
+  onConnected,
 }: {
   onClose: () => void
+  onConnected: () => void;
 }) {
+  const router = useRouter();
   const [name, setName] = useState("")
   const [funnel, setFunnel] = useState("")
   const [platform, setPlatform] = useState<InstancePlatform | "">("")
@@ -70,8 +75,15 @@ export default function ConnectInstanceModal({
 
     socket.on("INSTANCE_CONNECTED", (data) => {
       if (data?.nome === nameRef.current) {
-        setStatus("Conectado ✅")
-        setQrCode(null)
+        setStatus("Conectado ✅");
+        setQrCode(null);
+
+        if (data?.nome === nameRef.current) {
+            window.location.reload();
+        }
+
+        onClose();
+        onConnected();
       }
     })
 

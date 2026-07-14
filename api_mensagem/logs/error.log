@@ -860,3 +860,529 @@
 [2026-06-23 21:12:41] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
 [2026-06-23 21:13:56] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
 [2026-06-23 21:41:26] [ERROR]: ❌ Webhook error: relation "tbl_funil_cadastro" does not exist
+[2026-06-23 22:02:50] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-23 22:02:50] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-24 19:48:31] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-24 19:48:31] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-24 19:49:56] [ERROR]: ❌ Webhook error: insert or update on table "tbl_instancia" violates foreign key constraint "fk_instancia_status"
+[2026-06-24 19:50:04] [ERROR]: ❌ Webhook error: insert or update on table "tbl_instancia" violates foreign key constraint "fk_instancia_status"
+[2026-06-24 19:51:31] [ERROR]: ❌ Webhook error: insert or update on table "tbl_instancia" violates foreign key constraint "fk_instancia_status"
+[2026-06-24 19:59:32] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-24 19:59:32] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-24 20:00:39] [ERROR]: ❌ Webhook error: null value in column "id_setor" of relation "tbl_funil_utilizador" violates not-null constraint
+[2026-06-24 20:20:28] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-24 20:20:28] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-24 20:22:51] [ERROR]: ❌ Webhook error: column "ds_valor" of relation "tbl_funil_utilizador_campo" does not exist
+[2026-06-24 20:25:35] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-24 20:25:35] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-24 20:27:46] [ERROR]: ❌ Webhook error: column "no_campo" of relation "tbl_funil_utilizador_campo" does not exist
+[2026-06-25 17:47:00] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-25 17:47:00] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-30 16:43:13] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-30 16:43:13] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-30 18:22:15] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-30 18:22:21] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-30 18:41:41] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-30 19:26:56] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-30 19:27:30] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-30 19:27:36] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-30 19:27:47] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-30 19:29:30] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-30 20:30:47] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-06-30 20:30:47] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-06-30 20:32:42] [ERROR]: ❌ Webhook error: column "nu_expiracao" of relation "tbl_funil_utilizador" does not exist
+[2026-06-30 20:39:13] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-06-30 20:39:26] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-06-30 20:46:13] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-06-30 20:46:13] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 2fdab6e7-872a-4d19-89c0-081e2f3ed172: Request failed with status code 404
+[2026-06-30 20:49:07] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-06-30 20:54:34] [ERROR]: ❌ Webhook error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+[2026-07-02 16:29:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 16:29:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 85b2f4e9-dc3c-40d7-add1-f22dc2c2b9c0: Request failed with status code 404
+[2026-07-02 16:32:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 16:32:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 85b2f4e9-dc3c-40d7-add1-f22dc2c2b9c0: Request failed with status code 404
+[2026-07-02 16:34:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 16:34:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 85b2f4e9-dc3c-40d7-add1-f22dc2c2b9c0: Request failed with status code 404
+[2026-07-02 16:35:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 16:35:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 85b2f4e9-dc3c-40d7-add1-f22dc2c2b9c0: Request failed with status code 404
+[2026-07-02 16:38:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 16:38:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 85b2f4e9-dc3c-40d7-add1-f22dc2c2b9c0: Request failed with status code 404
+[2026-07-02 16:46:55] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-07-02 16:49:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-07-02 16:50:08] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-07-02 16:56:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 16:56:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 16:57:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 16:57:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 16:58:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 16:58:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 16:59:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 16:59:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:01:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:01:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:01:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:01:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:02:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:02:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:04:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:04:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:05:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:05:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:06:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:06:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:07:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:07:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:07:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:07:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:09:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:09:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:10:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:10:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:11:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:11:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:13:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:13:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:14:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:14:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:15:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:15:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:16:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:16:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:17:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:17:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:17:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:17:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:18:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:18:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:20:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:20:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:21:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:21:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:22:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:22:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:23:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:23:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:23:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:23:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:24:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:24:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:25:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:25:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:26:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:26:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:27:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:27:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:29:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:29:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:29:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:29:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:31:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:31:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:32:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:32:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:32:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:32:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:34:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:34:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:35:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:35:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:35:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:35:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:37:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:37:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:39:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:39:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:39:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:39:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:40:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:40:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:41:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:41:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:42:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:42:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:43:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:43:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:43:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:43:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:45:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:45:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:46:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:46:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:46:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:46:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:47:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:47:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:48:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:48:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:50:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:50:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:50:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:50:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:51:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:51:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:52:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:52:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:53:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:53:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:54:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:54:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:54:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:54:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:56:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:56:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:58:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:58:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 17:58:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:58:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 17:59:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 17:59:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:00:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:00:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:02:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:02:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:02:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:02:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:03:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:03:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:04:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:04:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:05:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:05:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:06:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:06:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:06:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:06:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:08:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:08:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:09:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:09:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:10:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:10:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:11:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:11:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:11:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:11:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:13:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:13:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:14:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:14:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:14:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:14:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:17:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:17:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:17:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:17:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:19:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:19:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:20:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:20:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:20:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:20:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:22:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:22:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:23:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:23:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:23:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:23:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:25:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:25:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:26:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:26:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:26:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:26:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:27:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:27:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:28:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:28:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:29:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:29:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:30:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:30:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:30:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:30:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:32:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:32:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:33:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:33:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:33:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:33:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:34:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:34:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:36:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:36:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:37:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:37:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:37:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:37:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:38:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:38:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:39:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:39:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:41:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:41:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:41:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:41:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:42:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:42:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:44:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:44:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:45:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:45:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:46:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:46:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:47:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:47:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:48:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:48:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:50:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:50:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:50:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:50:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:51:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:51:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:52:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:52:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:54:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:54:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:54:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:54:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:55:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:55:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:57:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:57:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 18:58:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:58:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 18:59:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 18:59:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:00:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:00:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:00:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:00:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:02:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:02:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:03:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:03:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:04:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:04:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:06:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:06:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:06:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:06:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:08:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:08:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:08:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:08:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:09:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:09:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:09:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:09:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:10:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:10:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:13:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:13:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:13:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:13:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:15:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:15:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:16:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:16:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:16:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:16:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:17:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:17:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:17:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:17:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:18:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:18:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:20:04] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:20:04] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3b2ce73d-183b-45d8-88b0-49f01f9c7296: Request failed with status code 404
+[2026-07-02 19:21:04] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:21:04] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4be96042-36a7-4116-aefc-3281ffd465d4: Request failed with status code 404
+[2026-07-02 19:27:43] [ERROR]: ❌ Webhook error: insert or update on table "tbl_funil_utilizador" violates foreign key constraint "fk_tbl_funil_utilizador_tbl_chat_status"
+[2026-07-02 19:30:29] [ERROR]: ❌ Webhook error: insert or update on table "tbl_funil_utilizador" violates foreign key constraint "fk_tbl_funil_utilizador_tbl_chat_status"
+[2026-07-02 19:37:57] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-02 19:37:57] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-02 19:40:15] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-02 19:40:15] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-02 19:42:58] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-02 19:49:15] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-02 19:49:15] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 60cedbab-6c95-40ee-9e58-2a614762b474: Request failed with status code 404
+[2026-07-06 14:56:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-06 14:56:18] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 5015aa9c-2d91-4c72-9c04-21cb26aae99b: Request failed with status code 404
+[2026-07-06 14:56:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-06 14:56:18] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 60cedbab-6c95-40ee-9e58-2a614762b474: Request failed with status code 404
+[2026-07-06 14:58:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-06 14:58:18] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 60cedbab-6c95-40ee-9e58-2a614762b474: Request failed with status code 404
+[2026-07-06 14:59:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-06 14:59:18] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 5015aa9c-2d91-4c72-9c04-21cb26aae99b: Request failed with status code 404
+[2026-07-06 14:59:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-06 14:59:18] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 60cedbab-6c95-40ee-9e58-2a614762b474: Request failed with status code 404
+[2026-07-06 14:59:18] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-06 14:59:18] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 60cedbab-6c95-40ee-9e58-2a614762b474: Request failed with status code 404
+[2026-07-07 16:58:58] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 16:58:58] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 17:09:02] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 17:09:02] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 17:11:00] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 17:11:00] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 17:18:00] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:18:00] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7e323e43-20c7-4492-a10b-f2e1ab845119: Request failed with status code 404
+[2026-07-07 17:19:00] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:19:00] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID baeb2109-fdf4-4b75-b42d-c3b1f0ba05d9: Request failed with status code 404
+[2026-07-07 17:40:03] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 17:40:03] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 17:42:11] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-07 17:44:18] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-07 17:48:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:48:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 5db2810f-bcd7-4700-aaf3-c91619f16bd5: Request failed with status code 404
+[2026-07-07 17:48:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:48:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3c2aef29-16ce-4dc8-8c92-875f7fef05ba: Request failed with status code 404
+[2026-07-07 17:49:03] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:49:03] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID e0baeca4-fe8d-46a7-99e1-99ad9ca9646a: Request failed with status code 404
+[2026-07-07 17:52:49] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 17:52:49] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 17:53:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:53:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 5db2810f-bcd7-4700-aaf3-c91619f16bd5: Request failed with status code 404
+[2026-07-07 17:53:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:53:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3c2aef29-16ce-4dc8-8c92-875f7fef05ba: Request failed with status code 404
+[2026-07-07 17:53:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:53:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID e0baeca4-fe8d-46a7-99e1-99ad9ca9646a: Request failed with status code 404
+[2026-07-07 17:55:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:55:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 5db2810f-bcd7-4700-aaf3-c91619f16bd5: Request failed with status code 404
+[2026-07-07 17:55:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:55:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3c2aef29-16ce-4dc8-8c92-875f7fef05ba: Request failed with status code 404
+[2026-07-07 17:55:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:55:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID e0baeca4-fe8d-46a7-99e1-99ad9ca9646a: Request failed with status code 404
+[2026-07-07 17:56:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:56:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 5db2810f-bcd7-4700-aaf3-c91619f16bd5: Request failed with status code 404
+[2026-07-07 17:56:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:56:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 5db2810f-bcd7-4700-aaf3-c91619f16bd5: Request failed with status code 404
+[2026-07-07 17:56:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:56:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3c2aef29-16ce-4dc8-8c92-875f7fef05ba: Request failed with status code 404
+[2026-07-07 17:56:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:56:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 3c2aef29-16ce-4dc8-8c92-875f7fef05ba: Request failed with status code 404
+[2026-07-07 17:56:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:56:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID e0baeca4-fe8d-46a7-99e1-99ad9ca9646a: Request failed with status code 404
+[2026-07-07 17:56:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 17:56:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID e0baeca4-fe8d-46a7-99e1-99ad9ca9646a: Request failed with status code 404
+[2026-07-07 18:06:53] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 18:06:53] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 18:31:25] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 18:31:25] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID d5c3ca4c-adb6-4664-8738-cccbf370dee9: Request failed with status code 404
+[2026-07-07 18:32:25] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 18:32:25] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID d5c3ca4c-adb6-4664-8738-cccbf370dee9: Request failed with status code 404
+[2026-07-07 18:33:25] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 18:33:25] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID d5c3ca4c-adb6-4664-8738-cccbf370dee9: Request failed with status code 404
+[2026-07-07 18:33:25] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 18:33:25] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID d5c3ca4c-adb6-4664-8738-cccbf370dee9: Request failed with status code 404
+[2026-07-07 18:34:32] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 18:34:32] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 18:37:38] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 18:37:38] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 18:46:19] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 18:46:19] [ERROR]: ❌ Webhook error: Request failed with status code 404
+[2026-07-07 18:49:38] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 18:49:38] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 344c51dc-4464-444c-a8ad-e1c44acd0d43: Request failed with status code 404
+[2026-07-07 18:53:34] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-07 18:54:10] [ERROR]: ❌ Webhook error: texto.trim(...).lowerCase is not a function
+[2026-07-07 18:54:24] [ERROR]: ❌ Webhook error: texto.trim(...).lowerCase is not a function
+[2026-07-07 18:55:00] [ERROR]: ❌ Webhook error: texto.trim(...).lowerCase is not a function
+[2026-07-07 19:13:39] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 19:13:39] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 19:14:00] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 19:14:00] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 19:16:19] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-07 19:16:19] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-07 19:39:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:39:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:40:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:40:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:40:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:40:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:43:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:43:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:45:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:45:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:46:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:46:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:47:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:47:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:50:01] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:50:01] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:53:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:53:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:54:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:54:02] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: connect ECONNREFUSED 172.18.0.5:3000
+[2026-07-07 19:55:50] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:55:50] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 19:59:37] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 19:59:37] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 20:01:37] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 20:01:37] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 20:03:37] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 20:03:37] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 20:04:37] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 20:04:37] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-07 20:08:37] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-07 20:08:37] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 7dab152e-dfe3-47d1-bed0-1bce9b57a5b7: Request failed with status code 404
+[2026-07-08 17:04:12] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-08 17:04:12] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-08 17:06:34] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-08 17:06:34] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-08 17:14:00] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-08 17:55:03] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-08 18:41:25] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-08 18:41:25] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-08 20:50:03] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-08 20:50:08] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-08 20:51:13] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-08 20:58:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-08 20:58:29] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4122352f-713b-4237-8ae7-decfc423e99e: Request failed with status code 404
+[2026-07-08 21:00:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-08 21:00:29] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4122352f-713b-4237-8ae7-decfc423e99e: Request failed with status code 404
+[2026-07-08 21:01:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-08 21:01:29] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4122352f-713b-4237-8ae7-decfc423e99e: Request failed with status code 404
+[2026-07-08 21:02:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-08 21:02:29] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4122352f-713b-4237-8ae7-decfc423e99e: Request failed with status code 404
+[2026-07-08 21:05:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-08 21:05:29] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4122352f-713b-4237-8ae7-decfc423e99e: Request failed with status code 404
+[2026-07-08 21:07:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-08 21:07:29] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4122352f-713b-4237-8ae7-decfc423e99e: Request failed with status code 404
+[2026-07-08 21:08:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-08 21:08:29] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4122352f-713b-4237-8ae7-decfc423e99e: Request failed with status code 404
+[2026-07-08 21:09:29] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-08 21:09:29] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 4122352f-713b-4237-8ae7-decfc423e99e: Request failed with status code 404
+[2026-07-08 22:03:49] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-08 22:03:49] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-08 22:06:05] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-08 22:09:50] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-09 19:54:38] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-09 19:54:38] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-10 18:43:40] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-10 18:43:40] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-13 16:15:01] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-13 16:15:01] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-13 17:14:24] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-13 17:14:24] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-13 17:37:06] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-13 17:37:06] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-13 18:21:55] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-13 18:21:55] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-13 18:36:07] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-13 18:36:07] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-13 19:27:23] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-13 19:27:23] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-13 19:32:48] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-13 19:32:48] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-13 19:41:22] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-13 19:41:22] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-14 20:07:06] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is not yet accepting connections
+[2026-07-14 20:07:06] [ERROR]: ❌ Erro ao buscar id_funil: the database system is not yet accepting connections
+[2026-07-14 20:12:40] [ERROR]: ❌ Erro ao buscar funil: column c.id_funil does not exist
+[2026-07-14 20:17:27] [ERROR]: ❌ Erro ao buscar funil: column c.id_funil does not exist
+[2026-07-14 20:27:40] [ERROR]: ❌ Erro ao buscar funil: column "id_funil" does not exist
+[2026-07-14 20:27:48] [ERROR]: ❌ Erro ao buscar funil: column "id_funil" does not exist
+[2026-07-14 20:41:48] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-14 20:41:48] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-14 21:07:06] [ERROR]: ❌ Erro de conexão com PostgreSQL: Connection terminated due to connection timeout
+[2026-07-14 21:07:06] [ERROR]: ❌ Erro ao buscar id_funil: Connection terminated due to connection timeout
