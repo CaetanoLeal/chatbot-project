@@ -20,8 +20,8 @@ class FunilService {
     if (!funil) return null
 
     const [campos, setores] = await Promise.all([
-      CampoRepository.listarPorFunil(id_funil),
-      SetorRepository.listarPorFunil(id_funil),
+      CampoRepository.listarCampos(id_funil),
+      SetorRepository.listarCampos(id_funil),
     ])
 
     return { ...funil, campos, setores }
@@ -142,14 +142,14 @@ class FunilService {
     return CampoTipoRepository.listar()
   }
 
-  async listarCampos(id_funil) {
-    return CampoRepository.listarPorFunil(id_funil)
+  async listarCampos() {
+    return CampoRepository.listarCampos()
   }
 
-  async criarCampo(id_funil, { no_campo, ds_label, cd_campo_tipo, is_obrigatorio }) {
+  async criarCampo({ no_campo, ds_label, cd_campo_tipo, is_obrigatorio }) {
     if (!no_campo) throw new Error('Nome do campo é obrigatório')
     if (!cd_campo_tipo) throw new Error('Tipo do campo é obrigatório')
-    return CampoRepository.criar({ id_funil, no_campo, ds_label, cd_campo_tipo, is_obrigatorio })
+    return CampoRepository.criar({ no_campo, ds_label, cd_campo_tipo, is_obrigatorio })
   }
 
   async atualizarCampo(id_campo, data) {
@@ -163,7 +163,7 @@ class FunilService {
   /* ================= SETORES ================= */
 
   async listarSetores(id_funil) {
-    return SetorRepository.listarPorFunil(id_funil)
+    return SetorRepository.listarCampos(id_funil)
   }
 
   async criarSetor(id_funil, { no_setor }) {

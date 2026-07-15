@@ -42,7 +42,7 @@ class FunilCadastroRepository {
     await client.query(`DELETE FROM tbl_funil_cadastro WHERE id_funil = $1`, [id_funil])
   }
 
-  async listarPorFunil(id_funil) {
+  async listarCampos(id_funil) {
     const db = require('../config/db')
     const { rows } = await db.query(
       `

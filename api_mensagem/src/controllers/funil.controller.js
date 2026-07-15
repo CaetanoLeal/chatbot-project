@@ -1,6 +1,7 @@
 // src/controllers/funil.controller.js
 const FunilService = require('../services/funil.service')
 const logger = require('../../logger')
+const setorService = require('../services/setor.service')
 
 class FunilController {
   async listar(req, res) {
@@ -60,7 +61,7 @@ class FunilController {
 
   async listarCampos(req, res) {
     try {
-      const campos = await FunilService.listarCampos(req.params.id)
+      const campos = await FunilService.listarCampos()
       return res.json(campos)
     } catch (err) {
       logger.error(`❌ Erro ao listar campos: ${err.message}`)
@@ -70,7 +71,7 @@ class FunilController {
 
   async criarCampo(req, res) {
     try {
-      const id_campo = await FunilService.criarCampo(req.params.id, req.body)
+      const id_campo = await FunilService.criarCampo(req.body)
       return res.status(201).json({ id_campo })
     } catch (err) {
       logger.error(`❌ Erro ao criar campo: ${err.message}`)
@@ -112,7 +113,7 @@ class FunilController {
 
   async criarSetor(req, res) {
     try {
-      const id_setor = await FunilService.criarSetor(req.params.id, req.body)
+      const id_setor = await setorService.cadastrar(req.body)
       return res.status(201).json({ id_setor })
     } catch (err) {
       logger.error(`❌ Erro ao criar setor: ${err.message}`)

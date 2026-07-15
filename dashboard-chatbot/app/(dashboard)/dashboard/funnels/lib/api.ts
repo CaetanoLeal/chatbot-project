@@ -1,5 +1,6 @@
 // app/(dashboard)/dashboard/funnels/lib/api.ts
 const BASE = `${process.env.NEXT_PUBLIC_API_URL}/api/funis`
+const BASE2 = `${process.env.NEXT_PUBLIC_API_URL}/api`
 
 async function handle<T>(res: Response): Promise<T> {
   const data = await res.json().catch(() => null)
@@ -106,8 +107,8 @@ export async function listarTiposCampo() {
   return handle<CampoTipo[]>(res)
 }
 
-export async function listarCampos(idFunil: string) {
-  const res = await fetch(`${BASE}/${idFunil}/campos`)
+export async function listarCampos() {
+  const res = await fetch(`${BASE}/campos`)
   return handle<Campo[]>(res)
 }
 
@@ -130,13 +131,13 @@ export async function removerCampo(idFunil: string, idCampo: string) {
 
 /* ===================== SETORES ===================== */
 
-export async function listarSetores(idFunil: string) {
-  const res = await fetch(`${BASE}/${idFunil}/setores`)
+export async function listarSetores() {
+  const res = await fetch(`${BASE2}/setores`)
   return handle<Setor[]>(res)
 }
 
-export async function criarSetor(idFunil: string, data: { no_setor: string }) {
-  const res = await fetch(`${BASE}/${idFunil}/setores`, {
+export async function criarSetor(data: { no_setor: string }) {
+  const res = await fetch(`${BASE}/setores`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),

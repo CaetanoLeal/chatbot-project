@@ -31,7 +31,7 @@ class SetorRepository {
         return rows;
     }
 
-  async listarPorFunil(id_funil, client = null) {
+  async listarCampos(id_funil, client = null) {
         const conn = client || db;
 
         const { rows } = await conn.query(`

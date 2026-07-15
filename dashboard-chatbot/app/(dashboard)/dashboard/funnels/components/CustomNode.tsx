@@ -3,14 +3,17 @@ import { Handle, Position } from "reactflow";
 import AutoHandles from "./AutoHandles";
 import type { FlowNodeData } from "../lib/transform";
 
+// Styles
 const baseNodeStyle = "bg-white border shadow-sm rounded-lg p-4 w-72 text-zinc-800 transition-shadow";
 const headerStyle = "font-semibold text-xs text-zinc-400 mb-2 tracking-wide uppercase";
 const handleStyle = "w-2 h-2 rounded-full border-zinc-300";
 
+// Função para definir o estilo do nó com base na seleção
 function nodeStyle(selected?: boolean) {
   return `${baseNodeStyle} ${selected ? "border-blue-400 ring-2 ring-blue-100" : "border-zinc-200"}`;
 }
 
+// Componente para exibir um badge indicando que o nó está vinculado a um setor
 function SetorBadge({ idSetor }: { idSetor?: string | null }) {
   if (!idSetor) return null;
   return (
@@ -20,8 +23,10 @@ function SetorBadge({ idSetor }: { idSetor?: string | null }) {
   );
 }
 
+// Tipos de propriedades para os componentes de nó
 type NodeProps = { data: FlowNodeData; selected?: boolean };
 
+{/* Componente para exibir um nó de texto seco */}
 export const TextNode = ({ data, selected }: NodeProps) => (
   <div className={nodeStyle(selected)}>
     <AutoHandles />
@@ -35,6 +40,7 @@ export const TextNode = ({ data, selected }: NodeProps) => (
   </div>
 );
 
+{/* Componente para exibir um nó de pergunta */}
 export const QuestionNode = ({ data, selected }: NodeProps) => (
   <div className={nodeStyle(selected)}>
     <AutoHandles />
@@ -50,6 +56,7 @@ export const QuestionNode = ({ data, selected }: NodeProps) => (
   </div>
 );
 
+{/* Componente para exibir um nó de escolhas */}
 export const ButtonsNode = ({ data, selected }: NodeProps) => (
   <div className={nodeStyle(selected)}>
     <Handle type="target" position={Position.Left} className={`${handleStyle} bg-zinc-100`} />
@@ -71,6 +78,8 @@ export const ButtonsNode = ({ data, selected }: NodeProps) => (
   </div>
 );
 
+// Componente para exibir um nó de ação (transferência, espera, fim de atendimento)
+
 const STATUS_LABEL: Record<string, string> = {
   H: "Transferir: Atendente",
   I: "Transferir: Inteligência Artificial",
@@ -78,6 +87,7 @@ const STATUS_LABEL: Record<string, string> = {
   A: "Fim de Atendimento",
 };
 
+// Mapeamento de status para classes de borda
 const STATUS_BORDER: Record<string, string> = {
   H: "border-l-emerald-500",
   I: "border-l-purple-500",
@@ -85,6 +95,7 @@ const STATUS_BORDER: Record<string, string> = {
   A: "border-l-zinc-400",
 };
 
+{/* Componente para exibir um nó de ação */}
 export const ActionNode = ({ data, selected }: NodeProps) => {
   const status = data.sgChatStatus ?? "A";
   return (

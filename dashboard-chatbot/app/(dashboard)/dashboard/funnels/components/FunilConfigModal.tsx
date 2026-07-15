@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import * as api from "../lib/api"
 import type { Campo, CampoTipo, Setor } from "../lib/api"
 
+// Tipos de propriedades para o componente FunilConfigModal
 type Props = {
   idFunil: string
   initialTab: "campos" | "setores"
@@ -13,29 +14,35 @@ type Props = {
   onSetoresChange: (setores: Setor[]) => void
 }
 
+// Componente para exibir o modal de configuração do funil
 export default function FunilConfigModal({ idFunil, initialTab, onClose, onCamposChange, onSetoresChange }: Props) {
+  // Estado para controlar a aba ativa (campos ou setores)
   const [tab, setTab] = useState<"campos" | "setores">(initialTab)
 
+  // Estados para armazenar os dados de campos, tipos de campos e setores
   const [campos, setCampos] = useState<Campo[]>([])
   const [tipos, setTipos] = useState<CampoTipo[]>([])
   const [setores, setSetores] = useState<Setor[]>([])
 
+  // Estados para controlar os valores dos novos campos e setores a serem criados
   const [novoCampoNome, setNovoCampoNome] = useState("")
   const [novoCampoLabel, setNovoCampoLabel] = useState("")
   const [novoCampoTipo, setNovoCampoTipo] = useState<number | "">("")
   const [novoCampoObrigatorio, setNovoCampoObrigatorio] = useState(true)
 
+  // Estado para controlar o status de salvamento e mensagens de erro
   const [novoSetorNome, setNovoSetorNome] = useState("")
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  // Efeito para carregar os dados iniciais de campos, tipos de campos e setores ao montar o componente
   useEffect(() => {
     ;(async () => {
       try {
         const [c, t, s] = await Promise.all([
-          api.listarCampos(idFunil),
+          api.listarCampos(),
           api.listarTiposCampo(),
-          api.listarSetores(idFunil),
+          api.listarSetores(),
         ])
         setCampos(c)
         setTipos(t)
@@ -47,6 +54,7 @@ export default function FunilConfigModal({ idFunil, initialTab, onClose, onCampo
     })()
   }, [idFunil])
 
+  // Função para criar um novo campo personalizado
   async function criarCampo() {
     if (!novoCampoNome.trim() || novoCampoTipo === "") return
     try {
@@ -57,7 +65,8 @@ export default function FunilConfigModal({ idFunil, initialTab, onClose, onCampo
         cd_campo_tipo: Number(novoCampoTipo),
         is_obrigatorio: novoCampoObrigatorio,
       })
-      const atualizados = await api.listarCampos(idFunil)
+      // Atualiza a lista de campos após a criação
+      const atualizados = await api.listarCampos()
       setCampos(atualizados)
       onCamposChange(atualizados)
       setNovoCampoNome("")
@@ -69,10 +78,11 @@ export default function FunilConfigModal({ idFunil, initialTab, onClose, onCampo
     }
   }
 
+  // Função para remover um campo personalizado
   async function removerCampo(id_campo: string) {
     try {
       await api.removerCampo(idFunil, id_campo)
-      const atualizados = await api.listarCampos(idFunil)
+      const atualizados = await api.listarCampos()
       setCampos(atualizados)
       onCamposChange(atualizados)
     } catch (err: any) {
@@ -80,12 +90,13 @@ export default function FunilConfigModal({ idFunil, initialTab, onClose, onCampo
     }
   }
 
+  // Função para criar um novo setor
   async function criarSetor() {
     if (!novoSetorNome.trim()) return
     try {
       setSaving(true)
-      await api.criarSetor(idFunil, { no_setor: novoSetorNome.trim() })
-      const atualizados = await api.listarSetores(idFunil)
+      await api.criarSetor({ no_setor: novoSetorNome.trim() })
+      const atualizados = await api.listarSetores()
       setSetores(atualizados)
       onSetoresChange(atualizados)
       setNovoSetorNome("")
@@ -96,10 +107,11 @@ export default function FunilConfigModal({ idFunil, initialTab, onClose, onCampo
     }
   }
 
+  // Função para remover um setor
   async function removerSetor(id_setor: string) {
     try {
       await api.removerSetor(idFunil, id_setor)
-      const atualizados = await api.listarSetores(idFunil)
+      const atualizados = await api.listarSetores()
       setSetores(atualizados)
       onSetoresChange(atualizados)
     } catch (err: any) {
@@ -107,6 +119,7 @@ export default function FunilConfigModal({ idFunil, initialTab, onClose, onCampo
     }
   }
 
+  // Renderização do modal de configuração do funil
   return (
     <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-[80vh] overflow-y-auto text-zinc-700">

@@ -1,11 +1,10 @@
 // src/repositories/campo.repository.js
-
 const { v4: uuid } = require("uuid");
 const db = require("../config/db");
 
 class CampoRepository {
 
-  async listarPorFunil(id_funil) {
+  async listarCampos() {
     const { rows } = await db.query(
       `
       SELECT DISTINCT
@@ -20,24 +19,8 @@ class CampoRepository {
       INNER JOIN tbl_campo_tipo CT
           ON CT.cd_campo_tipo = C.cd_campo_tipo
 
-      WHERE C.id_campo IN (
-
-            SELECT id_campo
-            FROM tbl_funil_cadastro
-            WHERE id_funil = $1
-              AND id_campo IS NOT NULL
-
-            UNION
-
-            SELECT id_campo
-            FROM tbl_funil_chatbot
-            WHERE id_funil = $1
-              AND id_campo IS NOT NULL
-      )
-
       ORDER BY C.no_campo
       `,
-      [id_funil]
     );
 
     return rows;
