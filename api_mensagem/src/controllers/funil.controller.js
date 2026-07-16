@@ -133,7 +133,7 @@ class FunilController {
 
   async removerSetor(req, res) {
     try {
-      await FunilService.removerSetor(req.params.idSetor)
+      await setorService.excluir(req.params.idSetor)
       return res.json({ success: true })
     } catch (err) {
       logger.error(`❌ Erro ao remover setor: ${err.message}`)

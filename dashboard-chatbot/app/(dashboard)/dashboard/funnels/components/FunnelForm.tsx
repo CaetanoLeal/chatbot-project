@@ -28,6 +28,7 @@ import * as api from "../lib/api";
 import type { Campo, Setor } from "../lib/api";
 import { funilParaFluxo, fluxoParaFunil, FlowNodeData } from "../lib/transform";
 
+//definindo nodes que criamos em customNode.tsx para serem usados no ReactFlow
 const nodeTypes = {
   textNode: TextNode,
   questionNode: QuestionNode,
@@ -35,6 +36,7 @@ const nodeTypes = {
   actionNode: ActionNode,
 };
 
+// Definindo as opções de estilo para as arestas do grafo
 const edgeOptions = {
   animated: true,
   style: { stroke: "#94a3b8", strokeWidth: 2 },
@@ -45,11 +47,13 @@ type Props = {
   idFunil: string;
 };
 
+// Função para calcular o próximo código de mensagem com base nos nós existentes e no fluxo (cadastro ou chatbot)
 function proximoCodigo(nodes: Node<FlowNodeData>[], fluxo: "cadastro" | "chatbot") {
   const codigos = nodes.filter((n) => n.data.fluxo === fluxo).map((n) => n.data.cdMensagem);
   return codigos.length === 0 ? 0 : Math.max(...codigos) + 1;
 }
 
+// Função principal do componente FunnelFlowBuilder, responsável por renderizar o construtor de fluxo do funil
 export default function FunnelFlowBuilder({ idFunil }: Props) {
   const [nodes, setNodes] = useNodesState<FlowNodeData>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);

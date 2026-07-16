@@ -55,66 +55,57 @@ function resolveNodeType(msg: Mensagem): 'textNode' | 'questionNode' | 'buttonsN
 /** Layout automático em camadas (BFS a partir de cd_mensagem = 0),
  *  usado apenas quando a mensagem ainda não tem pos_x/pos_y salvos. */
 function autoLayout(mensagens: Mensagem[]): Map<number, { x: number; y: number }> {
-  const byCd = new Map(mensagens.map(m => [m.cd_mensagem, m]))
-  const level = new Map<number, number>()
-  const visited = new Set<number>()
-
-  const queue: number[] = mensagens.some(m => m.cd_mensagem === 0) ? [0] : []
-  level.set(0, 0)
-
-  while (queue.length > 0) {
-    const cd = queue.shift()!
-    if (visited.has(cd)) continue
-    visited.add(cd)
-
-    const msg = byCd.get(cd)
-    if (!msg) continue
-
-    const destinos: number[] = []
-    if (msg.botoes.length > 0) {
-      for (const b of msg.botoes) if (b.cd_mensagem_destino != null) destinos.push(b.cd_mensagem_destino)
-    } else if (msg.cd_mensagem_destino != null) {
-      destinos.push(msg.cd_mensagem_destino)
-    }
-
-    for (const destino of destinos) {
-      const nivelAtual = level.get(cd) ?? 0
-      const nivelDestino = level.get(destino)
-      if (nivelDestino === undefined || nivelDestino < nivelAtual + 1) {
-        // evita voltar nível em loops simples (ex: validação -> pergunta novamente)
-        if (!visited.has(destino) || (nivelDestino ?? 0) < nivelAtual + 1) {
-          level.set(destino, Math.max(nivelAtual + 1, nivelDestino ?? 0))
-        }
-      }
-      if (!visited.has(destino)) queue.push(destino)
-    }
-  }
-
-  // órfãos (não alcançados a partir do 0) entram no fim, um por nível próprio
-  let maxLevel = Math.max(0, ...Array.from(level.values()))
+  const byCd = new Map(mensagens.map(m => [m.cd_mensagem, m]));
+  const positions = new Map<number, { x: number; y: number }>();
+  
+  // 1. Mapeamento de grafo (quem aponta para quem)
+  const children = new Map<number, number[]>();
   for (const m of mensagens) {
-    if (!level.has(m.cd_mensagem)) {
-      maxLevel += 1
-      level.set(m.cd_mensagem, maxLevel)
+    const dests = m.botoes?.length > 0 
+      ? m.botoes.map(b => b.cd_mensagem_destino).filter(d => d != null)
+      : (m.cd_mensagem_destino != null ? [m.cd_mensagem_destino] : []);
+    
+    for (const dest of dests) {
+      if (!children.has(m.cd_mensagem)) children.set(m.cd_mensagem, []);
+      children.get(m.cd_mensagem)!.push(dest!);
     }
   }
 
-  const porNivel = new Map<number, number[]>()
-  for (const m of mensagens) {
-    const lvl = level.get(m.cd_mensagem) ?? 0
-    if (!porNivel.has(lvl)) porNivel.set(lvl, [])
-    porNivel.get(lvl)!.push(m.cd_mensagem)
+  // 2. Cálculo recursivo de posição (DFS) para garantir hierarquia
+  function calculate(cd: number, x: number, y: number, visited: Set<number>, yOffsets: Map<number, number>) {
+    if (visited.has(cd)) return;
+    visited.add(cd);
+
+    positions.set(cd, { x, y });
+
+    const dests = children.get(cd) || [];
+    if (dests.length === 0) return;
+
+    // Espalha os filhos verticalmente
+    const step = NODE_GAP_Y;
+    const startY = y - ((dests.length - 1) * step) / 2;
+
+    dests.forEach((dest, index) => {
+      calculate(dest, x + LEVEL_GAP_X, startY + (index * step), visited, yOffsets);
+    });
   }
 
-  const positions = new Map<number, { x: number; y: number }>()
-  for (const [lvl, cds] of porNivel) {
-    cds.sort((a, b) => a - b)
-    cds.forEach((cd, idx) => {
-      positions.set(cd, { x: lvl * LEVEL_GAP_X, y: BASE_Y + idx * NODE_GAP_Y })
-    })
+  const visited = new Set<number>();
+  const yOffsets = new Map<number, number>();
+  
+  // Inicia pelo nó 0
+  if (byCd.has(0)) {
+    calculate(0, 0, BASE_Y, visited, yOffsets);
   }
 
-  return positions
+  // Processa órfãos
+  mensagens.forEach(m => {
+    if (!visited.has(m.cd_mensagem)) {
+      calculate(m.cd_mensagem, 0, BASE_Y + (visited.size * NODE_GAP_Y), visited, yOffsets);
+    }
+  });
+
+  return positions;
 }
 
 function mensagensToNodes(

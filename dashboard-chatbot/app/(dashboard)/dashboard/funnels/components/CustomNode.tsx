@@ -59,19 +59,87 @@ export const QuestionNode = ({ data, selected }: NodeProps) => (
 {/* Componente para exibir um nó de escolhas */}
 export const ButtonsNode = ({ data, selected }: NodeProps) => (
   <div className={nodeStyle(selected)}>
-    <Handle type="target" position={Position.Left} className={`${handleStyle} bg-zinc-100`} />
-    <Handle type="target" position={Position.Top} className={`${handleStyle} bg-zinc-100`} />
+    {/* Entrada do menu: SEMPRE pela esquerda */}
+    <Handle
+      id="left"
+      type="target"
+      position={Position.Left}
+      className={`${handleStyle} bg-zinc-100`}
+    />
+
     <div className={headerStyle}>Menu de Opções</div>
-    <div className="text-sm text-zinc-700 bg-zinc-50 p-2 rounded border border-zinc-100 mb-3">{data.text}</div>
+
+    <div className="text-sm text-zinc-700 bg-zinc-50 p-2 rounded border border-zinc-100 mb-3">
+      {data.text}
+    </div>
+
+    <Handle
+        id="top"
+        type="target"
+        position={Position.Top}
+        style={{ top: "-6px" }}
+        className={`${handleStyle} bg-zinc-100`}
+      />
+
+      <Handle
+        id="bottom"
+        type="target"
+        position={Position.Bottom}
+        style={{ bottom: "-6px" }}
+        className={`${handleStyle} bg-zinc-100`}
+      />
+
+      <Handle
+        id="left"
+        type="target"
+        position={Position.Left}
+        style={{ left: "-6px" }}
+        className={`${handleStyle} bg-zinc-100`}
+      />
+
     <div className="flex flex-col gap-2">
       {(data.buttons ?? []).map((btn) => (
-        <div key={btn.id} className="relative bg-white border border-zinc-200 rounded p-2 text-sm text-center text-zinc-600 hover:bg-zinc-50">
+        <div
+          key={btn.id}
+          className="relative bg-white border border-zinc-200 rounded p-2 text-sm text-center text-zinc-600 hover:bg-zinc-50"
+        >
           {btn.label}
 
-          {/* Handles específicos para este botão: Direita, Esquerda e Baixo (NUNCA TOPO) */}
-          <Handle type="source" position={Position.Right} id={`${btn.id}-right`} style={{ top: '50%', right: '-4px' }} className={`${handleStyle} bg-blue-500`} />
-          <Handle type="source" position={Position.Left} id={`${btn.id}-left`} style={{ top: '50%', left: '-4px' }} className={`${handleStyle} bg-blue-500`} />
-          <Handle type="source" position={Position.Bottom} id={`${btn.id}-bottom`} style={{ bottom: '-4px', left: '50%' }} className={`${handleStyle} bg-blue-500`} />
+          {/* Handle Superior */}
+          <Handle
+            id={`${btn.id}-top`}
+            type="source"
+            position={Position.Top}
+            style={{ top: "-4px", left: "50%" }}
+            className={`${handleStyle} bg-blue-500`}
+          />
+
+          {/* Handle Direito */}
+          <Handle
+            id={`${btn.id}-right`}
+            type="source"
+            position={Position.Right}
+            style={{ top: "50%", right: "-4px" }}
+            className={`${handleStyle} bg-blue-500`}
+          />
+
+          {/* Handle Inferior */}
+          <Handle
+            id={`${btn.id}-bottom`}
+            type="source"
+            position={Position.Bottom}
+            style={{ bottom: "-4px", left: "50%" }}
+            className={`${handleStyle} bg-blue-500`}
+          />
+
+          {/* Handle Esquerdo */}
+          <Handle
+            id={`${btn.id}-left`}
+            type="source"
+            position={Position.Left}
+            style={{ top: "50%", left: "-4px" }}
+            className={`${handleStyle} bg-blue-500`}
+          />
         </div>
       ))}
     </div>

@@ -12,6 +12,8 @@ router.post('/setores', FunilController.criarSetor)
 router.get('/', FunilController.listar)
 router.post('/', FunilController.criar)
 
+router.delete('/setores/:idSetor', FunilController.removerSetor)
+
 router.get('/:id', FunilController.buscarPorId)
 router.put('/:id/estrutura', FunilController.salvarEstrutura)
 
@@ -22,6 +24,5 @@ router.delete('/:id/campos/:idCampo', FunilController.removerCampo)
 // Setores (destino de atendimento humano / IA por área)
 router.get('/:id/setores', FunilController.listarSetores)
 router.put('/:id/setores/:idSetor', FunilController.atualizarSetor)
-router.delete('/:id/setores/:idSetor', FunilController.removerSetor)
 
 module.exports = router
