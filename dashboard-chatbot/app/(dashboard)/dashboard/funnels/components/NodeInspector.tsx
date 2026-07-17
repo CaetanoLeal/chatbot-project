@@ -5,6 +5,7 @@ import { Node } from "reactflow"
 import type { FlowNodeData } from "../lib/transform"
 import type { Campo, Setor } from "../lib/api"
 
+// tipos de nodes
 type NodeKind = "textNode" | "questionNode" | "buttonsNode" | "actionNode"
 
 type Props = {
@@ -25,13 +26,14 @@ const TIPO_OPTIONS: { value: NodeKind; label: string; help: string }[] = [
   { value: "actionNode", label: "Finalizar atendimento", help: "Encerra este fluxo e direciona o status da conversa." },
 ]
 
-const STATUS_OPTIONS: { value: "A" | "H" | "I" | "P"; label: string }[] = [
-  { value: "A", label: "Aberto — bot reinicia na próxima mensagem" },
-  { value: "H", label: "Atendente humano" },
+// status de finalização do atendimento
+const STATUS_OPTIONS: { value: "A" | "P" | "I" ; label: string }[] = [
+  { value: "A", label: "Finalizar" },
+  { value: "P", label: "Atendente humano" },
   { value: "I", label: "Inteligência artificial" },
-  { value: "P", label: "Pendente — aguardando atendente" },
 ]
 
+// Componente que exibe o painel de inspeção e edição de um nó selecionado no fluxo
 export default function NodeInspector({
   node,
   campos,
@@ -46,10 +48,12 @@ export default function NodeInspector({
   const kind = node.type as NodeKind
   const isInicio = data.cdMensagem === 0
 
+  // Função para atualizar os dados do nó, mesclando os dados existentes com o patch fornecido
   function setData(patch: Partial<FlowNodeData>) {
     onChange(node.id, { data: { ...data, ...patch } })
   }
 
+  // Função para alterar o tipo de nó, ajustando os dados conforme necessário
   function setTipo(novoTipo: NodeKind) {
     const patch: Partial<FlowNodeData> = {}
 
@@ -75,17 +79,20 @@ export default function NodeInspector({
     onChange(node.id, { type: novoTipo, data: { ...data, ...patch } })
   }
 
+  // Funções para adicionar, atualizar e remover botões no nó do tipo "buttonsNode"
   function addButton() {
     const buttons = data.buttons ?? []
     setData({ buttons: [...buttons, { id: `btn-${buttons.length + 1}`, label: "" }] })
   }
 
+  // Função para atualizar o rótulo de um botão específico no nó do tipo "buttonsNode"
   function updateButton(idx: number, label: string) {
     const buttons = [...(data.buttons ?? [])]
     buttons[idx] = { ...buttons[idx], label }
     setData({ buttons })
   }
 
+  // Função para remover um botão específico do nó do tipo "buttonsNode"
   function removeButton(idx: number) {
     const buttons = (data.buttons ?? []).filter((_, i) => i !== idx)
     setData({ buttons })
@@ -197,11 +204,11 @@ export default function NodeInspector({
               ))}
             </select>
           </div>
-
-          {(data.sgChatStatus === "H" || data.sgChatStatus === "P") && (
+          
+          {(data.sgChatStatus === "P" || data.sgChatStatus === "I") && (
             <div>
               <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-medium text-zinc-500">Setor de destino</label>
+                <label className="block text-xs font-medium text-zinc-500">Setor da mensagem</label>
                 <button onClick={onManageSetores} className="text-[11px] text-blue-600 hover:underline">
                   + novo setor
                 </button>

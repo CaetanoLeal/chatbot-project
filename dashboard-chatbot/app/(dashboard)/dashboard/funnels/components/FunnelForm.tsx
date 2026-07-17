@@ -74,6 +74,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     console.log("ID recebido:", idFunil);
     let ativo = true;
 
+    // Função assíncrona auto-executável para buscar os dados do funil e atualizar o estado do componente
     (async () => {
       try {
         console.log("Buscando:", idFunil);
@@ -101,6 +102,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idFunil]);
 
+  /* ===================== NÓ SELECIONADO ===================== */
   const selectedNode = useMemo(
     () => nodes.find((n) => n.id === selectedNodeId) ?? null,
     [nodes, selectedNodeId]
@@ -118,6 +120,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     [setNodes, setEdges]
   );
 
+  /* ===================== CONEXÕES ===================== */
   const onConnect = useCallback(
     (params: Connection | Edge) => {
       setEdges((eds) => {
@@ -128,6 +131,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     [nodes, setEdges]
   );
 
+  /* ===================== ATUALIZAÇÃO DE ARESTAS ===================== */
   const onEdgeUpdate = useCallback(
     (oldEdge: Edge, newConnection: Connection) => {
       setEdges((els) =>
@@ -138,24 +142,28 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     [setEdges]
   );
 
+  // Função para atualizar os dados de um nó específico, mantendo os dados existentes e aplicando o patch fornecido
   function updateNodeData(nodeId: string, patch: Partial<Node<FlowNodeData>> & { data?: Partial<FlowNodeData> }) {
     setNodes((nds) =>
       nds.map((n) => (n.id === nodeId ? { ...n, ...patch, data: { ...n.data, ...(patch.data ?? {}) } } : n))
     );
   }
 
+  // Função para remover um nó do grafo, atualizando os nós e arestas correspondentes
   function removeNode(nodeId: string) {
     setNodes((nds) => nds.filter((n) => n.id !== nodeId));
     setEdges((eds) => eds.filter((e) => e.source !== nodeId && e.target !== nodeId));
     setSelectedNodeId(null);
   }
 
+  // Função para adicionar uma nova mensagem ao fluxo, criando um novo nó com base no tipo de fluxo (cadastro ou chatbot)
   function addMessage(fluxo: "cadastro" | "chatbot") {
     const cdMensagem = proximoCodigo(nodes, fluxo);
     const prefixo = fluxo === "cadastro" ? "cad" : "bot";
     const doMesmoFluxo = nodes.filter((n) => n.data.fluxo === fluxo);
     const baseX = doMesmoFluxo.length > 0 ? Math.max(...doMesmoFluxo.map((n) => n.position.x)) + 380 : 0;
 
+    // Criando um novo nó com os dados iniciais e adicionando-o ao estado dos nós
     const novoNode: Node<FlowNodeData> = {
       id: `${prefixo}-${cdMensagem}`,
       type: "textNode",
@@ -201,18 +209,18 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
       <div className="flex-1 relative">
         {/* TOOLBAR */}
         <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-white rounded-lg shadow px-3 py-2">
-          <span className="text-sm font-semibold text-zinc-700">{funilNome}</span>
+          <span className="text-sm font-semibold text-zinc-900">{funilNome}</span>
           <div className="w-px h-5 bg-zinc-200 mx-1" />
-          <button onClick={() => addMessage("cadastro")} className="text-xs bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+          <button onClick={() => addMessage("cadastro")} className="text-xs text-zinc-500 bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
             + Mensagem de Cadastro
           </button>
-          <button onClick={() => addMessage("chatbot")} className="text-xs bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+          <button onClick={() => addMessage("chatbot")} className="text-xs text-zinc-500 bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
             + Mensagem de Chatbot
           </button>
-          <button onClick={() => setConfigModal("campos")} className="text-xs bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+          <button onClick={() => setConfigModal("campos")} className="text-xs text-zinc-500 bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
             Campos
           </button>
-          <button onClick={() => setConfigModal("setores")} className="text-xs bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+          <button onClick={() => setConfigModal("setores")} className="text-xs text-zinc-500 bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
             Setores
           </button>
           <button
