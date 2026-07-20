@@ -187,25 +187,6 @@ export default function NodeInspector({
           </p>
         </div>
       )}
-
-      {kind === "actionNode" && data.fluxo === "chatbot" && (
-        <>
-          <div>
-            <label className="block text-xs font-medium text-zinc-500 mb-1">Status ao finalizar</label>
-            <select
-              className="border rounded px-2 py-1.5 w-full text-sm"
-              value={data.sgChatStatus ?? "H"}
-              onChange={(e) => setData({ sgChatStatus: e.target.value as any })}
-            >
-              {STATUS_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-          </div>
-          
-          {(data.sgChatStatus === "P" || data.sgChatStatus === "I") && (
             <div>
               <div className="flex items-center justify-between mb-1">
                 <label className="block text-xs font-medium text-zinc-500">Setor da mensagem</label>
@@ -226,11 +207,28 @@ export default function NodeInspector({
                 ))}
               </select>
             </div>
-          )}
+
+      {kind === "actionNode" && data.fluxo === "chatbot" && (
+        <>
+          <div>
+            <label className="block text-xs font-medium text-zinc-500 mb-1">Status ao finalizar</label>
+            <select
+              className="border rounded px-2 py-1.5 w-full text-sm"
+              value={data.sgChatStatus ?? "H"}
+              onChange={(e) => setData({ sgChatStatus: e.target.value as any })}
+            >
+              {STATUS_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          
         </>
       )}
 
-      {data.fluxo === "cadastro" && kind === "textNode" && !isInicio && (
+      {data.fluxo === "cadastro" && kind === "textNode" && (
         <label className="flex items-center gap-2 text-sm">
           <input
             type="checkbox"

@@ -30,21 +30,13 @@ const LEVEL_GAP_X = 380
 const NODE_GAP_Y = 230
 const BASE_Y = 40
 
-/** Determina qual componente visual (nodeType) usar para uma mensagem,
- *  a partir das mesmas regras que o motor usa em
- *  verificarComportamentoMensagem() (src/helpers/funil.helper.js). */
-function resolveNodeType(msg: Mensagem): 'textNode' | 'questionNode' | 'buttonsNode' | 'actionNode' {
-  // Mesma ordem de prioridade de verificarComportamentoMensagem() no motor:
-  // is_finalizar sempre vence, mesmo que a mensagem também tenha botões
-  // ou is_aguardar marcado.
+/** Determina qual componente visual usar para uma mensagem */
+function resolveNodeType(msg: Mensagem): 'textNode' | 'questionNode' | 'buttonsNode' | 'transferNode' | 'endNode' {
   if (msg.is_finalizar) {
-    // mensagens de chatbot sempre trazem a chave sg_chat_status (mesmo que
-    // null/'A'); mensagens de cadastro nunca trazem essa chave — é assim
-    // que diferenciamos "fim de atendimento" (actionNode) de "fim de
-    // cadastro, seguir para o chatbot" (textNode simples).
-    if (msg.sg_chat_status !== undefined) return 'actionNode'
-    return 'textNode'
+    if (msg.sg_chat_status === 'A' || !msg.sg_chat_status) return 'endNode'
+    return 'transferNode'
   }
+  if (msg.sg_chat_status && ['H', 'I', 'P'].includes(msg.sg_chat_status)) return 'transferNode'
 
   if (msg.botoes && msg.botoes.length > 0) return 'buttonsNode'
   if (msg.is_aguardar) return 'questionNode'
@@ -52,13 +44,11 @@ function resolveNodeType(msg: Mensagem): 'textNode' | 'questionNode' | 'buttonsN
   return 'textNode'
 }
 
-/** Layout automático em camadas (BFS a partir de cd_mensagem = 0),
- *  usado apenas quando a mensagem ainda não tem pos_x/pos_y salvos. */
+/** Layout automático em camadas (BFS/DFS) */
 function autoLayout(mensagens: Mensagem[]): Map<number, { x: number; y: number }> {
   const byCd = new Map(mensagens.map(m => [m.cd_mensagem, m]));
   const positions = new Map<number, { x: number; y: number }>();
   
-  // 1. Mapeamento de grafo (quem aponta para quem)
   const children = new Map<number, number[]>();
   for (const m of mensagens) {
     const dests = m.botoes?.length > 0 
@@ -71,7 +61,6 @@ function autoLayout(mensagens: Mensagem[]): Map<number, { x: number; y: number }
     }
   }
 
-  // 2. Cálculo recursivo de posição (DFS) para garantir hierarquia
   function calculate(cd: number, x: number, y: number, visited: Set<number>, yOffsets: Map<number, number>) {
     if (visited.has(cd)) return;
     visited.add(cd);
@@ -81,7 +70,6 @@ function autoLayout(mensagens: Mensagem[]): Map<number, { x: number; y: number }
     const dests = children.get(cd) || [];
     if (dests.length === 0) return;
 
-    // Espalha os filhos verticalmente
     const step = NODE_GAP_Y;
     const startY = y - ((dests.length - 1) * step) / 2;
 
@@ -93,12 +81,10 @@ function autoLayout(mensagens: Mensagem[]): Map<number, { x: number; y: number }
   const visited = new Set<number>();
   const yOffsets = new Map<number, number>();
   
-  // Inicia pelo nó 0
   if (byCd.has(0)) {
     calculate(0, 0, BASE_Y, visited, yOffsets);
   }
 
-  // Processa órfãos
   mensagens.forEach(m => {
     if (!visited.has(m.cd_mensagem)) {
       calculate(m.cd_mensagem, 0, BASE_Y + (visited.size * NODE_GAP_Y), visited, yOffsets);
@@ -108,6 +94,7 @@ function autoLayout(mensagens: Mensagem[]): Map<number, { x: number; y: number }
   return positions;
 }
 
+/** Transforma Mensagens em Nodes verificando se precisam de auto-layout */
 function mensagensToNodes(
   mensagens: Mensagem[],
   fluxo: 'cadastro' | 'chatbot',
@@ -115,11 +102,19 @@ function mensagensToNodes(
 ): Node<FlowNodeData>[] {
   const layout = autoLayout(mensagens)
 
+  // INTELIGÊNCIA NOVA: Se TODAS as mensagens estão na posição 0,0 
+  // significa que vieram zeradas do banco e precisam do Auto-Layout.
+  const precisaAutoLayout = mensagens.length > 0 && mensagens.every(
+    (m) => (!m.pos_x || Number(m.pos_x) === 0) && (!m.pos_y || Number(m.pos_y) === 0)
+  )
+
   return mensagens.map(msg => {
-    const pos =
-      msg.pos_x != null && msg.pos_y != null
-        ? { x: Number(msg.pos_x), y: Number(msg.pos_y) }
-        : layout.get(msg.cd_mensagem) ?? { x: 0, y: 0 }
+    // Se precisar de auto-layout OU os dados do banco forem explicitamente nulos
+    const useAutoLayout = precisaAutoLayout || msg.pos_x == null || msg.pos_y == null
+
+    const pos = useAutoLayout
+      ? layout.get(msg.cd_mensagem) ?? { x: 0, y: 0 }
+      : { x: Number(msg.pos_x), y: Number(msg.pos_y) }
 
     const type = resolveNodeType(msg)
 
@@ -144,6 +139,7 @@ function mensagensToNodes(
   })
 }
 
+/** Transforma Mensagens em Edges */
 function mensagensToEdges(mensagens: Mensagem[], prefixo: string): Edge[] {
   const edges: Edge[] = []
 
@@ -177,50 +173,21 @@ function mensagensToEdges(mensagens: Mensagem[], prefixo: string): Edge[] {
   return edges
 }
 
-/** Converte a estrutura vinda da API (cadastro[] + chatbot[]) em
- *  nodes/edges do React Flow, prontos para o builder. */
+/** Converte a estrutura vinda da API em nodes/edges pro React Flow. */
 export function funilParaFluxo(funil: Funil): { nodes: Node<FlowNodeData>[]; edges: Edge[] } {
   const cadastroNodes = mensagensToNodes(funil.cadastro, 'cadastro', 'cad')
   const chatbotNodes = mensagensToNodes(funil.chatbot, 'chatbot', 'bot')
 
-  // desloca o chatbot para a direita do cadastro para não sobrepor,
-  // caso ambos tenham usado auto-layout (sem pos_x/pos_y salvos)
-  const usouAutoLayoutCadastro = funil.cadastro.some(m => m.pos_x == null)
-  if (usouAutoLayoutCadastro && cadastroNodes.length > 0) {
-    const maxX = Math.max(...cadastroNodes.map(n => n.position.x))
-    const offsetX = maxX + LEVEL_GAP_X * 1.3
-    const usouAutoLayoutChatbot = funil.chatbot.some(m => m.pos_x == null)
-    if (usouAutoLayoutChatbot) {
-      for (const n of chatbotNodes) n.position.x += offsetX
-    }
-  }
-
   const cadastroEdges = mensagensToEdges(funil.cadastro, 'cad')
   const chatbotEdges = mensagensToEdges(funil.chatbot, 'bot')
 
-  // transição visual cadastro -> chatbot: liga a(s) mensagem(ns) de
-  // cadastro com is_finalizar (que chamam _migrarParaChatbot) ao node
-  // inicial (cd_mensagem = 0) do chatbot.
-  const transicaoEdges: Edge[] = funil.cadastro
-    .filter(m => m.is_finalizar)
-    .map(m => ({
-      id: `transicao-${m.cd_mensagem}`,
-      source: `cad-${m.cd_mensagem}`,
-      target: 'bot-0',
-      ...transitionEdgeStyle,
-    }))
-    .filter(e => funil.chatbot.some(m => m.cd_mensagem === 0))
-
   return {
     nodes: [...cadastroNodes, ...chatbotNodes],
-    edges: [...cadastroEdges, ...chatbotEdges, ...transicaoEdges],
+    edges: [...cadastroEdges, ...chatbotEdges],
   }
 }
 
-/** Caminho inverso: nodes/edges do editor -> payload para
- *  PUT /api/funis/:id/estrutura. Usa as edges para reconstruir
- *  cd_mensagem_destino (mensagens simples) ou o destino de cada botão
- *  (buttonsNode), e a posição atual do node para persistir o layout. */
+/** Caminho inverso: editor -> payload da API */
 export function fluxoParaFunil(nodes: Node<FlowNodeData>[], edges: Edge[]): {
   cadastro: Mensagem[]
   chatbot: Mensagem[]
@@ -246,8 +213,7 @@ export function fluxoParaFunil(nodes: Node<FlowNodeData>[], edges: Edge[]): {
         })
       })
     } else {
-      // ignora edges de transição cadastro -> chatbot (não viram cd_mensagem_destino)
-      const edge = outgoing.find(e => !e.id.startsWith('transicao-'))
+      const edge = outgoing[0]
       if (edge) {
         const destinoCd = Number(edge.target.split('-').pop())
         cd_mensagem_destino = Number.isFinite(destinoCd) ? destinoCd : null

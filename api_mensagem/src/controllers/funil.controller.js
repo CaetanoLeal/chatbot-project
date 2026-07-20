@@ -27,8 +27,8 @@ class FunilController {
 
   async criar(req, res) {
     try {
-      const { name, description } = req.body
-      const funil = await FunilService.criar({ name, description })
+      const { id_funil, name, description } = req.body
+      const funil = await FunilService.criar({ id_funil, name, description })
       return res.status(201).json(funil)
     } catch (err) {
       logger.error(`❌ Erro ao criar funil: ${err.message}`)

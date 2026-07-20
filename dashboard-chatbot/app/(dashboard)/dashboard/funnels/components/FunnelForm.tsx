@@ -1,4 +1,3 @@
-//app/(dashboard)/dashboard/funnels/components/FunnelForm.tsx
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";
@@ -20,7 +19,15 @@ import ReactFlow, {
 // @ts-ignore
 import "reactflow/dist/style.css";
 
-import { TextNode, QuestionNode, ButtonsNode, ActionNode } from "./CustomNode";
+import { TextNode, QuestionNode, ButtonsNode, TransferNode, EndNode } from "./CustomNode";
+// Definindo nodes que criamos em customNode.tsx para serem usados no ReactFlow
+const nodeTypes = {
+  textNode: TextNode,
+  questionNode: QuestionNode,
+  buttonsNode: ButtonsNode,
+  transferNode: TransferNode,
+  endNode: EndNode,
+};
 import { getAutoRoutedEdges } from "./AutoHandles";
 import NodeInspector from "./NodeInspector";
 import FunilConfigModal from "./FunilConfigModal";
@@ -28,13 +35,7 @@ import * as api from "../lib/api";
 import type { Campo, Setor, Setores } from "../lib/api";
 import { funilParaFluxo, fluxoParaFunil, FlowNodeData } from "../lib/transform";
 
-//definindo nodes que criamos em customNode.tsx para serem usados no ReactFlow
-const nodeTypes = {
-  textNode: TextNode,
-  questionNode: QuestionNode,
-  buttonsNode: ButtonsNode,
-  actionNode: ActionNode,
-};
+
 
 // Definindo as opções de estilo para as arestas do grafo
 const edgeOptions = {
@@ -47,16 +48,19 @@ type Props = {
   idFunil: string;
 };
 
-// Função para calcular o próximo código de mensagem com base nos nós existentes e no fluxo (cadastro ou chatbot)
+// Função para calcular o próximo código de mensagem com base nos nós existentes
 function proximoCodigo(nodes: Node<FlowNodeData>[], fluxo: "cadastro" | "chatbot") {
   const codigos = nodes.filter((n) => n.data.fluxo === fluxo).map((n) => n.data.cdMensagem);
   return codigos.length === 0 ? 0 : Math.max(...codigos) + 1;
 }
 
-// Função principal do componente FunnelFlowBuilder, responsável por renderizar o construtor de fluxo do funil
 export default function FunnelFlowBuilder({ idFunil }: Props) {
+  // ESTADOS GLOBAIS (Contém Cadastro + Chatbot)
   const [nodes, setNodes] = useNodesState<FlowNodeData>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
+
+  // ESTADO DA ABA ATIVA (Switch)
+  const [activeFlow, setActiveFlow] = useState<"cadastro" | "chatbot">("cadastro");
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -70,49 +74,66 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
   const [configModal, setConfigModal] = useState<"campos" | "setores" | null>(null);
 
   /* ===================== CARGA INICIAL DO BANCO ===================== */
-    useEffect(() => {
-      console.log("ID recebido:", idFunil);
-      let ativo = true;
+  useEffect(() => {
+    let ativo = true;
 
-      (async () => {
-        try {
-          console.log("Buscando:", idFunil);
-          setLoading(true);
-          
-          const [funil, todosCampos, todosSetores] = await Promise.all([
-            api.buscarFunil(idFunil),
-            api.listarCampos(),
-            api.listarSetores()
-          ]);
+    (async () => {
+      try {
+        setLoading(true);
+        const [funil, todosCampos, todosSetores] = await Promise.all([
+          api.buscarFunil(idFunil),
+          api.listarCampos(),
+          api.listarSetores(),
+        ]);
 
-          console.log("FUNIL:", funil);
-          if (!ativo) return;
+        if (!ativo) return;
 
-          const { nodes: n, edges: e } = funilParaFluxo(funil);
-          setNodes(n);
-          setEdges(getAutoRoutedEdges(n, e));
-          
-          setCampos(todosCampos);
-          setSetores(todosSetores);
-          setFunilNome(funil.name);
-          
-        } catch (err: any) {
-          if (ativo) setError(err.message ?? "Erro ao carregar funil");
-        } finally {
-          if (ativo) setLoading(false);
-        }
-      })();
+        const { nodes: n, edges: e } = funilParaFluxo(funil);
+        setNodes(n);
+        setEdges(getAutoRoutedEdges(n, e));
 
-      return () => {
-        ativo = false;
-      };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [idFunil]);
+        setCampos(todosCampos);
+        setSetores(todosSetores);
+        setFunilNome(funil.name);
+      } catch (err: any) {
+        if (ativo) setError(err.message ?? "Erro ao carregar funil");
+      } finally {
+        if (ativo) setLoading(false);
+      }
+    })();
 
-  /* ===================== NÓ SELECIONADO ===================== */
+    return () => {
+      ativo = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idFunil]);
+
+  /* ===================== TROCA DE ABA ===================== */
+  // Ao trocar de aba, removemos a seleção do nó ativo para não dar conflito
+  useEffect(() => {
+    setSelectedNodeId(null);
+  }, [activeFlow]);
+
+  /* ===================== FILTROS DE VISUALIZAÇÃO ===================== */
+  // Aqui geramos arrays calculados contendo apenas os dados da aba ativa
+  const visibleNodes = useMemo(
+    () => nodes.filter((n) => n.data.fluxo === activeFlow),
+    [nodes, activeFlow]
+  );
+
+  const visibleEdges = useMemo(
+    () =>
+      edges.filter(
+        (e) =>
+          visibleNodes.some((n) => n.id === e.source) &&
+          visibleNodes.some((n) => n.id === e.target)
+      ),
+    [edges, visibleNodes]
+  );
+
   const selectedNode = useMemo(
-    () => nodes.find((n) => n.id === selectedNodeId) ?? null,
-    [nodes, selectedNodeId]
+    () => visibleNodes.find((n) => n.id === selectedNodeId) ?? null,
+    [visibleNodes, selectedNodeId]
   );
 
   /* ===================== EDIÇÃO DO GRAFO ===================== */
@@ -138,7 +159,6 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     [nodes, setEdges]
   );
 
-  /* ===================== ATUALIZAÇÃO DE ARESTAS ===================== */
   const onEdgeUpdate = useCallback(
     (oldEdge: Edge, newConnection: Connection) => {
       setEdges((els) =>
@@ -149,35 +169,44 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     [setEdges]
   );
 
-  // Função para atualizar os dados de um nó específico, mantendo os dados existentes e aplicando o patch fornecido
-  function updateNodeData(nodeId: string, patch: Partial<Node<FlowNodeData>> & { data?: Partial<FlowNodeData> }) {
+  /* ===================== MANIPULAÇÃO DE NÓS ===================== */
+  function updateNodeData(
+    nodeId: string,
+    patch: Partial<Node<FlowNodeData>> & { data?: Partial<FlowNodeData> }
+  ) {
     setNodes((nds) =>
-      nds.map((n) => (n.id === nodeId ? { ...n, ...patch, data: { ...n.data, ...(patch.data ?? {}) } } : n))
+      nds.map((n) =>
+        n.id === nodeId ? { ...n, ...patch, data: { ...n.data, ...(patch.data ?? {}) } } : n
+      )
     );
   }
 
-  // Função para remover um nó do grafo, atualizando os nós e arestas correspondentes
   function removeNode(nodeId: string) {
+    const targetNode = nodes.find((n) => n.id === nodeId);
+
+    if (targetNode?.data.cdMensagem === 0) {
+      alert("⚠️ A mensagem inicial (Início) é obrigatória para o funcionamento do funil e não pode ser excluída.");
+      return;
+    }
+
     setNodes((nds) => nds.filter((n) => n.id !== nodeId));
     setEdges((eds) => eds.filter((e) => e.source !== nodeId && e.target !== nodeId));
     setSelectedNodeId(null);
   }
 
-  // Função para adicionar uma nova mensagem ao fluxo, criando um novo nó com base no tipo de fluxo (cadastro ou chatbot)
-  function addMessage(fluxo: "cadastro" | "chatbot") {
-    const cdMensagem = proximoCodigo(nodes, fluxo);
-    const prefixo = fluxo === "cadastro" ? "cad" : "bot";
-    const doMesmoFluxo = nodes.filter((n) => n.data.fluxo === fluxo);
-    const baseX = doMesmoFluxo.length > 0 ? Math.max(...doMesmoFluxo.map((n) => n.position.x)) + 380 : 0;
+  function addMessage() {
+    const cdMensagem = proximoCodigo(nodes, activeFlow);
+    const prefixo = activeFlow === "cadastro" ? "cad" : "bot";
+    const baseX =
+      visibleNodes.length > 0 ? Math.max(...visibleNodes.map((n) => n.position.x)) + 380 : 0;
 
-    // Criando um novo nó com os dados iniciais e adicionando-o ao estado dos nós
     const novoNode: Node<FlowNodeData> = {
       id: `${prefixo}-${cdMensagem}`,
       type: "textNode",
       position: { x: baseX, y: 40 },
       data: {
         text: "",
-        fluxo,
+        fluxo: activeFlow,
         cdMensagem,
         buttons: [],
         isFinalizar: false,
@@ -208,46 +237,90 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
   }
 
   if (loading) {
-    return <div className="w-full h-screen flex items-center justify-center text-zinc-400 text-sm">Carregando funil…</div>;
+    return (
+      <div className="w-full h-screen flex items-center justify-center text-zinc-400 text-sm">
+        Carregando funil…
+      </div>
+    );
   }
 
   return (
-    <div className="w-full h-screen flex">
+    <div className="w-full h-screen flex bg-zinc-50/50">
       <div className="flex-1 relative">
-        {/* TOOLBAR */}
-        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-white rounded-lg shadow px-3 py-2">
-          <span className="text-sm font-semibold text-zinc-900">{funilNome}</span>
+        
+        {/* TOOLBAR ESQUERDA - Ações do funil */}
+        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-white rounded-lg shadow-sm border border-zinc-200 px-3 py-2">
+          <span className="text-sm font-semibold text-zinc-700 truncate max-w-[150px]">
+            {funilNome}
+          </span>
           <div className="w-px h-5 bg-zinc-200 mx-1" />
-          <button onClick={() => addMessage("cadastro")} className="text-xs text-zinc-500 bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
-            + Mensagem de Cadastro
+          
+          <button
+            onClick={addMessage}
+            className="text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded transition-colors"
+          >
+            + Adicionar Mensagem
           </button>
-          <button onClick={() => addMessage("chatbot")} className="text-xs text-zinc-500 bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
-            + Mensagem de Chatbot
-          </button>
-          <button onClick={() => setConfigModal("campos")} className="text-xs text-zinc-500 bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+          
+          <div className="w-px h-5 bg-zinc-200 mx-1" />
+          
+          <button
+            onClick={() => setConfigModal("campos")}
+            className="text-xs text-zinc-600 bg-zinc-100 hover:bg-zinc-200 px-2.5 py-1.5 rounded transition-colors"
+          >
             Campos
           </button>
-          <button onClick={() => setConfigModal("setores")} className="text-xs text-zinc-500 bg-zinc-100 hover:bg-zinc-200 px-2 py-1 rounded">
+          <button
+            onClick={() => setConfigModal("setores")}
+            className="text-xs text-zinc-600 bg-zinc-100 hover:bg-zinc-200 px-2.5 py-1.5 rounded transition-colors"
+          >
             Setores
           </button>
+          
           <button
             onClick={salvar}
             disabled={saving}
-            className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded disabled:opacity-50"
+            className="text-xs font-medium bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded transition-colors disabled:opacity-50 ml-1 shadow-sm"
           >
             {saving ? "Salvando..." : "Salvar fluxo"}
           </button>
         </div>
 
+        {/* SWITCH DIREITA - Cadastro vs Chatbot */}
+        <div className="absolute top-4 right-4 z-10 bg-white rounded-lg shadow-sm p-1 flex items-center border border-zinc-200">
+          <button
+            onClick={() => setActiveFlow("cadastro")}
+            className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all ${
+              activeFlow === "cadastro"
+                ? "bg-zinc-800 text-white shadow"
+                : "text-zinc-500 hover:text-zinc-700 hover:bg-zinc-50"
+                
+            }`}
+          >
+            Cadastro
+          </button>
+          <button
+            onClick={() => setActiveFlow("chatbot")}
+            className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all ${
+              activeFlow === "chatbot"
+                ? "bg-zinc-800 text-white shadow"
+                : "text-zinc-500 hover:text-zinc-700 hover:bg-zinc-50"
+            }`}
+          >
+            Chatbot
+          </button>
+        </div>
+
         {error && (
-          <div className="absolute top-16 left-4 z-10 bg-red-50 text-red-600 text-xs px-3 py-2 rounded shadow max-w-sm">
+          <div className="absolute top-16 left-4 z-10 bg-red-50 text-red-600 border border-red-200 text-xs px-3 py-2 rounded shadow-sm max-w-sm">
             {error}
           </div>
         )}
 
         <ReactFlow
-          nodes={nodes}
-          edges={edges}
+          // IMPORTANTE: Aqui passamos visibleNodes e visibleEdges
+          nodes={visibleNodes}
+          edges={visibleEdges}
           nodeTypes={nodeTypes}
           onNodesChange={handleNodesChange}
           onEdgesChange={onEdgesChange}
@@ -259,8 +332,8 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
           fitViewOptions={{ padding: 0.2 }}
           minZoom={0.15}
         >
-          <Background variant={BackgroundVariant.Dots} gap={20} />
-          <Controls />
+          <Background variant={BackgroundVariant.Dots} gap={20} color="#cbd5e1" />
+          <Controls className="bg-white border-zinc-200 shadow-sm rounded-md" />
         </ReactFlow>
       </div>
 

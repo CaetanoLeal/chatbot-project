@@ -27,9 +27,9 @@ class FunilService {
     return { ...funil, campos, setores }
   }
 
-  async criar({ name, description }) {
+  async criar({ id_funil, name, description }) {
     if (!name) throw new Error('Nome é obrigatório')
-    return FunilRepository.criar({ name, description })
+    return FunilRepository.criar({ id_funil, name, description })
   }
 
   /**

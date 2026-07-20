@@ -122,15 +122,32 @@ class FunilRepository {
     return { ...funil, cadastro, chatbot }
   }
 
-  async criar({ name, description }) {
+  async criar({ id_funil, name, description }) {
     const { rows } = await db.query(
       `
-      INSERT INTO tbl_funil (no_funil, ds_funil)
-      VALUES ($1, $2)
+      INSERT INTO tbl_funil (id_funil, no_funil, ds_funil)
+      VALUES ($1, $2, $3)
       RETURNING id_funil
       `,
-      [name, description]
+      [id_funil, name, description]
     )
+
+    const { funil_cadastro } = await db.query(
+      `
+      INSERT INTO tbl_funil_cadastro (id_funil, ds_mensagem)
+      VALUES ($1, $@2)
+      `,
+      [id_funil, 'Mensagem de boas-vindas']
+    )
+
+    const { funil_chatbot } = await db.query(
+      `
+      INSERT INTO tbl_funil_chatbot (id_funil, ds_mensagem)
+      VALUES ($1, $2)
+      `,
+      [id_funil, 'Mensagem de chatbot']
+    )
+
     return rows[0]
   }
 }
