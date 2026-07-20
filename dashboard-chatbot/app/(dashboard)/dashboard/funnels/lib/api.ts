@@ -45,6 +45,10 @@ export type Funil = {
   setores: Setor[]
 }
 
+export type Setores = {
+  setores: Setor[]
+}
+
 export type CampoTipo = {
   cd_campo_tipo: number
   ds_campo_tipo: string

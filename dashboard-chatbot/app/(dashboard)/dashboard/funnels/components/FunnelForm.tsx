@@ -25,7 +25,7 @@ import { getAutoRoutedEdges } from "./AutoHandles";
 import NodeInspector from "./NodeInspector";
 import FunilConfigModal from "./FunilConfigModal";
 import * as api from "../lib/api";
-import type { Campo, Setor } from "../lib/api";
+import type { Campo, Setor, Setores } from "../lib/api";
 import { funilParaFluxo, fluxoParaFunil, FlowNodeData } from "../lib/transform";
 
 //definindo nodes que criamos em customNode.tsx para serem usados no ReactFlow
@@ -70,37 +70,44 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
   const [configModal, setConfigModal] = useState<"campos" | "setores" | null>(null);
 
   /* ===================== CARGA INICIAL DO BANCO ===================== */
-  useEffect(() => {
-    console.log("ID recebido:", idFunil);
-    let ativo = true;
+    useEffect(() => {
+      console.log("ID recebido:", idFunil);
+      let ativo = true;
 
-    // Função assíncrona auto-executável para buscar os dados do funil e atualizar o estado do componente
-    (async () => {
-      try {
-        console.log("Buscando:", idFunil);
-        setLoading(true);
-        const funil = await api.buscarFunil(idFunil);
-        console.log("FUNIL:", funil);
-        if (!ativo) return;
+      (async () => {
+        try {
+          console.log("Buscando:", idFunil);
+          setLoading(true);
+          
+          const [funil, todosCampos, todosSetores] = await Promise.all([
+            api.buscarFunil(idFunil),
+            api.listarCampos(),
+            api.listarSetores()
+          ]);
 
-        const { nodes: n, edges: e } = funilParaFluxo(funil);
-        setNodes(n);
-        setEdges(getAutoRoutedEdges(n, e));
-        setCampos(funil.campos);
-        setSetores(funil.setores);
-        setFunilNome(funil.name);
-      } catch (err: any) {
-        if (ativo) setError(err.message ?? "Erro ao carregar funil");
-      } finally {
-        if (ativo) setLoading(false);
-      }
-    })();
+          console.log("FUNIL:", funil);
+          if (!ativo) return;
 
-    return () => {
-      ativo = false;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [idFunil]);
+          const { nodes: n, edges: e } = funilParaFluxo(funil);
+          setNodes(n);
+          setEdges(getAutoRoutedEdges(n, e));
+          
+          setCampos(todosCampos);
+          setSetores(todosSetores);
+          setFunilNome(funil.name);
+          
+        } catch (err: any) {
+          if (ativo) setError(err.message ?? "Erro ao carregar funil");
+        } finally {
+          if (ativo) setLoading(false);
+        }
+      })();
+
+      return () => {
+        ativo = false;
+      };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [idFunil]);
 
   /* ===================== NÓ SELECIONADO ===================== */
   const selectedNode = useMemo(
