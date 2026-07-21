@@ -14,6 +14,118 @@ class FunilRepository {
     return rows
   }
 
+  async deletar(id_funil) {
+    console.log("ID recebido:", id_funil);
+    const client = await db.connect();
+
+    try {
+      await client.query("BEGIN");
+
+      // Botões do cadastro
+      await client.query(
+        `
+        DELETE FROM tbl_funil_cadastro_botao
+        WHERE id_funil_cadastro IN (
+          SELECT id_funil_cadastro
+          FROM tbl_funil_cadastro
+          WHERE id_funil = $1
+        )
+        `,
+        [id_funil]
+      );
+
+      // Botões do chatbot
+      await client.query(
+        `
+        DELETE FROM tbl_funil_chatbot_botao
+        WHERE id_funil_chatbot IN (
+          SELECT id_funil_chatbot
+          FROM tbl_funil_chatbot
+          WHERE id_funil = $1
+        )
+        `,
+        [id_funil]
+      );
+
+      // Caso existam usuários vinculados ao funil
+      await client.query(
+        `
+        DELETE FROM tbl_funil_utilizador_campo
+        WHERE id_funil_utilizador IN (
+          SELECT id_funil_utilizador
+          FROM tbl_funil_utilizador
+          WHERE id_funil = $1
+        )
+        `,
+        [id_funil]
+      );
+
+      // Cadastro
+      await client.query(
+        `DELETE FROM tbl_funil_cadastro WHERE id_funil = $1`,
+        [id_funil]
+      );
+
+      // Chatbot
+      await client.query(
+        `DELETE FROM tbl_funil_chatbot WHERE id_funil = $1`,
+        [id_funil]
+      );
+
+      // Expiração
+      await client.query(
+        `DELETE FROM tbl_funil_expiracao WHERE id_funil = $1`,
+        [id_funil]
+      );
+
+      // IA
+      await client.query(
+        `DELETE FROM tbl_funil_ia WHERE id_funil = $1`,
+        [id_funil]
+      );
+
+      // Utilizadores do funil
+      await client.query(
+        `DELETE FROM tbl_funil_utilizador WHERE id_funil = $1`,
+        [id_funil]
+      );
+
+      // Instâncias vinculadas
+      await client.query(
+        `DELETE FROM tbl_instancia WHERE id_funil = $1`,
+        [id_funil]
+      );
+
+      // Funil
+      const result = await client.query(
+        `DELETE FROM tbl_funil WHERE id_funil = $1 RETURNING *`,
+        [id_funil]
+      );
+
+      console.log(result.rowCount);
+      console.log(result.rows);
+
+      await client.query("COMMIT");
+    } catch (error) {
+      await client.query("ROLLBACK");
+      throw error;
+    } finally {
+      client.release();
+    }
+  }
+
+  async atualizarDadosGerais(id, dados) {
+    const query = `
+      UPDATE tbl_funil 
+      SET no_funil = $1, ds_funil = $2 
+      WHERE id_funil = $3 
+      RETURNING *
+    `;
+    const values = [dados.name, dados.description, id];
+    const { rows } = await db.query(query, values);
+    return rows[0];
+  }
+
   async buscarPorId(id_funil) {
     const { rows: funilRows } = await db.query(
       `

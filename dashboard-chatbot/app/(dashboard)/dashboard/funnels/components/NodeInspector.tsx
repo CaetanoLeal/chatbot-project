@@ -138,20 +138,27 @@ export default function NodeInspector({
         />
       </div>
 
-      {kind === "questionNode" && (
+      {(kind === "questionNode" || kind === "buttonsNode") && (
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label className="block text-xs font-medium text-zinc-500">Salvar resposta no campo</label>
-            <button onClick={onManageCampos} className="text-[11px] text-blue-600 hover:underline">
+            <label className="block text-xs font-medium text-zinc-500">
+              Salvar resposta no campo
+            </label>
+            <button
+              onClick={onManageCampos}
+              className="text-[11px] text-blue-600 hover:underline"
+            >
               + novo campo
             </button>
           </div>
+
           <select
             className="border rounded px-2 py-1.5 w-full text-sm"
             value={data.idCampo ?? ""}
             onChange={(e) => setData({ idCampo: e.target.value || null })}
           >
-            <option value="">Nenhum (só aguarda, não salva)</option>
+            <option value="">Nenhum</option>
+
             {campos.map((c) => (
               <option key={c.id_campo} value={c.id_campo}>
                 {c.ds_label || c.no_campo} ({c.ds_campo_tipo})

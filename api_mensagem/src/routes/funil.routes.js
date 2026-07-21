@@ -13,8 +13,10 @@ router.get('/', FunilController.listar)
 router.post('/', FunilController.criar)
 
 router.delete('/setores/:idSetor', FunilController.removerSetor)
+router.delete('/:id', FunilController.deletar)
 
 router.get('/:id', FunilController.buscarPorId)
+router.put('/:id', FunilController.atualizar)
 router.put('/:id/estrutura', FunilController.salvarEstrutura)
 
 // Campos personalizados (armazenamento dinâmico dos dados coletados)

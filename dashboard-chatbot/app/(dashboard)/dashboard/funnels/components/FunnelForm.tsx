@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation"; // <-- IMPORTADO AQUI
 import ReactFlow, {
   Background,
   Controls,
@@ -20,7 +21,6 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 
 import { TextNode, QuestionNode, ButtonsNode, TransferNode, EndNode } from "./CustomNode";
-// Definindo nodes que criamos em customNode.tsx para serem usados no ReactFlow
 const nodeTypes = {
   textNode: TextNode,
   questionNode: QuestionNode,
@@ -35,9 +35,6 @@ import * as api from "../lib/api";
 import type { Campo, Setor, Setores } from "../lib/api";
 import { funilParaFluxo, fluxoParaFunil, FlowNodeData } from "../lib/transform";
 
-
-
-// Definindo as opções de estilo para as arestas do grafo
 const edgeOptions = {
   animated: true,
   style: { stroke: "#94a3b8", strokeWidth: 2 },
@@ -48,19 +45,23 @@ type Props = {
   idFunil: string;
 };
 
-// Função para calcular o próximo código de mensagem com base nos nós existentes
 function proximoCodigo(nodes: Node<FlowNodeData>[], fluxo: "cadastro" | "chatbot") {
   const codigos = nodes.filter((n) => n.data.fluxo === fluxo).map((n) => n.data.cdMensagem);
   return codigos.length === 0 ? 0 : Math.max(...codigos) + 1;
 }
 
 export default function FunnelFlowBuilder({ idFunil }: Props) {
-  // ESTADOS GLOBAIS (Contém Cadastro + Chatbot)
+  const searchParams = useSearchParams(); // <-- INSTANCIADO AQUI
+
+  // ESTADOS GLOBAIS
   const [nodes, setNodes] = useNodesState<FlowNodeData>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
 
-  // ESTADO DA ABA ATIVA (Switch)
-  const [activeFlow, setActiveFlow] = useState<"cadastro" | "chatbot">("cadastro");
+  // ESTADO DA ABA ATIVA (Lê o parâmetro da URL se existir, senão usa "cadastro" como padrão)
+  const initialFlow = searchParams.get("flow");
+  const [activeFlow, setActiveFlow] = useState<"cadastro" | "chatbot">(
+    initialFlow === "chatbot" ? "chatbot" : "cadastro"
+  );
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -105,17 +106,14 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     return () => {
       ativo = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [idFunil]);
+  }, [idFunil, setNodes, setEdges]);
 
   /* ===================== TROCA DE ABA ===================== */
-  // Ao trocar de aba, removemos a seleção do nó ativo para não dar conflito
   useEffect(() => {
     setSelectedNodeId(null);
   }, [activeFlow]);
 
   /* ===================== FILTROS DE VISUALIZAÇÃO ===================== */
-  // Aqui geramos arrays calculados contendo apenas os dados da aba ativa
   const visibleNodes = useMemo(
     () => nodes.filter((n) => n.data.fluxo === activeFlow),
     [nodes, activeFlow]
@@ -294,7 +292,6 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
               activeFlow === "cadastro"
                 ? "bg-zinc-800 text-white shadow"
                 : "text-zinc-500 hover:text-zinc-700 hover:bg-zinc-50"
-                
             }`}
           >
             Cadastro
@@ -318,7 +315,6 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
         )}
 
         <ReactFlow
-          // IMPORTANTE: Aqui passamos visibleNodes e visibleEdges
           nodes={visibleNodes}
           edges={visibleEdges}
           nodeTypes={nodeTypes}

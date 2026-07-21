@@ -36,6 +36,24 @@ class FunilController {
     }
   }
 
+  async deletar(req, res) {
+    try {
+      const { id } = req.params
+
+      await FunilService.deletar(id)
+
+      return res.status(200).json({
+        mensagem: "Funil excluído com sucesso."
+      })
+    } catch (error) {
+      console.error(error)
+
+      return res.status(500).json({
+        mensagem: "Erro ao excluir o funil."
+      })
+    }
+  }
+
   async salvarEstrutura(req, res) {
     try {
       const { cadastro, chatbot } = req.body
@@ -44,6 +62,20 @@ class FunilController {
     } catch (err) {
       logger.error(`❌ Erro ao salvar estrutura do funil: ${err.message}`)
       return res.status(400).json({ error: err.message })
+    }
+  }
+
+  async atualizar(req, res) {
+    try {
+      const { id } = req.params;
+      const { name, description } = req.body;
+
+      const funil = await FunilService.atualizarFunil(id, { name, description });
+      
+      return res.status(200).json(funil);
+    } catch (error) {
+      console.error('Erro ao atualizar funil:', error);
+      return res.status(400).json({ error: error.message });
     }
   }
 

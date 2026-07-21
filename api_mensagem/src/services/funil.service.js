@@ -136,6 +136,27 @@ class FunilService {
     }
   }
 
+  async deletar(id_funil) {
+    await FunilRepository.deletar(id_funil)
+  }
+
+  async atualizarFunil(id, dados) {
+    if (!dados.name) {
+      throw new Error('O nome do funil é obrigatório.');
+    }
+
+    const funilAtualizado = await FunilRepository.atualizarDadosGerais(id, {
+      name: dados.name,
+      description: dados.description || ''
+    });
+
+    if (!funilAtualizado) {
+      throw new Error('Funil não encontrado.');
+    }
+
+    return funilAtualizado;
+  }
+
   /* ================= CAMPOS PERSONALIZADOS ================= */
 
   async listarTiposCampo() {
