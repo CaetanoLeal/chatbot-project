@@ -111,7 +111,6 @@ class FunilService {
           is_finalizar: !!msg.is_finalizar,
           id_setor: msg.id_setor ?? null,
           id_campo: msg.id_campo ?? null,
-          sg_chat_status: msg.sg_chat_status ?? null,
           pos_x: msg.pos_x ?? null,
           pos_y: msg.pos_y ?? null,
         })

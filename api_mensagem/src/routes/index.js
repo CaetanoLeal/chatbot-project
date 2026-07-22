@@ -9,6 +9,7 @@ const funilia = require("./funilIa.routes")
 const funilIAModelo = require("./funilIaModelo.routes")
 const setorRoutes = require("./setor.routes");
 const diaSemana = require("./diaSemana.routes");
+const usuarioRoutes = require("./usuario.routes");
 
 const router = Router()
 
@@ -21,4 +22,5 @@ router.use("/funil-ia", funilia)
 router.use("/funil-ia-modelo", funilIAModelo)
 router.use("/setores", setorRoutes);
 router.use("/dias-semana", diaSemana);
+router.use("/usuarios", usuarioRoutes);
 module.exports = router

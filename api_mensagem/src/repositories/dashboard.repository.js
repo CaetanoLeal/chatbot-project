@@ -46,7 +46,7 @@ async function countFinishedChats(start, end) {
     `SELECT COUNT(*)::int AS total
        FROM tbl_chat
       WHERE dt_created_at BETWEEN $1 AND $2
-        AND sg_chat_status = 'F'`,
+        AND sg_chat_status = 'A'`,
     [start, end]
   )
   return rows[0].total
@@ -60,7 +60,7 @@ async function avgAttendanceMinutes(start, end) {
             )::float AS minutos
        FROM tbl_chat
       WHERE dt_created_at BETWEEN $1 AND $2
-        AND sg_chat_status = 'F'
+        AND sg_chat_status = 'A'
         AND dt_updated_at IS NOT NULL`,
     [start, end]
   )

@@ -1524,3 +1524,19 @@
 [2026-07-21 20:06:01] [ERROR]: ❌ Erro ao salvar estrutura do funil: column "sg_chat_status" of relation "tbl_funil_chatbot" does not exist
 [2026-07-21 20:11:06] [ERROR]: ❌ Erro ao salvar estrutura do funil: column "sg_chat_status" of relation "tbl_funil_chatbot" does not exist
 [2026-07-21 20:14:58] [ERROR]: ❌ Erro ao salvar estrutura do funil: column "sg_chat_status" of relation "tbl_funil_chatbot" does not exist
+[2026-07-22 18:15:26] [ERROR]: ❌ Erro ao salvar estrutura do funil: column "sg_chat_status" of relation "tbl_funil_chatbot" does not exist
+[2026-07-22 18:47:53] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-22 18:47:53] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-22 18:52:28] [ERROR]: ❌ Erro ao salvar estrutura do funil: column "sg_chat_status" of relation "tbl_funil_chatbot" does not exist
+[2026-07-22 18:55:14] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-22 18:55:14] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-22 18:56:08] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-22 18:56:08] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-22 18:57:07] [ERROR]: ❌ Erro ao salvar estrutura do funil: column "sg_chat_status" of relation "tbl_funil_chatbot" does not exist
+[2026-07-22 18:57:41] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-22 18:57:41] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-22 18:57:48] [ERROR]: ❌ Erro ao listar campos: the database system is starting up
+[2026-07-22 18:57:48] [ERROR]: ❌ Erro ao buscar funil: the database system is starting up
+[2026-07-22 18:58:18] [ERROR]: ❌ Erro ao salvar estrutura do funil: INSERT has more expressions than target columns
+[2026-07-22 18:59:06] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-22 18:59:06] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up

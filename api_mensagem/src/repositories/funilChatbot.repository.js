@@ -10,8 +10,8 @@ class FunilChatbotRepository {
       INSERT INTO tbl_funil_chatbot
         (id_funil_chatbot, id_funil, cd_mensagem, ds_mensagem,
          cd_mensagem_destino, is_aguardar, is_finalizar,
-         id_setor, id_campo, sg_chat_status, pos_x, pos_y)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+         id_setor, id_campo, pos_x, pos_y)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
       `,
       [
         id,
@@ -23,7 +23,6 @@ class FunilChatbotRepository {
         data.is_finalizar ?? false,
         data.id_setor ?? null,
         data.id_campo ?? null,
-        data.sg_chat_status ?? null,
         data.pos_x ?? null,
         data.pos_y ?? null,
       ]

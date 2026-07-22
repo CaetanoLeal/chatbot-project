@@ -224,7 +224,6 @@ class FunilRepository {
         id_setor: msg.id_setor,
         no_setor: msg.no_setor,
         id_campo: msg.id_campo,
-        sg_chat_status: msg.sg_chat_status,
         pos_x: msg.pos_x,
         pos_y: msg.pos_y,
         botoes,

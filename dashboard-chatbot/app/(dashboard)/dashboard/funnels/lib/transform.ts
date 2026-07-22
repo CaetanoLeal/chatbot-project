@@ -32,12 +32,17 @@ const BASE_Y = 40
 
 /** Determina qual componente visual usar para uma mensagem */
 function resolveNodeType(msg: Mensagem): 'textNode' | 'questionNode' | 'buttonsNode' | 'transferNode' | 'endNode' {
+  
+  // NOVA REGRA DE FINALIZAÇÃO E TRANSFERÊNCIA
   if (msg.is_finalizar) {
-    if (msg.sg_chat_status === 'A' || !msg.sg_chat_status) return 'endNode'
-    return 'transferNode'
+    if (msg.id_setor === '11111111-1111-1111-1111-111111111111') {
+      return 'endNode' // É uma finalização de fato
+    }
+    return 'transferNode' // Qualquer outro setor com is_finalizar = true é transferência
   }
-  if (msg.sg_chat_status && ['H', 'I', 'P'].includes(msg.sg_chat_status)) return 'transferNode'
 
+  // Restante das regras originais
+  if (msg.sg_chat_status && ['H', 'I', 'P'].includes(msg.sg_chat_status)) return 'transferNode'
   if (msg.botoes && msg.botoes.length > 0) return 'buttonsNode'
   if (msg.is_aguardar) return 'questionNode'
 

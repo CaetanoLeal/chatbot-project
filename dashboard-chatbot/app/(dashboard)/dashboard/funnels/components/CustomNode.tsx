@@ -188,9 +188,8 @@ export const ButtonsNode = ({ data, selected }: NodeProps) => {
 
 /* ===================== NÓ ESPECIAL DE TRANSFERÊNCIA (ÍNDIGO) ===================== */
 const TRANSFER_LABEL: Record<string, string> = {
-  H: "Transferir: Atendente",
+  P: "Transferir: Atendente",
   I: "Transferir: IA",
-  P: "Aguardar Atendente (Fila)",
 };
 
 export const TransferNode = ({ data, selected }: NodeProps) => {

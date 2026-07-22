@@ -1,12 +1,11 @@
-//app/(dashboard)/dashboard/funnels/components/NodeInspector.tsx
 "use client"
 
 import { Node } from "reactflow"
 import type { FlowNodeData } from "../lib/transform"
 import type { Campo, Setor } from "../lib/api"
 
-// tipos de nodes
-type NodeKind = "textNode" | "questionNode" | "buttonsNode" | "actionNode"
+// 1. Tipos atualizados com transferNode e endNode
+type NodeKind = "textNode" | "questionNode" | "buttonsNode" | "transferNode" | "endNode"
 
 type Props = {
   node: Node<FlowNodeData>
@@ -19,21 +18,22 @@ type Props = {
   onManageSetores: () => void
 }
 
+// 2. Opções separadas (Transferir e Finalizar no lugar do antigo actionNode)
 const TIPO_OPTIONS: { value: NodeKind; label: string; help: string }[] = [
   { value: "textNode", label: "Mensagem de texto", help: "Envia e segue direto para o destino conectado." },
   { value: "questionNode", label: "Aguardar resposta", help: "Envia e espera o usuário responder antes de seguir." },
   { value: "buttonsNode", label: "Menu de opções", help: "Envia com botões numerados; o destino depende da escolha." },
-  { value: "actionNode", label: "Finalizar atendimento", help: "Encerra este fluxo e direciona o status da conversa." },
+  { value: "transferNode", label: "Transferir atendimento", help: "Transfere o usuário para um Setor (IA ou Atendente Humano)." },
+  { value: "endNode", label: "Finalizar atendimento", help: "Encerra este fluxo e fecha a conversa." },
 ]
 
-// status de finalização do atendimento
-const STATUS_OPTIONS: { value: "A" | "P" | "I" ; label: string }[] = [
-  { value: "A", label: "Finalizar" },
-  { value: "P", label: "Atendente humano" },
-  { value: "I", label: "Inteligência artificial" },
+// 3. Status de transferência
+const TRANSFER_TARGETS: { value: "H" | "I" | "P"; label: string }[] = [
+  { value: "H", label: "Atendente Humano" },
+  { value: "I", label: "Inteligência Artificial (IA)" },
+  { value: "P", label: "Fila de Espera" },
 ]
 
-// Componente que exibe o painel de inspeção e edição de um nó selecionado no fluxo
 export default function NodeInspector({
   node,
   campos,
@@ -48,12 +48,11 @@ export default function NodeInspector({
   const kind = node.type as NodeKind
   const isInicio = data.cdMensagem === 0
 
-  // Função para atualizar os dados do nó, mesclando os dados existentes com o patch fornecido
   function setData(patch: Partial<FlowNodeData>) {
     onChange(node.id, { data: { ...data, ...patch } })
   }
 
-  // Função para alterar o tipo de nó, ajustando os dados conforme necessário
+  // 4. Lógica adaptada para lidar com transferNode e endNode separadamente
   function setTipo(novoTipo: NodeKind) {
     const patch: Partial<FlowNodeData> = {}
 
@@ -66,33 +65,33 @@ export default function NodeInspector({
       patch.buttons = []
     }
 
-    if (novoTipo === "actionNode") {
+    if (novoTipo === "transferNode") {
       patch.isFinalizar = true
-      if (data.fluxo === "chatbot" && !data.sgChatStatus) patch.sgChatStatus = "H"
+      if (!data.sgChatStatus) patch.sgChatStatus = "H" // Padrão: Humano
+    } else if (novoTipo === "endNode") {
+      patch.isFinalizar = true
+      patch.sgChatStatus = "A" 
     } else if (novoTipo === "textNode" && data.fluxo === "cadastro") {
       // no cadastro, "Finalizar" é só um textNode com isFinalizar = true
-      // (o usuário ativa isso pelo checkbox abaixo, não pelo tipo)
     } else {
       patch.isFinalizar = false
+      patch.sgChatStatus = undefined
     }
 
     onChange(node.id, { type: novoTipo, data: { ...data, ...patch } })
   }
 
-  // Funções para adicionar, atualizar e remover botões no nó do tipo "buttonsNode"
   function addButton() {
     const buttons = data.buttons ?? []
     setData({ buttons: [...buttons, { id: `btn-${buttons.length + 1}`, label: "" }] })
   }
 
-  // Função para atualizar o rótulo de um botão específico no nó do tipo "buttonsNode"
   function updateButton(idx: number, label: string) {
     const buttons = [...(data.buttons ?? [])]
     buttons[idx] = { ...buttons[idx], label }
     setData({ buttons })
   }
 
-  // Função para remover um botão específico do nó do tipo "buttonsNode"
   function removeButton(idx: number) {
     const buttons = (data.buttons ?? []).filter((_, i) => i !== idx)
     setData({ buttons })
@@ -100,27 +99,26 @@ export default function NodeInspector({
 
   return (
     <div className="w-80 shrink-0 bg-white border-l border-zinc-200 h-screen overflow-y-auto p-5 space-y-5 text-zinc-700">
+      
+      {/* HEADER */}
       <div className="flex items-center justify-between">
         <h3 className="font-semibold text-sm">
           {isInicio ? "Mensagem inicial" : `Mensagem ${data.cdMensagem}`}
           <span className="ml-2 text-[10px] font-normal text-zinc-400 uppercase">{data.fluxo}</span>
         </h3>
-        <button onClick={onClose} className="text-zinc-400 hover:text-zinc-600 text-sm">
-          ✕
-        </button>
+        <button onClick={onClose} className="text-zinc-400 hover:text-zinc-600 text-sm">✕</button>
       </div>
 
+      {/* TIPO DA MENSAGEM */}
       <div>
-        <label className="block text-xs font-medium text-zinc-500 mb-1">Tipo de mensagem</label>
+        <label className="block text-xs font-medium text-zinc-500 mb-1">Ação / Tipo de mensagem</label>
         <select
-          className="border rounded px-2 py-1.5 w-full text-sm"
+          className="border rounded px-2 py-1.5 w-full text-sm font-medium"
           value={kind}
           onChange={(e) => setTipo(e.target.value as NodeKind)}
         >
           {TIPO_OPTIONS.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
         <p className="text-[11px] text-zinc-400 mt-1">
@@ -128,37 +126,71 @@ export default function NodeInspector({
         </p>
       </div>
 
+      {/* TEXTO */}
       <div>
-        <label className="block text-xs font-medium text-zinc-500 mb-1">Texto</label>
+        <label className="block text-xs font-medium text-zinc-500 mb-1">
+          Texto {kind === "transferNode" ? "(Opcional - Ex: Transferindo...)" : ""}
+        </label>
         <textarea
           className="border rounded px-2 py-1.5 w-full text-sm min-h-[90px]"
-          value={data.text}
+          value={data.text || ""}
           onChange={(e) => setData({ text: e.target.value })}
           placeholder="Use {no_campo} para inserir dados já coletados"
         />
       </div>
 
+      {/* TRANSFERÊNCIA (Exibido apenas no transferNode) */}
+      {kind === "transferNode" && (
+        <div className="space-y-4 bg-indigo-50/50 p-3 border border-indigo-100 rounded-lg">
+          <div>
+            <label className="block text-xs font-medium text-indigo-700 mb-1">Quem vai atender?</label>
+            <select
+              className="border border-indigo-200 rounded px-2 py-1.5 w-full text-sm focus:ring-indigo-500"
+              value={data.sgChatStatus ?? "H"}
+              onChange={(e) => setData({ sgChatStatus: e.target.value as any })}
+            >
+              {TRANSFER_TARGETS.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-xs font-medium text-indigo-700">Para qual setor?</label>
+              <button onClick={onManageSetores} className="text-[10px] text-indigo-600 hover:underline">
+                + novo setor
+              </button>
+            </div>
+            <select
+              className="border border-indigo-200 rounded px-2 py-1.5 w-full text-sm focus:ring-indigo-500"
+              value={data.idSetor ?? ""}
+              onChange={(e) => setData({ idSetor: e.target.value || null })}
+            >
+              <option value="" disabled>Selecione um setor obrigatório...</option>
+              {setores.map((s) => (
+                <option key={s.id_setor} value={s.id_setor}>{s.no_setor}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      )}
+
+      {/* SALVAR RESPOSTA (questionNode e buttonsNode) */}
       {(kind === "questionNode" || kind === "buttonsNode") && (
         <div>
           <div className="flex items-center justify-between mb-1">
-            <label className="block text-xs font-medium text-zinc-500">
-              Salvar resposta no campo
-            </label>
-            <button
-              onClick={onManageCampos}
-              className="text-[11px] text-blue-600 hover:underline"
-            >
+            <label className="block text-xs font-medium text-zinc-500">Salvar resposta no campo</label>
+            <button onClick={onManageCampos} className="text-[11px] text-blue-600 hover:underline">
               + novo campo
             </button>
           </div>
-
           <select
             className="border rounded px-2 py-1.5 w-full text-sm"
             value={data.idCampo ?? ""}
             onChange={(e) => setData({ idCampo: e.target.value || null })}
           >
             <option value="">Nenhum</option>
-
             {campos.map((c) => (
               <option key={c.id_campo} value={c.id_campo}>
                 {c.ds_label || c.no_campo} ({c.ds_campo_tipo})
@@ -168,6 +200,7 @@ export default function NodeInspector({
         </div>
       )}
 
+      {/* CONFIGURAÇÃO DE BOTÕES (buttonsNode) */}
       {kind === "buttonsNode" && (
         <div>
           <label className="block text-xs font-medium text-zinc-500 mb-2">Botões</label>
@@ -180,61 +213,42 @@ export default function NodeInspector({
                   placeholder={`Opção ${idx + 1}`}
                   onChange={(e) => updateButton(idx, e.target.value)}
                 />
-                <button onClick={() => removeButton(idx)} className="text-red-500 text-sm px-1">
-                  ✕
-                </button>
+                <button onClick={() => removeButton(idx)} className="text-red-500 text-sm px-1">✕</button>
               </div>
             ))}
           </div>
-          <button onClick={addButton} className="text-blue-600 text-xs mt-2">
-            + adicionar botão
-          </button>
+          <button onClick={addButton} className="text-blue-600 text-xs mt-2">+ adicionar botão</button>
           <p className="text-[11px] text-zinc-400 mt-2">
             Conecte cada botão a uma mensagem destino puxando uma linha a partir dele no canvas.
           </p>
         </div>
       )}
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-medium text-zinc-500">Setor da mensagem</label>
-                <button onClick={onManageSetores} className="text-[11px] text-blue-600 hover:underline">
-                  + novo setor
-                </button>
-              </div>
-              <select
-                className="border rounded px-2 py-1.5 w-full text-sm"
-                value={data.idSetor ?? ""}
-                onChange={(e) => setData({ idSetor: e.target.value || null })}
-              >
-                <option value="">Nenhum setor específico</option>
-                {setores.map((s) => (
-                  <option key={s.id_setor} value={s.id_setor}>
-                    {s.no_setor}
-                  </option>
-                ))}
-              </select>
-            </div>
 
-      {kind === "actionNode" && data.fluxo === "chatbot" && (
-        <>
-          <div>
-            <label className="block text-xs font-medium text-zinc-500 mb-1">Status ao finalizar</label>
-            <select
-              className="border rounded px-2 py-1.5 w-full text-sm"
-              value={data.sgChatStatus ?? "H"}
-              onChange={(e) => setData({ sgChatStatus: e.target.value as any })}
-            >
-              {STATUS_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
+      {/* SETOR GERAL DA MENSAGEM (Oculto se for Transferência, pois a transferência já exibe ele lá em cima) */}
+      {kind !== "transferNode" && (
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <label className="block text-xs font-medium text-zinc-500">Setor da mensagem</label>
+            <button onClick={onManageSetores} className="text-[11px] text-blue-600 hover:underline">
+              + novo setor
+            </button>
           </div>
-          
-        </>
+          <select
+            className="border rounded px-2 py-1.5 w-full text-sm"
+            value={data.idSetor ?? ""}
+            onChange={(e) => setData({ idSetor: e.target.value || null })}
+          >
+            <option value="">Nenhum setor específico</option>
+            {setores.map((s) => (
+              <option key={s.id_setor} value={s.id_setor}>
+                {s.no_setor}
+              </option>
+            ))}
+          </select>
+        </div>
       )}
 
+      {/* FINALIZAR (Fluxo de Cadastro) */}
       {data.fluxo === "cadastro" && kind === "textNode" && (
         <label className="flex items-center gap-2 text-sm">
           <input
@@ -246,6 +260,7 @@ export default function NodeInspector({
         </label>
       )}
 
+      {/* APAGAR MENSAGEM */}
       {!isInicio && (
         <button
           onClick={() => onRemove(node.id)}
