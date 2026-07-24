@@ -12,7 +12,7 @@
  Target Server Version : 150014 (150014)
  File Encoding         : 65001
 
- Date: 17/07/2026 17:47:15
+ Date: 24/07/2026 16:59:42
 */
 
 
@@ -133,7 +133,12 @@ CREATE TABLE "public"."tbl_atendente" (
   "id_atendente" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
   "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "no_atendente" varchar(100) COLLATE "pg_catalog"."default",
-  "is_ia" bool NOT NULL DEFAULT false
+  "is_ia" bool NOT NULL DEFAULT false,
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -149,15 +154,20 @@ CREATE TABLE "public"."tbl_campo" (
   "id_campo" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
   "cd_campo_tipo" int2 NOT NULL DEFAULT 1,
   "no_campo" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
-  "is_obrigatorio" bool NOT NULL DEFAULT true
+  "is_obrigatorio" bool NOT NULL DEFAULT true,
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_campo
 -- ----------------------------
-INSERT INTO "public"."tbl_campo" VALUES ('dbfc2fdf-4f52-49ff-a277-829d678c2a83', 1, 'no_utilizador', 't');
-INSERT INTO "public"."tbl_campo" VALUES ('3b9d05de-21e9-4aa4-ac0c-5dbcea3c5386', 4, 'dt_nascimento', 't');
+INSERT INTO "public"."tbl_campo" VALUES ('dbfc2fdf-4f52-49ff-a277-829d678c2a83', 1, 'no_utilizador', 't', NULL, '2026-07-21 20:26:22.059515', '2026-07-21 20:26:22.065383', NULL, 'f');
+INSERT INTO "public"."tbl_campo" VALUES ('3b9d05de-21e9-4aa4-ac0c-5dbcea3c5386', 4, 'dt_nascimento', 't', NULL, '2026-07-21 20:26:22.059515', '2026-07-21 20:26:22.065383', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_campo_tipo
@@ -196,7 +206,12 @@ CREATE TABLE "public"."tbl_chat" (
   "dt_updated_at" timestamp(6) DEFAULT now(),
   "ds_foto_perfil" text COLLATE "pg_catalog"."default",
   "dh_last_seen" timestamp(6),
-  "sg_chat_status" char(1) COLLATE "pg_catalog"."default"
+  "sg_chat_status" char(1) COLLATE "pg_catalog"."default",
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -253,14 +268,19 @@ DROP TABLE IF EXISTS "public"."tbl_funil";
 CREATE TABLE "public"."tbl_funil" (
   "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
   "no_funil" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
-  "ds_funil" text COLLATE "pg_catalog"."default"
+  "ds_funil" text COLLATE "pg_catalog"."default",
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil
 -- ----------------------------
-INSERT INTO "public"."tbl_funil" VALUES ('4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'teste', 'funil criado para testar nossas funções');
+INSERT INTO "public"."tbl_funil" VALUES ('4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'funil de teste', 'funil criado para testar nossas funções e não telas', NULL, '2026-07-21 18:55:05.546924', '2026-07-21 18:55:05.546924', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_funil_cadastro
@@ -271,25 +291,32 @@ CREATE TABLE "public"."tbl_funil_cadastro" (
   "ds_mensagem" text COLLATE "pg_catalog"."default" NOT NULL,
   "is_aguardar" bool NOT NULL DEFAULT true,
   "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000'::bpchar,
   "cd_mensagem" int4 NOT NULL DEFAULT 0,
-  "cd_mensagem_destino" int4,
+  "cd_mensagem_destino" int4 DEFAULT 0,
   "is_finalizar" bool NOT NULL DEFAULT false,
-  "id_campo" char(36) COLLATE "pg_catalog"."default"
+  "id_campo" char(36) COLLATE "pg_catalog"."default",
+  "pos_x" numeric DEFAULT 0,
+  "pos_y" numeric DEFAULT 0,
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil_cadastro
 -- ----------------------------
-INSERT INTO "public"."tbl_funil_cadastro" VALUES ('f0088b36-7ace-4cd1-8418-7af8fff22a65', 'Agora me informe sua data de nascimento no formato: DD/MM/AAAA.', 't', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9d6e60fe-4e13-47fa-bffb-38e1bbead864', 5, 6, 'f', '3b9d05de-21e9-4aa4-ac0c-5dbcea3c5386');
-INSERT INTO "public"."tbl_funil_cadastro" VALUES ('0d754e9b-97f8-4c79-9bf2-a18ac9f46243', 'Obrigado por se cadastrar', 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9d6e60fe-4e13-47fa-bffb-38e1bbead864', 3, NULL, 't', NULL);
-INSERT INTO "public"."tbl_funil_cadastro" VALUES ('87951d01-c32d-452d-857f-16e288b8febe', 'Tudo bem, me informe seu nome novamente, por favor.', 't', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9d6e60fe-4e13-47fa-bffb-38e1bbead864', 4, 2, 'f', 'dbfc2fdf-4f52-49ff-a277-829d678c2a83');
-INSERT INTO "public"."tbl_funil_cadastro" VALUES ('eee9f174-6767-47fc-b270-ce8ccb5713d7', 'Para iniciarmos, me informe seu nome', 't', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9d6e60fe-4e13-47fa-bffb-38e1bbead864', 1, 2, 'f', 'dbfc2fdf-4f52-49ff-a277-829d678c2a83');
-INSERT INTO "public"."tbl_funil_cadastro" VALUES ('084aab4d-5591-4083-9338-e5449a2b0376', 'Seja bem-vindo!', 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9d6e60fe-4e13-47fa-bffb-38e1bbead864', 0, 1, 'f', NULL);
-INSERT INTO "public"."tbl_funil_cadastro" VALUES ('5e4ecb93-514b-4d56-afa0-8acd82ea978b', 'Você informou que seu nome é {no_utilizador}. Confirma o nome informado?', 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9d6e60fe-4e13-47fa-bffb-38e1bbead864', 2, NULL, 'f', NULL);
-INSERT INTO "public"."tbl_funil_cadastro" VALUES ('587a41f3-ef01-4479-9294-e8f510952e75', 'Você informou que sua data de nascimento é: {dt_nascimento}. Confirma?', 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9d6e60fe-4e13-47fa-bffb-38e1bbead864', 6, NULL, 'f', NULL);
-INSERT INTO "public"."tbl_funil_cadastro" VALUES ('62da93e3-53d9-4d0d-bdbe-db2bffe8dbdb', 'Tudo bem, me informe sua data de nascimento novamente, por favor.', 't', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9d6e60fe-4e13-47fa-bffb-38e1bbead864', 7, 6, 'f', '3b9d05de-21e9-4aa4-ac0c-5dbcea3c5386');
+INSERT INTO "public"."tbl_funil_cadastro" VALUES ('4cb7173d-61f1-41db-8781-76075e4e111f', 'Seja bem-vindo!', 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '00000000-0000-0000-0000-000000000000', 0, 1, 'f', NULL, 0, 40, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro" VALUES ('3e263868-f5c4-4f15-bebb-c51dfdb3ba71', 'Para iniciarmos, me informe seu nome', 't', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '00000000-0000-0000-0000-000000000000', 1, 2, 'f', 'dbfc2fdf-4f52-49ff-a277-829d678c2a83', 380, 40, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro" VALUES ('11908f7f-5f6a-4a40-ad48-54311f8bec4c', 'Você informou que seu nome é {no_utilizador}. Confirma o nome informado?', 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '00000000-0000-0000-0000-000000000000', 2, NULL, 'f', NULL, 760, 40, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro" VALUES ('1da95de5-404d-420d-b0c9-4c3990cdcda6', 'Obrigado por se cadastrar', 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '00000000-0000-0000-0000-000000000000', 3, NULL, 't', NULL, 1900, -190, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro" VALUES ('6b1d9427-811b-48a2-820a-95892f910567', 'Tudo bem, me informe seu nome novamente, por favor.', 't', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '00000000-0000-0000-0000-000000000000', 4, 2, 'f', 'dbfc2fdf-4f52-49ff-a277-829d678c2a83', 1140, 155, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro" VALUES ('54c761c8-e505-4d05-a87d-4744aef94bdc', 'Agora me informe sua data de nascimento no formato: DD/MM/AAAA.', 't', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '00000000-0000-0000-0000-000000000000', 5, 6, 'f', '3b9d05de-21e9-4aa4-ac0c-5dbcea3c5386', 1140, -75, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro" VALUES ('c7491c7d-df50-4253-a245-bd45dffb75a7', 'Você informou que sua data de nascimento é: {dt_nascimento}. Confirma?', 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '00000000-0000-0000-0000-000000000000', 6, NULL, 'f', NULL, 1520, -75, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro" VALUES ('4865cf13-4d79-4b30-b231-fd5b6f31d836', 'Tudo bem, me informe sua data de nascimento novamente, por favor.', 't', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '00000000-0000-0000-0000-000000000000', 7, 6, 'f', '3b9d05de-21e9-4aa4-ac0c-5dbcea3c5386', 1900, 40, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_funil_cadastro_botao
@@ -300,17 +327,22 @@ CREATE TABLE "public"."tbl_funil_cadastro_botao" (
   "id_funil_cadastro" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "cd_botao" int2 NOT NULL,
   "ds_botao" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
-  "cd_mensagem_destino" int2 NOT NULL
+  "cd_mensagem_destino" int2 NOT NULL,
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil_cadastro_botao
 -- ----------------------------
-INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('cb1e0ff7-f8f8-41fc-8fdc-8bc0491d070e', '5e4ecb93-514b-4d56-afa0-8acd82ea978b', 2, 'NÃO', 4);
-INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('5a7872cd-470f-47d2-aa4c-6dd11da75775', '5e4ecb93-514b-4d56-afa0-8acd82ea978b', 1, 'SIM', 5);
-INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('5b992f8c-c86c-4d99-b5e2-1e62cd169af4', '587a41f3-ef01-4479-9294-e8f510952e75', 1, 'SIM', 3);
-INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('fd8f68dd-0c08-48f6-9d37-a5e33fe7744a', '587a41f3-ef01-4479-9294-e8f510952e75', 2, 'NÃO', 7);
+INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('cfe12287-cfeb-4e5c-bb07-4e6e5f93bb42', '11908f7f-5f6a-4a40-ad48-54311f8bec4c', 1, 'SIM', 5, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('94d98b7b-485d-48e4-b992-66723fc71540', '11908f7f-5f6a-4a40-ad48-54311f8bec4c', 2, 'NÃO', 4, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('6fbb0e27-0475-4e49-a1a0-6d734d80474a', 'c7491c7d-df50-4253-a245-bd45dffb75a7', 1, 'SIM', 3, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('dff80181-d4f9-4fb9-8b2a-a7001b6bcedd', 'c7491c7d-df50-4253-a245-bd45dffb75a7', 2, 'NÃO', 7, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_funil_chatbot
@@ -318,25 +350,31 @@ INSERT INTO "public"."tbl_funil_cadastro_botao" VALUES ('fd8f68dd-0c08-48f6-9d37
 DROP TABLE IF EXISTS "public"."tbl_funil_chatbot";
 CREATE TABLE "public"."tbl_funil_chatbot" (
   "id_funil_chatbot" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
-  "ds_mensagem" text COLLATE "pg_catalog"."default",
+  "ds_mensagem" text COLLATE "pg_catalog"."default" NOT NULL,
   "cd_mensagem_destino" int4,
   "is_aguardar" bool NOT NULL,
   "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT '11111111-1111-1111-1111-111111111111'::bpchar,
   "cd_mensagem" int4 NOT NULL,
   "is_finalizar" bool NOT NULL DEFAULT false,
   "id_campo" char(36) COLLATE "pg_catalog"."default",
-  "sg_chat_status" char(1) COLLATE "pg_catalog"."default"
+  "pos_x" numeric DEFAULT 0,
+  "pos_y" numeric DEFAULT 0,
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil_chatbot
 -- ----------------------------
-INSERT INTO "public"."tbl_funil_chatbot" VALUES ('e613f478-3a81-4d85-9215-ec2c8185c908', 'Vi que você ja fez seu cadastro então você será atendido, o que deseja?', NULL, 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9ee25940-bd90-495c-a97e-75c1cbfc908c', 0, 'f', 'dbfc2fdf-4f52-49ff-a277-829d678c2a83', NULL);
-INSERT INTO "public"."tbl_funil_chatbot" VALUES ('5d481215-9d1f-49bb-85eb-d80c788f2adb', 'ok, logo ele responderá sua mensagem', NULL, 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'af3e6d6d-8853-435c-bf02-48cf003fcecf', 3, 't', NULL, 'P');
-INSERT INTO "public"."tbl_funil_chatbot" VALUES ('596568bb-9bfb-4576-bc35-f13f8497b0df', 'Selecione a funcionalidade que você deseja testar', NULL, 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '9ee25940-bd90-495c-a97e-75c1cbfc908c', 4, 'f', NULL, NULL);
-INSERT INTO "public"."tbl_funil_chatbot" VALUES ('4fe684ea-3332-4f54-9e8f-02fe90d3833b', 'A ia vai te atender agora, o que deseja?', NULL, 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'af3e6d6d-8853-435c-bf02-48cf003fcecf', 5, 't', NULL, 'I');
+INSERT INTO "public"."tbl_funil_chatbot" VALUES ('d768c974-8fb8-4a85-b411-82f43256c054', 'Vi que você ja fez seu cadastro então você será atendido, o que deseja?', NULL, 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '11111111-1111-1111-1111-111111111111', 0, 'f', NULL, 0, 38.70532544378699, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_chatbot" VALUES ('b41047b5-3610-46e5-bf07-b4ca2519a4b9', 'ok, logo ele responderá sua mensagem', NULL, 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'af3e6d6d-8853-435c-bf02-48cf003fcecf', 3, 't', NULL, 378.5128094670216, -75, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_chatbot" VALUES ('6e04f13d-175c-4161-8ecc-09b63e501dcf', 'Selecione a funcionalidade que você deseja testar', NULL, 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '11111111-1111-1111-1111-111111111111', 4, 'f', NULL, 380, 155, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_chatbot" VALUES ('7089a9dc-8115-4ba3-9cbf-157472d94af6', 'A ia vai te atender agora, o que deseja?', NULL, 'f', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', '22222222-2222-2222-2222-222222222222', 5, 't', NULL, 760, 155, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_funil_chatbot_botao
@@ -347,16 +385,21 @@ CREATE TABLE "public"."tbl_funil_chatbot_botao" (
   "id_funil_chatbot" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "cd_botao" int2 NOT NULL,
   "ds_botao" varchar(50) COLLATE "pg_catalog"."default" NOT NULL,
-  "cd_mensagem_destino" int2
+  "cd_mensagem_destino" int2,
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil_chatbot_botao
 -- ----------------------------
-INSERT INTO "public"."tbl_funil_chatbot_botao" VALUES ('5823aee6-c993-41a0-903a-0ab6a2d15991', 'e613f478-3a81-4d85-9215-ec2c8185c908', 1, 'Falar com o dono do número', 3);
-INSERT INTO "public"."tbl_funil_chatbot_botao" VALUES ('776fa4b6-f517-4b9f-a976-d9b0882c9b43', 'e613f478-3a81-4d85-9215-ec2c8185c908', 2, 'Ajudar a testar funções', 4);
-INSERT INTO "public"."tbl_funil_chatbot_botao" VALUES ('f55ac93f-bb66-4376-b4de-1d3ffd1df208', '596568bb-9bfb-4576-bc35-f13f8497b0df', 1, 'testar IA', 5);
+INSERT INTO "public"."tbl_funil_chatbot_botao" VALUES ('d1f8e22f-1c6b-48a9-8f59-42d285b37508', 'd768c974-8fb8-4a85-b411-82f43256c054', 1, 'Falar com o dono do número', 3, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_chatbot_botao" VALUES ('1376cd70-8365-43d5-9598-86014aa2dbe7', 'd768c974-8fb8-4a85-b411-82f43256c054', 2, 'Ajudar a testar funções', 4, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
+INSERT INTO "public"."tbl_funil_chatbot_botao" VALUES ('8a87def5-ca0d-4be3-bfec-3292a025d1c2', '6e04f13d-175c-4161-8ecc-09b63e501dcf', 1, 'testar IA', 5, NULL, '2026-07-22 19:07:37.763812', '2026-07-22 19:07:37.763812', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_funil_expiracao
@@ -367,17 +410,22 @@ CREATE TABLE "public"."tbl_funil_expiracao" (
   "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "gn_mensagem" text COLLATE "pg_catalog"."default" NOT NULL,
   "nu_sequencia" int2 NOT NULL DEFAULT 1,
-  "qt_minutos" int2 NOT NULL DEFAULT 1
+  "qt_minutos" int2 NOT NULL DEFAULT 1,
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil_expiracao
 -- ----------------------------
-INSERT INTO "public"."tbl_funil_expiracao" VALUES ('913c3e88-ca50-49b5-9e21-278761fc346d', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'Notamos que você não está conseguindo falar agora. Se quiseres prosseguir com o atendimento, por favor, interaja. Em 3 minutos validaremos novamente.', 1, 3);
-INSERT INTO "public"."tbl_funil_expiracao" VALUES ('f45d579a-5978-4a5b-b589-94af6df414f2', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'Nossa, não estamos conseguindo prosseguir. Vou aguardar por mais 2 minutos, tá?', 2, 2);
-INSERT INTO "public"."tbl_funil_expiracao" VALUES ('cf624ead-cac8-4122-a2b1-ebfcf92e2eef', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'Poxa, daqui a um minuto iremos encerrar nossa conversa. Porém, não se sinta acanhado. Chame-nos novamente sempre que desejar.', 3, 1);
-INSERT INTO "public"."tbl_funil_expiracao" VALUES ('84c05a0f-f593-452b-922d-1eca3c424de3', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'É, iremos encerrar nosso atendimento. Obrigado!', 4, 0);
+INSERT INTO "public"."tbl_funil_expiracao" VALUES ('913c3e88-ca50-49b5-9e21-278761fc346d', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'Notamos que você não está conseguindo falar agora. Se quiseres prosseguir com o atendimento, por favor, interaja. Em 3 minutos validaremos novamente.', 1, 3, NULL, '2026-07-21 20:26:22.247153', '2026-07-21 20:26:22.253089', NULL, 'f');
+INSERT INTO "public"."tbl_funil_expiracao" VALUES ('f45d579a-5978-4a5b-b589-94af6df414f2', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'Nossa, não estamos conseguindo prosseguir. Vou aguardar por mais 2 minutos, tá?', 2, 2, NULL, '2026-07-21 20:26:22.247153', '2026-07-21 20:26:22.253089', NULL, 'f');
+INSERT INTO "public"."tbl_funil_expiracao" VALUES ('cf624ead-cac8-4122-a2b1-ebfcf92e2eef', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'Poxa, daqui a um minuto iremos encerrar nossa conversa. Porém, não se sinta acanhado. Chame-nos novamente sempre que desejar.', 3, 1, NULL, '2026-07-21 20:26:22.247153', '2026-07-21 20:26:22.253089', NULL, 'f');
+INSERT INTO "public"."tbl_funil_expiracao" VALUES ('84c05a0f-f593-452b-922d-1eca3c424de3', '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'É, iremos encerrar nosso atendimento. Obrigado!', 4, 0, NULL, '2026-07-21 20:26:22.247153', '2026-07-21 20:26:22.253089', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_funil_ia
@@ -397,14 +445,19 @@ CREATE TABLE "public"."tbl_funil_ia" (
   "created_at" timestamp(6) NOT NULL,
   "update_at" timestamp(6) NOT NULL,
   "ds_human_handoff" bool NOT NULL,
-  "id_setor" char(36) COLLATE "pg_catalog"."default"
+  "id_setor" char(36) COLLATE "pg_catalog"."default",
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil_ia
 -- ----------------------------
-INSERT INTO "public"."tbl_funil_ia" VALUES ('f0c84b8a-e7ab-4431-b4c2-f876c0af3589', 2, '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'IA do caetano', 'IA para teste da configuração de ia', 'Você se chama Sophia, Você é a assistente do caetano e esta pronta para responder qualquer pergunta por ele, você é especialista em programação e tecnologia e sabe tirar duvidas sobre o assunto, também pode assumir conversas na ausência do caetano ', 0.70, 200, 't', 'erro! a ia está em manutenção', '2026-07-07 17:31:38', '2026-07-07 17:31:41', 't', 'af3e6d6d-8853-435c-bf02-48cf003fcecf');
+INSERT INTO "public"."tbl_funil_ia" VALUES ('f0c84b8a-e7ab-4431-b4c2-f876c0af3589', 2, '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'IA do caetano', 'IA para teste da configuração de ia', 'Você se chama Sophia, Você é a assistente do caetano e esta pronta para responder qualquer pergunta por ele, você é especialista em programação e tecnologia e sabe tirar duvidas sobre o assunto, também pode assumir conversas na ausência do caetano ', 0.70, 200, 't', 'erro! a ia está em manutenção', '2026-07-07 17:31:38', '2026-07-07 17:31:41', 't', 'af3e6d6d-8853-435c-bf02-48cf003fcecf', NULL, '2026-07-21 20:26:22.282899', '2026-07-21 20:26:22.288999', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_funil_ia_modelo
@@ -455,7 +508,12 @@ CREATE TABLE "public"."tbl_funil_utilizador_campo" (
   "id_campo" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "vl_campo" text COLLATE "pg_catalog"."default",
   "dh_cadastro" timestamp(6) NOT NULL DEFAULT now(),
-  "dh_atualizacao" timestamp(6) NOT NULL DEFAULT now()
+  "dh_atualizacao" timestamp(6) NOT NULL DEFAULT now(),
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -479,7 +537,12 @@ CREATE TABLE "public"."tbl_instancia" (
   "dt_created_at" timestamp(6) NOT NULL DEFAULT now(),
   "dt_update_at" timestamp(6) NOT NULL DEFAULT now(),
   "ds_auth_path" text COLLATE "pg_catalog"."default",
-  "id_funil" char(36) COLLATE "pg_catalog"."default"
+  "id_funil" char(36) COLLATE "pg_catalog"."default",
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -495,13 +558,19 @@ CREATE TABLE "public"."tbl_mensagem" (
   "id_mensagem" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
   "id_chat" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "cd_provider" int2 NOT NULL,
-  "id_mensagem_externa" varchar(150) COLLATE "pg_catalog"."default",
+  "id_mensagem_externa" char(36) COLLATE "pg_catalog"."default",
   "from_me" bool NOT NULL,
   "ds_conteudo" text COLLATE "pg_catalog"."default",
   "ds_tipo" varchar(50) COLLATE "pg_catalog"."default" DEFAULT 'text'::character varying,
   "ds_payload" jsonb,
   "dh_envio" timestamp(6) NOT NULL,
-  "dt_created_at" timestamp(6) DEFAULT now()
+  "dt_created_at" timestamp(6) DEFAULT now(),
+  "id_atendente" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -615,11 +684,11 @@ CREATE TABLE "public"."tbl_setor" (
 -- ----------------------------
 -- Records of tbl_setor
 -- ----------------------------
-INSERT INTO "public"."tbl_setor" VALUES ('9d6e60fe-4e13-47fa-bffb-38e1bbead864', 'CADASTRO', NULL, NULL, '2026-07-09 19:02:59.368964', '2026-07-09 19:02:59.37654', NULL, 'f');
-INSERT INTO "public"."tbl_setor" VALUES ('9ee25940-bd90-495c-a97e-75c1cbfc908c', 'CHATBOT', NULL, NULL, '2026-07-09 19:02:59.368964', '2026-07-09 19:02:59.37654', NULL, 'f');
-INSERT INTO "public"."tbl_setor" VALUES ('ef0d482e-6ef6-4a59-94ec-b4d2ce6ed2a3', 'IA', NULL, NULL, '2026-07-09 19:02:59.368964', '2026-07-09 19:02:59.37654', NULL, 'f');
-INSERT INTO "public"."tbl_setor" VALUES ('af3e6d6d-8853-435c-bf02-48cf003fcecf', 'TESTE', NULL, NULL, '2026-07-09 19:02:59.368964', '2026-07-09 19:02:59.37654', NULL, 'f');
 INSERT INTO "public"."tbl_setor" VALUES ('55aac717-08f0-466f-822f-b973fc5e2cc3', 'teste2', 'setor criado para testar o formulario', NULL, '2026-07-10 17:50:04.256001', '2026-07-10 17:50:04.256001', '2026-07-10 18:54:01.272086', 't');
+INSERT INTO "public"."tbl_setor" VALUES ('af3e6d6d-8853-435c-bf02-48cf003fcecf', 'HUMANO', NULL, NULL, '2026-07-09 19:02:59.368964', '2026-07-09 19:02:59.37654', NULL, 'f');
+INSERT INTO "public"."tbl_setor" VALUES ('00000000-0000-0000-0000-000000000000', 'CADASTRO', NULL, NULL, '2026-07-09 19:02:59.368964', '2026-07-09 19:02:59.37654', NULL, 'f');
+INSERT INTO "public"."tbl_setor" VALUES ('11111111-1111-1111-1111-111111111111', 'CHATBOT', NULL, NULL, '2026-07-09 19:02:59.368964', '2026-07-09 19:02:59.37654', NULL, 'f');
+INSERT INTO "public"."tbl_setor" VALUES ('22222222-2222-2222-2222-222222222222', 'IA', NULL, NULL, '2026-07-09 19:02:59.368964', '2026-07-09 19:02:59.37654', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_setor_horario
@@ -661,6 +730,25 @@ INSERT INTO "public"."tbl_status" VALUES (2, 'ATIVO');
 INSERT INTO "public"."tbl_status" VALUES (3, 'DESCONECTADO');
 
 -- ----------------------------
+-- Table structure for tbl_usuario
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."tbl_usuario";
+CREATE TABLE "public"."tbl_usuario" (
+  "id_usuario" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
+  "no_usuario" varchar(150) COLLATE "pg_catalog"."default" NOT NULL,
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "gn_email" varchar(150) COLLATE "pg_catalog"."default",
+  "gn_senha" text COLLATE "pg_catalog"."default",
+  "is_lembrar" bool
+)
+;
+
+-- ----------------------------
+-- Records of tbl_usuario
+-- ----------------------------
+INSERT INTO "public"."tbl_usuario" VALUES ('e7f42cf3-ab23-492a-865f-4f4e6593918c', 'master', '2df30271-3463-43d5-a439-da436de5e046', 'caetanolaraleal@gmail.com', '$2b$10$KxKmnJECg0qZ0tNoyLy1ReIb5Hq8TeRMeqjllZvdeSEu5.eywgIQm', 't');
+
+-- ----------------------------
 -- Table structure for tbl_utilizador
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."tbl_utilizador";
@@ -669,7 +757,12 @@ CREATE TABLE "public"."tbl_utilizador" (
   "no_utilizador" varchar(100) COLLATE "pg_catalog"."default",
   "nu_telefone" varchar(20) COLLATE "pg_catalog"."default",
   "cd_whatsapp" varchar(50) COLLATE "pg_catalog"."default",
-  "cd_telegram" varchar(50) COLLATE "pg_catalog"."default"
+  "cd_telegram" varchar(50) COLLATE "pg_catalog"."default",
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false
 )
 ;
 
@@ -2068,14 +2161,25 @@ ALTER TABLE "public"."tbl_funil_ia" ADD CONSTRAINT "tbl_funil_ia_pkey" PRIMARY K
 ALTER TABLE "public"."tbl_funil_ia_modelo" ADD CONSTRAINT "tbl_funil_ia_modelo_pkey" PRIMARY KEY ("id_funil_ia_modelo");
 
 -- ----------------------------
+-- Indexes structure for table tbl_funil_utilizador
+-- ----------------------------
+CREATE UNIQUE INDEX "uq_tbl_funil_utilizador" ON "public"."tbl_funil_utilizador" USING btree (
+  "id_funil" COLLATE "pg_catalog"."default" "pg_catalog"."bpchar_ops" ASC NULLS LAST,
+  "id_utilizador" COLLATE "pg_catalog"."default" "pg_catalog"."bpchar_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
 -- Primary Key structure for table tbl_funil_utilizador
 -- ----------------------------
 ALTER TABLE "public"."tbl_funil_utilizador" ADD CONSTRAINT "tbl_funil_utilizador_pkey" PRIMARY KEY ("id_funil_utilizador");
 
 -- ----------------------------
--- Uniques structure for table tbl_funil_utilizador_campo
+-- Indexes structure for table tbl_funil_utilizador_campo
 -- ----------------------------
-ALTER TABLE "public"."tbl_funil_utilizador_campo" ADD CONSTRAINT "uk_funil_utilizador_campo" UNIQUE ("id_funil_utilizador", "id_campo");
+CREATE UNIQUE INDEX "uq_tbl_funil_utilizador_campo" ON "public"."tbl_funil_utilizador_campo" USING btree (
+  "id_funil_utilizador" COLLATE "pg_catalog"."default" "pg_catalog"."bpchar_ops" ASC NULLS LAST,
+  "id_campo" COLLATE "pg_catalog"."default" "pg_catalog"."bpchar_ops" ASC NULLS LAST
+);
 
 -- ----------------------------
 -- Primary Key structure for table tbl_funil_utilizador_campo
@@ -2130,6 +2234,11 @@ ALTER TABLE "public"."tbl_status" ADD CONSTRAINT "tbl_status_ds_status_key" UNIQ
 ALTER TABLE "public"."tbl_status" ADD CONSTRAINT "tbl_status_pkey" PRIMARY KEY ("cd_status");
 
 -- ----------------------------
+-- Primary Key structure for table tbl_usuario
+-- ----------------------------
+ALTER TABLE "public"."tbl_usuario" ADD CONSTRAINT "tbl_usuario_pkey" PRIMARY KEY ("id_usuario");
+
+-- ----------------------------
 -- Primary Key structure for table tbl_utilizador
 -- ----------------------------
 ALTER TABLE "public"."tbl_utilizador" ADD CONSTRAINT "tbl_utilizador_pkey" PRIMARY KEY ("id_utilizador");
@@ -2155,9 +2264,9 @@ ALTER TABLE "public"."tbl_chat" ADD CONSTRAINT "fk_chat_utilizador" FOREIGN KEY 
 -- ----------------------------
 -- Foreign Keys structure for table tbl_funil_cadastro
 -- ----------------------------
-ALTER TABLE "public"."tbl_funil_cadastro" ADD CONSTRAINT "fk_tbl_funil_cadastro_tbl_campo" FOREIGN KEY ("id_campo") REFERENCES "public"."tbl_campo" ("id_campo") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."tbl_funil_cadastro" ADD CONSTRAINT "fk_tbl_funil_cadastro_tbl_funil_1" FOREIGN KEY ("id_funil") REFERENCES "public"."tbl_funil" ("id_funil") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."tbl_funil_cadastro" ADD CONSTRAINT "fk_tbl_funil_cadastro_tbl_setor" FOREIGN KEY ("id_setor") REFERENCES "public"."tbl_setor" ("id_setor") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_funil_cadastro" ADD CONSTRAINT "fk_tbl_funil_cadastro_tbl_campo" FOREIGN KEY ("id_campo") REFERENCES "public"."tbl_campo" ("id_campo") ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE "public"."tbl_funil_cadastro" ADD CONSTRAINT "fk_tbl_funil_cadastro_tbl_funil" FOREIGN KEY ("id_funil") REFERENCES "public"."tbl_funil" ("id_funil") ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE "public"."tbl_funil_cadastro" ADD CONSTRAINT "fk_tbl_funil_cadastro_tbl_setor" FOREIGN KEY ("id_setor") REFERENCES "public"."tbl_setor" ("id_setor") ON DELETE NO ACTION ON UPDATE CASCADE;
 
 -- ----------------------------
 -- Foreign Keys structure for table tbl_funil_cadastro_botao
@@ -2167,9 +2276,9 @@ ALTER TABLE "public"."tbl_funil_cadastro_botao" ADD CONSTRAINT "fk_tbl_funil_cad
 -- ----------------------------
 -- Foreign Keys structure for table tbl_funil_chatbot
 -- ----------------------------
-ALTER TABLE "public"."tbl_funil_chatbot" ADD CONSTRAINT "fk_tbl_funil_chatbot_tbl_campo" FOREIGN KEY ("id_campo") REFERENCES "public"."tbl_campo" ("id_campo") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."tbl_funil_chatbot" ADD CONSTRAINT "fk_tbl_funil_chatbot_tbl_funil" FOREIGN KEY ("id_funil") REFERENCES "public"."tbl_funil" ("id_funil") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."tbl_funil_chatbot" ADD CONSTRAINT "fk_tbl_funil_chatbot_tbl_setor" FOREIGN KEY ("id_setor") REFERENCES "public"."tbl_setor" ("id_setor") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_funil_chatbot" ADD CONSTRAINT "fk_tbl_funil_chatbot_tbl_campo" FOREIGN KEY ("id_campo") REFERENCES "public"."tbl_campo" ("id_campo") ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE "public"."tbl_funil_chatbot" ADD CONSTRAINT "fk_tbl_funil_chatbot_tbl_funil" FOREIGN KEY ("id_funil") REFERENCES "public"."tbl_funil" ("id_funil") ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE "public"."tbl_funil_chatbot" ADD CONSTRAINT "fk_tbl_funil_chatbot_tbl_setor" FOREIGN KEY ("id_setor") REFERENCES "public"."tbl_setor" ("id_setor") ON DELETE NO ACTION ON UPDATE CASCADE;
 
 -- ----------------------------
 -- Foreign Keys structure for table tbl_funil_chatbot_botao
@@ -2186,7 +2295,7 @@ ALTER TABLE "public"."tbl_funil_expiracao" ADD CONSTRAINT "fk_tbl_funil_expiraca
 -- ----------------------------
 ALTER TABLE "public"."tbl_funil_ia" ADD CONSTRAINT "fk_tbl_funil_ia_tbl_funil_1" FOREIGN KEY ("id_funil") REFERENCES "public"."tbl_funil" ("id_funil") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "public"."tbl_funil_ia" ADD CONSTRAINT "fk_tbl_funil_ia_tbl_funil_ia_modelo_2" FOREIGN KEY ("id_funil_ia_modelo") REFERENCES "public"."tbl_funil_ia_modelo" ("id_funil_ia_modelo") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "public"."tbl_funil_ia" ADD CONSTRAINT "fk_tbl_funil_ia_tbl_setor_3" FOREIGN KEY ("id_setor") REFERENCES "public"."tbl_setor" ("id_setor") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_funil_ia" ADD CONSTRAINT "fk_tbl_funil_ia_tbl_setor" FOREIGN KEY ("id_setor") REFERENCES "public"."tbl_setor" ("id_setor") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ----------------------------
 -- Foreign Keys structure for table tbl_funil_utilizador
@@ -2212,8 +2321,9 @@ ALTER TABLE "public"."tbl_instancia" ADD CONSTRAINT "fk_instancia_status" FOREIG
 -- ----------------------------
 -- Foreign Keys structure for table tbl_mensagem
 -- ----------------------------
-ALTER TABLE "public"."tbl_mensagem" ADD CONSTRAINT "fk_mensagem_chat" FOREIGN KEY ("id_chat") REFERENCES "public"."tbl_chat" ("id_chat") ON DELETE CASCADE ON UPDATE NO ACTION;
-ALTER TABLE "public"."tbl_mensagem" ADD CONSTRAINT "fk_mensagem_provider" FOREIGN KEY ("cd_provider") REFERENCES "public"."tbl_provider" ("cd_provider") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_mensagem" ADD CONSTRAINT "fk_mensagem_chat" FOREIGN KEY ("id_chat") REFERENCES "public"."tbl_chat" ("id_chat") ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE "public"."tbl_mensagem" ADD CONSTRAINT "fk_mensagem_provider" FOREIGN KEY ("cd_provider") REFERENCES "public"."tbl_provider" ("cd_provider") ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE "public"."tbl_mensagem" ADD CONSTRAINT "fk_tbl_mensagem_tbl_atendente" FOREIGN KEY ("id_atendente") REFERENCES "public"."tbl_atendente" ("id_atendente") ON DELETE NO ACTION ON UPDATE CASCADE;
 
 -- ----------------------------
 -- Foreign Keys structure for table tbl_setor_horario
