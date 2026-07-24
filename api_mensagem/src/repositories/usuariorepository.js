@@ -1,3 +1,4 @@
+//src/repositories/usuariorepository.js
 const db = require("../config/db")
 
 /**
@@ -24,7 +25,7 @@ async function findBySessao(nu_sessao) {
   const query = `
     SELECT id_usuario, no_usuario, gn_email, is_lembrar
     FROM tbl_usuario
-    WHERE nu_sessao = $1
+    WHERE TRIM(nu_sessao) = $1
     LIMIT 1
   `;
 
@@ -67,9 +68,30 @@ async function clearSessao(id_usuario) {
   await db.query(query, [id_usuario]);
 }
 
+/**
+ * Cria um novo usuário no banco gerando o ID via aplicação.
+ */
+async function createUser({ id_usuario, no_usuario, gn_email, gn_senha }) {
+  const query = `
+    INSERT INTO tbl_usuario (id_usuario, no_usuario, gn_email, gn_senha, is_lembrar)
+    VALUES ($1, $2, $3, $4, false)
+    RETURNING id_usuario, no_usuario, gn_email
+  `;
+
+  const { rows } = await db.query(query, [
+    id_usuario,
+    no_usuario,
+    gn_email,
+    gn_senha,
+  ]);
+
+  return rows[0];
+}
+
 module.exports = {
   findByLoginOrEmail,
   findBySessao,
   updateSessao,
   clearSessao,
+  createUser,
 };

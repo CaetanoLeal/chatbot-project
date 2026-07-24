@@ -13,4 +13,7 @@ router.get("/validate", usuarioController.validate);
 // Logout
 router.post("/logout", usuarioController.logout);
 
+// Cadastro
+router.post("/cadastrar", usuarioController.cadastrar);
+
 module.exports = router;

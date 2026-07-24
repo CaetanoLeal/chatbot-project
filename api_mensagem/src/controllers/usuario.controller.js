@@ -3,7 +3,8 @@ const authService = require("../services/usuario.service");
 
 function extrairToken(req) {
   const authHeader = req.headers.authorization || "";
-  return authHeader.replace("Bearer ", "");
+  // regex ignorando case (/i) e o .trim() para matar espaços em branco e quebras de linha invisíveis
+  return authHeader.replace(/^Bearer\s+/i, "").trim(); 
 }
 
 async function login(req, res) {
@@ -44,4 +45,14 @@ async function logout(req, res) {
   }
 }
 
-module.exports = { login, validate, logout };
+async function cadastrar(req, res) {
+  try {
+    const { no_usuario, gn_email, senha } = req.body;
+    const usuario = await authService.cadastrar({ no_usuario, gn_email, senha });
+    return res.status(201).json({ message: "Usuário cadastrado com sucesso!", usuario });
+  } catch (err) {
+    return res.status(err.status || 500).json({ message: err.message || "Erro interno." });
+  }
+}
+
+module.exports = { login, validate, logout, cadastrar };

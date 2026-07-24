@@ -1,3 +1,4 @@
+//src/services/usuario.service.js
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const usuarioRepository = require("../repositories/usuariorepository");
@@ -58,4 +59,31 @@ async function logout(id_usuario) {
   await usuarioRepository.clearSessao(id_usuario);
 }
 
-module.exports = { login, validate, logout };
+async function cadastrar({ no_usuario, gn_email, senha }) {
+  if (!no_usuario || !gn_email || !senha) {
+    throw erroComStatus("Preencha todos os campos obrigatórios.", 400);
+  }
+
+  // Verifica se usuário ou e-mail já existem no banco
+  const usuarioExistente = await usuarioRepository.findByLoginOrEmail(gn_email) ||
+                           await usuarioRepository.findByLoginOrEmail(no_usuario);
+
+  if (usuarioExistente) {
+    throw erroComStatus("Usuário ou e-mail já cadastrado.", 409);
+  }
+
+  // Gera um UUID para a coluna char id_usuario e criptografa a senha
+  const id_usuario = crypto.randomUUID();
+  const gn_senha = await bcrypt.hash(senha, 10);
+
+  const novoUsuario = await usuarioRepository.createUser({
+    id_usuario,
+    no_usuario,
+    gn_email,
+    gn_senha,
+  });
+
+  return novoUsuario;
+}
+
+module.exports = { login, validate, logout, cadastrar };
