@@ -1,3 +1,4 @@
+//app/(dashboard)/dashboard/lib/format.ts
 export function formatNumber(value: number): string {
   return new Intl.NumberFormat("pt-BR").format(value ?? 0)
 }

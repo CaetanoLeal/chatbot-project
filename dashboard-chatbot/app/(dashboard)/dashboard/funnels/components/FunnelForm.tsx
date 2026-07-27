@@ -112,8 +112,14 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
         if (!ativo) return;
 
         const { nodes: n, edges: e } = funilParaFluxo(funil);
+        const routedEdges = getAutoRoutedEdges(n, e);
+        
         setNodes(n);
-        setEdges(getAutoRoutedEdges(n, e));
+        setEdges(routedEdges);
+        
+        // Inicializa o histórico com o estado de carregamento
+        setHistory([{ nodes: n, edges: routedEdges }]);
+        setHistoryStep(0);
 
         setCampos(todosCampos);
         setSetores(todosSetores);
@@ -156,6 +162,35 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     [visibleNodes, selectedNodeId]
   );
 
+  /* ===================== HISTÓRICO (UNDO/REDO) ===================== */
+  // Agora salva os novos estados passados (e não os antigos)
+  const saveSnapshot = useCallback((newNodes: Node<FlowNodeData>[], newEdges: Edge[]) => {
+    setHistory((prev) => {
+      const newHistory = prev.slice(0, historyStep + 1);
+      newHistory.push({ nodes: newNodes, edges: newEdges });
+      return newHistory;
+    });
+    setHistoryStep((prev) => prev + 1);
+  }, [historyStep]);
+
+  const handleUndo = useCallback(() => {
+    if (historyStep > 0) {
+      const prevStep = historyStep - 1;
+      setHistoryStep(prevStep);
+      setNodes(history[prevStep].nodes);
+      setEdges(history[prevStep].edges);
+    }
+  }, [history, historyStep, setNodes, setEdges]);
+
+  const handleRedo = useCallback(() => {
+    if (historyStep < history.length - 1) {
+      const nextStep = historyStep + 1;
+      setHistoryStep(nextStep);
+      setNodes(history[nextStep].nodes);
+      setEdges(history[nextStep].edges);
+    }
+  }, [history, historyStep, setNodes, setEdges]);
+
   /* ===================== EDIÇÃO DO GRAFO ===================== */
   const handleNodesChange = useCallback(
     (changes: NodeChange[]) => {
@@ -168,15 +203,24 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     [setNodes, setEdges]
   );
 
+  // Hook nativo para registrar histórico ao soltar um Node após arrastar
+  const onNodeDragStop = useCallback(() => {
+    saveSnapshot(nodes, edges);
+  }, [nodes, edges, saveSnapshot]);
+
   /* ===================== CONEXÕES ===================== */
   const onConnect = useCallback(
     (params: Connection | Edge) => {
+      let nextEdges: Edge[] = [];
       setEdges((eds) => {
         const novo = addEdge({ ...params, ...edgeOptions, data: { isManual: true } }, eds);
-        return getAutoRoutedEdges(nodes, novo);
+        nextEdges = getAutoRoutedEdges(nodes, novo);
+        return nextEdges;
       });
+      // Salva snapshot após a atualização de state (setTimeout curto garante novo valor)
+      setTimeout(() => saveSnapshot(nodes, nextEdges), 10);
     },
-    [nodes, setEdges]
+    [nodes, setEdges, saveSnapshot]
   );
 
   const onEdgeUpdate = useCallback(
@@ -185,37 +229,28 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
         // @ts-ignore
         updateEdge(oldEdge, { ...newConnection, data: { ...oldEdge.data, isManual: true } }, els)
       );
+      setTimeout(() => saveSnapshot(nodes, edges), 10);
     },
-    [setEdges]
+    [setEdges, nodes, edges, saveSnapshot]
   );
 
-  /* ===================== HISTÓRICO (UNDO/REDO) ===================== */
-  const takeSnapshot = useCallback(() => {
-    setHistory((prev) => {
-      const newHistory = prev.slice(0, historyStep + 1);
-      newHistory.push({ nodes, edges });
-      return newHistory;
-    });
-    setHistoryStep((prev) => prev + 1);
-  }, [nodes, edges, historyStep]);
-
-  const handleUndo = useCallback(() => {
-    if (historyStep > 0) {
-      setHistoryStep((prev) => prev - 1);
-      setNodes(history[historyStep - 1].nodes);
-      setEdges(history[historyStep - 1].edges);
+  /* ===================== SALVAR ===================== */
+  const salvar = useCallback(async () => {
+    try {
+      setSaving(true);
+      setError(null);
+      const payload = fluxoParaFunil(nodes, edges);
+      await api.salvarEstrutura(idFunil, payload);
+      alert("✅ Fluxo salvo com sucesso!");
+    } catch (err: any) {
+      setError(err.message ?? "Erro ao salvar");
+      alert(`❌ ${err.message ?? "Erro ao salvar"}`);
+    } finally {
+      setSaving(false);
     }
-  }, [history, historyStep, setNodes, setEdges]);
+  }, [nodes, edges, idFunil]);
 
-  const handleRedo = useCallback(() => {
-    if (historyStep < history.length - 1) {
-      setHistoryStep((prev) => prev + 1);
-      setNodes(history[historyStep + 1].nodes);
-      setEdges(history[historyStep + 1].edges);
-    }
-  }, [history, historyStep, setNodes, setEdges]);
-
-  /* ===================== CLIPBOARD (COPY/CUT/PASTE/DELETE) ===================== */
+  /* ===================== CLIPBOARD & MANIPULAÇÕES (COPY/CUT/PASTE/DELETE) ===================== */
   const handleCopy = useCallback(() => {
     const selectedNodes = nodes.filter((n) => n.selected);
     if (selectedNodes.length > 0) {
@@ -227,18 +262,21 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
   const handleCut = useCallback(() => {
     const selectedNodes = nodes.filter((n) => n.selected);
     if (selectedNodes.length > 0) {
-      takeSnapshot();
       setClipboard(selectedNodes);
       const selectedIds = selectedNodes.map(n => n.id);
-      setNodes((nds) => nds.filter((n) => !selectedIds.includes(n.id)));
-      setEdges((eds) => eds.filter((e) => !selectedIds.includes(e.source) && !selectedIds.includes(e.target)));
+      
+      const nextNodes = nodes.filter((n) => !selectedIds.includes(n.id));
+      const nextEdges = edges.filter((e) => !selectedIds.includes(e.source) && !selectedIds.includes(e.target));
+      
+      setNodes(nextNodes);
+      setEdges(nextEdges);
+      saveSnapshot(nextNodes, nextEdges);
       setMenu(null);
     }
-  }, [nodes, takeSnapshot, setNodes, setEdges]);
+  }, [nodes, edges, saveSnapshot, setNodes, setEdges]);
 
   const handlePaste = useCallback((menuX?: number, menuY?: number) => {
     if (clipboard.length === 0) return;
-    takeSnapshot();
 
     let currentCdMensagem = proximoCodigo(nodes, activeFlow);
     const prefixo = activeFlow === "cadastro" ? "cad" : "bot";
@@ -267,9 +305,31 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
       };
     });
 
-    setNodes((nds) => nds.map(n => ({ ...n, selected: false })).concat(newNodes));
+    const nextNodes = nodes.map(n => ({ ...n, selected: false })).concat(newNodes);
+    setNodes(nextNodes);
+    saveSnapshot(nextNodes, edges);
     setMenu(null);
-  }, [clipboard, nodes, activeFlow, takeSnapshot, setNodes, rfInstance]);
+  }, [clipboard, nodes, edges, activeFlow, saveSnapshot, setNodes, rfInstance]);
+
+  const handleDelete = useCallback(() => {
+    const selectedNodes = nodes.filter((n) => n.selected);
+    if (selectedNodes.length === 0) return;
+
+    const hasStartNode = selectedNodes.some(n => n.data.cdMensagem === 0);
+    if (hasStartNode) {
+      alert("⚠️ A mensagem inicial (Início) é obrigatória para o funcionamento do funil e não pode ser excluída.");
+      return;
+    }
+
+    const selectedIds = selectedNodes.map(n => n.id);
+    const nextNodes = nodes.filter((n) => !selectedIds.includes(n.id));
+    const nextEdges = edges.filter((e) => !selectedIds.includes(e.source) && !selectedIds.includes(e.target));
+
+    setNodes(nextNodes);
+    setEdges(nextEdges);
+    saveSnapshot(nextNodes, nextEdges);
+    setMenu(null);
+  }, [nodes, edges, saveSnapshot, setNodes, setEdges]);
 
   const handleFitView = useCallback(() => {
     if (rfInstance) {
@@ -294,24 +354,28 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target as HTMLElement).tagName)) return;
 
+      if (e.key === 'Delete' || e.key === 'Backspace') {
+        e.preventDefault();
+        handleDelete();
+        return;
+      }
+
       if (e.ctrlKey || e.metaKey) {
         switch (e.key.toLowerCase()) {
-          case 'c': handleCopy(); break;
-          case 'v': handlePaste(); break;
-          case 'x': handleCut(); break;
-          case 'z': handleUndo(); break;
-          case 'y': handleRedo(); break;
-          case 'p':
-            e.preventDefault();
-            handleFitView();
-            break;
+          case 'c': e.preventDefault(); handleCopy(); break;
+          case 'v': e.preventDefault(); handlePaste(); break;
+          case 'x': e.preventDefault(); handleCut(); break;
+          case 'z': e.preventDefault(); handleUndo(); break;
+          case 'y': e.preventDefault(); handleRedo(); break;
+          case 's': e.preventDefault(); salvar(); break;
+          case 'p': e.preventDefault(); handleFitView(); break;
         }
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [handleCopy, handlePaste, handleCut, handleUndo, handleRedo, handleFitView]);
+  }, [handleCopy, handlePaste, handleCut, handleUndo, handleRedo, handleFitView, handleDelete, salvar]);
 
   /* ===================== MENUS DE CONTEXTO ===================== */
   const onNodeContextMenu = useCallback((event: React.MouseEvent, node: Node) => {
@@ -325,19 +389,17 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     setMenu({ visible: true, x: event.clientX, y: event.clientY, type: "pane" });
   }, []);
 
-  // Fecha o menu ao arrastar a tela ou dar zoom (movimentação do grafo)
   const handleMoveStart = useCallback(() => {
     if (menu) setMenu(null);
   }, [menu]);
 
-  // Fecha o menu ao clicar em qualquer outro lugar fora dele
   useEffect(() => {
     const closeMenu = () => setMenu(null);
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
   }, []);
 
-  /* ===================== MANIPULAÇÃO DE NÓS ===================== */
+  /* ===================== MANIPULAÇÃO DE NÓS (INDIVIDUAL) ===================== */
   function updateNodeData(
     nodeId: string,
     patch: Partial<Node<FlowNodeData>> & { data?: Partial<FlowNodeData> }
@@ -347,6 +409,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
         n.id === nodeId ? { ...n, ...patch, data: { ...n.data, ...(patch.data ?? {}) } } : n
       )
     );
+    // Nota: Como texto é atualizado muitas vezes por segundo, não chamamos saveSnapshot aqui.
   }
 
   function removeNode(nodeId: string) {
@@ -357,8 +420,13 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
       return;
     }
 
-    setNodes((nds) => nds.filter((n) => n.id !== nodeId));
-    setEdges((eds) => eds.filter((e) => e.source !== nodeId && e.target !== nodeId));
+    const nextNodes = nodes.filter((n) => n.id !== nodeId);
+    const nextEdges = edges.filter((e) => e.source !== nodeId && e.target !== nodeId);
+
+    setNodes(nextNodes);
+    setEdges(nextEdges);
+    saveSnapshot(nextNodes, nextEdges);
+
     if (selectedNodeId === nodeId) {
       setSelectedNodeId(null);
     }
@@ -393,25 +461,12 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
       },
     };
 
-    setNodes((nds) => [...nds, novoNode]);
+    const nextNodes = [...nodes, novoNode];
+    setNodes(nextNodes);
+    saveSnapshot(nextNodes, edges);
+
     setSelectedNodeId(novoNode.id);
     setMenu(null);
-  }
-
-  /* ===================== SALVAR ===================== */
-  async function salvar() {
-    try {
-      setSaving(true);
-      setError(null);
-      const payload = fluxoParaFunil(nodes, edges);
-      await api.salvarEstrutura(idFunil, payload);
-      alert("✅ Fluxo salvo com sucesso!");
-    } catch (err: any) {
-      setError(err.message ?? "Erro ao salvar");
-      alert(`❌ ${err.message ?? "Erro ao salvar"}`);
-    } finally {
-      setSaving(false);
-    }
   }
 
   if (loading) {
@@ -464,9 +519,9 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
           <button
             onClick={salvar}
             disabled={saving}
-            className="text-xs font-medium bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded transition-colors disabled:opacity-50 ml-1 shadow-sm flex items-center gap-1.5"
+            className="text-xs font-medium bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded transition-colors disabled:opacity-50 ml-1 shadow-sm flex items-center gap-1.5"
           >
-            <Save className="w-3.5 h-3.5" /> {saving ? "Salvando..." : "Salvar fluxo"}
+            <Save className="w-3.5 h-3.5" /> {saving ? "Salvando..." : "Salvar"}
           </button>
         </div>
 
@@ -507,21 +562,20 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
           onInit={setRfInstance}
           onNodesChange={handleNodesChange}
           onEdgesChange={onEdgesChange}
+          onNodeDragStop={onNodeDragStop}
           onMoveStart={handleMoveStart}
-          onConnect={(params) => {
-            takeSnapshot();
-            onConnect(params);
-          }}
+          onConnect={onConnect}
           onEdgeUpdate={onEdgeUpdate}
           onNodeClick={(_, node) => setSelectedNodeId(node.id)}
           onPaneClick={() => setSelectedNodeId(null)}
           onNodeContextMenu={onNodeContextMenu}
           onPaneContextMenu={onPaneContextMenu}
+          deleteKeyCode={null} /* Previne que o ReactFlow destrua nodes sem salvar no nosso snapshot */
           fitView
           fitViewOptions={{ padding: 0.2 }}
           minZoom={0.15}
         >
-          {/* ===================== MENU DE CONTEXTO COM ÍCONES ===================== */}
+          {/* ===================== MENU DE CONTEXTO ===================== */}
           {menu && menu.visible && (
             <div
               className="fixed z-50 bg-white border border-zinc-200 shadow-xl rounded-md py-1.5 min-w-[200px] text-xs text-zinc-700"
@@ -558,7 +612,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
                     <span className="text-zinc-400 text-[10px]">Ctrl+P</span>
                   </button>
                   <div className="border-t border-zinc-100 my-1"></div>
-                  <button className="w-full flex items-center gap-2.5 px-3 py-2 hover:bg-zinc-100 text-left text-emerald-600 font-medium" onClick={salvar}>
+                  <button className="w-full flex items-center gap-2.5 px-3 py-2 hover:bg-zinc-100 text-left text-sky-600 font-medium" onClick={salvar}>
                     <Save className="w-4 h-4" /> Salvar Fluxo
                   </button>
                 </>
@@ -584,26 +638,26 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
               )}
             </div>
           )}
-          <>
-            <>
-              <Background
-                id="major"
-                variant={BackgroundVariant.Dots}
-                gap={96}
-                size={3}
-                color="#cbd5e1"
-              />
+          
+            {/* ===================== BACKGROUND PRO EDITOR ===================== */}
+            <Background
+              id="minor"
+              variant={BackgroundVariant.Lines}
+              gap={24}
+              color="#e9f0f7"
+              lineWidth={1}
+            />
 
-              <Background
-                id="minor"
-                variant={BackgroundVariant.Dots}
-                gap={24}
-                size={1.2}
-                color="#e5e7eb"
-              />
-            </>
-          </>
-          <Controls className="bg-white border-zinc-200 shadow-sm rounded-md" />
+            <Background
+              id="major"
+              variant={BackgroundVariant.Cross}
+              gap={120}
+              size={12}
+              color="#006aff6e"
+              lineWidth={1.5}
+              style={{ opacity: 0.5 }}
+            />
+          <Controls className="bg-white border border-zinc-200 shadow-sm rounded-md overflow-hidden flex flex-col" showInteractive={false} />
         </ReactFlow>
       </div>
 

@@ -1,3 +1,4 @@
+//app/(dashboard)/dashboard/components/kpicard.tsx
 import { LucideIcon, ArrowUpRight, ArrowDownRight, Minus } from "lucide-react"
 
 interface KpiCardProps {

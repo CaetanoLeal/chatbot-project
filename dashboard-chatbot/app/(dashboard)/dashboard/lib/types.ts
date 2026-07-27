@@ -1,3 +1,4 @@
+//app/(dashboard)/dashboard/lib/types.ts
 export type Period = "today" | "month" | "year"
 
 export interface KpiValue {

@@ -1,3 +1,4 @@
+//app/(dashboards)/layout
 import {
   LayoutDashboard,
   Boxes,
@@ -115,7 +116,7 @@ export default function DashboardLayout({
       </aside>
 
       {/* CONTENT */}
-      <main className="flex-1 bg-zinc-100 overflow-hidden">
+      <main className="flex-1 bg-zinc-100 overflow-y-auto">
         {children}
       </main>
     </div>

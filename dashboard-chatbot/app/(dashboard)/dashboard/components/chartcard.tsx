@@ -1,3 +1,4 @@
+//app/(dashboard)/dashboard/components/chartcard.tsx
 import { ReactNode } from "react"
 import { Inbox } from "lucide-react"
 

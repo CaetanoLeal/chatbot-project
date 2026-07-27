@@ -1,3 +1,4 @@
+//app/(dashboard)/dashboard/components/rankingcards.tsx
 import { TopFunilItem, TopInstanciaItem } from "../lib/types"
 import { formatNumber, formatPercent } from "../lib/format"
 
