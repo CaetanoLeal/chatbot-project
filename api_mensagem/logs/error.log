@@ -1566,3 +1566,17 @@
 [2026-07-26 00:54:29] [ERROR]: ❌ Erro de conexão com PostgreSQL: Connection terminated due to connection timeout
 [2026-07-27 02:47:06] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
 [2026-07-27 02:47:06] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-27 16:34:10] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-27 16:34:10] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-27 16:37:38] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-27 16:37:38] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-27 17:06:08] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-27 17:06:08] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-27 17:09:35] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-27 17:09:35] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-27 21:35:08] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-27 21:35:08] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-27 21:41:31] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-27 21:41:31] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-27 22:04:29] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-27 22:04:29] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up

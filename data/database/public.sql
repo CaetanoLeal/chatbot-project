@@ -134,6 +134,7 @@ CREATE TABLE "public"."tbl_atendente" (
   "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "no_atendente" varchar(100) COLLATE "pg_catalog"."default",
   "is_ia" bool NOT NULL DEFAULT false,
+  "im_image" text, COLLATE "pg_catalog"."default",
   "nu_sessao" char(36) COLLATE "pg_catalog"."default",
   "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -86,7 +86,7 @@ export default function DashboardLayout({
             </Link>
 
             <Link
-              href="/dashboard/coming"
+              href="/dashboard/attendants"
               className="flex items-center gap-2 px-2 py-2 rounded hover:bg-zinc-800"
             >
               <Headset size={16} />
