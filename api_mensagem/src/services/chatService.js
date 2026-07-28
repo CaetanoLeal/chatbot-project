@@ -4,7 +4,7 @@
 const db = require("../config/db")
 const { v4: uuidv4 } = require("uuid")
 
-const chatRepository = require("../repository/ChatRepository")
+const chatRepository = require("../repositories/ChatRepository")
 const atendenteRepository = require("../repositories/atendente.repository")
 const funilHelper = require("../helpers/funil.helper")
 const { sendWhatsAppMessage, sendTelegramMessage } = require("./sendMessage")

@@ -7,10 +7,11 @@ const chatRoutes = require("./chat.routes")
 const dashboardRoutes = require("./dashboard.routes")
 const funilia = require("./funilIa.routes")
 const funilIAModelo = require("./funilIaModelo.routes")
-const setorRoutes = require("./setor.routes");
-const diaSemana = require("./diaSemana.routes");
-const usuarioRoutes = require("./usuario.routes");
+const setorRoutes = require("./setor.routes")
+const diaSemana = require("./diaSemana.routes")
+const usuarioRoutes = require("./usuario.routes")
 const atendenteRoutes = require("./atendente.routes")
+const painelIa = require("./painelIA.routes")
 
 const router = Router()
 
@@ -25,4 +26,5 @@ router.use("/setores", setorRoutes);
 router.use("/dias-semana", diaSemana);
 router.use("/usuarios", usuarioRoutes);
 router.use("/atendentes", atendenteRoutes);
+router.use("/painelia", painelIa)
 module.exports = router

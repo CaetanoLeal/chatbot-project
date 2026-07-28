@@ -54,11 +54,11 @@ export default function DashboardLayout({
 
             {/* FUNIL DE IA */}
             <Link
-              href="/dashboard/iaFunnels"
+              href="/dashboard/aipannel"
               className="flex items-center gap-2 px-2 py-2 rounded hover:bg-zinc-800"
             >
               <Bot size={16} />
-              Funil de IA
+              IA
             </Link>
 
             <Link

@@ -25,17 +25,27 @@ class AtendenteRepository {
     try {
       await client.query("BEGIN");
 
+      // Gera o UUID do atendente
+      const { rows: uuidAtendente } = await client.query(
+        `SELECT uuid_generate_v4() AS id`
+      );
+
+      const idAtendente = uuidAtendente[0].id;
+
+      // Insere o atendente
       const { rows } = await client.query(
         `
         INSERT INTO tbl_atendente (
+          id_atendente,
           no_atendente,
           im_image,
           is_ia
         )
-        VALUES ($1, $2, $3)
+        VALUES ($1, $2, $3, $4)
         RETURNING *;
         `,
         [
+          idAtendente,
           dados.no_atendente,
           dados.im_image,
           dados.is_ia,
@@ -44,17 +54,28 @@ class AtendenteRepository {
 
       const atendente = rows[0];
 
+      // Relaciona os setores
       if (Array.isArray(dados.id_setor) && dados.id_setor.length > 0) {
         for (const idSetor of dados.id_setor) {
+
+          const { rows: uuidRelacao } = await client.query(
+            `SELECT uuid_generate_v4() AS id`
+          );
+
           await client.query(
             `
             INSERT INTO tbl_atendente_setor (
+              id_atendente_setor,
               id_atendente,
               id_setor
             )
-            VALUES ($1, $2);
+            VALUES ($1, $2, $3);
             `,
-            [atendente.id_atendente, idSetor]
+            [
+              uuidRelacao[0].id,
+              idAtendente,
+              idSetor,
+            ]
           );
         }
       }

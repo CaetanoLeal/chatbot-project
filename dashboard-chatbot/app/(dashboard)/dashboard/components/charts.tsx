@@ -1,4 +1,4 @@
-//app/(dashboard)/dashboard/components/charts.tsx
+// app/(dashboard)/dashboard/components/charts.tsx
 "use client"
 
 import { AreaChart, Area } from "@/components/charts/area-chart"
@@ -33,6 +33,12 @@ import {
   STATUS_COLORS,
 } from "../lib/types"
 import { formatNumber } from "../lib/format"
+import { 
+  DetalheAgenteIA, 
+  EvolucaoTokensItem, 
+  CustoModeloItem, 
+  EvolucaoCustoItem 
+} from "../aipannel/lib/types" 
 
 // ---------------------------------------------------------------------------
 // Mensagens recebidas x enviadas ao longo do tempo
@@ -265,5 +271,287 @@ export function RegistrationFunnelChart({ data }: { data: FunilCadastroEtapa[] }
       grid={{ bands: true, lines: true }}
       formatValue={(v: number) => formatNumber(v)}
     />
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Distribuição de Tokens 
+// ---------------------------------------------------------------------------
+
+export function AIConsumptionBarChart({ data }: { data: DetalheAgenteIA[] }) {
+  const chartData = data.map((d) => ({
+    agente: d.no_agente || "Desconhecido",
+    tokens: Number(d.total_tokens) || 0,
+    modelo: d.ds_modelo,
+  }))
+
+  return (
+    <BarChart 
+      data={chartData} 
+      xDataKey="agente" 
+      aspectRatio="3 / 1" 
+      className="w-full"
+    >
+      <Grid 
+        horizontal 
+        highlightRowValues={[0]} 
+        numTicksRows={4} 
+        fadeHorizontal 
+      />
+      <Bar 
+        dataKey="tokens" 
+        fill="#18181b" 
+        lineCap="round" 
+        minBarHeight={4} 
+      />
+      <BarXAxis maxLabels={10} />
+      <ChartTooltip
+        rows={(point: Record<string, unknown>) => [
+          { 
+            color: "#18181b", 
+            label: "Tokens Consumidos", 
+            value: formatNumber((point.tokens as number) ?? 0) 
+          },
+          { 
+            color: "#a1a1aa", 
+            label: "Modelo Utilizado", 
+            value: (point.modelo as string) ?? "N/A" 
+          },
+        ]}
+      />
+    </BarChart>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Evolução de Tokens (Área)
+// ---------------------------------------------------------------------------
+
+export function AITokensAreaChart({ data }: { data: EvolucaoTokensItem[] }) {
+  const chartData = data.map((d) => ({
+    date: new Date(d.data),
+    prompt: d.prompt ?? 0,
+    completion: d.completion ?? 0,
+  }))
+
+  return (
+    <AreaChart data={chartData} className="w-full" style={{ height: 260 }}>
+      <Grid horizontal highlightRowValues={[0]} numTicksRows={4} fadeHorizontal />
+      <Area
+        dataKey="prompt"
+        fill="#a1a1aa" 
+        fillOpacity={0.15}
+        strokeWidth={2}
+        gradientSpan={0.9}
+        fadeEdges="left"
+      />
+      <Area
+        dataKey="completion"
+        fill="#18181b" 
+        fillOpacity={0.2}
+        strokeWidth={2}
+        gradientSpan={0.9}
+        fadeEdges="left"
+      />
+      <XAxis />
+      <ChartTooltip
+        rows={(point: Record<string, unknown>) => [
+          { color: "#a1a1aa", label: "Tokens de Prompt", value: formatNumber((point.prompt as number) ?? 0) },
+          { color: "#18181b", label: "Tokens de Resposta", value: formatNumber((point.completion as number) ?? 0) },
+        ]}
+      />
+    </AreaChart>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Gráfico Combinado: Tokens e Custos (Eixos Y Independentes)
+// ---------------------------------------------------------------------------
+
+export function AICostVsTokensAreaChart({ data }: { data: any[] }) {
+  const chartData = data.map((d) => ({
+    date: new Date(d.data),
+    tokensTotais: d.tokensTotais ?? 0,
+    custo: d.custo ?? 0,
+  }))
+
+  return (
+    <AreaChart data={chartData} className="w-full" style={{ height: 320 }}>
+      <Grid horizontal highlightRowValues={[0]} numTicksRows={5} fadeHorizontal />
+      
+      {/* Linha de Tráfego de Tokens */}
+      <Area
+        dataKey="tokensTotais"
+        yAxisId="left"
+        fill="#a1a1aa"
+        fillOpacity={0.1}
+        gradientToOpacity={0}
+        stroke="#a1a1aa"
+        strokeWidth={2}
+        fadeEdges="left"
+      />
+      
+      {/* Linha de Custo Monetário */}
+      <Area
+        dataKey="custo"
+        yAxisId="right"
+        fill="#ff6e4a" 
+        fillOpacity={0.25}
+        gradientSpan={0.8}
+        gradientToOpacity={0}
+        stroke="#ff6e4a"
+        strokeWidth={2}
+        fadeEdges="left"
+      />
+      
+      <XAxis />
+      <ChartTooltip
+        rows={(point: Record<string, unknown>) => [
+          { 
+            color: "#ff6e4a", 
+            label: "Consumo Monetário", 
+            value: `$ ${((point.custo as number) ?? 0).toFixed(4)}` 
+          },
+          { 
+            color: "#a1a1aa", 
+            label: "Tokens Totais Trafegados", 
+            value: formatNumber((point.tokensTotais as number) ?? 0) 
+          },
+        ]}
+      />
+    </AreaChart>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Gráficos Exclusivos Financeiros
+// ---------------------------------------------------------------------------
+
+export function AICostBarChart({ data }: { data: EvolucaoCustoItem[] }) {
+  const chartData = data.map((d) => ({
+    data: d.data, 
+    custo: d.custo ?? 0,
+  }))
+
+  return (
+    <BarChart data={chartData} xDataKey="data" aspectRatio="4 / 3" className="w-full h-full">
+      <Grid horizontal highlightRowValues={[0]} numTicksRows={4} fadeHorizontal />
+      <Bar dataKey="custo" fill="#ff6e4a" lineCap="round" minBarHeight={4} />
+      <BarXAxis maxLabels={7} />
+      <ChartTooltip
+        rows={(point: Record<string, unknown>) => [
+          { 
+            color: "#ff6e4a", 
+            label: "Custo Estimado", 
+            value: `$ ${((point.custo as number) ?? 0).toFixed(4)}` 
+          },
+        ]}
+      />
+    </BarChart>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Novo Gráfico: Custo por Agente (Corrigido para usar total_tokens)
+// ---------------------------------------------------------------------------
+export function AIAgentCostBarChart({ data }: { data: DetalheAgenteIA[] }) {
+  const chartData = data.map((d) => {
+    const tokens = Number(d.total_tokens) || 0
+    // Calcula o custo com base nos tokens (ajuste a taxa por token se necessário)
+    const custoCalculado = tokens * 0.000002
+
+    return {
+      agente: d.no_agente || "Desconhecido",
+      custo: custoCalculado,
+      modelo: d.ds_modelo,
+    }
+  }).sort((a, b) => b.custo - a.custo) // Ordena do mais caro para o mais barato
+
+  return (
+    <BarChart data={chartData} xDataKey="agente" aspectRatio="4 / 3" className="w-full h-full">
+      <Grid horizontal highlightRowValues={[0]} numTicksRows={4} fadeHorizontal />
+      <Bar dataKey="custo" fill="#ff6e4a" lineCap="round" minBarHeight={4} />
+      <BarXAxis maxLabels={5} />
+      <ChartTooltip
+        rows={(point: Record<string, unknown>) => [
+          { 
+            color: "#ff6e4a", 
+            label: "Custo do Agente", 
+            value: `$ ${((point.custo as number) ?? 0).toFixed(4)}` 
+          },
+          { 
+            color: "#a1a1aa", 
+            label: "Modelo Utilizado", 
+            value: (point.modelo as string) ?? "N/A" 
+          },
+        ]}
+      />
+    </BarChart>
+  )
+}
+
+export function AICostDonutChart({ data }: { data: CustoModeloItem[] }) {
+  const total = data.reduce((acc, d) => acc + d.custo, 0)
+  
+  const COST_COLORS = ["#ff6e4a", "#ff9377", "#ffb4a2", "#ffd5cc", "#f4f4f5"]
+
+  const pieData = data.map((d, index) => {
+    // Trata modelos duplicados ou "Outros" adicionando um sufixo único se necessário
+    const baseLabel = d.modelo || "Outros"
+    const uniqueLabel = data.filter(item => (item.modelo || "Outros") === baseLabel).length > 1 
+      ? `${baseLabel} (${index + 1})` 
+      : baseLabel
+
+    return {
+      id: `${baseLabel}-${index}`,
+      label: uniqueLabel,
+      value: d.custo,
+      maxValue: total || 1,
+      color: COST_COLORS[index % COST_COLORS.length],
+    }
+  })
+
+  return (
+    <div className="flex flex-col items-center gap-6 h-full justify-center pb-4">
+      <div className="shrink-0 mt-4">
+        <PieChart
+          data={pieData}
+          size={160}
+          innerRadius={54}
+          padAngle={0.03}
+          cornerRadius={4}
+          hoverOffset={6}
+        >
+          {pieData.map((item, i) => (
+            <PieSlice key={item.id} index={i} />
+          ))}
+          <PieCenter defaultLabel="Total Gasto">
+            {({ value, label }: { value: number; label: string }) => (
+              <>
+                <span className="text-lg font-semibold text-zinc-900 tabular-nums">
+                  ${value.toFixed(2)}
+                </span>
+                <span className="text-[10px] font-medium text-zinc-500 uppercase tracking-widest">{label}</span>
+              </>
+            )}
+          </PieCenter>
+        </PieChart>
+      </div>
+
+      <Legend items={pieData} className="w-full max-w-[200px] space-y-2">
+        <LegendItem className="flex items-center justify-between gap-2">
+          <span className="flex items-center gap-2 min-w-0">
+            <LegendMarker className="h-2.5 w-2.5 shrink-0 rounded-sm" />
+            <LegendLabel className="truncate text-xs font-medium text-zinc-700" />
+          </span>
+          <LegendValue
+            className="text-xs font-semibold text-zinc-900 tabular-nums shrink-0"
+            showPercentage
+            percentageClassName="text-[10px] text-zinc-400 font-normal ml-1"
+            formatValue={(v: number) => `$${v.toFixed(2)}`}
+          />
+        </LegendItem>
+      </Legend>
+    </div>
   )
 }
