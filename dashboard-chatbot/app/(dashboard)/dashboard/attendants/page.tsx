@@ -2,15 +2,19 @@
 
 import { useEffect, useState } from "react"
 import AtendenteModal from "./components/AtendenteModal"
-import { Bot, User } from "lucide-react" // Importando os ícones aqui
+import { Bot, User } from "lucide-react"
+
+type Setor = {
+  id_setor: string
+  no_setor: string
+}
 
 type Atendente = {
-  id_atendente: string;
-  no_atendente: string;
-  id_setor: string;
-  no_setor: string;
-  is_ia: boolean;
-  im_image?: string | null;
+  id_atendente: string
+  no_atendente: string
+  is_ia: boolean
+  im_image?: string | null
+  setores: Setor[]
 }
 
 export default function AtendentesPage() {
@@ -22,63 +26,70 @@ export default function AtendentesPage() {
 
   const fetchAtendentes = async () => {
     try {
-      setLoading(true);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/atendentes`);
-      
+      setLoading(true)
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/atendentes`
+      )
+
       if (!response.ok) {
-        throw new Error("Erro ao buscar atendentes");
+        throw new Error("Erro ao buscar atendentes")
       }
 
-      const data = await response.json();
-      setAtendentes(data);
+      const data = await response.json()
+      setAtendentes(data)
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchAtendentes();
-  }, []);
+    fetchAtendentes()
+  }, [])
 
   const handleOpenCreateModal = () => {
-    setAtendenteToEdit(null);
-    setIsModalOpen(true);
+    setAtendenteToEdit(null)
+    setIsModalOpen(true)
   }
 
   const handleOpenEditModal = (atendente: Atendente) => {
-    setAtendenteToEdit(atendente);
-    setIsModalOpen(true);
+    setAtendenteToEdit(atendente)
+    setIsModalOpen(true)
   }
 
-  // --- NOVA FUNÇÃO DE DELETAR AQUI ---
   const handleDelete = async (id_atendente: string) => {
-    const confirmacao = window.confirm("Tem certeza que deseja excluir este atendente?");
-    if (!confirmacao) return;
+    const confirmacao = window.confirm(
+      "Tem certeza que deseja excluir este atendente?"
+    )
+
+    if (!confirmacao) return
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/atendentes/${id_atendente}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/atendentes/${id_atendente}`,
+        {
+          method: "DELETE",
+        }
+      )
 
       if (!response.ok) {
-        const errData = await response.json();
-        throw new Error(errData.error || "Erro ao excluir atendente.");
+        const errData = await response.json()
+        throw new Error(errData.error || "Erro ao excluir atendente.")
       }
 
-      // Atualiza a lista removendo o atendente excluído sem precisar recarregar a página
-      setAtendentes((prev) => prev.filter((a) => a.id_atendente !== id_atendente));
-      
+      setAtendentes((prev) =>
+        prev.filter((a) => a.id_atendente !== id_atendente)
+      )
     } catch (err: any) {
-      console.error("Erro ao deletar:", err);
-      alert(err.message);
+      console.error(err)
+      alert(err.message)
     }
-  };
+  }
 
   return (
     <div className="p-6 space-y-6 text-zinc-700">
-      
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-zinc-800">
           Atendentes
@@ -138,33 +149,45 @@ export default function AtendentesPage() {
                   </div>
 
                   <div className="flex flex-wrap gap-2 pt-1">
-                    <span className="bg-zinc-100 text-zinc-700 text-xs px-2 py-1 rounded border border-zinc-200">
-                      {atendente.no_setor || "Sem setor"}
-                    </span>
-                    
-                    {/* --- ÍCONES DO LUCIDE APLICADOS AQUI --- */}
+                    {atendente.setores.length > 0 ? (
+                      atendente.setores.map((setor) => (
+                        <span
+                          key={setor.id_setor}
+                          className="bg-zinc-100 text-zinc-700 text-xs px-2 py-1 rounded border border-zinc-200"
+                        >
+                          {setor.no_setor}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="bg-zinc-100 text-zinc-700 text-xs px-2 py-1 rounded border border-zinc-200">
+                        Sem setor
+                      </span>
+                    )}
+
                     {atendente.is_ia ? (
-                       <span className="flex items-center gap-1 bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded border border-purple-200">
-                         <Bot className="w-3.5 h-3.5" /> IA
-                       </span>
+                      <span className="flex items-center gap-1 bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded border border-purple-200">
+                        <Bot className="w-3.5 h-3.5" />
+                        IA
+                      </span>
                     ) : (
                       <span className="flex items-center gap-1 bg-green-100 text-green-700 text-xs px-2 py-1 rounded border border-green-200">
-                        <User className="w-3.5 h-3.5" /> Humano
+                        <User className="w-3.5 h-3.5" />
+                        Humano
                       </span>
                     )}
                   </div>
                 </div>
               </div>
 
-              {/* --- BOTÃO DE EXCLUIR ADICIONADO AO LADO DO EDITAR --- */}
               <div className="flex items-center gap-1">
-                <button 
+                <button
                   onClick={() => handleOpenEditModal(atendente)}
                   className="text-blue-600 hover:bg-blue-50 p-2 rounded transition text-sm font-medium"
                 >
                   Editar
                 </button>
-                <button 
+
+                <button
                   onClick={() => handleDelete(atendente.id_atendente)}
                   className="text-red-600 hover:bg-red-50 p-2 rounded transition text-sm font-medium"
                 >
