@@ -1,3 +1,4 @@
+//src/controllers/painelIa.controller.js
 const painelIAService = require("../services/painelIA.service");
 
 async function getDashboardData(req, res) {

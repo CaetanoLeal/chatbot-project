@@ -490,13 +490,27 @@ export function AIAgentCostBarChart({ data }: { data: DetalheAgenteIA[] }) {
   )
 }
 
-export function AICostDonutChart({ data }: { data: CustoModeloItem[] }) {
-  const total = data.reduce((acc, d) => acc + d.custo, 0)
-  
-  const COST_COLORS = ["#ff6e4a", "#ff9377", "#ffb4a2", "#ffd5cc", "#f4f4f5"]
+export interface ModeloTokensItem {
+  modelo: string
+  tokens: number
+  requests: number
+  custoEstimado: number
+  precoConhecido: boolean
+}
+
+function formatCompactTokens(value: number) {
+  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`
+  if (value >= 1_000) return `${(value / 1_000).toFixed(1)}K`
+  return `${value}`
+}
+
+export function AITokensPerModelDonutChart({ data }: { data: ModeloTokensItem[] }) {
+  const totalTokens = data.reduce((acc, d) => acc + d.tokens, 0)
+  const totalCustoEstimado = data.reduce((acc, d) => acc + d.custoEstimado, 0)
+
+  const TOKEN_COLORS = ["#ff6e4a", "#ff9377", "#ffb4a2", "#ffd5cc", "#f4f4f5"]
 
   const pieData = data.map((d, index) => {
-    // Trata modelos duplicados ou "Outros" adicionando um sufixo único se necessário
     const baseLabel = d.modelo || "Outros"
     const uniqueLabel = data.filter(item => (item.modelo || "Outros") === baseLabel).length > 1 
       ? `${baseLabel} (${index + 1})` 
@@ -505,9 +519,86 @@ export function AICostDonutChart({ data }: { data: CustoModeloItem[] }) {
     return {
       id: `${baseLabel}-${index}`,
       label: uniqueLabel,
+      value: d.tokens,
+      maxValue: totalTokens || 1,
+      color: TOKEN_COLORS[index % TOKEN_COLORS.length],
+      custoEstimado: d.custoEstimado,
+      precoConhecido: d.precoConhecido,
+    }
+  })
+
+  return (
+    <div className="flex flex-col items-center gap-6 h-full justify-center pb-4">
+      <div className="shrink-0 mt-4">
+        <PieChart
+          data={pieData}
+          size={160}
+          innerRadius={54}
+          padAngle={0.03}
+          cornerRadius={4}
+          hoverOffset={6}
+        >
+          {pieData.map((item, i) => (
+            <PieSlice key={item.id} index={i} />
+          ))}
+          <PieCenter defaultLabel="Total Tokens">
+            {({ label }: { value: number; label: string }) => (
+              <>
+                <span className="text-lg font-semibold text-zinc-900 tabular-nums">
+                  {formatCompactTokens(totalTokens)}
+                </span>
+                <span className="text-[10px] font-medium text-zinc-500 uppercase tracking-widest">{label}</span>
+              </>
+            )}
+          </PieCenter>
+        </PieChart>
+      </div>
+
+      <Legend items={pieData} className="w-full max-w-[220px] space-y-2">
+        <LegendItem className="flex items-center justify-between gap-2">
+          <span className="flex items-center gap-2 min-w-0">
+            <LegendMarker className="h-2.5 w-2.5 shrink-0 rounded-sm" />
+            <LegendLabel className="truncate text-xs font-medium text-zinc-700" />
+          </span>
+          <span className="flex flex-col items-end shrink-0">
+            <LegendValue
+              className="text-xs font-semibold text-zinc-900 tabular-nums"
+              showPercentage
+              percentageClassName="text-[10px] text-zinc-400 font-normal ml-1"
+              formatValue={(v: number) => formatCompactTokens(v)}
+            />
+          </span>
+        </LegendItem>
+      </Legend>
+
+      <p className="text-[11px] text-zinc-400 text-center px-2">
+        {totalCustoEstimado > 0 
+          ? `Custo estimado: ~$${totalCustoEstimado.toFixed(4)}`
+          : "Custo estimado indisponível"}
+        {pieData.some(p => !p.precoConhecido) && " · alguns modelos sem preço cadastrado"}
+      </p>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Novo Gráfico: Custo Financeiro por Modelo (Donut Chart)
+// ---------------------------------------------------------------------------
+
+export function AIModelCostDonutChart({ data }: { data: any[] }) {
+  const totalCusto = data.reduce((acc, d) => acc + d.custo, 0)
+  
+  // Cores quentes para métricas financeiras
+  const COST_COLORS = ["#ff6e4a", "#ff9377", "#ffb4a2", "#ffd5cc", "#f4f4f5"]
+
+  const pieData = data.map((d, index) => {
+    return {
+      id: `${d.modelo}-${index}`,
+      label: d.modelo || "Outros",
       value: d.custo,
-      maxValue: total || 1,
+      maxValue: totalCusto || 1,
       color: COST_COLORS[index % COST_COLORS.length],
+      custoEstimado: d.custoEstimado
     }
   })
 
@@ -526,10 +617,10 @@ export function AICostDonutChart({ data }: { data: CustoModeloItem[] }) {
             <PieSlice key={item.id} index={i} />
           ))}
           <PieCenter defaultLabel="Total Gasto">
-            {({ value, label }: { value: number; label: string }) => (
+            {({ label }: { value: number; label: string }) => (
               <>
                 <span className="text-lg font-semibold text-zinc-900 tabular-nums">
-                  ${value.toFixed(2)}
+                  ${totalCusto.toFixed(2)}
                 </span>
                 <span className="text-[10px] font-medium text-zinc-500 uppercase tracking-widest">{label}</span>
               </>
@@ -538,18 +629,93 @@ export function AICostDonutChart({ data }: { data: CustoModeloItem[] }) {
         </PieChart>
       </div>
 
-      <Legend items={pieData} className="w-full max-w-[200px] space-y-2">
+      <Legend items={pieData} className="w-full max-w-[220px] space-y-2">
         <LegendItem className="flex items-center justify-between gap-2">
           <span className="flex items-center gap-2 min-w-0">
             <LegendMarker className="h-2.5 w-2.5 shrink-0 rounded-sm" />
             <LegendLabel className="truncate text-xs font-medium text-zinc-700" />
           </span>
-          <LegendValue
-            className="text-xs font-semibold text-zinc-900 tabular-nums shrink-0"
-            showPercentage
-            percentageClassName="text-[10px] text-zinc-400 font-normal ml-1"
-            formatValue={(v: number) => `$${v.toFixed(2)}`}
-          />
+          <span className="flex flex-col items-end shrink-0">
+            <LegendValue
+              className="text-xs font-semibold text-zinc-900 tabular-nums"
+              showPercentage
+              percentageClassName="text-[10px] text-zinc-400 font-normal ml-1"
+              formatValue={(v: number) => `$${v.toFixed(2)}`}
+            />
+          </span>
+        </LegendItem>
+      </Legend>
+
+      {pieData.some(p => p.custoEstimado) && (
+        <p className="text-[11px] text-orange-500 text-center px-2 font-medium">
+          * Alguns modelos não possuem API Key isolada e usam custo estimado.
+        </p>
+      )}
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Novo Gráfico: Custo por Modalidade/Categoria (Donut Chart)
+// ---------------------------------------------------------------------------
+
+export function AIModalityCostDonutChart({ data }: { data: any[] }) {
+  const totalCusto = data.reduce((acc, d) => acc + (d.custo || 0), 0)
+  
+  // Cores um pouco mais sóbrias/azuis para distinguir produtos estruturais
+  const PRODUCT_COLORS = ["#2563eb", "#60a5fa", "#93c5fd", "#bfdbfe", "#f3f4f6"]
+
+  const pieData = data.map((d, index) => {
+    return {
+      id: `${d.linha}-${index}`,
+      label: d.linha || "Outros",
+      value: d.custo || 0,
+      maxValue: totalCusto || 1,
+      color: PRODUCT_COLORS[index % PRODUCT_COLORS.length],
+    }
+  })
+
+  return (
+    <div className="flex flex-col items-center gap-6 h-full justify-center pb-4">
+      <div className="shrink-0 mt-4">
+        <PieChart
+          data={pieData}
+          size={160}
+          innerRadius={54}
+          padAngle={0.03}
+          cornerRadius={4}
+          hoverOffset={6}
+        >
+          {pieData.map((item, i) => (
+            <PieSlice key={item.id} index={i} />
+          ))}
+          <PieCenter defaultLabel="Faturamento">
+            {({ label }: { value: number; label: string }) => (
+              <>
+                <span className="text-lg font-semibold text-zinc-900 tabular-nums">
+                  ${totalCusto.toFixed(2)}
+                </span>
+                <span className="text-[10px] font-medium text-zinc-500 uppercase tracking-widest">{label}</span>
+              </>
+            )}
+          </PieCenter>
+        </PieChart>
+      </div>
+
+      <Legend items={pieData} className="w-full max-w-[220px] space-y-2">
+        <LegendItem className="flex items-center justify-between gap-2">
+          <span className="flex items-center gap-2 min-w-0">
+            <LegendMarker className="h-2.5 w-2.5 shrink-0 rounded-sm" />
+            <LegendLabel className="truncate text-xs font-medium text-zinc-700" />
+          </span>
+          <span className="flex flex-col items-end shrink-0">
+            <LegendValue
+              className="text-xs font-semibold text-zinc-900 tabular-nums"
+              showPercentage
+              percentageClassName="text-[10px] text-zinc-400 font-normal ml-1"
+              formatValue={(v: number) => `$${v.toFixed(2)}`}
+            />
+          </span>
         </LegendItem>
       </Legend>
     </div>

@@ -1,36 +1,21 @@
+// src/repositories/painelIa.repository.js
 const db = require("../config/db");
 
+/**
+ * A tbl_consumo_ia foi removida: tokens e custos agora vêm 100% da API da
+ * OpenAI (ver painelIA.service.js). A OpenAI não sabe qual "agente/funil"
+ * do seu sistema disparou cada chamada — isso só existia localmente, nessa
+ * tabela.
+ *
+ * Por ora, essa função devolve lista vazia. Os gráficos "Custo por Agente"
+ * e "Consumo por Agente (Tokens)" no dashboard ficam sem dado até que o
+ * rastreio por agente seja reimplementado (ex: um project_id/api_key
+ * dedicado por agente na OpenAI, ou uma tabela de log local mais enxuta).
+ */
 async function obterResumoConsumo() {
-  const query = `
-    SELECT 
-      f.no_agente,
-      c.ds_modelo,
-      COUNT(c.id_consumo) as total_requisicoes,
-      SUM(c.qt_tokens_total) as total_tokens,
-      MAX(c.dh_inclusao) as ultima_utilizacao
-    FROM tbl_consumo_ia c
-    INNER JOIN tbl_funil_ia f ON c.id_funil_ia = f.id_funil_ia
-    GROUP BY f.no_agente, c.ds_modelo
-    ORDER BY total_tokens DESC;
-  `;
-  
-  const result = await db.query(query);
-  return result.rows;
-}
-
-async function obterTotaisGerais() {
-  const query = `
-    SELECT 
-      SUM(qt_tokens_prompt) as total_prompt,
-      SUM(qt_tokens_completion) as total_completion,
-      SUM(qt_tokens_total) as total_geral
-    FROM tbl_consumo_ia;
-  `;
-  const result = await db.query(query);
-  return result.rows[0];
+  return [];
 }
 
 module.exports = {
   obterResumoConsumo,
-  obterTotaisGerais
 };

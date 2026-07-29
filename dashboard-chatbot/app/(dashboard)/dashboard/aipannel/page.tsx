@@ -1,7 +1,7 @@
 // app/(dashboard)/iapannel/page.tsx
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import {
   Cpu,
   MessageSquare,
@@ -9,7 +9,9 @@ import {
   AlertTriangle,
   RefreshCcw,
   DollarSign,
-  Calendar
+  Calendar,
+  TrendingUp,
+  Award
 } from "lucide-react"
 
 import { DashboardIAData } from "./lib/types"
@@ -19,10 +21,14 @@ import ChartCard from "../components/chartcard"
 import { 
   AIConsumptionBarChart, 
   AICostVsTokensAreaChart,
-  AICostDonutChart,
+  AITokensPerModelDonutChart,
   AICostBarChart,
-  AIAgentCostBarChart
+  AIAgentCostBarChart,
+  AIModelCostDonutChart,
+  AIModalityCostDonutChart
 } from "../components/charts"
+
+const MODALIDADES_BASEADAS_EM_TOKEN = ["completions", "embeddings", "moderations"]
 
 function getGreeting() {
   const hour = new Date().getHours()
@@ -38,7 +44,6 @@ export default function PainelIAPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Estados para o filtro de data (Padrão: últimos 30 dias até hoje)
   const defaultEnd = new Date().toISOString().split('T')[0]
   const defaultStart = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   
@@ -73,7 +78,6 @@ export default function PainelIAPage() {
 
   return (
     <div className="p-6 space-y-8 bg-white min-h-screen text-zinc-900">
-      {/* Header com Filtros */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Monitoramento de IA</h1>
@@ -86,14 +90,20 @@ export default function PainelIAPage() {
             <input 
               type="date" 
               value={startDate} 
-              onChange={(e) => setStartDate(e.target.value)}
+              max={endDate}
+              onChange={(e) => {
+                if (e.target.value < endDate) setStartDate(e.target.value)
+              }}
               className="bg-transparent outline-none cursor-pointer"
             />
             <span>até</span>
             <input 
               type="date" 
               value={endDate} 
-              onChange={(e) => setEndDate(e.target.value)}
+              min={startDate}
+              onChange={(e) => {
+                if (e.target.value > startDate) setEndDate(e.target.value)
+              }}
               className="bg-transparent outline-none cursor-pointer"
             />
           </div>
@@ -124,56 +134,95 @@ export default function PainelIAPage() {
   )
 }
 
-function PainelIAContent({ data }: { data: DashboardIAData }) {
+function PainelIAContent({ data }: { data: any }) { // Usando 'any' temporário para os novos campos, idealmente atualize seu types.ts
   const { 
     totais, 
     detalhesAgentes = [], 
     evolucaoTokens = [], 
     custosPorModelo = [], 
-    evolucaoCustos = [] 
+    evolucaoCustos = [],
+    custoPorModalidade = [],
+    modeloMaisGasta = null
   } = data
 
-  const evolucaoCombinada = evolucaoTokens.map(tokenData => {
-    const custoMatch = evolucaoCustos.find(c => c.data === tokenData.data)
+  const evolucaoCombinada = evolucaoTokens.map((tokenData: any) => {
+    const custoMatch = evolucaoCustos.find((c: any) => c.data === tokenData.data)
     return {
       data: tokenData.data,
       tokensTotais: (tokenData.prompt || 0) + (tokenData.completion || 0),
-      custo: custoMatch?.custo || 0
+      custo: Number(custoMatch?.custo) || 0
     }
   })
 
-  const custoTotal = evolucaoCustos.reduce((acc, curr) => acc + (curr.custo || 0), 0)
+  const custoTotal = evolucaoCustos.reduce((acc: number, curr: any) => {
+    const valor = Number(curr.custo)
+    return acc + (Number.isFinite(valor) ? valor : 0)
+  }, 0)
+
+  // 1. Agrupamento de TOKENS (Antigo, mantido intacto)
+  const consumoPorModeloTokens = useMemo(() => {
+    const mapa = new Map<string, any>()
+    custosPorModelo
+      .filter((item: any) => MODALIDADES_BASEADAS_EM_TOKEN.includes(item.modalidade))
+      .forEach((item: any) => {
+        const atual = mapa.get(item.modelo) ?? {
+          modelo: item.modelo,
+          tokens: 0,
+          requests: 0,
+        }
+        atual.tokens += item.unidadePrincipal || 0
+        atual.requests += item.requests || 0
+        mapa.set(item.modelo, atual)
+      })
+    return Array.from(mapa.values()).sort((a, b) => b.tokens - a.tokens)
+  }, [custosPorModelo])
+
+  // 2. NOVA ANÁLISE: Agrupamento FINANCEIRO por Modelo (Mistura Real e Estimado)
+  const custoPorModeloFinanceiro = useMemo(() => {
+    const mapa = new Map<string, any>()
+    custosPorModelo.forEach((item: any) => {
+      const atual = mapa.get(item.modelo) ?? {
+        modelo: item.modelo,
+        custo: 0,
+        custoEstimado: false // Começamos assumindo que é real, se alguma modalidade for estimada, vira true
+      }
+      atual.custo += item.custo || 0
+      if (item.custoEstimado) atual.custoEstimado = true
+      mapa.set(item.modelo, atual)
+    })
+    return Array.from(mapa.values()).sort((a, b) => b.custo - a.custo)
+  }, [custosPorModelo])
 
   return (
     <div className="space-y-8">
       {/* Linha 1: KPIs Rápidos */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <KpiCard
-          title="Tokens de Prompt"
-          value={formatNumber(totais?.total_prompt || 0)}
-          subtitle="Enviados para a IA"
-          icon={MessageSquare}
-          accent="zinc"
-        />
-        <KpiCard
-          title="Tokens de Resposta"
-          value={formatNumber(totais?.total_completion || 0)}
-          subtitle="Gerados pela IA"
-          icon={Cpu}
-          accent="zinc"
-        />
-        <KpiCard
-          title="Consumo Total"
+          title="Tokens Totais"
           value={formatNumber(totais?.total_geral || 0)}
-          subtitle="Tokens trafegados"
+          subtitle="Trafegados na plataforma"
           icon={Zap}
           accent="zinc"
         />
         <KpiCard
-          title="Gasto Financeiro"
-          value={`$${custoTotal.toFixed(2)}`}
-          subtitle="Custo acumulado"
+          title="Gasto Financeiro Real"
+          value={`$${Number.isFinite(custoTotal) ? custoTotal.toFixed(2) : "0.00"}`}
+          subtitle="Cobrado pela OpenAI"
           icon={DollarSign}
+          accent="zinc"
+        />
+        <KpiCard
+          title="Modelo Mais Custoso"
+          value={modeloMaisGasta?.modelo || "N/A"}
+          subtitle={`Gasto de $${(modeloMaisGasta?.custo || 0).toFixed(2)}`}
+          icon={TrendingUp}
+          accent="zinc"
+        />
+        <KpiCard
+          title="Principal Gasto"
+          value={custoPorModalidade[0]?.linha || "N/A"}
+          subtitle="Produto que mais consumiu"
+          icon={Award}
           accent="zinc"
         />
       </section>
@@ -195,35 +244,35 @@ function PainelIAContent({ data }: { data: DashboardIAData }) {
 
       {/* Seção Exclusiva: Análise Financeira */}
       <div>
-        <h2 className="text-lg font-semibold tracking-tight mb-4">Análise Financeira Detalhada</h2>
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-1">
+        <h2 className="text-lg font-semibold tracking-tight mb-4">Análise Financeira Detalhada (Custos Reais)</h2>
+        <section className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="xl:col-span-2">
             <ChartCard
               title="Custo Diário"
-              subtitle="Gastos fragmentados por dia"
+              subtitle="Evolução do faturamento (valor real da API)"
               isEmpty={evolucaoCustos.length === 0}
             >
               <AICostBarChart data={evolucaoCustos} />
             </ChartCard>
           </div>
           
-          <div className="lg:col-span-1">
+          <div className="xl:col-span-1">
             <ChartCard
-              title="Custo por Modelo"
-              subtitle="Fatia financeira por IA utilizada"
-              isEmpty={custosPorModelo.length === 0}
+              title="Custo por Modelo ($)"
+              subtitle="Modelos que mais pesam na fatura"
+              isEmpty={custoPorModeloFinanceiro.length === 0}
             >
-              <AICostDonutChart data={custosPorModelo} />
+              <AIModelCostDonutChart data={custoPorModeloFinanceiro} />
             </ChartCard>
           </div>
 
-          <div className="lg:col-span-1">
+          <div className="xl:col-span-1">
             <ChartCard
-              title="Custo por Agente"
-              subtitle="Impacto financeiro de cada funil"
-              isEmpty={detalhesAgentes.length === 0}
+              title="Custo por Produto"
+              subtitle="Impacto de API, Audio, Images, etc."
+              isEmpty={custoPorModalidade.length === 0}
             >
-              <AIAgentCostBarChart data={detalhesAgentes} />
+              <AIModalityCostDonutChart data={custoPorModalidade} />
             </ChartCard>
           </div>
         </section>
@@ -233,15 +282,27 @@ function PainelIAContent({ data }: { data: DashboardIAData }) {
 
       {/* Seção Exclusiva: Análise de Volumetria (Tokens) */}
       <div>
-        <h2 className="text-lg font-semibold tracking-tight mb-4">Distribuição de Tokens</h2>
-        <section className="grid grid-cols-1 gap-6">
-          <ChartCard
-            title="Consumo por Agente (Tokens)"
-            subtitle="Distribuição de tokens gastos por funil/robô"
-            isEmpty={detalhesAgentes.length === 0}
-          >
-            <AIConsumptionBarChart data={detalhesAgentes} />
-          </ChartCard>
+        <h2 className="text-lg font-semibold tracking-tight mb-4">Distribuição de Tokens e Funis</h2>
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-1">
+            <ChartCard
+              title="Consumo por Modelo (Tokens)"
+              subtitle="Quais IA geram maior volume de tráfego"
+              isEmpty={consumoPorModeloTokens.length === 0}
+            >
+              <AITokensPerModelDonutChart data={consumoPorModeloTokens} />
+            </ChartCard>
+          </div>
+
+          <div className="lg:col-span-2">
+            <ChartCard
+              title="Consumo por Agente (Tokens)"
+              subtitle="Distribuição de tokens gastos por funil/robô (via DB)"
+              isEmpty={detalhesAgentes.length === 0}
+            >
+              <AIConsumptionBarChart data={detalhesAgentes} />
+            </ChartCard>
+          </div>
         </section>
       </div>
     </div>
