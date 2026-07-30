@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useRef, useState } from "react"
 import { Node } from "reactflow"
 import type { FlowNodeData } from "../lib/transform"
 import type { Campo, Setor } from "../lib/api"
@@ -47,6 +48,47 @@ export default function NodeInspector({
   const data = node.data
   const kind = node.type as NodeKind
   const isInicio = data.cdMensagem === 0
+
+const textareaRef = useRef<HTMLTextAreaElement>(null)
+const camposMenuRef = useRef<HTMLDivElement>(null)
+const [showCamposMenu, setShowCamposMenu] = useState(false)
+
+// fecha o dropdown ao clicar fora
+useEffect(() => {
+  function handleClickOutside(e: MouseEvent) {
+    if (camposMenuRef.current && !camposMenuRef.current.contains(e.target as globalThis.Node)) {
+      setShowCamposMenu(false)
+    }
+  }
+  if (showCamposMenu) document.addEventListener("mousedown", handleClickOutside)
+  return () => document.removeEventListener("mousedown", handleClickOutside)
+}, [showCamposMenu])
+
+// insere {no_campo} na posição do cursor, sem apagar o que já foi digitado
+function inserirCampo(nomeCampo: string) {
+  const campoTag = `{${nomeCampo}}`
+  const textarea = textareaRef.current
+  const textoAtual = data.text || ""
+
+  if (!textarea) {
+    setData({ text: textoAtual + campoTag })
+    setShowCamposMenu(false)
+    return
+  }
+
+  const start = textarea.selectionStart ?? textoAtual.length
+  const end = textarea.selectionEnd ?? textoAtual.length
+  const novoTexto = textoAtual.slice(0, start) + campoTag + textoAtual.slice(end)
+
+  setData({ text: novoTexto })
+  setShowCamposMenu(false)
+
+  requestAnimationFrame(() => {
+    textarea.focus()
+    const novaPos = start + campoTag.length
+    textarea.setSelectionRange(novaPos, novaPos)
+  })
+}
 
   function setData(patch: Partial<FlowNodeData>) {
     onChange(node.id, { data: { ...data, ...patch } })
@@ -128,10 +170,43 @@ export default function NodeInspector({
 
       {/* TEXTO */}
       <div>
-        <label className="block text-xs font-medium text-zinc-500 mb-1">
-          Texto {kind === "transferNode" ? "(Opcional - Ex: Transferindo...)" : ""}
-        </label>
+        <div className="flex items-center justify-between mb-1">
+          <label className="block text-xs font-medium text-zinc-500">
+            Texto {kind === "transferNode" ? "(Opcional - Ex: Transferindo...)" : ""}
+          </label>
+
+          <div className="relative" ref={camposMenuRef}>
+            <button
+              type="button"
+              onClick={() => setShowCamposMenu((v) => !v)}
+              className="text-[10px] text-blue-600 hover:underline flex items-center gap-1"
+            >
+              {"{ }"} inserir campo
+            </button>
+
+            {showCamposMenu && (
+              <div className="absolute right-0 mt-1 z-20 bg-white border border-zinc-200 rounded shadow-lg w-48 max-h-48 overflow-y-auto text-xs">
+                {campos.length === 0 && (
+                  <p className="px-3 py-2 text-zinc-400">Nenhum campo cadastrado.</p>
+                )}
+                {campos.map((c) => (
+                  <button
+                    key={c.id_campo}
+                    type="button"
+                    onClick={() => inserirCampo(c.no_campo)}
+                    className="w-full text-left px-3 py-1.5 hover:bg-zinc-100"
+                  >
+                    {c.ds_label || c.no_campo}
+                    <span className="text-zinc-400"> ({c.no_campo})</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
         <textarea
+          ref={textareaRef}
           className="border rounded px-2 py-1.5 w-full text-sm min-h-[90px]"
           value={data.text || ""}
           onChange={(e) => setData({ text: e.target.value })}

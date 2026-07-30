@@ -1,6 +1,7 @@
 // app/(dashboard)/iapannel/page.tsx
 "use client"
 
+import Link from "next/link"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import {
   Cpu,
@@ -25,7 +26,6 @@ import {
   AICostBarChart,
   AIAgentCostBarChart,
   AIModelCostDonutChart,
-  AIModalityCostDonutChart
 } from "../components/charts"
 
 const MODALIDADES_BASEADAS_EM_TOKEN = ["completions", "embeddings", "moderations"]
@@ -108,6 +108,7 @@ export default function PainelIAPage() {
             />
           </div>
 
+
           <button
             onClick={fetchData}
             disabled={loading}
@@ -116,6 +117,12 @@ export default function PainelIAPage() {
             <RefreshCcw size={16} className={loading ? "animate-spin" : ""} />
             Atualizar
           </button>
+          <Link
+            href="/dashboard/aipannel/aifunnels"
+            className="bg-blue-600 hover:bg-blue-700 transition-colors text-white px-5 py-3   rounded-xl flex items-center gap-2 font-medium shadow-sm"
+          >
+            Ir para funis de IA
+          </Link>
         </div>
       </div>
 
@@ -265,16 +272,6 @@ function PainelIAContent({ data }: { data: any }) { // Usando 'any' temporário 
               <AIModelCostDonutChart data={custoPorModeloFinanceiro} />
             </ChartCard>
           </div>
-
-          <div className="xl:col-span-1">
-            <ChartCard
-              title="Custo por Produto"
-              subtitle="Impacto de API, Audio, Images, etc."
-              isEmpty={custoPorModalidade.length === 0}
-            >
-              <AIModalityCostDonutChart data={custoPorModalidade} />
-            </ChartCard>
-          </div>
         </section>
       </div>
 
@@ -297,7 +294,7 @@ function PainelIAContent({ data }: { data: any }) { // Usando 'any' temporário 
           <div className="lg:col-span-2">
             <ChartCard
               title="Consumo por Agente (Tokens)"
-              subtitle="Distribuição de tokens gastos por funil/robô (via DB)"
+              subtitle="Distribuição de tokens gastos por ia"
               isEmpty={detalhesAgentes.length === 0}
             >
               <AIConsumptionBarChart data={detalhesAgentes} />

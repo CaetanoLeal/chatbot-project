@@ -263,12 +263,12 @@ function Nodes3DCanvas() {
 
           {/* Troncos Retos de Ligação ao Formulario de Login */}
           <path
-            d={`M${LEFT_JOINT.x},${LEFT_JOINT.y} L${BOX_LEFT_X},${CENTER_Y}`}
+            d={`M${BOX_LEFT_X},${CENTER_Y} L${LEFT_JOINT.x},${LEFT_JOINT.y}`}
             stroke="#E4E4E7"
             strokeWidth={2}
           />
           <path
-            d={`M${LEFT_JOINT.x},${LEFT_JOINT.y} L${BOX_LEFT_X},${CENTER_Y}`}
+            d={`M${BOX_LEFT_X},${CENTER_Y} L${LEFT_JOINT.x},${LEFT_JOINT.y}`}
             stroke="#18181B"
             strokeWidth={2}
             strokeDasharray="8 12"

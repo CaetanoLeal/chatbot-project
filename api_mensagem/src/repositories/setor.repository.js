@@ -55,7 +55,6 @@ class SetorRepository {
 
                 SELECT id_setor
                 FROM tbl_funil_ia
-                WHERE id_funil = $1
             ) x
                 ON x.id_setor = s.id_setor
             WHERE s.is_excluido = FALSE

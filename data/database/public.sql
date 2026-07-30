@@ -12,7 +12,7 @@
  Target Server Version : 150014 (150014)
  File Encoding         : 65001
 
- Date: 24/07/2026 16:59:42
+ Date: 30/07/2026 20:16:40
 */
 
 
@@ -131,10 +131,31 @@ CREATE TABLE "public"."aud_registro" (
 DROP TABLE IF EXISTS "public"."tbl_atendente";
 CREATE TABLE "public"."tbl_atendente" (
   "id_atendente" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
-  "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "no_atendente" varchar(100) COLLATE "pg_catalog"."default",
   "is_ia" bool NOT NULL DEFAULT false,
-  "im_image" text, COLLATE "pg_catalog"."default",
+  "nu_sessao" char(36) COLLATE "pg_catalog"."default",
+  "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "dh_exclusao" timestamp(6),
+  "is_excluido" bool NOT NULL DEFAULT false,
+  "im_atendente" text COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
+-- Records of tbl_atendente
+-- ----------------------------
+INSERT INTO "public"."tbl_atendente" VALUES ('721edef5-0d43-427b-912a-ba15380c4282', 'caetano', 'f', NULL, '2026-07-28 17:56:45.378541', '2026-07-28 17:57:33.008468', NULL, 'f', NULL);
+INSERT INTO "public"."tbl_atendente" VALUES ('c869e391-2b8a-4a62-9fe0-45a2e00e4894', 'teste', 't', NULL, '2026-07-30 20:58:57.509923', '2026-07-30 20:58:57.509923', NULL, 'f', '');
+
+-- ----------------------------
+-- Table structure for tbl_atendente_setor
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."tbl_atendente_setor";
+CREATE TABLE "public"."tbl_atendente_setor" (
+  "id_atendente_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
+  "id_atendente" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "nu_sessao" char(36) COLLATE "pg_catalog"."default",
   "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "dh_alteracao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -144,8 +165,10 @@ CREATE TABLE "public"."tbl_atendente" (
 ;
 
 -- ----------------------------
--- Records of tbl_atendente
+-- Records of tbl_atendente_setor
 -- ----------------------------
+INSERT INTO "public"."tbl_atendente_setor" VALUES ('60aead76-69be-46e4-adcc-5d335af49e07', '721edef5-0d43-427b-912a-ba15380c4282', 'af3e6d6d-8853-435c-bf02-48cf003fcecf', NULL, '2026-07-28 17:57:33.008468', '2026-07-28 17:57:33.008468', NULL, 'f');
+INSERT INTO "public"."tbl_atendente_setor" VALUES ('fd51cac0-4768-4c28-973f-e16405798f1f', 'c869e391-2b8a-4a62-9fe0-45a2e00e4894', '22222222-2222-2222-2222-222222222222', NULL, '2026-07-30 20:58:57.509923', '2026-07-30 20:58:57.509923', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_campo
@@ -281,7 +304,7 @@ CREATE TABLE "public"."tbl_funil" (
 -- ----------------------------
 -- Records of tbl_funil
 -- ----------------------------
-INSERT INTO "public"."tbl_funil" VALUES ('4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'funil de teste', 'funil criado para testar nossas funções e não telas', NULL, '2026-07-21 18:55:05.546924', '2026-07-21 18:55:05.546924', NULL, 'f');
+INSERT INTO "public"."tbl_funil" VALUES ('4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'funil de teste', 'funil criado para testar nossas funções e as não telas', NULL, '2026-07-21 18:55:05.546924', '2026-07-21 18:55:05.546924', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_funil_cadastro
@@ -290,7 +313,7 @@ DROP TABLE IF EXISTS "public"."tbl_funil_cadastro";
 CREATE TABLE "public"."tbl_funil_cadastro" (
   "id_funil_cadastro" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
   "ds_mensagem" text COLLATE "pg_catalog"."default" NOT NULL,
-  "is_aguardar" bool NOT NULL DEFAULT true,
+  "is_aguardar" bool NOT NULL DEFAULT false,
   "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000'::bpchar,
   "cd_mensagem" int4 NOT NULL DEFAULT 0,
@@ -353,10 +376,10 @@ CREATE TABLE "public"."tbl_funil_chatbot" (
   "id_funil_chatbot" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
   "ds_mensagem" text COLLATE "pg_catalog"."default" NOT NULL,
   "cd_mensagem_destino" int4,
-  "is_aguardar" bool NOT NULL,
+  "is_aguardar" bool NOT NULL DEFAULT false,
   "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "id_setor" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT '11111111-1111-1111-1111-111111111111'::bpchar,
-  "cd_mensagem" int4 NOT NULL,
+  "cd_mensagem" int4 NOT NULL DEFAULT 0,
   "is_finalizar" bool NOT NULL DEFAULT false,
   "id_campo" char(36) COLLATE "pg_catalog"."default",
   "pos_x" numeric DEFAULT 0,
@@ -435,17 +458,16 @@ DROP TABLE IF EXISTS "public"."tbl_funil_ia";
 CREATE TABLE "public"."tbl_funil_ia" (
   "id_funil_ia" char(36) COLLATE "pg_catalog"."default" NOT NULL DEFAULT uuid_generate_v4(),
   "id_funil_ia_modelo" int2 NOT NULL,
-  "id_funil" char(36) COLLATE "pg_catalog"."default" NOT NULL,
   "no_agente" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
   "ds_funil" varchar(255) COLLATE "pg_catalog"."default",
   "ds_personalidade" text COLLATE "pg_catalog"."default" NOT NULL,
   "nu_temperature" numeric(10,2) NOT NULL,
   "nu_max_tokens" int4 NOT NULL,
-  "is_ativo" bool NOT NULL,
+  "is_ativo" bool NOT NULL DEFAULT false,
   "ds_fallback" text COLLATE "pg_catalog"."default",
   "created_at" timestamp(6) NOT NULL,
   "update_at" timestamp(6) NOT NULL,
-  "ds_human_handoff" bool NOT NULL,
+  "is_human_handoff" bool NOT NULL,
   "id_setor" char(36) COLLATE "pg_catalog"."default",
   "nu_sessao" char(36) COLLATE "pg_catalog"."default",
   "dh_inclusao" timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -458,7 +480,7 @@ CREATE TABLE "public"."tbl_funil_ia" (
 -- ----------------------------
 -- Records of tbl_funil_ia
 -- ----------------------------
-INSERT INTO "public"."tbl_funil_ia" VALUES ('f0c84b8a-e7ab-4431-b4c2-f876c0af3589', 2, '4ab1e687-5405-4ed6-84ad-af8f3ff030aa', 'IA do caetano', 'IA para teste da configuração de ia', 'Você se chama Sophia, Você é a assistente do caetano e esta pronta para responder qualquer pergunta por ele, você é especialista em programação e tecnologia e sabe tirar duvidas sobre o assunto, também pode assumir conversas na ausência do caetano ', 0.70, 200, 't', 'erro! a ia está em manutenção', '2026-07-07 17:31:38', '2026-07-07 17:31:41', 't', 'af3e6d6d-8853-435c-bf02-48cf003fcecf', NULL, '2026-07-21 20:26:22.282899', '2026-07-21 20:26:22.288999', NULL, 'f');
+INSERT INTO "public"."tbl_funil_ia" VALUES ('533fbd7a-2f41-4023-a6b3-5955386e11ca', 1, 'teste', 'teste', 'teste', 0.70, 300, 't', 'Desculpe, ocorreu um erro no atendimento.', '2026-07-30 20:49:50.420592', '2026-07-30 20:49:50.420592', 't', '22222222-2222-2222-2222-222222222222', NULL, '2026-07-30 20:49:50.420592', '2026-07-30 20:49:50.420592', NULL, 'f');
 
 -- ----------------------------
 -- Table structure for tbl_funil_ia_modelo
@@ -466,15 +488,16 @@ INSERT INTO "public"."tbl_funil_ia" VALUES ('f0c84b8a-e7ab-4431-b4c2-f876c0af358
 DROP TABLE IF EXISTS "public"."tbl_funil_ia_modelo";
 CREATE TABLE "public"."tbl_funil_ia_modelo" (
   "id_funil_ia_modelo" int2 NOT NULL,
-  "ds_funil_ia_modelo" varchar(100) COLLATE "pg_catalog"."default" NOT NULL
+  "ds_funil_ia_modelo" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "vl_token_dolar" numeric(20,10) DEFAULT 0
 )
 ;
 
 -- ----------------------------
 -- Records of tbl_funil_ia_modelo
 -- ----------------------------
-INSERT INTO "public"."tbl_funil_ia_modelo" VALUES (1, 'gpt-4.1-mini');
-INSERT INTO "public"."tbl_funil_ia_modelo" VALUES (2, 'gpt-4o-mini');
+INSERT INTO "public"."tbl_funil_ia_modelo" VALUES (1, 'gpt-4.1-mini', 0.0000000000);
+INSERT INTO "public"."tbl_funil_ia_modelo" VALUES (2, 'gpt-4o-mini', 0.0000000000);
 
 -- ----------------------------
 -- Table structure for tbl_funil_utilizador
@@ -747,7 +770,7 @@ CREATE TABLE "public"."tbl_usuario" (
 -- ----------------------------
 -- Records of tbl_usuario
 -- ----------------------------
-INSERT INTO "public"."tbl_usuario" VALUES ('e7f42cf3-ab23-492a-865f-4f4e6593918c', 'master', '2df30271-3463-43d5-a439-da436de5e046', 'caetanolaraleal@gmail.com', '$2b$10$KxKmnJECg0qZ0tNoyLy1ReIb5Hq8TeRMeqjllZvdeSEu5.eywgIQm', 't');
+INSERT INTO "public"."tbl_usuario" VALUES ('e7f42cf3-ab23-492a-865f-4f4e6593918c', 'master', '857b82b6-131b-4315-9e1b-5855e0f9107e', 'caetanolaraleal@gmail.com', '$2b$10$KxKmnJECg0qZ0tNoyLy1ReIb5Hq8TeRMeqjllZvdeSEu5.eywgIQm', 'f');
 
 -- ----------------------------
 -- Table structure for tbl_utilizador
@@ -1878,6 +1901,43 @@ $BODY$
   COST 100;
 
 -- ----------------------------
+-- Function structure for fn_valida_ia_unica_por_setor
+-- ----------------------------
+DROP FUNCTION IF EXISTS "public"."fn_valida_ia_unica_por_setor"();
+CREATE FUNCTION "public"."fn_valida_ia_unica_por_setor"()
+  RETURNS "pg_catalog"."trigger" AS $BODY$
+DECLARE
+  eh_ia boolean;
+  ja_existe boolean;
+BEGIN
+  SELECT is_ia INTO eh_ia
+  FROM tbl_atendente
+  WHERE id_atendente = NEW.id_atendente;
+
+  IF eh_ia THEN
+    SELECT EXISTS (
+      SELECT 1
+      FROM tbl_atendente_setor ats
+      INNER JOIN tbl_atendente a ON a.id_atendente = ats.id_atendente
+      WHERE ats.id_setor = NEW.id_setor
+        AND a.is_ia = true
+        AND ats.id_atendente != NEW.id_atendente
+        AND (ats.is_excluido = false OR ats.is_excluido IS NULL)
+    ) INTO ja_existe;
+
+    IF ja_existe THEN
+      RAISE EXCEPTION 'Este setor já possui um atendente IA vinculado'
+        USING ERRCODE = '23505';
+    END IF;
+  END IF;
+
+  RETURN NEW;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+-- ----------------------------
 -- Function structure for maiusculas
 -- ----------------------------
 DROP FUNCTION IF EXISTS "public"."maiusculas"(text);
@@ -2092,6 +2152,18 @@ SELECT setval('"public"."telegram_messages_id_seq"', 1, false);
 ALTER TABLE "public"."tbl_atendente" ADD CONSTRAINT "tbl_atendente_pkey" PRIMARY KEY ("id_atendente");
 
 -- ----------------------------
+-- Triggers structure for table tbl_atendente_setor
+-- ----------------------------
+CREATE TRIGGER "trg_valida_ia_unica_por_setor" BEFORE INSERT OR UPDATE ON "public"."tbl_atendente_setor"
+FOR EACH ROW
+EXECUTE PROCEDURE "public"."fn_valida_ia_unica_por_setor"();
+
+-- ----------------------------
+-- Primary Key structure for table tbl_atendente_setor
+-- ----------------------------
+ALTER TABLE "public"."tbl_atendente_setor" ADD CONSTRAINT "tbl_atendente_setor_pkey" PRIMARY KEY ("id_atendente_setor");
+
+-- ----------------------------
 -- Primary Key structure for table tbl_campo
 -- ----------------------------
 ALTER TABLE "public"."tbl_campo" ADD CONSTRAINT "tbl_campo_personalizado_pkey" PRIMARY KEY ("id_campo");
@@ -2150,6 +2222,13 @@ ALTER TABLE "public"."tbl_funil_chatbot_botao" ADD CONSTRAINT "tbl_funil_chatbot
 -- Primary Key structure for table tbl_funil_expiracao
 -- ----------------------------
 ALTER TABLE "public"."tbl_funil_expiracao" ADD CONSTRAINT "tbl_funil_expiracao_pkey" PRIMARY KEY ("id_funil_expiracao");
+
+-- ----------------------------
+-- Indexes structure for table tbl_funil_ia
+-- ----------------------------
+CREATE UNIQUE INDEX "uq_funil_ia_setor_ativo" ON "public"."tbl_funil_ia" USING btree (
+  "id_setor" COLLATE "pg_catalog"."default" "pg_catalog"."bpchar_ops" ASC NULLS LAST
+) WHERE is_excluido IS NOT TRUE AND id_setor IS NOT NULL;
 
 -- ----------------------------
 -- Primary Key structure for table tbl_funil_ia
@@ -2245,9 +2324,10 @@ ALTER TABLE "public"."tbl_usuario" ADD CONSTRAINT "tbl_usuario_pkey" PRIMARY KEY
 ALTER TABLE "public"."tbl_utilizador" ADD CONSTRAINT "tbl_utilizador_pkey" PRIMARY KEY ("id_utilizador");
 
 -- ----------------------------
--- Foreign Keys structure for table tbl_atendente
+-- Foreign Keys structure for table tbl_atendente_setor
 -- ----------------------------
-ALTER TABLE "public"."tbl_atendente" ADD CONSTRAINT "fk_tbl_atendente_tbl_setor" FOREIGN KEY ("id_setor") REFERENCES "public"."tbl_setor" ("id_setor") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "public"."tbl_atendente_setor" ADD CONSTRAINT "fk_tbl_atendente_setor_tbl_atendente" FOREIGN KEY ("id_atendente") REFERENCES "public"."tbl_atendente" ("id_atendente") ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE "public"."tbl_atendente_setor" ADD CONSTRAINT "fk_tbl_atendente_setor_tbl_setor" FOREIGN KEY ("id_setor") REFERENCES "public"."tbl_setor" ("id_setor") ON DELETE NO ACTION ON UPDATE CASCADE;
 
 -- ----------------------------
 -- Foreign Keys structure for table tbl_campo
@@ -2294,7 +2374,6 @@ ALTER TABLE "public"."tbl_funil_expiracao" ADD CONSTRAINT "fk_tbl_funil_expiraca
 -- ----------------------------
 -- Foreign Keys structure for table tbl_funil_ia
 -- ----------------------------
-ALTER TABLE "public"."tbl_funil_ia" ADD CONSTRAINT "fk_tbl_funil_ia_tbl_funil_1" FOREIGN KEY ("id_funil") REFERENCES "public"."tbl_funil" ("id_funil") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "public"."tbl_funil_ia" ADD CONSTRAINT "fk_tbl_funil_ia_tbl_funil_ia_modelo_2" FOREIGN KEY ("id_funil_ia_modelo") REFERENCES "public"."tbl_funil_ia_modelo" ("id_funil_ia_modelo") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "public"."tbl_funil_ia" ADD CONSTRAINT "fk_tbl_funil_ia_tbl_setor" FOREIGN KEY ("id_setor") REFERENCES "public"."tbl_setor" ("id_setor") ON DELETE NO ACTION ON UPDATE NO ACTION;
 

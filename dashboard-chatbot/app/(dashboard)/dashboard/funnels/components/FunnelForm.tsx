@@ -20,6 +20,7 @@ import ReactFlow, {
 // @ts-ignore
 import "reactflow/dist/style.css";
 
+import { useRouter } from "next/navigation";
 import {
   Plus,
   Clipboard,
@@ -31,6 +32,7 @@ import {
   Redo2,
   Maximize2,
   Save,
+  X,
 } from "lucide-react";
 
 import { TextNode, QuestionNode, ButtonsNode, TransferNode, EndNode } from "./CustomNode";
@@ -65,6 +67,7 @@ function proximoCodigo(nodes: Node<FlowNodeData>[], fluxo: "cadastro" | "chatbot
 
 export default function FunnelFlowBuilder({ idFunil }: Props) {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   // ESTADOS GLOBAIS
   const [nodes, setNodes] = useNodesState<FlowNodeData>([]);
@@ -84,6 +87,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
   // Estados para Undo/Redo
   const [history, setHistory] = useState<{ nodes: Node<FlowNodeData>[]; edges: Edge[] }[]>([]);
   const [historyStep, setHistoryStep] = useState(-1);
+  const [savedStep, setSavedStep] = useState(0);
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -241,6 +245,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
       setError(null);
       const payload = fluxoParaFunil(nodes, edges);
       await api.salvarEstrutura(idFunil, payload);
+      setSavedStep(historyStep); // <-- marca como salvo
       alert("✅ Fluxo salvo com sucesso!");
     } catch (err: any) {
       setError(err.message ?? "Erro ao salvar");
@@ -248,7 +253,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     } finally {
       setSaving(false);
     }
-  }, [nodes, edges, idFunil]);
+  }, [nodes, edges, idFunil, historyStep]);
 
   /* ===================== CLIPBOARD & MANIPULAÇÕES (COPY/CUT/PASTE/DELETE) ===================== */
   const handleCopy = useCallback(() => {
@@ -348,6 +353,20 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
       return () => clearTimeout(timer);
     }
   }, [activeFlow, rfInstance, handleFitView]);
+
+  /* ===================== SALVOU? ===================== */
+
+  const hasUnsavedChanges = historyStep !== savedStep;
+
+    const handleClose = useCallback(() => {
+      if (hasUnsavedChanges) {
+        const confirmar = window.confirm(
+          "Você tem alterações não salvas. Se sair agora, elas serão perdidas. Deseja continuar?"
+        );
+        if (!confirmar) return;
+      }
+      router.push("/dashboard/funnels");
+    }, [hasUnsavedChanges, router]);
 
   /* ===================== ATALHOS DE TECLADO ===================== */
   useEffect(() => {
@@ -495,12 +514,32 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
           <div className="w-px h-5 bg-zinc-200 mx-1" />
           
           <button
-            onClick={() => addMessage()}
-            className="text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded transition-colors flex items-center gap-1.5"
+            onClick={salvar}
+            disabled={saving}
+            className="text-xs font-medium bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded transition-colors disabled:opacity-50 ml-1 shadow-sm flex items-center gap-1.5"
           >
-            <Plus className="w-3.5 h-3.5" /> Adicionar Mensagem
+            <Save className="w-3.5 h-3.5" /> {saving ? "Salvando..." : "Salvar"}
           </button>
-          
+
+          <div className="w-px h-5 bg-zinc-200 mx-1" />
+
+          <button
+            onClick={handleUndo}
+            disabled={historyStep <= 0}
+            title="Desfazer (Ctrl+Z)"
+            className="text-zinc-500 hover:text-zinc-700 disabled:opacity-30 disabled:hover:text-zinc-500 p-1.5 rounded hover:bg-zinc-100"
+          >
+            <Undo2 className="w-3.5 h-3.5" />
+          </button>
+          <button
+            onClick={handleRedo}
+            disabled={historyStep >= history.length - 1}
+            title="Refazer (Ctrl+Y)"
+            className="text-zinc-500 hover:text-zinc-700 disabled:opacity-30 disabled:hover:text-zinc-500 p-1.5 rounded hover:bg-zinc-100"
+          >
+            <Redo2 className="w-3.5 h-3.5" />
+          </button>
+
           <div className="w-px h-5 bg-zinc-200 mx-1" />
           
           <button
@@ -515,13 +554,23 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
           >
             Setores
           </button>
-          
+
+          <div className="w-px h-5 bg-zinc-200 mx-1" />
+
           <button
-            onClick={salvar}
-            disabled={saving}
-            className="text-xs font-medium bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded transition-colors disabled:opacity-50 ml-1 shadow-sm flex items-center gap-1.5"
+            onClick={() => addMessage()}
+            className="text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded transition-colors flex items-center gap-1.5"
           >
-            <Save className="w-3.5 h-3.5" /> {saving ? "Salvando..." : "Salvar"}
+            <Plus className="w-3.5 h-3.5" /> Adicionar Mensagem
+          </button>
+
+
+          <button
+            onClick={handleClose}
+            title="Fechar editor"
+            className="text-zinc-500 hover:text-red-600 p-1.5 rounded hover:bg-red-50"
+          >
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
 

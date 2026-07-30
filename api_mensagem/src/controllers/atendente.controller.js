@@ -4,7 +4,7 @@ const AtendenteService = require("../services/atendente.service");
 class AtendenteController {
   async criar(req, res) {
     try {
-      const { id_setor, no_atendente, im_image, is_ia } = req.body;
+      const { id_setor, no_atendente, im_atendente, is_ia } = req.body;
 
       if (
         !Array.isArray(id_setor) ||
@@ -19,7 +19,7 @@ class AtendenteController {
       const atendente = await AtendenteService.cadastrarAtendente({
         id_setor,
         no_atendente,
-        im_image,
+        im_atendente,
         is_ia: Boolean(is_ia),
       });
 
@@ -49,7 +49,7 @@ class AtendenteController {
   async atualizar(req, res) {
     try {
       const { id } = req.params;
-      const { id_setor, no_atendente, im_image, is_ia } = req.body;
+      const { id_setor, no_atendente, im_atendente, is_ia } = req.body;
 
       if (
         !Array.isArray(id_setor) ||
@@ -64,7 +64,7 @@ class AtendenteController {
       const atendente = await AtendenteService.atualizarAtendente(id, {
         id_setor,
         no_atendente,
-        im_image,
+        im_atendente,
         is_ia: Boolean(is_ia),
       });
 

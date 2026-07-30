@@ -13,7 +13,7 @@ type Atendente = {
   id_atendente: string
   no_atendente: string
   is_ia: boolean
-  im_image?: string | null
+  im_atendente?: string | null
   setores: Setor[]
 }
 
@@ -130,16 +130,16 @@ export default function AtendentesPage() {
             >
               <div className="flex gap-4 items-center">
                 <div className="w-14 h-14 rounded-full overflow-hidden bg-zinc-200 flex items-center justify-center shrink-0 shadow-inner">
-                  {atendente.im_image ? (
+                  {atendente.im_atendente ? (
                     <img
-                      src={atendente.im_image}
+                      src={atendente.im_atendente}
                       alt={atendente.no_atendente}
                       className="w-full h-full object-cover"
                     />
+                  ) : atendente.is_ia ? (
+                    <Bot className="w-6 h-6 text-zinc-500" />
                   ) : (
-                    <span className="text-zinc-500 text-lg font-bold">
-                      {atendente.no_atendente.charAt(0).toUpperCase()}
-                    </span>
+                    <User className="w-6 h-6 text-zinc-500" />
                   )}
                 </div>
 

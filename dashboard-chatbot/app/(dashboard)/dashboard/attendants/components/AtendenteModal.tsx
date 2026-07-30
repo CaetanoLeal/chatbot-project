@@ -11,7 +11,7 @@ type Atendente = {
   no_atendente: string;
   setores: Setor[];
   is_ia: boolean;
-  im_image?: string |null;
+  im_atendente?: string | null;
 };
 
 type Props = {
@@ -29,6 +29,7 @@ export default function AtendenteModal({
 }: Props) {
   const [nome, setNome] = useState("");
   const [idSetor, setIdSetor] = useState<string[]>([]);
+  const [singleIdSetor, setSingleIdSetor] = useState<string>("");
   const [isIa, setIsIa] = useState(false);
   const [imagemBase64, setImagemBase64] = useState("");
   const [setores, setSetores] = useState<Setor[]>([]);
@@ -59,14 +60,15 @@ export default function AtendenteModal({
   useEffect(() => {
     if (atendenteToEdit) {
       setNome(atendenteToEdit.no_atendente);
-      setIdSetor(
-        atendenteToEdit.setores.map((s) => s.id_setor)
-      );
+      const setorIds = atendenteToEdit.setores.map((s) => s.id_setor);
+      setIdSetor(setorIds);
+      setSingleIdSetor(setorIds[0] || "");
       setIsIa(atendenteToEdit.is_ia);
-      setImagemBase64(atendenteToEdit.im_image || "");
+      setImagemBase64(atendenteToEdit.im_atendente || "");
     } else {
       setNome("");
       setIdSetor([]);
+      setSingleIdSetor("");
       setIsIa(false);
       setImagemBase64("");
     }
@@ -99,7 +101,12 @@ export default function AtendenteModal({
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (idSetor.length === 0) {
+    if (isIa && !singleIdSetor) {
+      setError("Selecione um setor para a Inteligência Artificial.");
+      return;
+    }
+
+    if (!isIa && idSetor.length === 0) {
       setError("Selecione pelo menos um setor.");
       return;
     }
@@ -107,11 +114,14 @@ export default function AtendenteModal({
     setLoading(true);
     setError("");
 
+    // Se for IA, envia o setor único dentro de um array para manter a compatibilidade com o backend, ou ajuste se necessário
+    const payloadSetores = isIa ? [singleIdSetor] : idSetor;
+
     const payload = {
       no_atendente: nome,
-      id_setor: idSetor,
+      id_setor: payloadSetores,
       is_ia: isIa,
-      im_image: imagemBase64,
+      im_atendente: imagemBase64,
     };
 
     const url = atendenteToEdit
@@ -144,7 +154,8 @@ export default function AtendenteModal({
   };
 
   if (!isOpen) return null;
-    return (
+
+  return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
         <h2 className="text-xl font-bold text-zinc-800 mb-4">
@@ -181,6 +192,32 @@ export default function AtendenteModal({
             </div>
           </div>
 
+          <div className="flex items-center gap-2 pt-2">
+            <input
+              type="checkbox"
+              id="isIa"
+              checked={isIa}
+              onChange={(e) => {
+                setIsIa(e.target.checked);
+                // Limpa as seleções ao alternar entre IA e Humano para evitar conflitos
+                if (e.target.checked) {
+                  setIdSetor([]);
+                } else {
+                  setSingleIdSetor("");
+                }
+              }}
+              className="w-4 h-4 text-blue-600 rounded border-zinc-300"
+            />
+
+            <label
+              htmlFor="isIa"
+              className="text-sm font-medium cursor-pointer flex items-center gap-1"
+            >
+              Atendente é uma Inteligência Artificial
+              <Bot className="w-4 h-4 text-blue-600 ml-1" />
+            </label>
+          </div>
+
           <div>
             <label className="block text-sm font-medium mb-1">
               Nome
@@ -197,48 +234,48 @@ export default function AtendenteModal({
 
           <div>
             <label className="block text-sm font-medium mb-2">
-              Setores
+              {isIa ? "Setor da IA" : "Setores"}
             </label>
 
-            <div className="max-h-56 overflow-y-auto rounded border border-zinc-300 divide-y">
-              {setores.map((setor) => (
-                <label
-                  key={setor.id_setor}
-                  className="flex items-center justify-between px-3 py-2 hover:bg-zinc-50 cursor-pointer"
-                >
-                  <span className="text-sm">{setor.no_setor}</span>
+            {isIa ? (
+              <select
+                value={singleIdSetor}
+                onChange={(e) => setSingleIdSetor(e.target.value)}
+                className="w-full px-3 py-2 border rounded border-zinc-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                required
+              >
+                <option value="">Nenhum por enquanto</option>
+                {setores.map((setor) => (
+                  <option key={setor.id_setor} value={setor.id_setor}>
+                    {setor.no_setor}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="max-h-56 overflow-y-auto rounded border border-zinc-300 divide-y">
+                {setores.map((setor) => (
+                  <label
+                    key={setor.id_setor}
+                    className="flex items-center justify-between px-3 py-2 hover:bg-zinc-50 cursor-pointer"
+                  >
+                    <span className="text-sm">{setor.no_setor}</span>
 
-                  <input
-                    type="checkbox"
-                    checked={idSetor.includes(setor.id_setor)}
-                    onChange={() => handleToggleSetor(setor.id_setor)}
-                    className="w-4 h-4 text-blue-600 rounded border-zinc-300"
-                  />
-                </label>
-              ))}
-            </div>
+                    <input
+                      type="checkbox"
+                      checked={idSetor.includes(setor.id_setor)}
+                      onChange={() => handleToggleSetor(setor.id_setor)}
+                      className="w-4 h-4 text-blue-600 rounded border-zinc-300"
+                    />
+                  </label>
+                ))}
+              </div>
+            )}
 
             <p className="text-xs text-zinc-500 mt-2">
-              Selecione um ou mais setores para este atendente.
+              {isIa
+                ? "O Funil da IA é determinado pelo setor dela."
+                : "Selecione um ou mais setores para este atendente."}
             </p>
-          </div>
-
-          <div className="flex items-center gap-2 pt-2">
-            <input
-              type="checkbox"
-              id="isIa"
-              checked={isIa}
-              onChange={(e) => setIsIa(e.target.checked)}
-              className="w-4 h-4 text-blue-600 rounded border-zinc-300"
-            />
-
-            <label
-              htmlFor="isIa"
-              className="text-sm font-medium cursor-pointer flex items-center gap-1"
-            >
-              Atendente é uma Inteligência Artificial
-              <Bot className="w-4 h-4 text-blue-600 ml-1" />
-            </label>
           </div>
 
           {error && (

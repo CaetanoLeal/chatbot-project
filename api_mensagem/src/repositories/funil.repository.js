@@ -78,12 +78,6 @@ class FunilRepository {
         [id_funil]
       );
 
-      // IA
-      await client.query(
-        `DELETE FROM tbl_funil_ia WHERE id_funil = $1`,
-        [id_funil]
-      );
-
       // Utilizadores do funil
       await client.query(
         `DELETE FROM tbl_funil_utilizador WHERE id_funil = $1`,
@@ -246,7 +240,7 @@ class FunilRepository {
     const { funil_cadastro } = await db.query(
       `
       INSERT INTO tbl_funil_cadastro (id_funil, ds_mensagem)
-      VALUES ($1, $@2)
+      VALUES ($1, $2)
       `,
       [id_funil, 'Mensagem de boas-vindas']
     )

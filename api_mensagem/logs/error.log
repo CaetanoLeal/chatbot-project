@@ -1608,3 +1608,30 @@
 [2026-07-29 19:22:47] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
 [2026-07-29 20:57:37] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-07-29 20:57:37] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 17:35:25] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 17:35:25] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 17:37:03] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 17:37:03] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 20:01:37] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 20:01:37] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 20:29:18] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 20:29:19] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 20:55:28] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 20:55:28] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 21:06:38] [ERROR]: ❌ Erro ao buscar funil: column "id_funil" does not exist
+[2026-07-30 21:11:44] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 21:11:44] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 21:12:08] [ERROR]: ❌ Erro ao buscar funil: column "id_funil" does not exist
+[2026-07-30 21:12:47] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 21:12:47] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 21:41:31] [ERROR]: ❌ Erro ao criar funil: syntax error at or near "$"
+[2026-07-30 21:44:27] [ERROR]: ❌ Erro ao criar funil: syntax error at or near "$"
+[2026-07-30 21:45:49] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 21:45:49] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 21:46:06] [ERROR]: ❌ Erro ao criar funil: null value in column "is_aguardar" of relation "tbl_funil_chatbot" violates not-null constraint
+[2026-07-30 21:56:06] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 21:56:06] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 22:01:11] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-30 22:01:11] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 23:00:58] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-30 23:00:58] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up

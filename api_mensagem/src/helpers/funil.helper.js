@@ -841,7 +841,7 @@ async function _processarEtapaChatbot({ idUtilizador, idFunil, texto, sendMessag
 
 /** Lê a config ativa de IA do funil e do setor, já com o nome do modelo
  *  (tbl_funil_ia_modelo) resolvido. */
-async function getFunilIaConfig(idFunil, idSetor) {
+async function getFunilIaConfig(idSetor) {
   const r = await db.query(
     `SELECT FI.id_funil_ia
            ,FI.no_agente
@@ -853,11 +853,10 @@ async function getFunilIaConfig(idFunil, idSetor) {
            ,FI.ds_human_handoff
            ,FIM.ds_funil_ia_modelo
        FROM tbl_funil_ia FI
-       INNER JOIN tbl_funil_ia_modelo FIM ON FIM.id_funil_ia_modelo = FI.id_funil_ia_modelo
-      WHERE FI.id_funil = $1
-        AND FI.id_setor = $2
+      INNER JOIN tbl_funil_ia_modelo FIM ON FIM.id_funil_ia_modelo = FI.id_funil_ia_modelo
+      WHERE FI.id_setor = $1
       LIMIT 1`,
-    [idFunil, idSetor]
+    [idSetor]
   )
   return r.rows[0] ?? null
 }

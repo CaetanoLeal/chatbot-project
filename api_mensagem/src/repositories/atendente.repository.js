@@ -2,20 +2,22 @@
 const db = require("../config/db");
 
 class AtendenteRepository {
-  async verificarIaNoSetor(id_setor) {
+  async verificarIaNoSetor(id_setor, excludeIdAtendente = null) {
     const query = `
       SELECT a.id_atendente
       FROM tbl_atendente a
       INNER JOIN tbl_atendente_setor ats
         ON ats.id_atendente = a.id_atendente
-       AND (ats.is_excluido = false OR ats.is_excluido IS NULL)
+      AND (ats.is_excluido = false OR ats.is_excluido IS NULL)
       WHERE ats.id_setor = $1
         AND a.is_ia = true
         AND (a.is_excluido = false OR a.is_excluido IS NULL)
+        ${excludeIdAtendente ? "AND a.id_atendente != $2" : ""}
       LIMIT 1;
     `;
 
-    const { rows } = await db.query(query, [id_setor]);
+    const values = excludeIdAtendente ? [id_setor, excludeIdAtendente] : [id_setor];
+    const { rows } = await db.query(query, values);
     return rows.length > 0;
   }
 
@@ -25,66 +27,50 @@ class AtendenteRepository {
     try {
       await client.query("BEGIN");
 
-      // Gera o UUID do atendente
       const { rows: uuidAtendente } = await client.query(
         `SELECT uuid_generate_v4() AS id`
       );
-
       const idAtendente = uuidAtendente[0].id;
 
-      // Insere o atendente
       const { rows } = await client.query(
         `
-        INSERT INTO tbl_atendente (
-          id_atendente,
-          no_atendente,
-          im_image,
-          is_ia
-        )
+        INSERT INTO tbl_atendente (id_atendente, no_atendente, im_atendente, is_ia)
         VALUES ($1, $2, $3, $4)
         RETURNING *;
         `,
-        [
-          idAtendente,
-          dados.no_atendente,
-          dados.im_image,
-          dados.is_ia,
-        ]
+        [idAtendente, dados.no_atendente, dados.im_atendente, dados.is_ia]
       );
 
       const atendente = rows[0];
 
-      // Relaciona os setores
       if (Array.isArray(dados.id_setor) && dados.id_setor.length > 0) {
         for (const idSetor of dados.id_setor) {
-
           const { rows: uuidRelacao } = await client.query(
             `SELECT uuid_generate_v4() AS id`
           );
 
           await client.query(
             `
-            INSERT INTO tbl_atendente_setor (
-              id_atendente_setor,
-              id_atendente,
-              id_setor
-            )
+            INSERT INTO tbl_atendente_setor (id_atendente_setor, id_atendente, id_setor)
             VALUES ($1, $2, $3);
             `,
-            [
-              uuidRelacao[0].id,
-              idAtendente,
-              idSetor,
-            ]
+            [uuidRelacao[0].id, idAtendente, idSetor]
           );
         }
       }
 
       await client.query("COMMIT");
-
       return atendente;
     } catch (error) {
       await client.query("ROLLBACK");
+
+      // fallback de segurança contra corrida (dois cadastros de IA simultâneos no mesmo setor)
+      if (error.code === "23505") {
+        throw new Error(
+          "Um dos setores selecionados já possui um atendente IA cadastrado."
+        );
+      }
+
       throw error;
     } finally {
       client.release();
@@ -137,7 +123,7 @@ class AtendenteRepository {
         UPDATE tbl_atendente
         SET
           no_atendente = $1,
-          im_image = $2,
+          im_atendente = $2,
           is_ia = $3,
           dh_alteracao = NOW()
         WHERE id_atendente = $4
@@ -145,7 +131,7 @@ class AtendenteRepository {
         `,
         [
           dados.no_atendente,
-          dados.im_image,
+          dados.im_atendente,
           dados.is_ia,
           id,
         ]

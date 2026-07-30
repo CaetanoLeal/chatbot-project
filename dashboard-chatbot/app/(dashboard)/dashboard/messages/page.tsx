@@ -30,7 +30,7 @@ type Atendente = {
   id_setor: string | null
   no_atendente: string
   no_setor?: string | null
-  im_image?: string | null
+  im_atendente?: string | null
 }
 
 type ChatThread = {
