@@ -1,4 +1,3 @@
-//app/(dashboard)/dashboard/messages/page.tsx
 "use client"
 
 import { useState, useEffect, useMemo, useCallback } from "react"
@@ -7,6 +6,7 @@ import { io } from "socket.io-client"
 const socket = io(`${process.env.NEXT_PUBLIC_API_URL}`)
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
+const SYSTEM_ATENDENTE_ID = "00000000-0000-0000-0000-000000000000"
 
 /* =====================
    TYPES
@@ -167,18 +167,31 @@ export default function MessagesPage() {
   ===================== */
   useEffect(() => {
     function handleNewMessage(data: any) {
+      // 1. Limpa a assinatura que vem do banco (ex: remove o "_caetano_" do final)
+      let cleanContent = data.conteudo || ""
+      if (data.fromMe) {
+        cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
+      }
+
       const newMessage: ChatMessage = {
-        id: Date.now().toString(),
+        id: data.id_mensagem || data.idChat + Date.now().toString(), // Tenta usar o ID real
         platform: "whatsapp",
         fromMe: data.fromMe,
-        senderName: data.fromMe ? "Atendimento" : data.telefone,
-        content: data.conteudo,
+        senderName: data.fromMe ? (data.no_atendente || "sistema") : data.telefone,
+        content: cleanContent,
         timestamp: new Date().toLocaleString(),
       }
 
       setThreads((prev) => {
         const updated = prev.map((chat) => {
           if (chat.id !== data.idChat) return chat
+
+          // DEDUPLICAÇÃO: Verifica se a mensagem já existe pelo ID ou pelo conteúdo idêntico
+          const jaExiste = chat.messages.some(
+            (m) => m.id === data.id_mensagem || (m.fromMe && m.content === cleanContent)
+          )
+          if (jaExiste) return chat
+
           return {
             ...chat,
             status: (data.sgChatStatus as ChatStatus) || chat.status,
@@ -189,8 +202,6 @@ export default function MessagesPage() {
       })
     }
 
-    // Se o backend também emitir um evento ao mudar status (ex: quando o
-    // funil manda o chat para PENDENTE), plugue aqui o mesmo tratamento:
     function handleChatUpdated(data: any) {
       setThreads((prev) => {
         const updated = prev.map((chat) =>
@@ -215,7 +226,16 @@ export default function MessagesPage() {
     try {
       const res = await fetch(`${API_URL}/api/atendentes`)
       const json = await res.json()
-      if (json.success) setAtendentes(json.data)
+      
+      // Trata caso a API retorne diretamente um array ou dentro de .data
+      const rawData = Array.isArray(json) ? json : (json.data || [])
+
+      // Filtra para remover o atendente do sistema (ID 00000000-0000-0000-0000-000000000000)
+      const atendentesValidos = rawData.filter(
+        (a: Atendente) => a.id_atendente !== SYSTEM_ATENDENTE_ID
+      )
+
+      setAtendentes(atendentesValidos)
     } catch (err) {
       console.error("Erro ao carregar atendentes", err)
     }
@@ -278,14 +298,21 @@ export default function MessagesPage() {
       const json = await res.json()
       if (!json.success) return
 
-      const formattedMessages: ChatMessage[] = json.data.map((msg: any) => ({
-        id: msg.id_mensagem,
-        platform: chat.platform,
-        fromMe: msg.from_me,
-        senderName: msg.from_me ? msg.no_atendente || "Atendimento" : chat.contactName,
-        content: msg.ds_conteudo,
-        timestamp: new Date(msg.dh_envio).toLocaleString(),
-      }))
+      const formattedMessages: ChatMessage[] = json.data.map((msg: any) => {
+        let cleanContent = msg.ds_conteudo || ""
+        if (msg.from_me) {
+          cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
+        }
+
+        return {
+          id: msg.id_mensagem,
+          platform: chat.platform,
+          fromMe: msg.from_me,
+          senderName: msg.from_me ? msg.no_atendente || "sistema" : chat.contactName,
+          content: cleanContent,
+          timestamp: new Date(msg.dh_envio).toLocaleString(),
+        }
+      })
 
       setThreads((prev) =>
         prev.map((c) => (c.id === chat.id ? { ...c, messages: formattedMessages } : c))
@@ -297,8 +324,7 @@ export default function MessagesPage() {
   }
 
   /* =====================
-     ENVIAR MENSAGEM (via API — detecta provider no back-end
-     e concatena a assinatura do atendente)
+     ENVIAR MENSAGEM
   ===================== */
   async function sendMessage() {
     if (!reply.trim() || !activeChat || sending) return
@@ -328,8 +354,8 @@ export default function MessagesPage() {
         id: json.data.id_mensagem || Date.now().toString(),
         platform: activeChat.platform,
         fromMe: true,
-        senderName: atendenteAtivo?.no_atendente || "Atendimento",
-        content: json.data.ds_conteudo || reply,
+        senderName: atendenteAtivo?.no_atendente || "sistema",
+        content: reply.trim(), // Usa o texto direto do input, limpo
         timestamp: new Date().toLocaleString(),
       }
 
@@ -517,26 +543,37 @@ export default function MessagesPage() {
 
               {/* Mensagens */}
               <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-zinc-100">
-                {activeChat.messages.map((msg) => (
-                  <div
-                    key={msg.id}
-                    className={`flex gap-2 ${msg.fromMe ? "justify-end" : "justify-start"}`}
-                  >
-                    {!msg.fromMe && <Avatar name={activeChat.contactName} photo={activeChat.photo} />}
-
+                {activeChat.messages
+                  .filter((msg) => {
+                    // REGRA: Oculta mensagens do "sistema" se o status for "H"
+                    if (activeChat.status === "H" && msg.senderName?.toLowerCase() === "sistema") {
+                      return false
+                    }
+                    return true
+                  })
+                  .map((msg) => (
                     <div
-                      className={`max-w-md px-4 py-2 rounded text-sm ${
-                        msg.fromMe ? "bg-blue-600 text-white" : "bg-white text-zinc-800"
-                      }`}
+                      key={msg.id}
+                      className={`flex gap-2 ${msg.fromMe ? "justify-end" : "justify-start"}`}
                     >
-                      {msg.fromMe && (
-                        <div className="text-[10px] opacity-70 mb-1">{msg.senderName}</div>
-                      )}
-                      <div className="whitespace-pre-wrap">{msg.content}</div>
-                      <div className="text-[10px] opacity-70 mt-1 text-right">{msg.timestamp}</div>
+                      {!msg.fromMe && <Avatar name={activeChat.contactName} photo={activeChat.photo} />}
+
+                      <div
+                        className={`max-w-md px-4 py-2 rounded text-sm ${
+                          msg.fromMe ? "bg-blue-600 text-white" : "bg-white text-zinc-800"
+                        }`}
+                      >
+                        {/* Texto e Nome na mesma linha */}
+                        <div className="whitespace-pre-wrap">
+                          {msg.fromMe
+                            ? `Mensagem de ${msg.senderName}: ${msg.content}`
+                            : msg.content}
+                        </div>
+                        
+                        <div className="text-[10px] opacity-70 mt-1 text-right">{msg.timestamp}</div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
 
               {/* Input */}

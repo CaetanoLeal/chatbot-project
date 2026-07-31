@@ -82,7 +82,7 @@ async function saveUnifiedMessage({
       tipo || "text",
       payload || null,
       dhEnvio,
-      idAtendente,
+      idAtendente || '00000000-0000-0000-0000-000000000000',
     ]
   )
 
@@ -195,55 +195,50 @@ async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
     }
     nomeAtendente = atendente.no_atendente
 
-    // Regra pedida: só quem é capacitado pro setor pode atender o chamado
     const capacitado = await atendenteRepository.verificarCapacitacaoSetor(idAtendente, chat.id_setor)
     if (!capacitado) {
-      throw new Error(
-        `${nomeAtendente} não está habilitado a atender o setor deste chat`
-      )
+      throw new Error(`${nomeAtendente} não está habilitado a atender o setor deste chat`)
     }
   }
 
-  const mensagemFinal = `${texto}\n\n_${nomeAtendente}_`
+  // Formatação só para o canal externo (WhatsApp/Telegram)
+  const mensagemParaEnvio = `Mensagem de ${nomeAtendente}: ${texto}`
 
   if (chat.cd_provider === 1) {
-    // whatsapp
     const telefone = chat.nu_telefone || chat.cd_whatsapp
     if (!telefone) throw new Error("Chat sem telefone de WhatsApp cadastrado")
     if (!chat.no_instancia) throw new Error("Chat sem instância de WhatsApp vinculada")
 
     await sendWhatsAppMessage({
       telefone,
-      message: mensagemFinal,
+      message: mensagemParaEnvio,
       instanceName: chat.no_instancia,
     })
   } else if (chat.cd_provider === 2) {
-    // telegram
     if (!chat.cd_telegram) throw new Error("Chat sem identificador de Telegram cadastrado")
 
     await sendTelegramMessage({
       userId: chat.cd_telegram,
-      message: mensagemFinal,
+      message: mensagemParaEnvio,
       nome: nomeAtendente,
     })
   } else {
     throw new Error(`Provider do chat desconhecido (cd_provider=${chat.cd_provider})`)
   }
 
+  // Salva o texto PURO (sem prefixo/sufixo) — a exibição de "Mensagem de X:" já é feita no frontend
   const idMensagem = await saveUnifiedMessage({
     idChat,
     cdProvider: chat.cd_provider,
     idMensagemExterna: null,
     fromMe: true,
-    conteudo: mensagemFinal,
+    conteudo: texto,
     tipo: "text",
     payload: null,
     dhEnvio: new Date(),
     idAtendente: idAtendente || null,
   })
 
-  // Regra do backend: mensagem from_me tira o chat de PENDENTE e
-  // coloca em HUMANO (ver funil.helper.js -> verificarRespostaHumanaPendente)
   if (chat.id_funil && chat.id_utilizador) {
     await funilHelper.verificarRespostaHumanaPendente({
       idUtilizador: chat.id_utilizador,
@@ -253,7 +248,7 @@ async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
 
   return {
     id_mensagem: idMensagem,
-    ds_conteudo: mensagemFinal,
+    ds_conteudo: texto,
     no_atendente: nomeAtendente,
   }
 }

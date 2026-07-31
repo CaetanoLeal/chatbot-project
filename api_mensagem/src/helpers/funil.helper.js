@@ -36,9 +36,9 @@ const CHAT_STATUS = {
    SETORES FIXOS
    ============================================================ */
 const SETOR = {
-  CADASTRO : "9d6e60fe-4e13-47fa-bffb-38e1bbead864",
-  CHATBOT  : "9ee25940-bd90-495c-a97e-75c1cbfc908c",
-  IA       : "ef0d482e-6ef6-4a59-94ec-b4d2ce6ed2a3",
+  CADASTRO : "00000000-0000-0000-0000-000000000000",
+  CHATBOT  : "11111111-1111-1111-1111-111111111111",
+  IA       : "22222222-2222-2222-2222-222222222222",
 }
 
 /* ============================================================
@@ -166,6 +166,7 @@ async function createFunilUtilizador(idUtilizador, idFunil) {
   const now  = new Date()
   const mins = await _getMinutosExpiracaoInicial(idFunil)
 
+  // Sempre inicia no setor de CADASTRO
   await db.query(
     `INSERT INTO tbl_funil_utilizador
        (id_funil_utilizador, id_funil, id_utilizador,
@@ -181,34 +182,39 @@ async function createFunilUtilizador(idUtilizador, idFunil) {
 async function atualizarCadastroMensagem(idUtilizador, idFunil, cdMensagem) {
   const mins = await _getMinutosExpiracaoInicial(idFunil)
 
+  // Força atualização para o setor de CADASTRO sempre que progredir no cadastro
   await db.query(
     `UPDATE tbl_funil_utilizador
-     SET cd_mensagem_cadastro = $1, 
+     SET cd_mensagem_cadastro = $1,
+         id_setor = $2,
          dh_mensagem = NOW(),
          nu_expiracao = 1,
-         dh_expiracao = NOW() + ($2 || ' minutes')::INTERVAL
-     WHERE id_utilizador = $3 AND id_funil = $4`,
-    [cdMensagem, mins, idUtilizador, idFunil]
+         dh_expiracao = NOW() + ($3 || ' minutes')::INTERVAL
+     WHERE id_utilizador = $4 AND id_funil = $5`,
+    [cdMensagem, SETOR.CADASTRO, mins, idUtilizador, idFunil]
   )
 }
 
 async function atualizarChatbotMensagem(idUtilizador, idFunil, cdMensagem) {
   const mins = await _getMinutosExpiracaoInicial(idFunil)
 
+  // Força atualização para o setor de CHATBOT sempre que progredir no chatbot
   await db.query(
     `UPDATE tbl_funil_utilizador
      SET cd_mensagem_chatbot = $1, 
+         id_setor = $2,
          dh_mensagem = NOW(),
          nu_expiracao = 1,
-         dh_expiracao = NOW() + ($2 || ' minutes')::INTERVAL
-     WHERE id_utilizador = $3 AND id_funil = $4`,
-    [cdMensagem, mins, idUtilizador, idFunil]
+         dh_expiracao = NOW() + ($3 || ' minutes')::INTERVAL
+     WHERE id_utilizador = $4 AND id_funil = $5`,
+    [cdMensagem, SETOR.CHATBOT, mins, idUtilizador, idFunil]
   )
 }
 
 async function concluirCadastro(idUtilizador, idFunil) {
   const mins = await _getMinutosExpiracaoInicial(idFunil)
 
+  // Ao concluir, já migra para o setor CHATBOT
   await db.query(
     `UPDATE tbl_funil_utilizador
      SET is_cadastrado = true, sg_chat_status = 'B',
@@ -229,8 +235,6 @@ async function concluirCadastro(idUtilizador, idFunil) {
    decide o destino: A (aberto) | H (humano) | I (ia) | P (pendente)
    ============================================================ */
 
-/** Status ABERTO — antigo "finalizado". Ao chegar a próxima mensagem
- *  do utilizador, o funil reinicia no código 0 do chatbot. */
 async function direcionarParaAberto({ idUtilizador, idFunil }) {
   await db.query(
     `UPDATE tbl_funil_utilizador
@@ -242,14 +246,15 @@ async function direcionarParaAberto({ idUtilizador, idFunil }) {
   logger.info(`🏁 Utilizador ${idUtilizador} concluiu o fluxo → status ABERTO`)
 }
 
-/** Status HUMANO ou IA — bot fica em silêncio total até uma troca
- *  manual de status (HUMANO) ou até a IA assumir de fato (IA). */
 async function direcionarParaAtendimento({ idUtilizador, idFunil, idSetor, statusDestino }) {
+  // Se for direcionado para a IA, injeta o ID correto da IA
+  const setorFinal = statusDestino === CHAT_STATUS.IA ? SETOR.IA : idSetor;
+
   await db.query(
     `UPDATE tbl_funil_utilizador
      SET sg_chat_status = $3, id_setor = $4, dh_mensagem = NOW()
      WHERE id_utilizador = $1 AND id_funil = $2`,
-    [idUtilizador, idFunil, statusDestino, idSetor ?? null]
+    [idUtilizador, idFunil, statusDestino, setorFinal ?? null]
   )
   await updateChatStatus({ idUtilizador, status: statusDestino })
 
@@ -257,9 +262,6 @@ async function direcionarParaAtendimento({ idUtilizador, idFunil, idSetor, statu
   logger.info(`👤 Utilizador ${idUtilizador} direcionado para atendimento ${label} (silêncio do bot)`)
 }
 
-/** Status PENDENTE — atendimento humano foi chamado mas ainda
- *  ninguém respondeu. Loga "PENDENTE: SETOR X" e o bot fica calado
- *  até detectarmos uma mensagem from_me para esse utilizador. */
 async function direcionarParaPendente({ idUtilizador, idFunil, idSetor, noSetor }) {
   await db.query(
     `UPDATE tbl_funil_utilizador
@@ -278,12 +280,18 @@ async function direcionarParaPendente({ idUtilizador, idFunil, idSetor, noSetor 
   logger.info(`PENDENTE: SETOR ${nomeSetor ?? "NÃO INFORMADO"}`)
 }
 
-/** Dispatcher central — lê o sg_chat_status da mensagem finalizadora
- *  do chatbot e decide para onde mandar o utilizador. Se a mensagem
- *  não tiver sg_chat_status definido, cai no comportamento antigo
- *  (ABERTO), preservando compatibilidade com fluxos já cadastrados. */
 async function aplicarStatusEspecialChatbot({ idUtilizador, idFunil, idSetor, noSetor, sgStatus }) {
-  const status = sgStatus || CHAT_STATUS.ABERTO
+  let status = sgStatus;
+
+  if (!status) {
+    if (idSetor === SETOR.IA) {
+      status = CHAT_STATUS.IA;
+    } else if (idSetor) {
+      status = CHAT_STATUS.PENDENTE;
+    } else {
+      status = CHAT_STATUS.ABERTO;
+    }
+  }
 
   switch (status) {
     case CHAT_STATUS.ABERTO:
@@ -304,9 +312,6 @@ async function aplicarStatusEspecialChatbot({ idUtilizador, idFunil, idSetor, no
   }
 }
 
-/** Chamado pelo webhook de mensagem ENVIADA (from_me) — se o
- *  utilizador estiver com sg_chat_status = PENDENTE, uma resposta
- *  humana o move automaticamente para HUMANO. */
 async function verificarRespostaHumanaPendente({ idUtilizador, idFunil }) {
   if (!idFunil) return
 
@@ -323,8 +328,6 @@ async function verificarRespostaHumanaPendente({ idUtilizador, idFunil }) {
   logger.info(`🧑‍💼 Utilizador ${idUtilizador} saiu de PENDENTE → HUMANO (resposta manual detectada)`)
 }
 
-/** Troca manual de status (ex: usada pelo painel/admin) — ex: mover
- *  de HUMANO de volta para ABERTO ao encerrar o atendimento. */
 async function definirStatusManual({ idUtilizador, idFunil, status }) {
   if (!Object.values(CHAT_STATUS).includes(status)) {
     throw new Error(`Status inválido: ${status}`)
@@ -472,7 +475,6 @@ async function getMensagemChatbot(idFunil, cdMensagem) {
            ,FC.is_finalizar
            ,FC.is_aguardar
            ,FC.id_campo
-           ,FC.sg_chat_status
            ,C.cd_campo_tipo
            ,C.no_campo
            ,C.is_obrigatorio
@@ -644,7 +646,6 @@ async function processarMensagem({ idUtilizador, idFunil, idChat, texto, sendMes
      outro trecho do funil roda enquanto o status for 'I'.
   ----------------------------------------------------------- */
   if (sg_chat_status === CHAT_STATUS.IA) {
-    // Adicionado o envio do estado.id_setor para a função da IA
     await _processarEtapaIA({ idUtilizador, idFunil, idChat, texto, sendMessage, idSetor: estado.id_setor })
     return
   }
@@ -668,15 +669,17 @@ async function processarMensagem({ idUtilizador, idFunil, idChat, texto, sendMes
 
     const mins = await _getMinutosExpiracaoInicial(idFunil)
 
+    // Força o ID do CHATBOT quando ele for reativado do status Aberto
     await db.query(
       `UPDATE tbl_funil_utilizador 
        SET sg_chat_status = 'B', 
+           id_setor = $4,
            cd_mensagem_chatbot = 0, 
            dh_mensagem = NOW(),
            nu_expiracao = 1,
            dh_expiracao = NOW() + ($3 || ' minutes')::INTERVAL
        WHERE id_utilizador = $1 AND id_funil = $2`,
-      [idUtilizador, idFunil, mins]
+      [idUtilizador, idFunil, mins, SETOR.CHATBOT]
     )
     await updateChatStatus({ idUtilizador, status: CHAT_STATUS.CHATBOT })
 
@@ -834,13 +837,8 @@ async function _processarEtapaChatbot({ idUtilizador, idFunil, texto, sendMessag
 
 /* ============================================================
    ETAPA IA — utilizador em atendimento por Inteligência Artificial
-   (sg_chat_status = 'I'). Busca a configuração em tbl_funil_ia,
-   monta o histórico recente de tbl_mensagem como contexto, chama
-   a OpenAI (iaService) e responde diretamente ao utilizador.
    ============================================================ */
 
-/** Lê a config ativa de IA do funil e do setor, já com o nome do modelo
- *  (tbl_funil_ia_modelo) resolvido. */
 async function getFunilIaConfig(idSetor) {
   const r = await db.query(
     `SELECT FI.id_funil_ia
@@ -861,8 +859,6 @@ async function getFunilIaConfig(idSetor) {
   return r.rows[0] ?? null
 }
 
-/** nu_temperature pode vir com vírgula decimal (ex: "0,70")
- *  dependendo de como foi inserido — normaliza para Number. */
 function _parseNumeroDecimal(valor, fallback) {
   if (valor === null || valor === undefined) return fallback
   if (typeof valor === "number") return valor
@@ -870,8 +866,6 @@ function _parseNumeroDecimal(valor, fallback) {
   return Number.isNaN(numero) ? fallback : numero
 }
 
-/** Últimas N mensagens do chat (tbl_mensagem), convertidas para o
- *  formato de histórico do Chat Completions (user/assistant). */
 async function _buscarHistoricoChat(idChat, limite = 10) {
   if (!idChat) return []
 
@@ -894,15 +888,22 @@ async function _buscarHistoricoChat(idChat, limite = 10) {
 }
 
 async function _processarEtapaIA({ idUtilizador, idFunil, idChat, texto, sendMessage, idSetor }) {
-  const config = await getFunilIaConfig(idFunil, idSetor)
+  // Garante de fato que todas as mensagens da IA apliquem e preservem o ID do setor da IA
+  await db.query(
+    `UPDATE tbl_funil_utilizador SET id_setor = $1 WHERE id_utilizador = $2 AND id_funil = $3`,
+    [SETOR.IA, idUtilizador, idFunil]
+  )
+
+  // Busca sempre baseado no ID principal da Inteligência Artificial
+  const config = await getFunilIaConfig(SETOR.IA)
 
   if (!config) {
-    logger.warn(`[IA] Nenhuma configuração de IA encontrada para o funil ${idFunil} e setor ${idSetor}`)
+    logger.warn(`[IA] Nenhuma configuração de IA encontrada para o setor ${SETOR.IA}`)
     return
   }
 
   if (!config.is_ativo) {
-    logger.warn(`[IA] Configuração de IA inativa (is_ativo=false) para o funil ${idFunil} e setor ${idSetor}`)
+    logger.warn(`[IA] Configuração de IA inativa (is_ativo=false) para o setor ${SETOR.IA}`)
     if (config.ds_fallback) await sendMessage(config.ds_fallback)
     return
   }
@@ -916,17 +917,14 @@ async function _processarEtapaIA({ idUtilizador, idFunil, idChat, texto, sendMes
     systemPromptFinal += "1. NUNCA adicione tags de roteamento se você estiver fazendo uma pergunta ao usuário (ex: 'Posso ajudar com mais alguma coisa?'). Se você fizer uma pergunta, apenas aguarde a resposta dele.\n";
     systemPromptFinal += "2. Se o usuário disser que NÃO precisa de mais nada, ou se despedir de forma clara (ex: 'tchau', 'obrigado, era só isso'), despeça-se educadamente e adicione EXATAMENTE a tag [FINALIZAR] ao final da sua resposta.\n";
 
-    // Só adiciona a regra de handoff se no banco estiver true
     if (config.ds_human_handoff) {
       systemPromptFinal += "3. Se você não puder atender ao pedido do usuário, informe-o e pergunte se ele gostaria de falar com um atendente humano, perguntar outra coisa ou finalizar a conversa. NUNCA transfira sem perguntar antes.\n";
       systemPromptFinal += "4. Se o usuário pedir expressamente para falar com um humano, ou confirmar que deseja a transferência após você oferecer, responda amigavelmente que irá transferi-lo e adicione EXATAMENTE a tag [ATENDENTE] ao final da sua resposta.\n";
     }
 
   try {
-    // Busca as últimas 10 mensagens
     const historico = await _buscarHistoricoChat(idChat, 10)
 
-    // Chama o IA Service passando o prompt concatenado com as regras
     const resposta = await iaService.gerarResposta({
       systemPrompt : systemPromptFinal,
       historico,
@@ -939,31 +937,22 @@ async function _processarEtapaIA({ idUtilizador, idFunil, idChat, texto, sendMes
     if (resposta) {
       let textoFinal = resposta;
 
-      // 1. Intercepta tag de Atendente (Status PENDENTE)
       if (config.ds_human_handoff && textoFinal.includes("[ATENDENTE]")) {
-        // Remove a tag antes de mandar pro Whatsapp/Telegram
         textoFinal = textoFinal.replace(/\[ATENDENTE\]/gi, "").trim();
         if (textoFinal) await sendMessage(textoFinal);
-
-        // Direciona para o fluxo Pendente (Aguarda Humano)
-        await direcionarParaPendente({ idUtilizador, idFunil, idSetor });
+        await direcionarParaPendente({ idUtilizador, idFunil, idSetor: SETOR.IA });
         logger.info(`🤖 [IA] Handoff disparado para utilizador ${idUtilizador} → PENDENTE`);
         return; 
       }
 
-      // 2. Intercepta tag de Finalizar (Status ABERTO)
       if (textoFinal.includes("[FINALIZAR]")) {
-        // Remove a tag antes de mandar pro Whatsapp/Telegram
         textoFinal = textoFinal.replace(/\[FINALIZAR\]/gi, "").trim();
         if (textoFinal) await sendMessage(textoFinal);
-
-        // Direciona para o fluxo Aberto (Fim de atendimento)
         await direcionarParaAberto({ idUtilizador, idFunil });
         logger.info(`🤖 [IA] Atendimento encerrado pela IA para utilizador ${idUtilizador} → ABERTO`);
         return; 
       }
 
-      // 3. Resposta Normal da IA
       await sendMessage(textoFinal);
       logger.info(`🤖 [IA] Resposta enviada para utilizador ${idUtilizador}`);
 
@@ -979,8 +968,6 @@ async function _processarEtapaIA({ idUtilizador, idFunil, idChat, texto, sendMes
 
 /* ============================================================
    CRON / CRON-JOB: ENGINE DE EXPIRAÇÃO DE SESSÕES
-   (segue rodando apenas para C e B — H, I, P e A ficam de fora
-    de propósito, pois são estados "fora do funil automático")
    ============================================================ */
 async function verificarEProcessarExpiracoes(globalSendMessage) {
   try {

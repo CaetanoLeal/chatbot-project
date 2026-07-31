@@ -17,6 +17,8 @@ type Atendente = {
   setores: Setor[]
 }
 
+const SYSTEM_ATENDENTE_ID = "00000000-0000-0000-0000-000000000000"
+
 export default function AtendentesPage() {
   const [atendentes, setAtendentes] = useState<Atendente[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -37,7 +39,13 @@ export default function AtendentesPage() {
       }
 
       const data = await response.json()
-      setAtendentes(data)
+      
+      // Filtra o atendente do sistema pelo ID
+      const filteredData = data.filter(
+        (atendente: Atendente) => atendente.id_atendente !== SYSTEM_ATENDENTE_ID
+      )
+
+      setAtendentes(filteredData)
     } catch (err: any) {
       setError(err.message)
     } finally {

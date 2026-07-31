@@ -1635,3 +1635,51 @@
 [2026-07-30 22:01:11] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-07-30 23:00:58] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-07-30 23:00:58] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 16:50:54] [ERROR]: ❌ Erro ao buscar id_funil: relation "tbl_funil" does not exist
+[2026-07-31 16:51:54] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: relation "tbl_funil_utilizador" does not exist
+[2026-07-31 16:53:38] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 16:53:39] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 16:57:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 16:58:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 16:59:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 17:00:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 17:01:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 17:02:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 17:03:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 17:04:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 17:05:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 17:06:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 17:07:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: database "chatbot" does not exist
+[2026-07-31 17:08:39] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: relation "tbl_funil_utilizador" does not exist
+[2026-07-31 17:09:37] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 17:09:37] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 17:11:26] [ERROR]: ❌ Webhook error: null value in column "id_atendente" of relation "tbl_mensagem" violates not-null constraint
+[2026-07-31 17:20:34] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 17:20:34] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 17:57:39] [ERROR]: ❌ Webhook error: null value in column "id_atendente" of relation "tbl_mensagem" violates not-null constraint
+[2026-07-31 18:00:46] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 18:00:46] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 18:11:59] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 18:11:59] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 18:15:54] [ERROR]: ❌ Webhook error: insert or update on table "tbl_funil_utilizador" violates foreign key constraint "fk_tbl_funil_utilizador_tbl_setor"
+[2026-07-31 18:23:51] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 18:23:51] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 18:33:11] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 18:33:11] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 18:36:15] [ERROR]: ❌ Webhook error: column fc.sg_chat_status does not exist
+[2026-07-31 18:36:29] [ERROR]: ❌ Webhook error: column fc.sg_chat_status does not exist
+[2026-07-31 18:47:04] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 18:47:04] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 18:48:04] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-31 18:48:04] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID b948c305-83be-402f-8c2b-e1d04aadb885: Request failed with status code 404
+[2026-07-31 18:49:49] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 18:49:49] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 18:50:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-07-31 18:50:49] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID b948c305-83be-402f-8c2b-e1d04aadb885: Request failed with status code 404
+[2026-07-31 18:57:24] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-07-31 19:30:50] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 19:30:50] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 20:10:15] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-07-31 20:10:15] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 20:13:44] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-07-31 20:13:44] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
