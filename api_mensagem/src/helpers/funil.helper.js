@@ -6,6 +6,7 @@ const logger    = require("../../logger")
 const { v4: uuidv4 } = require("uuid")
 const { FUNIL_EXPIRACAO_MIN } = require("../constants/chatbot.constants.js")
 const iaService = require("../services/iaService")
+const socketBus = require("../socket")
 
 /* ============================================================
    STATUS DO CHAT
@@ -150,6 +151,39 @@ async function _getMinutosExpiracaoInicial(idFunil) {
 }
 
 /* ============================================================
+   HELPER — emite CHAT_UPDATED sempre que status/setor mudam
+   ============================================================ */
+async function _emitChatUpdated(idUtilizador, idFunil) {
+  try {
+    const r = await db.query(
+      `SELECT c.id_chat, c.sg_chat_status, s.id_setor, s.no_setor
+         FROM tbl_chat c
+        INNER JOIN tbl_instancia i ON i.id_instancia = c.id_instancia
+        LEFT JOIN tbl_setor s ON s.id_setor = (
+          SELECT fu2.id_setor FROM tbl_funil_utilizador fu2
+          WHERE fu2.id_utilizador = c.id_utilizador
+          ORDER BY fu2.dh_mensagem DESC NULLS LAST LIMIT 1
+        )
+        WHERE c.id_utilizador = $1 AND i.id_funil = $2
+        ORDER BY c.dh_ultima_mensagem DESC NULLS LAST
+        LIMIT 1`,
+      [idUtilizador, idFunil]
+    )
+    if (r.rows.length === 0) return
+    const row = r.rows[0]
+
+    socketBus.emit("CHAT_UPDATED", {
+      idChat      : row.id_chat,
+      sgChatStatus: row.sg_chat_status,
+      idSetor     : row.id_setor,
+      noSetor     : row.no_setor,
+    })
+  } catch (err) {
+    logger.error("❌ Falha ao emitir CHAT_UPDATED:", err.message)
+  }
+}
+
+/* ============================================================
    FUNIL UTILIZADOR
    ============================================================ */
 async function getFunilUtilizador(idUtilizador, idFunil) {
@@ -225,6 +259,7 @@ async function concluirCadastro(idUtilizador, idFunil) {
     [idUtilizador, idFunil, SETOR.CHATBOT, mins]
   )
   await updateChatStatus({ idUtilizador, status: CHAT_STATUS.CHATBOT })
+  await _emitChatUpdated(idUtilizador, idFunil)
   logger.info(`✅ Cadastro concluído → entrando em chatbot (utilizador ${idUtilizador})`)
 }
 
@@ -243,6 +278,7 @@ async function direcionarParaAberto({ idUtilizador, idFunil }) {
     [idUtilizador, idFunil, CHAT_STATUS.ABERTO]
   )
   await updateChatStatus({ idUtilizador, status: CHAT_STATUS.ABERTO })
+  await _emitChatUpdated(idUtilizador, idFunil)
   logger.info(`🏁 Utilizador ${idUtilizador} concluiu o fluxo → status ABERTO`)
 }
 
@@ -257,6 +293,7 @@ async function direcionarParaAtendimento({ idUtilizador, idFunil, idSetor, statu
     [idUtilizador, idFunil, statusDestino, setorFinal ?? null]
   )
   await updateChatStatus({ idUtilizador, status: statusDestino })
+  await _emitChatUpdated(idUtilizador, idFunil)
 
   const label = statusDestino === CHAT_STATUS.HUMANO ? "HUMANO" : "IA"
   logger.info(`👤 Utilizador ${idUtilizador} direcionado para atendimento ${label} (silêncio do bot)`)
@@ -270,6 +307,7 @@ async function direcionarParaPendente({ idUtilizador, idFunil, idSetor, noSetor 
     [idUtilizador, idFunil, CHAT_STATUS.PENDENTE, idSetor ?? null]
   )
   await updateChatStatus({ idUtilizador, status: CHAT_STATUS.PENDENTE })
+  await _emitChatUpdated(idUtilizador, idFunil)
 
   let nomeSetor = noSetor
   if (!nomeSetor && idSetor) {
@@ -325,6 +363,7 @@ async function verificarRespostaHumanaPendente({ idUtilizador, idFunil }) {
     [idUtilizador, idFunil, CHAT_STATUS.HUMANO]
   )
   await updateChatStatus({ idUtilizador, status: CHAT_STATUS.HUMANO })
+  await _emitChatUpdated(idUtilizador, idFunil)
   logger.info(`🧑‍💼 Utilizador ${idUtilizador} saiu de PENDENTE → HUMANO (resposta manual detectada)`)
 }
 
@@ -339,6 +378,7 @@ async function definirStatusManual({ idUtilizador, idFunil, status }) {
     [idUtilizador, idFunil, status]
   )
   await updateChatStatus({ idUtilizador, status })
+  await _emitChatUpdated(idUtilizador, idFunil)
   logger.info(`🔀 Status do utilizador ${idUtilizador} alterado manualmente para ${status}`)
 }
 

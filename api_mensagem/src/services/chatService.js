@@ -8,6 +8,7 @@ const chatRepository = require("../repositories/ChatRepository")
 const atendenteRepository = require("../repositories/atendente.repository")
 const funilHelper = require("../helpers/funil.helper")
 const { sendWhatsAppMessage, sendTelegramMessage } = require("./sendMessage")
+const socketBus = require("../socket")
 
 /* ============================================================
    (mantido) — cria/recupera chat quando chega mensagem nova
@@ -32,15 +33,19 @@ async function getOrCreateChat({ idUtilizador, cdProvider, idInstancia }) {
   const idChat = uuidv4()
 
   await db.query(
-    `
-    INSERT INTO tbl_chat
-      (id_chat, id_utilizador, cd_provider, id_instancia,
-       sg_chat_status, nao_lidas, dt_created_at, dt_updated_at)
-    VALUES
-      ($1, $2, $3, $4, 'C', 0, NOW(), NOW())
-    `,
+    `INSERT INTO tbl_chat
+       (id_chat, id_utilizador, cd_provider, id_instancia,
+        sg_chat_status, nao_lidas, dt_created_at, dt_updated_at)
+     VALUES
+       ($1, $2, $3, $4, 'C', 0, NOW(), NOW())`,
     [idChat, idUtilizador, cdProvider, idInstancia]
   )
+
+  // NOVO — avisa o painel que surgiu um chat novo
+  const chatCompleto = await chatRepository.getChatById(idChat)
+  if (chatCompleto) {
+    socketBus.emit("NEW_CHAT", chatCompleto)
+  }
 
   return idChat
 }

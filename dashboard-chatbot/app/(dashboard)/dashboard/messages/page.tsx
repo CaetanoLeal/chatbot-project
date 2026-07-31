@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo, useCallback } from "react"
+import { useState, useEffect, useMemo, useCallback, useRef } from "react"
 import { io } from "socket.io-client"
 
 const socket = io(`${process.env.NEXT_PUBLIC_API_URL}`)
@@ -141,6 +141,8 @@ export default function MessagesPage() {
   const [atendentes, setAtendentes] = useState<Atendente[]>([])
   const [idAtendenteAtivo, setIdAtendenteAtivo] = useState<string>("")
 
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
   const activeChat = useMemo(
     () => threads.find((t) => t.id === activeChatId) ?? null,
     [threads, activeChatId]
@@ -150,6 +152,10 @@ export default function MessagesPage() {
     () => threads.filter((t) => t.status === "P").length,
     [threads]
   )
+
+    useEffect(() => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
+    }, [activeChat?.id, activeChat?.messages.length])
 
   /* =====================
      BOOTSTRAP
@@ -542,16 +548,8 @@ export default function MessagesPage() {
               </div>
 
               {/* Mensagens */}
-              <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-zinc-100">
-                {activeChat.messages
-                  .filter((msg) => {
-                    // REGRA: Oculta mensagens do "sistema" se o status for "H"
-                    if (activeChat.status === "H" && msg.senderName?.toLowerCase() === "sistema") {
-                      return false
-                    }
-                    return true
-                  })
-                  .map((msg) => (
+                <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-zinc-100">
+                  {activeChat.messages.map((msg) => (
                     <div
                       key={msg.id}
                       className={`flex gap-2 ${msg.fromMe ? "justify-end" : "justify-start"}`}
@@ -563,18 +561,18 @@ export default function MessagesPage() {
                           msg.fromMe ? "bg-blue-600 text-white" : "bg-white text-zinc-800"
                         }`}
                       >
-                        {/* Texto e Nome na mesma linha */}
                         <div className="whitespace-pre-wrap">
-                          {msg.fromMe
+                          {msg.fromMe && msg.senderName?.toLowerCase() !== "sistema"
                             ? `Mensagem de ${msg.senderName}: ${msg.content}`
                             : msg.content}
                         </div>
-                        
+
                         <div className="text-[10px] opacity-70 mt-1 text-right">{msg.timestamp}</div>
                       </div>
                     </div>
                   ))}
-              </div>
+                  <div ref={messagesEndRef} />
+                </div>
 
               {/* Input */}
               <div className="border-t p-3 flex gap-2 bg-white">

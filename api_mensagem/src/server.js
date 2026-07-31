@@ -37,6 +37,9 @@ app.use("/api", routes)
 const server = http.createServer(app)
 const io     = new Server(server, { cors: { origin: "*" } })
 
+const socketBus = require("./socket")
+socketBus.setIO(io)
+
 /* ============================================================
    HELPERS INTERNOS DO WEBHOOK
    ============================================================ */
