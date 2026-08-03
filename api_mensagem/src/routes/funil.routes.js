@@ -27,4 +27,10 @@ router.delete('/:id/campos/:idCampo', FunilController.removerCampo)
 router.get('/:id/setores', FunilController.listarSetores)
 router.put('/:id/setores/:idSetor', FunilController.atualizarSetor)
 
+// Mensagens de expiração (disparadas por inatividade do usuário)
+router.get('/:id/expiracoes', FunilController.listarExpiracoes)
+router.post('/:id/expiracoes', FunilController.criarExpiracao)
+router.put('/:id/expiracoes/:idExpiracao', FunilController.atualizarExpiracao)
+router.delete('/:id/expiracoes/:idExpiracao', FunilController.removerExpiracao)
+
 module.exports = router

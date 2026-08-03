@@ -9,6 +9,7 @@ const FunilChatbotBotaoRepository = require('../repositories/funilChatbotBotao.r
 const CampoRepository = require('../repositories/campo.repository')
 const CampoTipoRepository = require('../repositories/campoTipo.repository')
 const SetorRepository = require('../repositories/setor.repository')
+const FunilExpiracaoRepository = require('../repositories/funilExpiracao.repository')
 
 class FunilService {
   async listar() {
@@ -197,6 +198,44 @@ class FunilService {
 
   async removerSetor(id_setor) {
     return SetorRepository.remover(id_setor)
+  }
+  /* ================= MENSAGENS DE EXPIRAÇÃO ================= */
+
+  async listarExpiracoes(id_funil) {
+    return FunilExpiracaoRepository.listar(id_funil)
+  }
+
+  async criarExpiracao(id_funil, { gn_mensagem, nu_sequencia, qt_minutos }) {
+    if (!gn_mensagem) throw new Error('A mensagem de expiração é obrigatória')
+    if (!Number.isInteger(nu_sequencia) || nu_sequencia < 1) {
+      throw new Error('A sequência deve ser um número inteiro maior ou igual a 1')
+    }
+    if (!Number.isInteger(qt_minutos) || qt_minutos < 0) {
+      throw new Error('Os minutos devem ser um número inteiro maior ou igual a 0 (0 finaliza o atendimento)')
+    }
+    return FunilExpiracaoRepository.criar({ id_funil, gn_mensagem, nu_sequencia, qt_minutos })
+  }
+
+  async atualizarExpiracao(id_funil, id_funil_expiracao, { gn_mensagem, nu_sequencia, qt_minutos }) {
+    if (!gn_mensagem) throw new Error('A mensagem de expiração é obrigatória')
+    if (!Number.isInteger(nu_sequencia) || nu_sequencia < 1) {
+      throw new Error('A sequência deve ser um número inteiro maior ou igual a 1')
+    }
+    if (!Number.isInteger(qt_minutos) || qt_minutos < 0) {
+      throw new Error('Os minutos devem ser um número inteiro maior ou igual a 0 (0 finaliza o atendimento)')
+    }
+    const atualizado = await FunilExpiracaoRepository.atualizar(id_funil, id_funil_expiracao, {
+      gn_mensagem,
+      nu_sequencia,
+      qt_minutos,
+    })
+    if (!atualizado) throw new Error('Mensagem de expiração não encontrada')
+    return atualizado
+  }
+
+  async removerExpiracao(id_funil, id_funil_expiracao) {
+    const removido = await FunilExpiracaoRepository.remover(id_funil, id_funil_expiracao)
+    if (!removido) throw new Error('Mensagem de expiração não encontrada')
   }
 }
 

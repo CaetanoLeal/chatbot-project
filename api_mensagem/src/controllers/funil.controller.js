@@ -172,6 +172,47 @@ class FunilController {
       return res.status(400).json({ error: err.message })
     }
   }
+  /* ================= MENSAGENS DE EXPIRAÇÃO ================= */
+
+  async listarExpiracoes(req, res) {
+    try {
+      const expiracoes = await FunilService.listarExpiracoes(req.params.id)
+      return res.json(expiracoes)
+    } catch (err) {
+      logger.error(`❌ Erro ao listar mensagens de expiração: ${err.message}`)
+      return res.status(500).json({ error: 'Erro ao listar mensagens de expiração' })
+    }
+  }
+
+  async criarExpiracao(req, res) {
+    try {
+      const expiracao = await FunilService.criarExpiracao(req.params.id, req.body)
+      return res.status(201).json(expiracao)
+    } catch (err) {
+      logger.error(`❌ Erro ao criar mensagem de expiração: ${err.message}`)
+      return res.status(400).json({ error: err.message })
+    }
+  }
+
+  async atualizarExpiracao(req, res) {
+    try {
+      const expiracao = await FunilService.atualizarExpiracao(req.params.id, req.params.idExpiracao, req.body)
+      return res.json(expiracao)
+    } catch (err) {
+      logger.error(`❌ Erro ao atualizar mensagem de expiração: ${err.message}`)
+      return res.status(400).json({ error: err.message })
+    }
+  }
+
+  async removerExpiracao(req, res) {
+    try {
+      await FunilService.removerExpiracao(req.params.id, req.params.idExpiracao)
+      return res.json({ success: true })
+    } catch (err) {
+      logger.error(`❌ Erro ao remover mensagem de expiração: ${err.message}`)
+      return res.status(400).json({ error: err.message })
+    }
+  }
 }
 
 module.exports = new FunilController()

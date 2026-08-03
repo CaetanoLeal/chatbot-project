@@ -71,6 +71,14 @@ export type Setor = {
   no_setor: string
 }
 
+export type Expiracao = {
+  id_funil_expiracao: string
+  id_funil: string
+  gn_mensagem: string
+  nu_sequencia: number
+  qt_minutos: number
+}
+
 /* ===================== FUNIL ===================== */
 
 export async function listarFunis() {
@@ -151,5 +159,42 @@ export async function criarSetor(data: { no_setor: string }) {
 
 export async function removerSetor(idFunil: string, idSetor: string) {
   const res = await fetch(`${BASE}/${idFunil}/setores/${idSetor}`, { method: 'DELETE' })
+  return handle<{ success: boolean }>(res)
+}
+
+/* ===================== EXPIRAÇÕES ===================== */
+
+export async function listarExpiracoes(idFunil: string) {
+  const res = await fetch(`${BASE}/${idFunil}/expiracoes`)
+  return handle<Expiracao[]>(res)
+}
+
+export async function criarExpiracao(
+  idFunil: string,
+  data: { gn_mensagem: string; nu_sequencia: number; qt_minutos: number }
+) {
+  const res = await fetch(`${BASE}/${idFunil}/expiracoes`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+  return handle<Expiracao>(res)
+}
+
+export async function atualizarExpiracao(
+  idFunil: string,
+  idExpiracao: string,
+  data: { gn_mensagem: string; nu_sequencia: number; qt_minutos: number }
+) {
+  const res = await fetch(`${BASE}/${idFunil}/expiracoes/${idExpiracao}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+  return handle<Expiracao>(res)
+}
+
+export async function removerExpiracao(idFunil: string, idExpiracao: string) {
+  const res = await fetch(`${BASE}/${idFunil}/expiracoes/${idExpiracao}`, { method: 'DELETE' })
   return handle<{ success: boolean }>(res)
 }

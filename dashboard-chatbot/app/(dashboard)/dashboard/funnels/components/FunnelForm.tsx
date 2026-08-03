@@ -98,7 +98,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
   const [setores, setSetores] = useState<Setor[]>([]);
 
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
-  const [configModal, setConfigModal] = useState<"campos" | "setores" | null>(null);
+  const [configModal, setConfigModal] = useState<"campos" | "setores" | "expiracao" | null>(null);
 
   /* ===================== CARGA INICIAL DO BANCO ===================== */
   useEffect(() => {
@@ -554,7 +554,12 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
           >
             Setores
           </button>
-
+          <button
+            onClick={() => setConfigModal("expiracao")}
+            className="text-xs text-zinc-600 bg-zinc-100 hover:bg-zinc-200 px-2.5 py-1.5 rounded transition-colors"
+          >
+            Expiração
+          </button>
           <div className="w-px h-5 bg-zinc-200 mx-1" />
 
           <button
