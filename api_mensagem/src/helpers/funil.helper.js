@@ -888,7 +888,7 @@ async function getFunilIaConfig(idSetor) {
            ,FI.nu_max_tokens
            ,FI.is_ativo
            ,FI.ds_fallback
-           ,FI.ds_human_handoff
+           ,FI.is_human_handoff
            ,FIM.ds_funil_ia_modelo
        FROM tbl_funil_ia FI
       INNER JOIN tbl_funil_ia_modelo FIM ON FIM.id_funil_ia_modelo = FI.id_funil_ia_modelo
@@ -957,7 +957,7 @@ async function _processarEtapaIA({ idUtilizador, idFunil, idChat, texto, sendMes
     systemPromptFinal += "1. NUNCA adicione tags de roteamento se você estiver fazendo uma pergunta ao usuário (ex: 'Posso ajudar com mais alguma coisa?'). Se você fizer uma pergunta, apenas aguarde a resposta dele.\n";
     systemPromptFinal += "2. Se o usuário disser que NÃO precisa de mais nada, ou se despedir de forma clara (ex: 'tchau', 'obrigado, era só isso'), despeça-se educadamente e adicione EXATAMENTE a tag [FINALIZAR] ao final da sua resposta.\n";
 
-    if (config.ds_human_handoff) {
+    if (config.is_human_handoff) {
       systemPromptFinal += "3. Se você não puder atender ao pedido do usuário, informe-o e pergunte se ele gostaria de falar com um atendente humano, perguntar outra coisa ou finalizar a conversa. NUNCA transfira sem perguntar antes.\n";
       systemPromptFinal += "4. Se o usuário pedir expressamente para falar com um humano, ou confirmar que deseja a transferência após você oferecer, responda amigavelmente que irá transferi-lo e adicione EXATAMENTE a tag [ATENDENTE] ao final da sua resposta.\n";
     }
@@ -977,7 +977,7 @@ async function _processarEtapaIA({ idUtilizador, idFunil, idChat, texto, sendMes
     if (resposta) {
       let textoFinal = resposta;
 
-      if (config.ds_human_handoff && textoFinal.includes("[ATENDENTE]")) {
+      if (config.is_human_handoff && textoFinal.includes("[ATENDENTE]")) {
         textoFinal = textoFinal.replace(/\[ATENDENTE\]/gi, "").trim();
         if (textoFinal) await sendMessage(textoFinal);
         await direcionarParaPendente({ idUtilizador, idFunil, idSetor: SETOR.IA });
@@ -1121,5 +1121,6 @@ module.exports = {
   verificarEProcessarExpiracoes,     // usado no Cron
   verificarRespostaHumanaPendente,   // chamado no webhook message.sent
   definirStatusManual,               // uso em rotas de admin/painel (ex: mover H -> A)
+  direcionarParaPendente,
   getFunilIaConfig,                  // uso opcional em rotas de admin/painel
 }

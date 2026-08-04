@@ -20,7 +20,7 @@ interface FunilIA {
   nu_max_tokens: number
   is_ativo: boolean
   ds_fallback: string
-  ds_human_handoff: boolean // Atualizado para o nome exato do seu banco de dados
+  is_human_handoff: boolean // Atualizado para o nome exato do seu banco de dados
   id_funil_ia_modelo: number
   ds_funil_ia_modelo?: string
   id_setor?: string // Adicionado conforme nova modelagem
@@ -146,7 +146,7 @@ export default function IAFunnelsPage() {
                 <div className="flex items-center justify-between">
                   <span>Handoff Humano:</span>
                   <strong className="text-zinc-900">
-                    {funil.ds_human_handoff ? "Sim" : "Não"}
+                    {funil.is_human_handoff ? "Sim" : "Não"}
                   </strong>
                 </div>
               </div>

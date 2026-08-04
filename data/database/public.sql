@@ -147,6 +147,7 @@ CREATE TABLE "public"."tbl_atendente" (
 -- ----------------------------
 INSERT INTO "public"."tbl_atendente" VALUES ('721edef5-0d43-427b-912a-ba15380c4282', 'caetano', 'f', NULL, '2026-07-28 17:56:45.378541', '2026-07-28 17:57:33.008468', NULL, 'f', NULL);
 INSERT INTO "public"."tbl_atendente" VALUES ('c869e391-2b8a-4a62-9fe0-45a2e00e4894', 'teste', 't', NULL, '2026-07-30 20:58:57.509923', '2026-07-30 20:58:57.509923', NULL, 'f', '');
+INSERT INTO "public"."tbl_atendente" VALUES ('00000000-0000-0000-0000-000000000000', 'sistema', 'f', NULL, '2026-07-30 20:58:57.509923', '2026-07-30 20:58:57.509923', NULL, 'f', '');
 
 -- ----------------------------
 -- Table structure for tbl_atendente_setor

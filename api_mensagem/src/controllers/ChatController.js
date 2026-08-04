@@ -23,9 +23,8 @@ async function messages(req, res) {
 }
 
 /* ============================================================
-   NOVO — POST /api/chats/:id_chat/mensagens
+   POST /api/chats/:id_chat/mensagens
    body: { texto: string, id_atendente: string }
-   Já valida se o atendente é capacitado pro setor do chat.
    ============================================================ */
 async function enviarMensagem(req, res) {
   try {
@@ -52,7 +51,7 @@ async function enviarMensagem(req, res) {
 }
 
 /* ============================================================
-   NOVO — POST /api/chats/:id_chat/finalizar
+   POST /api/chats/:id_chat/finalizar
    ============================================================ */
 async function finalizar(req, res) {
   try {
@@ -64,9 +63,40 @@ async function finalizar(req, res) {
   }
 }
 
+/* ============================================================
+   NOVO — POST /api/chats/:id_chat/transferir
+   body: { id_setor: string }
+
+   Move o atendimento para outro setor, deixando-o pendente
+   (sg_chat_status = 'P') para que alguém daquele setor assuma.
+   ============================================================ */
+async function transferir(req, res) {
+  try {
+    const { id_chat } = req.params
+    const { id_setor } = req.body
+
+    if (!id_setor) {
+      return res.status(400).json({
+        success: false,
+        message: "O campo 'id_setor' é obrigatório",
+      })
+    }
+
+    const resultado = await chatService.transferirAtendimento({
+      idChat: id_chat,
+      idSetor: id_setor,
+    })
+
+    return res.json({ success: true, data: resultado })
+  } catch (err) {
+    return res.status(500).json({ success: false, message: err.message })
+  }
+}
+
 module.exports = {
   list,
   messages,
   enviarMensagem,
   finalizar,
+  transferir,
 }

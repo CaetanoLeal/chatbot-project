@@ -122,28 +122,27 @@ async function getChatById(id_chat) {
 }
 
 /* ============================================================
-   Finaliza o atendimento: status vira 'A' (aberto para novo
-   atendimento / "finalizado" na tela). Não existe mais
-   id_atendente em tbl_chat pra limpar — o "atendente atual"
-   simplesmente deixa de aparecer porque o chat sai de P/H e
-   a próxima leitura de listChats não vai mais casar nenhuma
-   mensagem from_me "ativa" com um atendimento em aberto.
+   Busca um setor ativo pelo id. Usado para validar o destino
+   antes de transferir um atendimento pra ele.
    ============================================================ */
-async function finalizarChat(id_chat) {
-  await db.query(
+async function getSetorById(id_setor) {
+  const { rows } = await db.query(
     `
-    UPDATE tbl_chat
-       SET sg_chat_status = 'A',
-           dt_updated_at = NOW()
-     WHERE id_chat = $1
+    SELECT id_setor, no_setor
+    FROM tbl_setor
+    WHERE id_setor = $1
+      AND is_excluido IS NOT TRUE
+    LIMIT 1
     `,
-    [id_chat]
+    [id_setor]
   )
+
+  return rows[0] ?? null
 }
 
 module.exports = {
   listChats,
   getMessagesByChat,
   getChatById,
-  finalizarChat,
+  getSetorById,
 }

@@ -156,9 +156,12 @@ async function getChatStatus(idChat) {
 }
 
 /* ============================================================
-   NOVO — Finalizar atendimento (botão "Finalizar" na tela).
-   Muda tbl_chat.sg_chat_status para 'A' e sincroniza o motor
-   do funil (tbl_funil_utilizador) para o mesmo estado.
+   Finalizar atendimento (botão "Finalizar" na tela).
+
+   Delega inteiramente para funilHelper.definirStatusManual,
+   que já cuida de: atualizar tbl_funil_utilizador, sincronizar
+   tbl_chat e emitir CHAT_UPDATED. Não escrevemos em tbl_chat
+   aqui — evita a dupla escrita que existia antes.
    ============================================================ */
 async function finalizarAtendimento({ idChat }) {
   const chat = await chatRepository.getChatById(idChat)
@@ -166,15 +169,56 @@ async function finalizarAtendimento({ idChat }) {
     throw new Error("Chat não encontrado")
   }
 
-  await chatRepository.finalizarChat(idChat)
-
-  if (chat.id_funil && chat.id_utilizador) {
-    await funilHelper.definirStatusManual({
-      idUtilizador: chat.id_utilizador,
-      idFunil: chat.id_funil,
-      status: funilHelper.CHAT_STATUS.ABERTO, // 'A'
-    })
+  if (!chat.id_funil || !chat.id_utilizador) {
+    throw new Error("Chat não está vinculado a um funil/utilizador")
   }
+
+  await funilHelper.definirStatusManual({
+    idUtilizador: chat.id_utilizador,
+    idFunil: chat.id_funil,
+    status: funilHelper.CHAT_STATUS.ABERTO, // 'A'
+  })
+}
+
+/* ============================================================
+   Transferir atendimento para outro setor (botão "Transferir"
+   na tela).
+
+   Validações específicas do painel (chat existe, setor de
+   destino existe, não é o mesmo setor atual) ficam aqui. A
+   transição de estado em si é sempre feita via
+   funilHelper.direcionarParaPendente — único caminho de
+   escrita para tbl_funil_utilizador/tbl_chat, garantindo que
+   o CHAT_UPDATED disparado é o mesmo evento que o resto do
+   sistema já usa.
+   ============================================================ */
+async function transferirAtendimento({ idChat, idSetor }) {
+  const chat = await chatRepository.getChatById(idChat)
+  if (!chat) {
+    throw new Error("Chat não encontrado")
+  }
+
+  if (!chat.id_funil || !chat.id_utilizador) {
+    throw new Error("Chat não está vinculado a um funil/utilizador")
+  }
+
+  const setor = await chatRepository.getSetorById(idSetor)
+  if (!setor) {
+    throw new Error("Setor de destino não encontrado")
+  }
+
+  if (chat.id_setor === idSetor) {
+    throw new Error(`Este chat já está no setor ${setor.no_setor}`)
+  }
+
+  await funilHelper.direcionarParaPendente({
+    idUtilizador: chat.id_utilizador,
+    idFunil: chat.id_funil,
+    idSetor,
+    noSetor: setor.no_setor,
+  })
+
+  return chatRepository.getChatById(idChat)
 }
 
 /* ============================================================
@@ -267,5 +311,6 @@ module.exports = {
   updateChatStatus,
   getChatStatus,
   finalizarAtendimento,
+  transferirAtendimento,
   enviarMensagemAtendente,
 }

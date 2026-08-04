@@ -1887,3 +1887,27 @@
 [2026-08-03 17:58:19] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 08b58069-2af0-4711-a6dc-d447e6004672: Request failed with status code 404
 [2026-08-03 20:39:30] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-08-03 20:39:30] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-04 17:24:24] [ERROR]: ❌ Erro ao buscar id_funil: relation "tbl_funil" does not exist
+[2026-08-04 17:25:24] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: relation "tbl_funil_utilizador" does not exist
+[2026-08-04 17:26:24] [ERROR]: ❌ Erro ao rodar rotina preventiva de expiração: relation "tbl_funil_utilizador" does not exist
+[2026-08-04 18:36:15] [ERROR]: ❌ Webhook error: insert or update on table "tbl_mensagem" violates foreign key constraint "fk_tbl_mensagem_tbl_atendente"
+[2026-08-04 18:42:04] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-08-04 19:31:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 19:37:26] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 19:52:56] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 19:53:01] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 19:53:35] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 19:54:03] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 19:54:07] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 19:54:11] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 19:55:00] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 19:55:13] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 20:41:36] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-04 20:41:36] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-04 20:46:22] [ERROR]: ❌ Webhook error: column fi.ds_human_handoff does not exist
+[2026-08-04 21:30:14] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 21:30:34] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 21:32:44] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 21:32:50] [ERROR]: ❌ Webhook error: value too long for type character varying(20)
+[2026-08-04 21:34:26] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-04 21:34:26] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up

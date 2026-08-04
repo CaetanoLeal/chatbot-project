@@ -12,6 +12,7 @@ const diaSemana = require("./diaSemana.routes")
 const usuarioRoutes = require("./usuario.routes")
 const atendenteRoutes = require("./atendente.routes")
 const painelIa = require("./painelIA.routes")
+const mensagempredefinida = require("./mensagemPredefinida.routes")
 
 const router = Router()
 
@@ -26,5 +27,6 @@ router.use("/setores", setorRoutes);
 router.use("/dias-semana", diaSemana);
 router.use("/usuarios", usuarioRoutes);
 router.use("/atendentes", atendenteRoutes);
-router.use("/painelia", painelIa)
+router.use("/painelia", painelIa);
+router.use("/mensagens-predefinidas", mensagempredefinida)
 module.exports = router

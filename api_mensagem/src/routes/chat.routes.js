@@ -12,5 +12,6 @@ router.get("/:id_chat/messages", ChatController.messages)
 // NOVAS ROTAS — painel de atendimento
 router.post("/:id_chat/mensagens", ChatController.enviarMensagem)
 router.post("/:id_chat/finalizar", ChatController.finalizar)
+router.post("/:id_chat/transferir", ChatController.transferir)
 
 module.exports = router

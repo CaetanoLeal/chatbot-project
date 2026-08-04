@@ -638,7 +638,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
               {menu.type === "pane" ? (
                 <>
                   <button className="w-full flex items-center gap-2.5 px-3 py-2 hover:bg-zinc-100 text-left font-medium text-blue-600" onClick={() => addMessage(menu.x, menu.y)}>
-                    <Plus className="w-4 h-4" /> Nova Mensagem
+                  <Plus className="w-4 h-4" /> Nova Mensagem
                   </button>
                   <div className="border-t border-zinc-100 my-1"></div>
                   <button className="w-full flex items-center justify-between px-3 py-2 hover:bg-zinc-100 text-left" onClick={() => handlePaste(menu.x, menu.y)} disabled={clipboard.length === 0}>

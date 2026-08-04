@@ -1,7 +1,7 @@
 "use client"
-
 import { useState, useEffect, useMemo, useCallback, useRef } from "react"
 import { io } from "socket.io-client"
+import { Zap } from "lucide-react"
 
 const socket = io(`${process.env.NEXT_PUBLIC_API_URL}`)
 
@@ -13,7 +13,6 @@ const SYSTEM_ATENDENTE_ID = "00000000-0000-0000-0000-000000000000"
 ===================== */
 type Platform = "whatsapp" | "telegram"
 
-// Status reais usados pelo motor do funil (funil.helper.js)
 type ChatStatus = "C" | "B" | "H" | "I" | "P" | "A"
 
 type ChatMessage = {
@@ -23,6 +22,16 @@ type ChatMessage = {
   senderName: string
   content: string
   timestamp: string
+}
+
+type Setor = {
+  id_setor: string
+  no_setor: string
+}
+
+type MensagemPredefinida = {
+  id_mensagem_predefinida: string
+  ds_mensagem_predefinida: string
 }
 
 type Atendente = {
@@ -49,15 +58,13 @@ type ChatThread = {
 }
 
 /* =====================
-   STATUS (mapeados a partir do funil.helper.js — a tabela
-   tbl_chat_status do banco está desatualizada em relação ao
-   código real, então os labels abaixo seguem o backend)
+   STATUS MAPS
 ===================== */
 const STATUS_LABEL: Record<ChatStatus, string> = {
   C: "Cadastro",
   B: "Chatbot",
-  I: "Inteligência Artificial",
-  P: "Aguardando atendente",
+  I: "IA",
+  P: "Aguardando",
   H: "Em atendimento",
   A: "Finalizado",
 }
@@ -66,7 +73,7 @@ const STATUS_COLOR: Record<ChatStatus, string> = {
   C: "bg-zinc-400",
   B: "bg-zinc-400",
   I: "bg-purple-500",
-  P: "bg-red-600",
+  P: "bg-red-500",
   H: "bg-amber-500",
   A: "bg-emerald-500",
 }
@@ -74,21 +81,19 @@ const STATUS_COLOR: Record<ChatStatus, string> = {
 const ATENDENTE_STORAGE_KEY = "painel:id_atendente_ativo"
 
 /* =====================
-   HELPERS
+   HELPERS COMPONENTS
 ===================== */
 function PlatformBadge({ platform }: { platform: Platform }) {
   return platform === "whatsapp" ? (
-    <span className="text-green-600 text-xs">WhatsApp</span>
+    <span className="text-emerald-600 font-medium text-[10px] uppercase">WhatsApp</span>
   ) : (
-    <span className="text-blue-600 text-xs">Telegram</span>
+    <span className="text-blue-600 font-medium text-[10px] uppercase">Telegram</span>
   )
 }
 
 function StatusBadge({ status }: { status: ChatStatus }) {
   return (
-    <span
-      className={`inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-white px-2 py-0.5 rounded-full ${STATUS_COLOR[status]}`}
-    >
+    <span className={`inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-white px-1.5 py-0.5 rounded ${STATUS_COLOR[status]}`}>
       {status === "P" && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
       {STATUS_LABEL[status]}
     </span>
@@ -97,31 +102,25 @@ function StatusBadge({ status }: { status: ChatStatus }) {
 
 function Avatar({ name, photo }: { name: string; photo?: string }) {
   if (photo) {
-    return <img src={photo} className="w-10 h-10 rounded-full object-cover" />
+    return <img src={photo} alt={name} className="w-10 h-10 rounded-full object-cover shadow-sm" />
   }
 
-  const initials = name
-    ?.split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase()
+  const initials = name?.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()
 
   return (
-    <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-semibold">
+    <div className="w-10 h-10 rounded-full bg-zinc-800 text-white flex items-center justify-center text-sm font-semibold shadow-sm">
       {initials || "?"}
     </div>
   )
 }
 
 /* =====================
-   ORDENAÇÃO: pendentes (P) sempre no topo
+   ORDENAÇÃO
 ===================== */
 function sortThreads(list: ChatThread[]): ChatThread[] {
   return [...list].sort((a, b) => {
     if (a.status === "P" && b.status !== "P") return -1
     if (b.status === "P" && a.status !== "P") return 1
-
     const aTime = a.messages.at(-1)?.timestamp
     const bTime = b.messages.at(-1)?.timestamp
     return (bTime ? new Date(bTime).getTime() : 0) - (aTime ? new Date(aTime).getTime() : 0)
@@ -137,50 +136,49 @@ export default function MessagesPage() {
   const [reply, setReply] = useState("")
   const [sending, setSending] = useState(false)
   const [finalizando, setFinalizando] = useState(false)
+  const [setores, setSetores] = useState<Setor[]>([])
+  const [transferindo, setTransferindo] = useState(false)
+
+  const [mensagensPredefinidas, setMensagensPredefinidas] = useState<MensagemPredefinida[]>([])
+  const [mostrarPredefinidas, setMostrarPredefinidas] = useState(false)
+  const predefinidasRef = useRef<HTMLDivElement>(null)
 
   const [atendentes, setAtendentes] = useState<Atendente[]>([])
   const [idAtendenteAtivo, setIdAtendenteAtivo] = useState<string>("")
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  const activeChat = useMemo(
-    () => threads.find((t) => t.id === activeChatId) ?? null,
-    [threads, activeChatId]
-  )
+  const activeChat = useMemo(() => threads.find((t) => t.id === activeChatId) ?? null, [threads, activeChatId])
+  const pendentesCount = useMemo(() => threads.filter((t) => t.status === "P").length, [threads])
 
-  const pendentesCount = useMemo(
-    () => threads.filter((t) => t.status === "P").length,
-    [threads]
-  )
+  // KANBAN COLUMNS: Derivando os estados para distribuir nas colunas automaticamente
+  const automatizados = useMemo(() => threads.filter((t) => ["B", "C", "I"].includes(t.status)), [threads])
+  const aguardando = useMemo(() => threads.filter((t) => t.status === "P"), [threads])
+  const meusAtendimentos = useMemo(() => threads.filter((t) => ["H", "A"].includes(t.status)), [threads])
 
-    useEffect(() => {
-      messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
-    }, [activeChat?.id, activeChat?.messages.length])
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
+  }, [activeChat?.id, activeChat?.messages.length])
 
   /* =====================
-     BOOTSTRAP
+     BOOTSTRAP & SOCKETS
   ===================== */
   useEffect(() => {
     loadChats()
     loadAtendentes()
-
+    loadSetores()
+    loadMensagensPredefinidas()
     const salvo = typeof window !== "undefined" ? localStorage.getItem(ATENDENTE_STORAGE_KEY) : null
     if (salvo) setIdAtendenteAtivo(salvo)
   }, [])
 
-  /* =====================
-     ATUALIZAR EM TEMPO REAL
-  ===================== */
   useEffect(() => {
     function handleNewMessage(data: any) {
-      // 1. Limpa a assinatura que vem do banco (ex: remove o "_caetano_" do final)
       let cleanContent = data.conteudo || ""
-      if (data.fromMe) {
-        cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
-      }
+      if (data.fromMe) cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
 
       const newMessage: ChatMessage = {
-        id: data.id_mensagem || data.idChat + Date.now().toString(), // Tenta usar o ID real
+        id: data.id_mensagem || data.idChat + Date.now().toString(),
         platform: "whatsapp",
         fromMe: data.fromMe,
         senderName: data.fromMe ? (data.no_atendente || "sistema") : data.telefone,
@@ -191,13 +189,8 @@ export default function MessagesPage() {
       setThreads((prev) => {
         const updated = prev.map((chat) => {
           if (chat.id !== data.idChat) return chat
-
-          // DEDUPLICAÇÃO: Verifica se a mensagem já existe pelo ID ou pelo conteúdo idêntico
-          const jaExiste = chat.messages.some(
-            (m) => m.id === data.id_mensagem || (m.fromMe && m.content === cleanContent)
-          )
+          const jaExiste = chat.messages.some((m) => m.id === data.id_mensagem || (m.fromMe && m.content === cleanContent))
           if (jaExiste) return chat
-
           return {
             ...chat,
             status: (data.sgChatStatus as ChatStatus) || chat.status,
@@ -212,7 +205,12 @@ export default function MessagesPage() {
       setThreads((prev) => {
         const updated = prev.map((chat) =>
           chat.id === data.idChat
-            ? { ...chat, status: (data.sgChatStatus as ChatStatus) || chat.status }
+            ? {
+                ...chat,
+                status: (data.sgChatStatus as ChatStatus) || chat.status,
+                setorId: data.idSetor ?? chat.setorId,
+                setorNome: data.noSetor ?? chat.setorNome,
+              }
             : chat
         )
         return sortThreads(updated)
@@ -228,23 +226,59 @@ export default function MessagesPage() {
     }
   }, [])
 
+  /* =====================
+     FECHAR DROPDOWN DE PREDEFINIDAS AO CLICAR FORA
+  ===================== */
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (predefinidasRef.current && !predefinidasRef.current.contains(e.target as Node)) {
+        setMostrarPredefinidas(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  /* =====================
+     API CALLS
+  ===================== */
   async function loadAtendentes() {
     try {
       const res = await fetch(`${API_URL}/api/atendentes`)
       const json = await res.json()
-      
-      // Trata caso a API retorne diretamente um array ou dentro de .data
       const rawData = Array.isArray(json) ? json : (json.data || [])
-
-      // Filtra para remover o atendente do sistema (ID 00000000-0000-0000-0000-000000000000)
-      const atendentesValidos = rawData.filter(
-        (a: Atendente) => a.id_atendente !== SYSTEM_ATENDENTE_ID
-      )
-
-      setAtendentes(atendentesValidos)
+      setAtendentes(rawData.filter((a: Atendente) => a.id_atendente !== SYSTEM_ATENDENTE_ID))
     } catch (err) {
       console.error("Erro ao carregar atendentes", err)
     }
+  }
+
+  async function loadSetores() {
+    try {
+      const res = await fetch(`${API_URL}/api/setores`)
+      const json = await res.json()
+      const rawData = Array.isArray(json) ? json : json.data || []
+      setSetores(rawData)
+    } catch (err) {
+      console.error("Erro ao carregar setores", err)
+    }
+  }
+
+  async function loadMensagensPredefinidas() {
+    try {
+      const res = await fetch(`${API_URL}/api/mensagens-predefinidas`)
+      const json = await res.json()
+      if (!json.success) return
+      setMensagensPredefinidas(json.data || [])
+    } catch (err) {
+      console.error("Erro ao carregar mensagens predefinidas", err)
+    }
+  }
+
+  function usarMensagemPredefinida(mensagem: MensagemPredefinida) {
+    setReply(mensagem.ds_mensagem_predefinida)
+    setMostrarPredefinidas(false)
   }
 
   function trocarAtendenteAtivo(id: string) {
@@ -271,33 +305,18 @@ export default function MessagesPage() {
         setorNome: chat.no_setor || null,
         atendenteNome: chat.no_atendente || null,
         messages: chat.ultima_mensagem
-          ? [
-              {
-                id: `preview-${chat.id_chat}`,
-                platform: chat.cd_provider === 1 ? "whatsapp" : "telegram",
-                fromMe: false,
-                senderName: chat.no_utilizador || "-",
-                content: chat.ultima_mensagem,
-                timestamp: chat.dh_ultima_mensagem,
-              },
-            ]
+          ? [{ id: `preview-${chat.id_chat}`, platform: chat.cd_provider === 1 ? "whatsapp" : "telegram", fromMe: false, senderName: chat.no_utilizador || "-", content: chat.ultima_mensagem, timestamp: chat.dh_ultima_mensagem }]
           : [],
       }))
 
       const sorted = sortThreads(formatted)
       setThreads(sorted)
-
-      if (sorted.length > 0 && !activeChatId) {
-        loadMessages(sorted[0])
-      }
+      if (sorted.length > 0 && !activeChatId) loadMessages(sorted[0])
     } catch (err) {
       console.error("Erro ao carregar chats", err)
     }
   }
 
-  /* =====================
-     LOAD MESSAGES
-  ===================== */
   async function loadMessages(chat: ChatThread) {
     try {
       const res = await fetch(`${API_URL}/api/chats/${chat.id}/messages`)
@@ -306,9 +325,7 @@ export default function MessagesPage() {
 
       const formattedMessages: ChatMessage[] = json.data.map((msg: any) => {
         let cleanContent = msg.ds_conteudo || ""
-        if (msg.from_me) {
-          cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
-        }
+        if (msg.from_me) cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
 
         return {
           id: msg.id_mensagem,
@@ -320,25 +337,16 @@ export default function MessagesPage() {
         }
       })
 
-      setThreads((prev) =>
-        prev.map((c) => (c.id === chat.id ? { ...c, messages: formattedMessages } : c))
-      )
+      setThreads((prev) => prev.map((c) => (c.id === chat.id ? { ...c, messages: formattedMessages } : c)))
       setActiveChatId(chat.id)
     } catch (err) {
       console.error("Erro ao carregar mensagens", err)
     }
   }
 
-  /* =====================
-     ENVIAR MENSAGEM
-  ===================== */
   async function sendMessage() {
     if (!reply.trim() || !activeChat || sending) return
-
-    if (!idAtendenteAtivo) {
-      alert("Selecione o atendente que está usando o sistema antes de responder.")
-      return
-    }
+    if (!idAtendenteAtivo) return alert("Selecione o atendente que está usando o sistema antes de responder.")
 
     setSending(true)
     try {
@@ -348,20 +356,15 @@ export default function MessagesPage() {
         body: JSON.stringify({ texto: reply.trim(), id_atendente: idAtendenteAtivo }),
       })
       const json = await res.json()
-
-      if (!json.success) {
-        alert(json.message || "Não foi possível enviar a mensagem.")
-        return
-      }
+      if (!json.success) return alert(json.message || "Não foi possível enviar a mensagem.")
 
       const atendenteAtivo = atendentes.find((a) => a.id_atendente === idAtendenteAtivo)
-
       const newMessage: ChatMessage = {
         id: json.data.id_mensagem || Date.now().toString(),
         platform: activeChat.platform,
         fromMe: true,
         senderName: atendenteAtivo?.no_atendente || "sistema",
-        content: reply.trim(), // Usa o texto direto do input, limpo
+        content: reply.trim(),
         timestamp: new Date().toLocaleString(),
       }
 
@@ -369,77 +372,131 @@ export default function MessagesPage() {
         sortThreads(
           prev.map((chat) =>
             chat.id === activeChat.id
-              ? {
-                  ...chat,
-                  status: chat.status === "P" ? "H" : chat.status,
-                  atendenteNome: atendenteAtivo?.no_atendente || chat.atendenteNome,
-                  messages: [...chat.messages, newMessage],
-                }
+              ? { ...chat, status: chat.status === "P" ? "H" : chat.status, atendenteNome: atendenteAtivo?.no_atendente || chat.atendenteNome, messages: [...chat.messages, newMessage] }
               : chat
           )
         )
       )
       setReply("")
     } catch (err) {
-      console.error("Erro ao enviar mensagem", err)
       alert("Erro ao enviar mensagem. Tente novamente.")
     } finally {
       setSending(false)
     }
   }
 
-  /* =====================
-     FINALIZAR ATENDIMENTO
-  ===================== */
   async function finalizarAtendimento() {
     if (!activeChat || finalizando) return
-    const confirmar = confirm(`Finalizar o atendimento de ${activeChat.contactName}?`)
-    if (!confirmar) return
+    if (!confirm(`Finalizar o atendimento de ${activeChat.contactName}?`)) return
 
     setFinalizando(true)
     try {
-      const res = await fetch(`${API_URL}/api/chats/${activeChat.id}/finalizar`, {
-        method: "POST",
-      })
+      const res = await fetch(`${API_URL}/api/chats/${activeChat.id}/finalizar`, { method: "POST" })
       const json = await res.json()
-
-      if (!json.success) {
-        alert(json.message || "Não foi possível finalizar o atendimento.")
-        return
-      }
+      if (!json.success) return alert(json.message || "Não foi possível finalizar o atendimento.")
 
       setThreads((prev) =>
-        sortThreads(
-          prev.map((chat) =>
-            chat.id === activeChat.id ? { ...chat, status: "A", atendenteNome: null } : chat
-          )
-        )
+        sortThreads(prev.map((chat) => (chat.id === activeChat.id ? { ...chat, status: "A", atendenteNome: null } : chat)))
       )
     } catch (err) {
-      console.error("Erro ao finalizar atendimento", err)
       alert("Erro ao finalizar atendimento. Tente novamente.")
     } finally {
       setFinalizando(false)
     }
   }
 
+  async function transferirAtendimento(idSetorDestino: string) {
+    if (!activeChat || transferindo || !idSetorDestino) return
+
+    const setorDestino = setores.find((s) => s.id_setor === idSetorDestino)
+    if (!setorDestino) return
+
+    if (!confirm(`Transferir o atendimento de ${activeChat.contactName} para ${setorDestino.no_setor}?`)) return
+
+    setTransferindo(true)
+    try {
+      const res = await fetch(`${API_URL}/api/chats/${activeChat.id}/transferir`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id_setor: idSetorDestino }),
+      })
+      const json = await res.json()
+      if (!json.success) return alert(json.message || "Não foi possível transferir o atendimento.")
+
+      setThreads((prev) =>
+        sortThreads(
+          prev.map((chat) =>
+            chat.id === activeChat.id
+              ? {
+                  ...chat,
+                  status: "P",
+                  setorId: setorDestino.id_setor,
+                  setorNome: setorDestino.no_setor,
+                  atendenteNome: null,
+                }
+              : chat
+          )
+        )
+      )
+    } catch (err) {
+      alert("Erro ao transferir atendimento. Tente novamente.")
+    } finally {
+      setTransferindo(false)
+    }
+  }
+
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === "Enter") sendMessage()
-    },
+    (e: React.KeyboardEvent<HTMLInputElement>) => { if (e.key === "Enter") sendMessage() },
     [reply, activeChat, idAtendenteAtivo, sending]
   )
 
-  return (
-    <div className="h-full flex flex-col bg-white rounded shadow overflow-hidden text-zinc-700">
-      {/* BARRA SUPERIOR — seletor de atendente ativo */}
-      <div className="flex items-center justify-between gap-4 border-b px-4 py-2 bg-zinc-50">
+  /* =====================
+     RENDERIZAÇÃO DO CARD
+  ===================== */
+  const renderChatCard = (chat: ChatThread) => (
+    <div
+      key={chat.id}
+      onClick={() => loadMessages(chat)}
+      className={`relative flex flex-col gap-2 p-3 mx-2 mt-2 cursor-pointer border rounded-md shadow-sm transition-colors hover:border-zinc-300 bg-white ${
+        activeChat?.id === chat.id ? "ring-2 ring-zinc-800 border-transparent" : "border-zinc-200"
+      }`}
+    >
+      <div className="flex gap-3 items-center">
+        <Avatar name={chat.contactName} photo={chat.photo} />
+        <div className="flex-1 min-w-0">
+          <div className="font-semibold text-zinc-900 text-sm truncate">{chat.contactName}</div>
+          <div className="text-xs text-zinc-500 font-mono mt-0.5">{chat.contactNumber}</div>
+        </div>
+      </div>
+
+      <div className="text-xs text-zinc-600 truncate bg-zinc-50 p-1.5 rounded">
+        {chat.messages.at(-1)?.content || <span className="italic text-zinc-400">Sem mensagens</span>}
+      </div>
+
+      <div className="flex justify-between items-center text-xs mt-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm text-zinc-500">Atendendo como:</span>
+          <PlatformBadge platform={chat.platform} />
+          <StatusBadge status={chat.status} />
+        </div>
+        <span className="text-zinc-400 font-medium">
+          {chat.messages.at(-1)?.timestamp ? new Date(chat.messages.at(-1)!.timestamp).toLocaleTimeString().slice(0, 5) : ""}
+        </span>
+      </div>
+    </div>
+  )
+
+  const atendimentoEmAndamento = activeChat?.status === "H" || activeChat?.status === "P"
+
+  return (
+    <div className="h-screen w-full flex flex-col bg-white overflow-hidden text-zinc-800 font-sans">
+      {/* HEADER BAR */}
+      <header className="flex items-center justify-between gap-4 border-b border-zinc-200 px-6 py-3 bg-white shadow-sm z-10">
+        <div className="flex items-center gap-3">
+          <span className="text-sm font-medium text-zinc-500">Atendendo como:</span>
           <select
             value={idAtendenteAtivo}
             onChange={(e) => trocarAtendenteAtivo(e.target.value)}
-            className="border rounded px-2 py-1 text-sm bg-white"
+            className="border border-zinc-300 rounded px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-zinc-800"
           >
             <option value="">Selecione um atendente</option>
             {atendentes.map((a) => (
@@ -451,154 +508,199 @@ export default function MessagesPage() {
         </div>
 
         {pendentesCount > 0 && (
-          <div className="flex items-center gap-1.5 text-red-600 text-sm font-medium">
+          <div className="flex items-center gap-2 text-red-600 text-sm font-semibold bg-red-50 px-3 py-1.5 rounded-full border border-red-100">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-            {pendentesCount} chamado{pendentesCount > 1 ? "s" : ""} aguardando atendente
+            {pendentesCount} {pendentesCount > 1 ? "aguardando" : "aguardando"}
           </div>
         )}
-      </div>
+      </header>
 
+      {/* MAIN KANBAN LAYOUT */}
       <div className="flex-1 flex overflow-hidden">
-        {/* LISTA DE CHATS */}
-        <aside className="w-80 border-r bg-zinc-50 overflow-y-auto">
-          {threads.map((chat) => (
-            <div
-              key={chat.id}
-              onClick={() => loadMessages(chat)}
-              className={`relative flex gap-3 p-4 cursor-pointer border-b hover:bg-zinc-100 ${
-                activeChat?.id === chat.id ? "bg-zinc-200" : ""
-              } ${chat.status === "P" ? "bg-red-50" : ""}`}
-            >
-              {chat.status === "P" && (
-                <span className="absolute left-1 top-1 bottom-1 w-1 rounded-full bg-red-600" />
-              )}
 
-              <Avatar name={chat.contactName} photo={chat.photo} />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="font-medium text-zinc-800 truncate">{chat.contactName}</div>
-                  {chat.status === "P" && (
-                    <span className="shrink-0 w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-                  )}
-                </div>
-                <div className="text-xs text-zinc-500">{chat.contactNumber}</div>
-                {chat.setorNome && (
-                  <div className="text-xs text-zinc-400">Setor: {chat.setorNome}</div>
-                )}
-                <div className="text-sm text-zinc-500 truncate">
-                  {chat.messages.at(-1)?.content || ""}
-                </div>
-                <div className="flex justify-between items-center text-xs mt-1 gap-2">
-                  <div className="flex items-center gap-2">
-                    <PlatformBadge platform={chat.platform} />
-                    <StatusBadge status={chat.status} />
-                  </div>
-                  <span className="text-zinc-400 shrink-0">
-                    {chat.messages.at(-1)?.timestamp
-                      ? new Date(chat.messages.at(-1)!.timestamp).toLocaleTimeString().slice(0, 5)
-                      : ""}
-                  </span>
-                </div>
-              </div>
+        {/* KANBAN BOARD (Esquerda) */}
+        <div className="flex overflow-x-auto bg-zinc-50/50 border-r border-zinc-200 shadow-inner">
+
+          {/* Coluna 1: Automatizado */}
+          <div className="w-[300px] flex flex-col border-r border-zinc-200 shrink-0">
+            <div className="p-3 bg-white border-b border-zinc-200 text-xs font-bold text-center text-zinc-500 uppercase tracking-widest sticky top-0 z-10">
+              Automatizado ({automatizados.length})
             </div>
-          ))}
-        </aside>
+            <div className="flex-1 overflow-y-auto pb-4">
+              {automatizados.map(renderChatCard)}
+            </div>
+          </div>
 
-        {/* CHAT */}
-        <main className="flex-1 flex flex-col">
-          {activeChat && (
+          {/* Coluna 2: Aguardando */}
+          <div className="w-[300px] flex flex-col border-r border-zinc-200 shrink-0">
+            <div className="p-3 bg-white border-b border-zinc-200 text-xs font-bold text-center text-red-600 uppercase tracking-widest sticky top-0 z-10 flex justify-center items-center gap-2">
+              Aguardando ({aguardando.length})
+              {aguardando.length > 0 && <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />}
+            </div>
+            <div className="flex-1 overflow-y-auto pb-4">
+              {aguardando.map(renderChatCard)}
+            </div>
+          </div>
+
+          {/* Coluna 3: Meus Atendimentos */}
+          <div className="w-[300px] flex flex-col shrink-0">
+            <div className="p-3 bg-white border-b border-zinc-200 text-xs font-bold text-center text-zinc-500 uppercase tracking-widest sticky top-0 z-10">
+              Meus Atendimentos ({meusAtendimentos.length})
+            </div>
+            <div className="flex-1 overflow-y-auto pb-4">
+              {meusAtendimentos.map(renderChatCard)}
+            </div>
+          </div>
+
+        </div>
+
+        {/* CHAT WINDOW (Direita) */}
+        <main className="flex-1 flex flex-col bg-white min-w-[400px]">
+          {activeChat ? (
             <>
-              {/* Header */}
-              <div className="border-b p-4 flex justify-between items-center bg-white">
-                <div className="flex items-center gap-3">
+              {/* Header do Chat */}
+              <div className="border-b border-zinc-200 p-4 flex justify-between items-center bg-white shadow-sm z-10">
+                <div className="flex items-center gap-4">
                   <Avatar name={activeChat.contactName} photo={activeChat.photo} />
                   <div>
-                    <div className="font-semibold text-zinc-800">{activeChat.contactName}</div>
-                    <div className="text-sm text-zinc-500">
-                      {activeChat.lastSeen
-                        ? `visto por último ${new Date(activeChat.lastSeen).toLocaleString()}`
-                        : activeChat.contactNumber}
+                    <div className="font-bold text-zinc-900 text-lg leading-tight">{activeChat.contactName}</div>
+                    <div className="text-sm text-zinc-500 mb-1">
+                      {activeChat.lastSeen ? `Visto por último ${new Date(activeChat.lastSeen).toLocaleString()}` : activeChat.contactNumber}
                     </div>
-                    <div className="flex items-center gap-2 mt-1">
+                    <div className="flex items-center gap-2">
                       <StatusBadge status={activeChat.status} />
-                      {activeChat.setorNome && (
-                        <span className="text-xs text-zinc-400">Setor: {activeChat.setorNome}</span>
-                      )}
-                      {activeChat.atendenteNome && (
-                        <span className="text-xs text-zinc-400">
-                          Atendente: {activeChat.atendenteNome}
-                        </span>
-                      )}
+                      {activeChat.setorNome && <span className="text-xs font-medium text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded">Setor: {activeChat.setorNome}</span>}
+                      {activeChat.atendenteNome && <span className="text-xs font-medium text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded">Resp: {activeChat.atendenteNome}</span>}
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                   <PlatformBadge platform={activeChat.platform} />
-                  {(activeChat.status === "H" || activeChat.status === "P") && (
+                </div>
+              </div>
+
+              {/* Mensagens do Chat */}
+              <div className="flex-1 p-6 space-y-6 overflow-y-auto bg-zinc-50/30">
+                {activeChat.messages.map((msg) => (
+                  <div key={msg.id} className={`flex gap-3 ${msg.fromMe ? "justify-end" : "justify-start"}`}>
+                    {!msg.fromMe && <Avatar name={activeChat.contactName} photo={activeChat.photo} />}
+                    <div className={`max-w-[70%] px-4 py-3 rounded-xl shadow-sm text-[15px] leading-relaxed ${msg.fromMe ? "bg-zinc-900 text-zinc-50 rounded-tr-none" : "bg-white border border-zinc-200 text-zinc-800 rounded-tl-none"}`}>
+                      <div className="whitespace-pre-wrap">
+                        {msg.fromMe && msg.senderName?.toLowerCase() !== "sistema" && msg.senderName !== activeChat.atendenteNome
+                          ? <div className="text-xs opacity-70 mb-1 font-semibold">{msg.senderName}</div>
+                          : null}
+                        {msg.content}
+                      </div>
+                      <div className={`text-[10px] mt-2 text-right ${msg.fromMe ? "text-zinc-400" : "text-zinc-400"}`}>{msg.timestamp}</div>
+                    </div>
+                  </div>
+                ))}
+                <div ref={messagesEndRef} />
+              </div>
+
+              {/* Input do Chat + Ações de atendimento */}
+              <div className="border-t border-zinc-200 p-4 bg-white">
+                <div className="flex items-center gap-3 w-full">
+                  
+                  {/* ESQUERDA: Transferir e Finalizar */}
+                  <div className="flex items-center gap-2 shrink-0">
+                    <select
+                      value=""
+                      onChange={(e) => {
+                        if (e.target.value) transferirAtendimento(e.target.value)
+                      }}
+                      disabled={!atendimentoEmAndamento || transferindo}
+                      className="h-12 text-sm border border-zinc-300 rounded-lg px-3 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-800 disabled:opacity-50 disabled:bg-zinc-50 shrink-0 outline-none w-36"
+                    >
+                      <option value="">
+                        {transferindo ? "Transferindo..." : "Transferir..."}
+                      </option>
+                      {setores
+                        .filter((s) => s.id_setor !== activeChat.setorId)
+                        .map((s) => (
+                          <option key={s.id_setor} value={s.id_setor}>
+                            {s.no_setor}
+                          </option>
+                        ))}
+                    </select>
+
                     <button
                       onClick={finalizarAtendimento}
-                      disabled={finalizando}
-                      className="text-sm bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white px-3 py-1.5 rounded"
+                      disabled={!atendimentoEmAndamento || finalizando}
+                      className="h-12 text-sm font-semibold bg-zinc-900 hover:bg-zinc-800 disabled:opacity-50 disabled:hover:bg-zinc-900 text-white px-4 rounded-lg transition-colors shrink-0"
                     >
-                      {finalizando ? "Finalizando..." : "Finalizar atendimento"}
+                      {finalizando ? "Encerrando..." : "Finalizar"}
                     </button>
-                  )}
-                </div>
-              </div>
+                  </div>
 
-              {/* Mensagens */}
-                <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-zinc-100">
-                  {activeChat.messages.map((msg) => (
-                    <div
-                      key={msg.id}
-                      className={`flex gap-2 ${msg.fromMe ? "justify-end" : "justify-start"}`}
-                    >
-                      {!msg.fromMe && <Avatar name={activeChat.contactName} photo={activeChat.photo} />}
-
-                      <div
-                        className={`max-w-md px-4 py-2 rounded text-sm ${
-                          msg.fromMe ? "bg-blue-600 text-white" : "bg-white text-zinc-800"
-                        }`}
+                  {/* CENTRO: Raio e Input (Ocupando espaço livre) */}
+                  <div className="flex items-center gap-2 flex-1">
+                    {/* Mensagens predefinidas */}
+                    <div className="relative shrink-0 h-12" ref={predefinidasRef}>
+                      <button
+                        onClick={() => setMostrarPredefinidas((v) => !v)}
+                        title="Mensagens predefinidas"
+                        className="h-full aspect-square flex items-center justify-center border border-zinc-300 rounded-lg bg-white hover:bg-zinc-50 text-zinc-600 transition-colors px-3"
                       >
-                        <div className="whitespace-pre-wrap">
-                          {msg.fromMe && msg.senderName?.toLowerCase() !== "sistema"
-                            ? `Mensagem de ${msg.senderName}: ${msg.content}`
-                            : msg.content}
+                        <Zap size={18} />
+                      </button>
+
+                      {mostrarPredefinidas && (
+                        <div className="absolute bottom-full mb-2 left-0 w-72 max-h-64 overflow-y-auto bg-white border border-zinc-200 rounded-lg shadow-lg z-20">
+                          {mensagensPredefinidas.length === 0 ? (
+                            <div className="p-3 text-sm text-zinc-400 italic">
+                              Nenhuma mensagem predefinida cadastrada.
+                            </div>
+                          ) : (
+                            mensagensPredefinidas.map((m) => (
+                              <button
+                                key={m.id_mensagem_predefinida}
+                                onClick={() => usarMensagemPredefinida(m)}
+                                className="block w-full text-left text-sm text-zinc-700 px-3 py-2 hover:bg-zinc-50 border-b border-zinc-100 last:border-b-0 transition-colors"
+                              >
+                                {m.ds_mensagem_predefinida}
+                              </button>
+                            ))
+                          )}
                         </div>
-
-                        <div className="text-[10px] opacity-70 mt-1 text-right">{msg.timestamp}</div>
-                      </div>
+                      )}
                     </div>
-                  ))}
-                  <div ref={messagesEndRef} />
-                </div>
 
-              {/* Input */}
-              <div className="border-t p-3 flex gap-2 bg-white">
-                <input
-                  placeholder={
-                    idAtendenteAtivo
-                      ? "Digite sua mensagem..."
-                      : "Selecione um atendente para responder..."
-                  }
-                  className="border rounded px-3 py-2 flex-1 disabled:bg-zinc-100"
-                  value={reply}
-                  onChange={(e) => setReply(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  disabled={!idAtendenteAtivo || sending}
-                />
-                <button
-                  onClick={sendMessage}
-                  disabled={!idAtendenteAtivo || sending || !reply.trim()}
-                  className="bg-blue-600 disabled:opacity-50 text-white px-4 py-2 rounded"
-                >
-                  {sending ? "Enviando..." : "Enviar"}
-                </button>
+                    <input
+                      placeholder={idAtendenteAtivo ? "Escreva sua mensagem..." : "Selecione um atendente acima para responder..."}
+                      className="h-12 border border-zinc-300 rounded-lg px-4 flex-1 disabled:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 transition-shadow w-full outline-none"
+                      value={reply}
+                      onChange={(e) => setReply(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      disabled={!idAtendenteAtivo || sending}
+                    />
+                  </div>
+
+                  {/* DIREITA: Enviar */}
+                  <button
+                    onClick={sendMessage}
+                    disabled={!idAtendenteAtivo || sending || !reply.trim()}
+                    className="h-12 bg-zinc-900 hover:bg-zinc-800 disabled:opacity-50 text-white font-semibold px-6 rounded-lg transition-colors flex items-center justify-center min-w-[120px] shrink-0"
+                  >
+                    {sending ? "Enviando..." : "Enviar"}
+                  </button>
+                  
+                </div>
               </div>
             </>
+          ) : (
+            <div className="flex-1 flex items-center justify-center text-zinc-400 flex-col gap-4">
+              <div className="w-16 h-16 rounded-full bg-zinc-100 flex items-center justify-center">
+                <svg className="w-8 h-8 text-zinc-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              <p>Selecione um atendimento ao lado para iniciar</p>
+            </div>
           )}
         </main>
+
       </div>
     </div>
   )
