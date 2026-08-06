@@ -30,8 +30,9 @@ type Setor = {
 }
 
 type MensagemPredefinida = {
-  id_mensagem_predefinida: string
-  ds_mensagem_predefinida: string
+  id_atalho: string
+  no_atalho: string
+  ds_atalho: string
 }
 
 type Atendente = {
@@ -277,7 +278,7 @@ export default function MessagesPage() {
   }
 
   function usarMensagemPredefinida(mensagem: MensagemPredefinida) {
-    setReply(mensagem.ds_mensagem_predefinida)
+    setReply(mensagem.ds_atalho)
     setMostrarPredefinidas(false)
   }
 
@@ -655,11 +656,15 @@ export default function MessagesPage() {
                           ) : (
                             mensagensPredefinidas.map((m) => (
                               <button
-                                key={m.id_mensagem_predefinida}
+                                key={m.id_atalho}
                                 onClick={() => usarMensagemPredefinida(m)}
-                                className="block w-full text-left text-sm text-zinc-700 px-3 py-2 hover:bg-zinc-50 border-b border-zinc-100 last:border-b-0 transition-colors"
+                                className="block w-full text-left px-3 py-2 hover:bg-zinc-50 border-b border-zinc-100 last:border-b-0"
                               >
-                                {m.ds_mensagem_predefinida}
+                                <strong>{m.no_atalho}</strong>
+                                <br />
+                                <span className="text-sm text-zinc-500">
+                                  {m.ds_atalho}
+                                </span>
                               </button>
                             ))
                           )}

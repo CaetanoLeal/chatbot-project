@@ -283,20 +283,17 @@ async function direcionarParaAberto({ idUtilizador, idFunil }) {
 }
 
 async function direcionarParaAtendimento({ idUtilizador, idFunil, idSetor, statusDestino }) {
-  // Se for direcionado para a IA, injeta o ID correto da IA
-  const setorFinal = statusDestino === CHAT_STATUS.IA ? SETOR.IA : idSetor;
-
   await db.query(
     `UPDATE tbl_funil_utilizador
      SET sg_chat_status = $3, id_setor = $4, dh_mensagem = NOW()
      WHERE id_utilizador = $1 AND id_funil = $2`,
-    [idUtilizador, idFunil, statusDestino, setorFinal ?? null]
+    [idUtilizador, idFunil, statusDestino, idSetor ?? null]
   )
   await updateChatStatus({ idUtilizador, status: statusDestino })
   await _emitChatUpdated(idUtilizador, idFunil)
 
   const label = statusDestino === CHAT_STATUS.HUMANO ? "HUMANO" : "IA"
-  logger.info(`👤 Utilizador ${idUtilizador} direcionado para atendimento ${label} (silêncio do bot)`)
+  logger.info(`👤 Utilizador ${idUtilizador} direcionado para atendimento ${label} (silêncio do bot) — setor ${idSetor ?? "N/A"}`)
 }
 
 async function direcionarParaPendente({ idUtilizador, idFunil, idSetor, noSetor }) {
@@ -318,36 +315,25 @@ async function direcionarParaPendente({ idUtilizador, idFunil, idSetor, noSetor 
   logger.info(`PENDENTE: SETOR ${nomeSetor ?? "NÃO INFORMADO"}`)
 }
 
-async function aplicarStatusEspecialChatbot({ idUtilizador, idFunil, idSetor, noSetor, sgStatus }) {
-  let status = sgStatus;
-
-  if (!status) {
-    if (idSetor === SETOR.IA) {
-      status = CHAT_STATUS.IA;
-    } else if (idSetor) {
-      status = CHAT_STATUS.PENDENTE;
-    } else {
-      status = CHAT_STATUS.ABERTO;
-    }
+async function aplicarStatusEspecialChatbot({ idUtilizador, idFunil, idSetor }) {
+  // Sem setor definido na mensagem finalizadora -> apenas encerra (status ABERTO)
+  if (!idSetor) {
+    return direcionarParaPendente({ idUtilizador, idFunil, idSetor })
   }
 
-  switch (status) {
-    case CHAT_STATUS.ABERTO:
-      return direcionarParaAberto({ idUtilizador, idFunil })
+  // Tenta localizar a IA cadastrada para este funil + setor
+  const config = await getFunilIaConfig(idFunil, idSetor)
 
-    case CHAT_STATUS.HUMANO:
-      return direcionarParaAtendimento({ idUtilizador, idFunil, idSetor, statusDestino: CHAT_STATUS.HUMANO })
-
-    case CHAT_STATUS.IA:
-      return direcionarParaAtendimento({ idUtilizador, idFunil, idSetor, statusDestino: CHAT_STATUS.IA })
-
-    case CHAT_STATUS.PENDENTE:
-      return direcionarParaPendente({ idUtilizador, idFunil, idSetor, noSetor })
-
-    default:
-      logger.warn(`sg_chat_status desconhecido ("${status}") → aplicando fallback ABERTO`)
-      return direcionarParaAberto({ idUtilizador, idFunil })
+  if (config && config.is_ativo) {
+    return direcionarParaAtendimento({
+      idUtilizador, idFunil, idSetor, statusDestino: CHAT_STATUS.IA
+    })
   }
+
+  // Não há IA cadastrada/ativa nesse setor -> vai para atendimento humano
+  return direcionarParaAtendimento({
+    idUtilizador, idFunil, idSetor, statusDestino: CHAT_STATUS.HUMANO
+  })
 }
 
 async function verificarRespostaHumanaPendente({ idUtilizador, idFunil }) {
@@ -553,7 +539,6 @@ async function getMensagemChatbot(idFunil, cdMensagem) {
     gn_campo_erro      : row.gn_campo_erro,
     id_setor           : row.id_setor,
     no_setor           : row.no_setor,
-    sg_chat_status     : row.sg_chat_status,
     botoes             : rBotoes.rows,
   }
 }
@@ -618,9 +603,7 @@ async function iniciarOuProgredirChatbot(idUtilizador, idFunil, cdMensagem, send
       await aplicarStatusEspecialChatbot({
         idUtilizador,
         idFunil,
-        idSetor : msg.id_setor,
-        noSetor : msg.no_setor,
-        sgStatus: msg.sg_chat_status,
+        idSetor: msg.id_setor,
       })
       break
     }
@@ -879,7 +862,7 @@ async function _processarEtapaChatbot({ idUtilizador, idFunil, texto, sendMessag
    ETAPA IA — utilizador em atendimento por Inteligência Artificial
    ============================================================ */
 
-async function getFunilIaConfig(idSetor) {
+async function getFunilIaConfig(idFunil, idSetor) {
   const r = await db.query(
     `SELECT FI.id_funil_ia
            ,FI.no_agente
@@ -892,9 +875,10 @@ async function getFunilIaConfig(idSetor) {
            ,FIM.ds_funil_ia_modelo
        FROM tbl_funil_ia FI
       INNER JOIN tbl_funil_ia_modelo FIM ON FIM.id_funil_ia_modelo = FI.id_funil_ia_modelo
-      WHERE FI.id_setor = $1
+      WHERE FI.id_funil = $1
+        AND FI.id_setor = $2
       LIMIT 1`,
-    [idSetor]
+    [idFunil, idSetor]
   )
   return r.rows[0] ?? null
 }
@@ -928,22 +912,20 @@ async function _buscarHistoricoChat(idChat, limite = 10) {
 }
 
 async function _processarEtapaIA({ idUtilizador, idFunil, idChat, texto, sendMessage, idSetor }) {
-  // Garante de fato que todas as mensagens da IA apliquem e preservem o ID do setor da IA
-  await db.query(
-    `UPDATE tbl_funil_utilizador SET id_setor = $1 WHERE id_utilizador = $2 AND id_funil = $3`,
-    [SETOR.IA, idUtilizador, idFunil]
-  )
+  if (!idSetor) {
+    logger.warn(`[IA] Utilizador ${idUtilizador} está em status IA mas sem setor definido (funil ${idFunil})`)
+    return
+  }
 
-  // Busca sempre baseado no ID principal da Inteligência Artificial
-  const config = await getFunilIaConfig(SETOR.IA)
+  const config = await getFunilIaConfig(idFunil, idSetor)
 
   if (!config) {
-    logger.warn(`[IA] Nenhuma configuração de IA encontrada para o setor ${SETOR.IA}`)
+    logger.warn(`[IA] Nenhuma configuração de IA encontrada para funil ${idFunil} / setor ${idSetor}`)
     return
   }
 
   if (!config.is_ativo) {
-    logger.warn(`[IA] Configuração de IA inativa (is_ativo=false) para o setor ${SETOR.IA}`)
+    logger.warn(`[IA] Configuração de IA inativa (is_ativo=false) — funil ${idFunil} / setor ${idSetor}`)
     if (config.ds_fallback) await sendMessage(config.ds_fallback)
     return
   }

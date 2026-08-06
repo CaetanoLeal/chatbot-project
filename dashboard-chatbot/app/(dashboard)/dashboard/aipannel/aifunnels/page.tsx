@@ -20,10 +20,12 @@ interface FunilIA {
   nu_max_tokens: number
   is_ativo: boolean
   ds_fallback: string
-  is_human_handoff: boolean // Atualizado para o nome exato do seu banco de dados
+  is_human_handoff: boolean
   id_funil_ia_modelo: number
   ds_funil_ia_modelo?: string
-  id_setor?: string // Adicionado conforme nova modelagem
+  id_setor?: string
+  id_funil?: string
+  no_funil?: string
 }
 
 export default function IAFunnelsPage() {
@@ -131,25 +133,29 @@ export default function IAFunnelsPage() {
               </div>
 
               <div className="space-y-2 text-sm text-zinc-600 bg-zinc-50 rounded-xl p-3 border border-zinc-100">
-                <div className="flex items-center justify-between">
-                  <span>Modelo:</span>
-                  <strong className="text-zinc-900">{funil.ds_funil_ia_modelo || 'N/A'}</strong>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>Temperature:</span>
-                  <strong className="text-zinc-900">{funil.nu_temperature}</strong>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>Max Tokens:</span>
-                  <strong className="text-zinc-900">{funil.nu_max_tokens}</strong>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>Handoff Humano:</span>
-                  <strong className="text-zinc-900">
-                    {funil.is_human_handoff ? "Sim" : "Não"}
-                  </strong>
-                </div>
+              <div className="flex items-center justify-between">
+                <span>Funil:</span>
+                <strong className="text-zinc-900">{funil.no_funil || 'N/A'}</strong>
               </div>
+              <div className="flex items-center justify-between">
+                <span>Modelo:</span>
+                <strong className="text-zinc-900">{funil.ds_funil_ia_modelo || 'N/A'}</strong>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Temperature:</span>
+                <strong className="text-zinc-900">{funil.nu_temperature}</strong>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Max Tokens:</span>
+                <strong className="text-zinc-900">{funil.nu_max_tokens}</strong>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Handoff Humano:</span>
+                <strong className="text-zinc-900">
+                  {funil.is_human_handoff ? "Sim" : "Não"}
+                </strong>
+              </div>
+            </div>
             </div>
 
             <div className="flex items-center gap-3 mt-5 pt-4 border-t border-zinc-100">

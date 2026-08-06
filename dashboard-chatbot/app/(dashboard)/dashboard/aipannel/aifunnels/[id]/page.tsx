@@ -1,3 +1,4 @@
+//app/dashboard-chatbot/app/(dashboard)/dashboard/aipannel/aifunnels/[id]/page.tsx
 "use client"
 
 import { useEffect, useState } from "react"

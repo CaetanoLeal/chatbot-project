@@ -2,6 +2,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { Zap } from "lucide-react"
+import MensagemPredefinidaModal from "./components/MensagemPredefinidaModal"
 
 type Funil = {
   id: string
@@ -18,6 +20,7 @@ export default function FunnelsPage() {
   const [editName, setEditName] = useState('')
   const [editDescription, setEditDescription] = useState('')
   const [savingAction, setSavingAction] = useState(false)
+  const [showMensagemModal, setShowMensagemModal] = useState(false)
 
   useEffect(() => {
     async function carregarFunis() {
@@ -101,14 +104,26 @@ export default function FunnelsPage() {
     <div className="p-6 space-y-6 relative">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-zinc-700">Funis</h1>
-        <a
-          href="/dashboard/funnels/new"
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700"
-        >
-          <span className="text-lg">+</span>
-          Criar novo funil
-        </a>
+        <h1 className="text-2xl font-bold text-zinc-700">
+          Funis
+        </h1>
+
+        <div className="flex gap-3">
+          <button
+            onClick={() => setShowMensagemModal(true)}
+            className="h-full aspect-square flex items-center justify-center border border-zinc-300 rounded-lg bg-black hover:bg-zinc-700 text-white transition-colors px-3"
+          >
+            <Zap className="h-4 w-4" />
+          </button>
+
+          <a
+            href="/dashboard/funnels/new"
+            className="flex items-center gap-2 rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+          >
+            <span className="text-lg">+</span>
+            Criar novo funil
+          </a>
+        </div>
       </div>
 
       {/* Lista de funis */}
@@ -210,6 +225,10 @@ export default function FunnelsPage() {
           </div>
         </div>
       )}
+      <MensagemPredefinidaModal
+        open={showMensagemModal}
+        onClose={() => setShowMensagemModal(false)}
+      />
     </div>
   )
 }

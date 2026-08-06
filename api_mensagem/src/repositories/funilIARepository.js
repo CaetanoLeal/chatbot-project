@@ -2,27 +2,28 @@
 const db = require("../config/db");
 const crypto = require("crypto");
 
-/** Verifica se já existe uma IA ativa vinculada a este setor (opcionalmente ignorando um id, útil no update) */
-async function findAtivoByIdSetor(idSetor, excludeId = null) {
+/** Verifica se já existe uma IA ativa vinculada a este FUNIL + SETOR (opcionalmente ignorando um id, útil no update) */
+async function findAtivoByIdSetor(idFunil, idSetor, excludeId = null) {
   const query = `
     SELECT id_funil_ia, no_agente
     FROM tbl_funil_ia
-    WHERE id_setor = $1
+    WHERE id_funil = $1
+      AND id_setor = $2
       AND (is_excluido IS NOT TRUE)
-      ${excludeId ? "AND id_funil_ia != $2" : ""}
+      ${excludeId ? "AND id_funil_ia != $3" : ""}
     LIMIT 1
   `;
-  const values = excludeId ? [idSetor, excludeId] : [idSetor];
+  const values = excludeId ? [idFunil, idSetor, excludeId] : [idFunil, idSetor];
   const result = await db.query(query, values);
   return result.rows[0] || null;
 }
 
 async function create(data) {
-  if (data.id_setor) {
-    const existente = await findAtivoByIdSetor(data.id_setor);
+  if (data.id_setor && data.id_funil) {
+    const existente = await findAtivoByIdSetor(data.id_funil, data.id_setor);
     if (existente) {
       const error = new Error(
-        `Este setor já possui uma IA vinculada (${existente.no_agente}). Cada setor pode ter apenas uma IA.`
+        `Este setor já possui uma IA vinculada neste funil (${existente.no_agente}). Cada combinação funil + setor pode ter apenas uma IA.`
       );
       error.statusCode = 409;
       throw error;
@@ -34,6 +35,7 @@ async function create(data) {
   const query = `
     INSERT INTO tbl_funil_ia (
       id_funil_ia,
+      id_funil,
       id_funil_ia_modelo,
       no_agente,
       ds_funil,
@@ -48,13 +50,14 @@ async function create(data) {
       update_at
     )
     VALUES (
-      $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, NOW(), NOW()
+      $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, NOW(), NOW()
     )
     RETURNING *
   `;
 
   const values = [
     idFunilIA,
+    data.id_funil,
     data.id_funil_ia_modelo,
     data.no_agente,
     data.ds_funil,
@@ -64,30 +67,33 @@ async function create(data) {
     data.is_ativo,
     data.ds_fallback,
     data.is_human_handoff,
-    data.id_setor || null
+    data.id_setor || null,
   ];
 
-    try {
-      const result = await db.query(query, values);
-      return result.rows[0];
-    } catch (err) {
-      if (err.code === '23505') {
-        const error = new Error("Este setor já possui uma IA vinculada.");
-        error.statusCode = 409;
-        throw error;
-      }
-      throw err;
+  try {
+    const result = await db.query(query, values);
+    return result.rows[0];
+  } catch (err) {
+    if (err.code === '23505') {
+      const error = new Error("Este setor já possui uma IA vinculada neste funil.");
+      error.statusCode = 409;
+      throw error;
     }
+    throw err;
   }
+}
 
 async function findAll() {
   const result = await db.query(`
     SELECT
       fia.*,
-      modelo.ds_funil_ia_modelo
+      modelo.ds_funil_ia_modelo,
+      f.no_funil
     FROM tbl_funil_ia fia
     LEFT JOIN tbl_funil_ia_modelo modelo
       ON modelo.id_funil_ia_modelo = fia.id_funil_ia_modelo
+    LEFT JOIN tbl_funil f
+      ON f.id_funil = fia.id_funil
   `);
 
   return result.rows;
@@ -97,10 +103,13 @@ async function findById(id) {
   const result = await db.query(`
     SELECT
       fia.*,
-      modelo.ds_funil_ia_modelo
+      modelo.ds_funil_ia_modelo,
+      f.no_funil
     FROM tbl_funil_ia fia
     LEFT JOIN tbl_funil_ia_modelo modelo
       ON modelo.id_funil_ia_modelo = fia.id_funil_ia_modelo
+    LEFT JOIN tbl_funil f
+      ON f.id_funil = fia.id_funil
     WHERE fia.id_funil_ia = $1
   `, [id]);
 
@@ -108,11 +117,11 @@ async function findById(id) {
 }
 
 async function update(id, data) {
-  if (data.id_setor) {
-    const existente = await findAtivoByIdSetor(data.id_setor, id);
+  if (data.id_setor && data.id_funil) {
+    const existente = await findAtivoByIdSetor(data.id_funil, data.id_setor, id);
     if (existente) {
       const error = new Error(
-        `Este setor já possui uma IA vinculada (${existente.no_agente}). Cada setor pode ter apenas uma IA.`
+        `Este setor já possui uma IA vinculada neste funil (${existente.no_agente}). Cada combinação funil + setor pode ter apenas uma IA.`
       );
       error.statusCode = 409;
       throw error;
@@ -122,22 +131,24 @@ async function update(id, data) {
   const query = `
     UPDATE tbl_funil_ia
     SET
-      id_funil_ia_modelo = $1,
-      no_agente = $2,
-      ds_funil = $3,
-      ds_personalidade = $4,
-      nu_temperature = $5,
-      nu_max_tokens = $6,
-      is_ativo = $7,
-      ds_fallback = $8,
-      is_human_handoff = $9,
-      id_setor = $10,
+      id_funil = $1,
+      id_funil_ia_modelo = $2,
+      no_agente = $3,
+      ds_funil = $4,
+      ds_personalidade = $5,
+      nu_temperature = $6,
+      nu_max_tokens = $7,
+      is_ativo = $8,
+      ds_fallback = $9,
+      is_human_handoff = $10,
+      id_setor = $11,
       update_at = NOW()
-    WHERE id_funil_ia = $11
+    WHERE id_funil_ia = $12
     RETURNING *
   `;
 
   const values = [
+    data.id_funil,
     data.id_funil_ia_modelo,
     data.no_agente,
     data.ds_funil,
@@ -151,18 +162,18 @@ async function update(id, data) {
     id
   ];
 
-    try {
-      const result = await db.query(query, values);
-      return result.rows[0];
-    } catch (err) {
-      if (err.code === '23505') {
-        const error = new Error("Este setor já possui uma IA vinculada.");
-        error.statusCode = 409;
-        throw error;
-      }
-      throw err;
+  try {
+    const result = await db.query(query, values);
+    return result.rows[0];
+  } catch (err) {
+    if (err.code === '23505') {
+      const error = new Error("Este setor já possui uma IA vinculada neste funil.");
+      error.statusCode = 409;
+      throw error;
     }
+    throw err;
   }
+}
 
 async function remove(id) {
   await db.query(`
@@ -173,6 +184,23 @@ async function remove(id) {
   return true;
 }
 
+async function findAllByFunil(idFunil) {
+  const result = await db.query(`
+    SELECT
+      fia.*,
+      modelo.ds_funil_ia_modelo,
+      s.no_setor
+    FROM tbl_funil_ia fia
+    LEFT JOIN tbl_funil_ia_modelo modelo
+      ON modelo.id_funil_ia_modelo = fia.id_funil_ia_modelo
+    LEFT JOIN tbl_setor s
+      ON s.id_setor = fia.id_setor
+    WHERE fia.id_funil = $1
+  `, [idFunil]);
+
+  return result.rows;
+}
+
 module.exports = {
   create,
   findAll,
@@ -180,4 +208,5 @@ module.exports = {
   update,
   remove,
   findAtivoByIdSetor,
+  findAllByFunil,
 };

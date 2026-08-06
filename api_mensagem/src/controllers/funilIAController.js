@@ -61,9 +61,20 @@ async function remove(req, res) {
   }
 }
 
+async function findAllByFunil(req, res) {
+  try {
+    const result = await repository.findAllByFunil(req.params.idFunil);
+    return res.json(result);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Erro ao listar IAs do funil" });
+  }
+}
+
 module.exports = {
   create,
   findAll,
+  findAllByFunil,
   findById,
   update,
   remove,

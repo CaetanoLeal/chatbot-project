@@ -14,6 +14,11 @@ export interface Setor {
   no_setor: string
 }
 
+export interface Funil {
+  id: string
+  name: string
+}
+
 export interface FunilIA {
   id_funil_ia?: string
   no_funil?: string
@@ -27,6 +32,7 @@ export interface FunilIA {
   is_human_handoff: boolean
   id_funil_ia_modelo: number
   id_setor: string
+  id_funil: string
 }
 
 interface IAFunilFormProps {
@@ -51,6 +57,8 @@ export default function IAFunilForm({
   const [form, setForm] = useState<FunilIA>(initialData)
   const [setores, setSetores] = useState<Setor[]>([])
   const [loadingSetores, setLoadingSetores] = useState<boolean>(true)
+  const [funis, setFunis] = useState<Funil[]>([])
+  const [loadingFunis, setLoadingFunis] = useState<boolean>(true)
 
   // Atualiza o formulário se os dados iniciais mudarem (útil para o fetch assíncrono do Edit)
   useEffect(() => {
@@ -74,6 +82,25 @@ export default function IAFunilForm({
     }
 
     fetchSetores()
+  }, [])
+
+  // Busca os funis de forma dinâmica na API
+  useEffect(() => {
+    async function fetchFunis() {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funis`)
+        if (response.ok) {
+          const data = await response.json()
+          setFunis(data)
+        }
+      } catch (error) {
+        console.error("Erro ao buscar funis:", error)
+      } finally {
+        setLoadingFunis(false)
+      }
+    }
+
+    fetchFunis()
   }, [])
 
   return (
@@ -184,8 +211,26 @@ export default function IAFunilForm({
             />
           </div>
 
+          {/* ESCOLHER FUNIL */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Escolher Funil</label>
+            <select
+              value={form.id_funil || ""}
+              onChange={(e) => setForm({ ...form, id_funil: e.target.value })}
+              className="w-full border border-zinc-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+              disabled={loadingFunis}
+            >
+              <option value="">Selecione um funil</option>
+              {funis.map((funil) => (
+                <option key={funil.id} value={funil.id}>
+                  {funil.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
           {/* ESCOLHER SETOR */}
-          <div className="md:col-span-2">
+          <div>
             <label className="block text-sm font-medium mb-2">Escolher Setor</label>
             <select
               value={form.id_setor || ""}
@@ -193,6 +238,7 @@ export default function IAFunilForm({
               className="w-full border border-zinc-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 bg-white"
               disabled={loadingSetores}
             >
+              <option value="">Selecione um setor</option>
               {setores.map((setor) => (
                 <option key={setor.id_setor} value={setor.id_setor}>
                   {setor.no_setor}
@@ -232,7 +278,7 @@ export default function IAFunilForm({
           </Link>
           <button
             onClick={() => onSubmit(form)}
-            disabled={saving}
+            disabled={saving || !form.id_funil || !form.id_setor}
             className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl flex items-center gap-2 font-medium disabled:opacity-50"
           >
             {saving && <Loader2 className="animate-spin w-4 h-4" />}

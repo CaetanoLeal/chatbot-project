@@ -84,6 +84,12 @@ class FunilRepository {
         [id_funil]
       );
 
+      // IA
+      await client.query(
+        `DELETE FROM tbl_funil_ia WHERE id_funil = $1`,
+        [id_funil]
+      );
+
       // Instâncias vinculadas
       await client.query(
         `DELETE FROM tbl_instancia WHERE id_funil = $1`,

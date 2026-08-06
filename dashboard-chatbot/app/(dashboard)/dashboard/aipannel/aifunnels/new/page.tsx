@@ -1,3 +1,4 @@
+//app/dashboard-chatbot/app/(dashboard)/dashboard/aipannel/aifunnels/new/page.tsx
 "use client"
 
 import { useEffect, useState } from "react"
@@ -16,7 +17,8 @@ const emptyFunil: FunilIA = {
   ds_fallback: "Desculpe, ocorreu um erro no atendimento.",
   is_human_handoff: false,
   id_funil_ia_modelo: 1,
-  id_setor:""
+  id_setor:"",
+  id_funil: "",
 }
 
 export default function NewIAFunilPage() {
