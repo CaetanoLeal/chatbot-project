@@ -139,6 +139,18 @@ async function getOrCreateUtilizador({ cdTelegram, cdWhatsapp, telefone, nome })
   return idUtilizador
 }
 
+async function getUtilizadorExistente({ cdTelegram, cdWhatsapp }) {
+  const campo = cdTelegram ? "cd_telegram" : "cd_whatsapp"
+  const valor = cdTelegram || cdWhatsapp
+  if (!valor) return null
+
+  const r = await db.query(
+    `SELECT id_utilizador FROM tbl_utilizador WHERE ${campo} = $1 LIMIT 1`,
+    [valor]
+  )
+  return r.rows[0]?.id_utilizador ?? null
+}
+
 /* ============================================================
    HELPER — tempo de expiração (1ª régua) do funil
    ============================================================ */
@@ -1105,4 +1117,5 @@ module.exports = {
   definirStatusManual,               // uso em rotas de admin/painel (ex: mover H -> A)
   direcionarParaPendente,
   getFunilIaConfig,                  // uso opcional em rotas de admin/painel
+  getUtilizadorExistente,
 }

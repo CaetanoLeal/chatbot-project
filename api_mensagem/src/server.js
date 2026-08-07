@@ -125,15 +125,18 @@ app.post("/webhook", async (req, res) => {
         const userId = message.peerId?.userId?.toString()
         if (!userId) return
 
-        const idUtilizador = await funil.getOrCreateUtilizador({ cdTelegram: userId })
-        const instancia    = await resolverInstancia(msg.instance?.name)
+        const idUtilizador = await funil.getUtilizadorExistente({ cdTelegram: userId })
+        if (!idUtilizador) return // chat ainda não existe → não cria nada
+
+        const instancia = await resolverInstancia(msg.instance?.name)
         if (!instancia) return
 
-        const idChat = await chatService.getOrCreateChat({
+        const idChat = await chatService.getChatExistente({
           idUtilizador,
           cdProvider  : 2,
           idInstancia : instancia.id_instancia,
         })
+        if (!idChat) return
 
         await chatService.updateChatContactInfo({ idChat, fotoPerfil: msg.contact?.photo || null, lastSeen: null })
 
@@ -149,8 +152,6 @@ app.post("/webhook", async (req, res) => {
           contato           : userId,
         })
 
-        // Se o utilizador estava PENDENTE aguardando atendimento, esta
-        // mensagem nossa o move automaticamente para HUMANO.
         await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
         return
       }
@@ -220,16 +221,18 @@ app.post("/webhook", async (req, res) => {
 
       if (!userId) return
 
-      const idUtilizador = await funil.getOrCreateUtilizador({ cdTelegram: userId })
+      const idUtilizador = await funil.getUtilizadorExistente({ cdTelegram: userId })
+      if (!idUtilizador) return
 
       const instancia = await resolverInstancia(msg.instance?.name)
       if (!instancia) return
 
-      const idChat = await chatService.getOrCreateChat({
+      const idChat = await chatService.getChatExistente({
         idUtilizador,
         cdProvider  : 2,
         idInstancia : instancia.id_instancia,
       })
+      if (!idChat) return
 
       await registrarMensagem({
         idChat,
@@ -243,8 +246,6 @@ app.post("/webhook", async (req, res) => {
         contato           : userId,
       })
 
-      // Se o utilizador estava PENDENTE aguardando atendimento, esta
-      // mensagem nossa o move automaticamente para HUMANO.
       await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
       return
     }
@@ -257,6 +258,7 @@ app.post("/webhook", async (req, res) => {
 
       if (
         jid?.endsWith("@g.us") ||
+        jid?.endsWith("@newsletter") ||
         funil.isStatusBroadcast(
           jid,
           msg.whatsapp?.jidAlt,
@@ -343,16 +345,18 @@ app.post("/webhook", async (req, res) => {
 
       if (!telefone) return
 
-      const idUtilizador = await funil.getOrCreateUtilizador({ cdWhatsapp: telefone, telefone })
+      const idUtilizador = await funil.getUtilizadorExistente({ cdWhatsapp: telefone })
+      if (!idUtilizador) return // chat ainda não existe → não cria nada
 
       const instancia = await resolverInstancia(msg.instance?.name)
       if (!instancia) return
 
-      const idChat = await chatService.getOrCreateChat({
+      const idChat = await chatService.getChatExistente({
         idUtilizador,
         cdProvider  : 1,
         idInstancia : instancia.id_instancia,
       })
+      if (!idChat) return
 
       await registrarMensagem({
         idChat,
@@ -366,8 +370,6 @@ app.post("/webhook", async (req, res) => {
         contato           : telefone,
       })
 
-      // Se o utilizador estava PENDENTE aguardando atendimento, esta
-      // mensagem nossa o move automaticamente para HUMANO.
       await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
       return
     }

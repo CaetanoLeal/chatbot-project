@@ -66,7 +66,7 @@ async function listChats() {
   return rows
 }
 
-async function getMessagesByChat(id_chat) {
+async function getMessagesByChat(id_chat, { limit = 30, beforeDhEnvio = null, beforeIdMensagem = null } = {}) {
   const { rows } = await db.query(
     `
     SELECT
@@ -75,12 +75,17 @@ async function getMessagesByChat(id_chat) {
     FROM tbl_mensagem m
     LEFT JOIN tbl_atendente at ON at.id_atendente = m.id_atendente
     WHERE m.id_chat = $1
-    ORDER BY m.dh_envio ASC
+      AND (
+        $3::timestamp IS NULL
+        OR (m.dh_envio, m.id_mensagem) < ($3::timestamp, $4::char(36))
+      )
+    ORDER BY m.dh_envio DESC, m.id_mensagem DESC
+    LIMIT $2
     `,
-    [id_chat]
+    [id_chat, limit, beforeDhEnvio, beforeIdMensagem]
   )
 
-  return rows
+  return rows.reverse()
 }
 
 /* ============================================================

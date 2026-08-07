@@ -15,7 +15,16 @@ async function list(req, res) {
 async function messages(req, res) {
   try {
     const { id_chat } = req.params
-    const msgs = await chatService.getMessagesByChat(id_chat)
+    const limit = req.query.limit ? Number(req.query.limit) : 30
+    const beforeDhEnvio = req.query.before_dh_envio || null
+    const beforeIdMensagem = req.query.before_id || null
+
+    const msgs = await chatService.getMessagesByChat(id_chat, {
+      limit,
+      beforeDhEnvio,
+      beforeIdMensagem,
+    })
+
     return res.json({ success: true, data: msgs })
   } catch (err) {
     return res.status(500).json({ success: false, message: err.message })

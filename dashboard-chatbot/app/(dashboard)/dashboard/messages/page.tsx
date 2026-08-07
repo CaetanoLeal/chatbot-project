@@ -22,6 +22,7 @@ type ChatMessage = {
   senderName: string
   content: string
   timestamp: string
+  dhEnvio: string
 }
 
 type Setor = {
@@ -80,6 +81,7 @@ const STATUS_COLOR: Record<ChatStatus, string> = {
 }
 
 const ATENDENTE_STORAGE_KEY = "painel:id_atendente_ativo"
+const PAGE_SIZE = 30
 
 /* =====================
    HELPERS COMPONENTS
@@ -139,6 +141,9 @@ export default function MessagesPage() {
   const [finalizando, setFinalizando] = useState(false)
   const [setores, setSetores] = useState<Setor[]>([])
   const [transferindo, setTransferindo] = useState(false)
+  const [loadingMore, setLoadingMore] = useState(false)
+  const [hasMore, setHasMore] = useState(true)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
 
   const [mensagensPredefinidas, setMensagensPredefinidas] = useState<MensagemPredefinida[]>([])
   const [mostrarPredefinidas, setMostrarPredefinidas] = useState(false)
@@ -159,7 +164,11 @@ export default function MessagesPage() {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
-  }, [activeChat?.id, activeChat?.messages.length])
+  }, [activeChat?.id, activeChat?.messages.at(-1)?.id])
+
+  useEffect(() => {
+    setHasMore(true)
+  }, [activeChatId])
 
   /* =====================
      BOOTSTRAP & SOCKETS
@@ -184,7 +193,10 @@ export default function MessagesPage() {
         fromMe: data.fromMe,
         senderName: data.fromMe ? (data.no_atendente || "sistema") : data.telefone,
         content: cleanContent,
-        timestamp: new Date().toLocaleString(),
+        timestamp: data.dh_envio
+          ? new Date(data.dh_envio).toLocaleString()
+          : new Date().toLocaleString(),
+        dhEnvio: data.dh_envio || new Date().toISOString(),
       }
 
       setThreads((prev) => {
@@ -218,12 +230,38 @@ export default function MessagesPage() {
       })
     }
 
+    function handleNewChat(chatCompleto: any) {
+      setThreads((prev) => {
+        if (prev.some((t) => t.id === chatCompleto.id_chat)) return prev // evita duplicar
+        const novoChat = formatChatFromApi(chatCompleto)
+        return sortThreads([novoChat, ...prev])
+      })
+    }
+
+    function handleChatContactUpdated(data: any) {
+      setThreads((prev) =>
+        prev.map((chat) =>
+          chat.id === data.idChat
+            ? {
+                ...chat,
+                photo: data.fotoPerfil ?? chat.photo,
+                lastSeen: data.lastSeen ?? chat.lastSeen,
+              }
+            : chat
+        )
+      )
+    }
+
     socket.on("NEW_MESSAGE", handleNewMessage)
     socket.on("CHAT_UPDATED", handleChatUpdated)
+    socket.on("NEW_CHAT", handleNewChat)
+    socket.on("CHAT_CONTACT_UPDATED", handleChatContactUpdated) // NOVO
 
     return () => {
       socket.off("NEW_MESSAGE", handleNewMessage)
       socket.off("CHAT_UPDATED", handleChatUpdated)
+      socket.off("NEW_CHAT", handleNewChat)
+      socket.off("CHAT_CONTACT_UPDATED", handleChatContactUpdated) // NOVO
     }
   }, [])
 
@@ -287,28 +325,43 @@ export default function MessagesPage() {
     if (typeof window !== "undefined") localStorage.setItem(ATENDENTE_STORAGE_KEY, id)
   }
 
+  function formatChatFromApi(chat: any): ChatThread {
+  return {
+    id: chat.id_chat,
+    contactName: chat.no_utilizador || "Sem nome",
+    contactNumber: chat.nu_telefone || "-",
+    instanceName: chat.no_instancia || "Instância",
+    platform: chat.cd_provider === 1 ? "whatsapp" : "telegram",
+    photo: chat.ds_foto_perfil || null,
+    lastSeen: chat.dh_last_seen || null,
+    status: (chat.sg_chat_status as ChatStatus) || "B",
+    setorId: chat.id_setor || null,
+    setorNome: chat.no_setor || null,
+    atendenteNome: chat.no_atendente || null,
+
+    messages: chat.ultima_mensagem && chat.dh_ultima_mensagem
+      ? [
+          {
+            id: `preview-${chat.id_chat}`,
+            platform: chat.cd_provider === 1 ? "whatsapp" : "telegram",
+            fromMe: false,
+            senderName: chat.no_utilizador || "-",
+            content: chat.ultima_mensagem,
+            timestamp: new Date(chat.dh_ultima_mensagem).toLocaleString(),
+            dhEnvio: chat.dh_ultima_mensagem,
+          },
+        ]
+      : [],
+  }
+}
+
   async function loadChats() {
     try {
       const res = await fetch(`${API_URL}/api/chats`)
       const json = await res.json()
       if (!json.success) return
 
-      const formatted: ChatThread[] = json.data.map((chat: any) => ({
-        id: chat.id_chat,
-        contactName: chat.no_utilizador || "Sem nome",
-        contactNumber: chat.nu_telefone || "-",
-        instanceName: chat.no_instancia || "Instância",
-        platform: chat.cd_provider === 1 ? "whatsapp" : "telegram",
-        photo: chat.ds_foto_perfil || null,
-        lastSeen: chat.dh_last_seen || null,
-        status: (chat.sg_chat_status as ChatStatus) || "B",
-        setorId: chat.id_setor || null,
-        setorNome: chat.no_setor || null,
-        atendenteNome: chat.no_atendente || null,
-        messages: chat.ultima_mensagem
-          ? [{ id: `preview-${chat.id_chat}`, platform: chat.cd_provider === 1 ? "whatsapp" : "telegram", fromMe: false, senderName: chat.no_utilizador || "-", content: chat.ultima_mensagem, timestamp: chat.dh_ultima_mensagem }]
-          : [],
-      }))
+      const formatted: ChatThread[] = json.data.map(formatChatFromApi)
 
       const sorted = sortThreads(formatted)
       setThreads(sorted)
@@ -320,7 +373,7 @@ export default function MessagesPage() {
 
   async function loadMessages(chat: ChatThread) {
     try {
-      const res = await fetch(`${API_URL}/api/chats/${chat.id}/messages`)
+      const res = await fetch(`${API_URL}/api/chats/${chat.id}/messages?limit=${PAGE_SIZE}`)
       const json = await res.json()
       if (!json.success) return
 
@@ -335,13 +388,80 @@ export default function MessagesPage() {
           senderName: msg.from_me ? msg.no_atendente || "sistema" : chat.contactName,
           content: cleanContent,
           timestamp: new Date(msg.dh_envio).toLocaleString(),
+          dhEnvio: msg.dh_envio,
         }
       })
 
       setThreads((prev) => prev.map((c) => (c.id === chat.id ? { ...c, messages: formattedMessages } : c)))
       setActiveChatId(chat.id)
+      setHasMore(json.data.length === PAGE_SIZE)
     } catch (err) {
       console.error("Erro ao carregar mensagens", err)
+    }
+  }
+
+  async function loadMoreMessages() {
+    if (!activeChat || loadingMore || !hasMore) return
+    const oldest = activeChat.messages[0]
+    if (!oldest?.dhEnvio) return
+
+    setLoadingMore(true)
+    const container = messagesContainerRef.current
+    const previousScrollHeight = container?.scrollHeight ?? 0
+
+    try {
+      const params = new URLSearchParams({
+        limit: String(PAGE_SIZE),
+        before_dh_envio: oldest.dhEnvio,
+        before_id: oldest.id,
+      })
+
+      const res = await fetch(`${API_URL}/api/chats/${activeChat.id}/messages?${params}`)
+      const json = await res.json()
+      if (!json.success) return
+
+      const olderMessages: ChatMessage[] = json.data.map((msg: any) => {
+        let cleanContent = msg.ds_conteudo || ""
+        if (msg.from_me) cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
+
+        return {
+          id: msg.id_mensagem,
+          platform: activeChat.platform,
+          fromMe: msg.from_me,
+          senderName: msg.from_me ? msg.no_atendente || "sistema" : activeChat.contactName,
+          content: cleanContent,
+          timestamp: new Date(msg.dh_envio).toLocaleString(),
+          dhEnvio: msg.dh_envio,
+        }
+      })
+
+      if (olderMessages.length === 0) {
+        setHasMore(false)
+        return
+      }
+
+      setThreads((prev) =>
+        prev.map((c) =>
+          c.id === activeChat.id ? { ...c, messages: [...olderMessages, ...c.messages] } : c
+        )
+      )
+      setHasMore(olderMessages.length === PAGE_SIZE)
+
+      requestAnimationFrame(() => {
+        if (container) {
+          container.scrollTop = container.scrollHeight - previousScrollHeight
+        }
+      })
+    } catch (err) {
+      console.error("Erro ao carregar mensagens antigas", err)
+    } finally {
+      setLoadingMore(false)
+    }
+  }
+
+  function handleMessagesScroll(e: React.UIEvent<HTMLDivElement>) {
+    if (e.currentTarget.scrollTop < 150) {
+      loadMoreMessages()
     }
   }
 
@@ -366,7 +486,10 @@ export default function MessagesPage() {
         fromMe: true,
         senderName: atendenteAtivo?.no_atendente || "sistema",
         content: reply.trim(),
-        timestamp: new Date().toLocaleString(),
+        timestamp: json.data.dh_envio
+          ? new Date(json.data.dh_envio).toLocaleString()
+          : new Date().toLocaleString(),
+        dhEnvio: json.data.dh_envio || new Date().toISOString(),
       }
 
       setThreads((prev) =>
@@ -582,7 +705,14 @@ export default function MessagesPage() {
               </div>
 
               {/* Mensagens do Chat */}
-              <div className="flex-1 p-6 space-y-6 overflow-y-auto bg-zinc-50/30">
+              <div
+                ref={messagesContainerRef}
+                onScroll={handleMessagesScroll}
+                className="flex-1 p-6 space-y-6 overflow-y-auto bg-zinc-50/30"
+              >
+                {loadingMore && (
+                  <div className="text-center text-xs text-zinc-400 py-2">Carregando mensagens antigas...</div>
+                )}
                 {activeChat.messages.map((msg) => (
                   <div key={msg.id} className={`flex gap-3 ${msg.fromMe ? "justify-end" : "justify-start"}`}>
                     {!msg.fromMe && <Avatar name={activeChat.contactName} photo={activeChat.photo} />}

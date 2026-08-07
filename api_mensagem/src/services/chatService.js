@@ -11,7 +11,7 @@ const { sendWhatsAppMessage, sendTelegramMessage } = require("./sendMessage")
 const socketBus = require("../socket")
 
 /* ============================================================
-   (mantido) — cria/recupera chat quando chega mensagem nova
+   cria/recupera chat quando chega mensagem nova
    ============================================================ */
 async function getOrCreateChat({ idUtilizador, cdProvider, idInstancia }) {
   const r = await db.query(
@@ -41,7 +41,6 @@ async function getOrCreateChat({ idUtilizador, cdProvider, idInstancia }) {
     [idChat, idUtilizador, cdProvider, idInstancia]
   )
 
-  // NOVO — avisa o painel que surgiu um chat novo
   const chatCompleto = await chatRepository.getChatById(idChat)
   if (chatCompleto) {
     socketBus.emit("NEW_CHAT", chatCompleto)
@@ -51,10 +50,25 @@ async function getOrCreateChat({ idUtilizador, cdProvider, idInstancia }) {
 }
 
 /* ============================================================
-   (mantido, com pequeno acréscimo) — salva mensagem unificada.
-   idAtendente é a única "amarração" que temos entre uma
-   mensagem e quem respondeu — é ela que o resto do sistema
-   usa pra descobrir "quem está atendendo esse chat agora".
+   NOVO — busca chat existente sem criar (usado em message.sent)
+   ============================================================ */
+async function getChatExistente({ idUtilizador, cdProvider, idInstancia }) {
+  const r = await db.query(
+    `
+    SELECT id_chat
+    FROM tbl_chat
+    WHERE id_utilizador = $1
+      AND cd_provider = $2
+      AND id_instancia = $3
+    LIMIT 1
+    `,
+    [idUtilizador, cdProvider, idInstancia]
+  )
+  return r.rows[0]?.id_chat ?? null
+}
+
+/* ============================================================
+   salva mensagem unificada
    ============================================================ */
 async function saveUnifiedMessage({
   idChat,
@@ -107,20 +121,18 @@ async function saveUnifiedMessage({
 }
 
 /* ============================================================
-   listagem / detalhes — delega pro repository já com os
-   novos campos (setor derivado, atendente derivado, ordenação
-   por pendência)
+   listagem / detalhes
    ============================================================ */
 async function listChats() {
   return chatRepository.listChats()
 }
 
-async function getMessagesByChat(idChat) {
-  return chatRepository.getMessagesByChat(idChat)
+async function getMessagesByChat(idChat, { limit, beforeDhEnvio, beforeIdMensagem } = {}) {
+  return chatRepository.getMessagesByChat(idChat, { limit, beforeDhEnvio, beforeIdMensagem })
 }
 
 /* ============================================================
-   (mantido)
+   atualiza foto/last seen — agora emite CHAT_CONTACT_UPDATED
    ============================================================ */
 async function updateChatContactInfo({ idChat, fotoPerfil, lastSeen }) {
   await db.query(
@@ -133,6 +145,14 @@ async function updateChatContactInfo({ idChat, fotoPerfil, lastSeen }) {
     `,
     [fotoPerfil, lastSeen, idChat]
   )
+
+  if (fotoPerfil || lastSeen) {
+    socketBus.emit("CHAT_CONTACT_UPDATED", {
+      idChat,
+      fotoPerfil: fotoPerfil || null,
+      lastSeen: lastSeen || null,
+    })
+  }
 }
 
 async function updateChatStatus({ idChat, status }) {
@@ -156,12 +176,7 @@ async function getChatStatus(idChat) {
 }
 
 /* ============================================================
-   Finalizar atendimento (botão "Finalizar" na tela).
-
-   Delega inteiramente para funilHelper.definirStatusManual,
-   que já cuida de: atualizar tbl_funil_utilizador, sincronizar
-   tbl_chat e emitir CHAT_UPDATED. Não escrevemos em tbl_chat
-   aqui — evita a dupla escrita que existia antes.
+   Finalizar atendimento
    ============================================================ */
 async function finalizarAtendimento({ idChat }) {
   const chat = await chatRepository.getChatById(idChat)
@@ -176,21 +191,12 @@ async function finalizarAtendimento({ idChat }) {
   await funilHelper.definirStatusManual({
     idUtilizador: chat.id_utilizador,
     idFunil: chat.id_funil,
-    status: funilHelper.CHAT_STATUS.ABERTO, // 'A'
+    status: funilHelper.CHAT_STATUS.ABERTO,
   })
 }
 
 /* ============================================================
-   Transferir atendimento para outro setor (botão "Transferir"
-   na tela).
-
-   Validações específicas do painel (chat existe, setor de
-   destino existe, não é o mesmo setor atual) ficam aqui. A
-   transição de estado em si é sempre feita via
-   funilHelper.direcionarParaPendente — único caminho de
-   escrita para tbl_funil_utilizador/tbl_chat, garantindo que
-   o CHAT_UPDATED disparado é o mesmo evento que o resto do
-   sistema já usa.
+   Transferir atendimento
    ============================================================ */
 async function transferirAtendimento({ idChat, idSetor }) {
   const chat = await chatRepository.getChatById(idChat)
@@ -222,12 +228,7 @@ async function transferirAtendimento({ idChat, idSetor }) {
 }
 
 /* ============================================================
-   NOVO — Envio de mensagem pelo atendente (caixa de texto do
-   painel). Valida se o atendente é capacitado pro setor atual
-   do chat (via tbl_atendente_setor), detecta o provider,
-   concatena a assinatura, envia pelo canal certo, salva no
-   histórico (com id_atendente, que é o que "marca" o chat como
-   atendido por ele) e libera o funil de PENDENTE -> HUMANO.
+   Envio de mensagem pelo atendente
    ============================================================ */
 async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
   const chat = await chatRepository.getChatById(idChat)
@@ -250,7 +251,6 @@ async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
     }
   }
 
-  // Formatação só para o canal externo (WhatsApp/Telegram)
   const mensagemParaEnvio = `Mensagem de ${nomeAtendente}: ${texto}`
 
   if (chat.cd_provider === 1) {
@@ -275,7 +275,6 @@ async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
     throw new Error(`Provider do chat desconhecido (cd_provider=${chat.cd_provider})`)
   }
 
-  // Salva o texto PURO (sem prefixo/sufixo) — a exibição de "Mensagem de X:" já é feita no frontend
   const idMensagem = await saveUnifiedMessage({
     idChat,
     cdProvider: chat.cd_provider,
@@ -304,6 +303,7 @@ async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
 
 module.exports = {
   getOrCreateChat,
+  getChatExistente,
   saveUnifiedMessage,
   listChats,
   getMessagesByChat,
