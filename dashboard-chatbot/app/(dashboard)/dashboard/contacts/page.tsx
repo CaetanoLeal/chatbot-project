@@ -2,15 +2,25 @@
 "use client"
 
 import { useState, useEffect, Fragment } from "react"
+import { useRouter } from "next/navigation"
+import { History } from "lucide-react"
 
 /* =====================
    TYPES
 ===================== */
 type Platform = "whatsapp" | "telegram"
 
+type CampoPersonalizado = {
+  no_campo: string
+  vl_campo: string
+}
+
 type FunilContato = {
   nome: string
+  idFunil: string
   ultimoContato: string
+  status: string
+  campos: CampoPersonalizado[]
 }
 
 type Contact = {
@@ -18,6 +28,7 @@ type Contact = {
   nome: string
   telefone: string
   plataformas: Platform[]
+  idChatHistorico: string | null
   funis: FunilContato[]
 }
 
@@ -45,6 +56,7 @@ function formatDate(dateString?: string) {
    PAGE
 ===================== */
 export default function ContactsPage() {
+  const router = useRouter()
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState(true)
@@ -72,6 +84,11 @@ export default function ContactsPage() {
 
     fetchContacts()
   }, [])
+
+  function irParaHistorico(e: React.MouseEvent, idChat: string) {
+    e.stopPropagation() // não deixa o clique também abrir/fechar o accordion
+    router.push(`/dashboard/history?chat=${idChat}`)
+  }
 
   return (
     <div className="space-y-6 text-zinc-700">
@@ -102,6 +119,7 @@ export default function ContactsPage() {
                 <th className="p-3 text-left">Telefone</th>
                 <th className="p-3 text-left">Plataforma</th>
                 <th className="p-3 text-left">Último contato</th>
+                <th className="p-3 text-left">Histórico</th>
               </tr>
             </thead>
 
@@ -140,37 +158,78 @@ export default function ContactsPage() {
                       <td className="p-3 text-zinc-600">
                         {formatDate(contact.funis[0]?.ultimoContato)}
                       </td>
+
+                      <td className="p-3">
+                        {contact.idChatHistorico ? (
+                          <button
+                            onClick={(e) => irParaHistorico(e, contact.idChatHistorico!)}
+                            title="Ver histórico deste contato"
+                            className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-100 px-2.5 py-1.5 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-200"
+                          >
+                            <History className="h-3.5 w-3.5" />
+                            Ver histórico
+                          </button>
+                        ) : (
+                          <span
+                            title="Este contato ainda não tem um atendimento finalizado"
+                            className="text-xs text-zinc-400 italic"
+                          >
+                            Sem histórico
+                          </span>
+                        )}
+                      </td>
                     </tr>
 
                     {/* Expansão */}
                     {isOpen && (
                       <tr className="bg-zinc-50 border-b">
-                        <td colSpan={4} className="p-4">
-                          <div className="space-y-2">
+                        <td colSpan={5} className="p-4">
+                          <div className="space-y-4">
                             <div className="text-sm font-semibold text-zinc-800">
                               Funis vinculados
                             </div>
 
-                            <ul className="space-y-1 text-sm">
-                              {contact.funis.length === 0 && (
-                                <li className="text-zinc-500">
-                                  Nenhum funil vinculado
-                                </li>
-                              )}
+                            {contact.funis.length === 0 && (
+                              <div className="text-sm text-zinc-500">
+                                Nenhum funil vinculado
+                              </div>
+                            )}
 
+                            <div className="grid gap-3 sm:grid-cols-2">
                               {contact.funis.map((funil) => (
-                                <li
-                                  key={`${contact.id}-${funil.nome}`}
-                                  className="flex justify-between"
+                                <div
+                                  key={`${contact.id}-${funil.idFunil}-${funil.ultimoContato}`}
+                                  className="rounded-lg border border-zinc-200 bg-white p-3"
                                 >
-                                  <span>{funil.nome}</span>
-                                  <span className="text-zinc-500">
-                                    Último contato:{" "}
-                                    {formatDate(funil.ultimoContato)}
-                                  </span>
-                                </li>
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-medium text-zinc-800">{funil.nome}</span>
+                                    <span className="text-xs text-zinc-500">
+                                      {formatDate(funil.ultimoContato)}
+                                    </span>
+                                  </div>
+
+                                  {funil.campos.length > 0 ? (
+                                    <dl className="mt-2 space-y-1">
+                                      {funil.campos.map((campo) => (
+                                        <div
+                                          key={campo.no_campo}
+                                          className="flex justify-between gap-3 text-xs"
+                                        >
+                                          <dt className="text-zinc-500">{campo.no_campo}</dt>
+                                          <dd className="text-zinc-700 font-medium text-right break-all">
+                                            {campo.vl_campo || "-"}
+                                          </dd>
+                                        </div>
+                                      ))}
+                                    </dl>
+                                  ) : (
+                                    <p className="mt-2 text-xs italic text-zinc-400">
+                                      Nenhum campo personalizado preenchido
+                                    </p>
+                                  )}
+                                </div>
                               ))}
-                            </ul>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -181,7 +240,7 @@ export default function ContactsPage() {
 
               {contacts.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="p-6 text-center text-zinc-500">
+                  <td colSpan={5} className="p-6 text-center text-zinc-500">
                     Nenhum contato encontrado
                   </td>
                 </tr>

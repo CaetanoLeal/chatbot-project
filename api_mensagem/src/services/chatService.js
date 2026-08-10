@@ -251,7 +251,7 @@ async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
     }
   }
 
-  const mensagemParaEnvio = `Mensagem de ${nomeAtendente}: ${texto}`
+  const mensagemParaEnvio = `Mensagem de *${nomeAtendente}*:\n ${texto}`
 
   if (chat.cd_provider === 1) {
     const telefone = chat.nu_telefone || chat.cd_whatsapp
@@ -299,6 +299,26 @@ async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
     ds_conteudo: texto,
     no_atendente: nomeAtendente,
   }
+
+  /* ============================================================
+   Iniciar atendimento (mudar para Humano)
+   ============================================================ */
+  async function iniciarAtendimento({ idChat }) {
+    const chat = await chatRepository.getChatById(idChat)
+    if (!chat) {
+      throw new Error("Chat não encontrado")
+    }
+
+    if (!chat.id_funil || !chat.id_utilizador) {
+      throw new Error("Chat não está vinculado a um funil/utilizador")
+    }
+
+    await funilHelper.definirStatusManual({
+      idUtilizador: chat.id_utilizador,
+      idFunil: chat.id_funil,
+      status: funilHelper.CHAT_STATUS.HUMANO, // Usando o enum do helper
+    })
+  }
 }
 
 module.exports = {
@@ -313,4 +333,5 @@ module.exports = {
   finalizarAtendimento,
   transferirAtendimento,
   enviarMensagemAtendente,
+  iniciarAtendimento,
 }

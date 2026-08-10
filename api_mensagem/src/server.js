@@ -152,9 +152,12 @@ app.post("/webhook", async (req, res) => {
           contato           : userId,
         })
 
-        await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
-        return
-      }
+        const eraEnvioAutomatico = funil.consumirEnvioAutomatico(idUtilizador)
+          if (!eraEnvioAutomatico) {
+            await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
+          return
+          }
+        }
 
       /* Mensagem recebida do utilizador */
       await TelegramMessageModel.saveTelegramMessage(message)
@@ -196,13 +199,15 @@ app.post("/webhook", async (req, res) => {
         idUtilizador,
         idFunil     : instancia.id_funil,
         idChat,
-        texto       : conteudo,
-        sendMessage : (text) =>
-          sendMessage.sendTelegramMessage({
-            chatId       : telegramUserId,
+        texto       : body,
+        sendMessage : (text) => {
+          funil.marcarEnvioAutomatico(idUtilizador)   // 👈 marca antes de disparar
+          return sendMessage.sendWhatsAppMessage({
+            telefone,
             message      : text,
             instanceName : msg.instance?.name,
-          }),
+          })
+        },
       })
       return
     }
@@ -245,11 +250,13 @@ app.post("/webhook", async (req, res) => {
         dhEnvio           : msg.telegram?.date ? new Date(msg.telegram.date * 1000) : new Date(),
         contato           : userId,
       })
+      const eraEnvioAutomatico = funil.consumirEnvioAutomatico(idUtilizador)
+        if (!eraEnvioAutomatico) {
 
-      await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
-      return
+          await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia. id_funil })
+        return
+      }
     }
-
     /* ─────────────────────────────────────────────
        WHATSAPP — MENSAGEM RECEBIDA
     ───────────────────────────────────────────── */
@@ -324,12 +331,14 @@ app.post("/webhook", async (req, res) => {
         idFunil     : instancia.id_funil,
         idChat,
         texto       : body,
-        sendMessage : (text) =>
-          sendMessage.sendWhatsAppMessage({
+        sendMessage : (text) => {
+          funil.marcarEnvioAutomatico(idUtilizador)   // 👈 marca antes de disparar
+          return sendMessage.sendWhatsAppMessage({
             telefone,
             message      : text,
             instanceName : msg.instance?.name,
-          }),
+          })
+        },
       })
       return
     }
@@ -370,10 +379,12 @@ app.post("/webhook", async (req, res) => {
         contato           : telefone,
       })
 
-      await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
-      return
-    }
-
+      const eraEnvioAutomatico = funil.consumirEnvioAutomatico(idUtilizador)
+        if (!eraEnvioAutomatico) {
+          await funil.verificarRespostaHumanaPendente({ idUtilizador, idFunil: instancia.id_funil })
+          return
+        }
+      }    
   } catch (err) {
     logger.error(`❌ Webhook error: ${err.message}`, { stack: err.stack })
   }

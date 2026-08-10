@@ -13,5 +13,6 @@ router.get("/:id_chat/messages", ChatController.messages)
 router.post("/:id_chat/mensagens", ChatController.enviarMensagem)
 router.post("/:id_chat/finalizar", ChatController.finalizar)
 router.post("/:id_chat/transferir", ChatController.transferir)
+router.post("/:id_chat/iniciar", ChatController.iniciar)
 
 module.exports = router

@@ -100,6 +100,19 @@ async function transferir(req, res) {
   } catch (err) {
     return res.status(500).json({ success: false, message: err.message })
   }
+
+  /* ============================================================
+   POST /api/chats/:id_chat/iniciar
+   ============================================================ */
+    async function iniciar(req, res) {
+      try {
+        const { id_chat } = req.params
+        await chatService.iniciarAtendimento({ idChat: id_chat })
+        return res.json({ success: true, message: "Atendimento iniciado com sucesso." })
+      } catch (err) {
+        return res.status(500).json({ success: false, message: err.message })
+      }
+    }
 }
 
 module.exports = {
@@ -108,4 +121,5 @@ module.exports = {
   enviarMensagem,
   finalizar,
   transferir,
+  iniciar,
 }

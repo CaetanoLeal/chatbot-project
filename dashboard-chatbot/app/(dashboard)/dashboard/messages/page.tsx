@@ -143,6 +143,7 @@ export default function MessagesPage() {
   const [transferindo, setTransferindo] = useState(false)
   const [loadingMore, setLoadingMore] = useState(false)
   const [hasMore, setHasMore] = useState(true)
+  const [iniciandoAtendimento, setIniciandoAtendimento] = useState(false)
   const messagesContainerRef = useRef<HTMLDivElement>(null)
 
   const [mensagensPredefinidas, setMensagensPredefinidas] = useState<MensagemPredefinida[]>([])
@@ -160,7 +161,7 @@ export default function MessagesPage() {
   // KANBAN COLUMNS: Derivando os estados para distribuir nas colunas automaticamente
   const automatizados = useMemo(() => threads.filter((t) => ["B", "C", "I"].includes(t.status)), [threads])
   const aguardando = useMemo(() => threads.filter((t) => t.status === "P"), [threads])
-  const meusAtendimentos = useMemo(() => threads.filter((t) => ["H", "A"].includes(t.status)), [threads])
+  const meusAtendimentos = useMemo(() => threads.filter((t) => ["H"].includes(t.status)), [threads])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
@@ -509,6 +510,34 @@ export default function MessagesPage() {
     }
   }
 
+  async function iniciarAtendimento() {
+    if (!activeChat || iniciandoAtendimento) return
+
+    setIniciandoAtendimento(true)
+    try {
+      // Supondo que você crie a rota /iniciar no backend (veja a etapa 2)
+      const res = await fetch(`${API_URL}/api/chats/${activeChat.id}/iniciar`, { method: "POST" })
+      const json = await res.json()
+      
+      if (!json.success) return alert(json.message || "Não foi possível iniciar o atendimento.")
+
+      // Atualiza o chat localmente para o status "H" (Humano)
+      setThreads((prev) =>
+        sortThreads(
+          prev.map((chat) =>
+            chat.id === activeChat.id
+              ? { ...chat, status: "H" }
+              : chat
+          )
+        )
+      )
+    } catch (err) {
+      alert("Erro ao iniciar atendimento. Tente novamente.")
+    } finally {
+      setIniciandoAtendimento(false)
+    }
+  }
+
   async function finalizarAtendimento() {
     if (!activeChat || finalizando) return
     if (!confirm(`Finalizar o atendimento de ${activeChat.contactName}?`)) return
@@ -695,12 +724,35 @@ export default function MessagesPage() {
                       <StatusBadge status={activeChat.status} />
                       {activeChat.setorNome && <span className="text-xs font-medium text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded">Setor: {activeChat.setorNome}</span>}
                       {activeChat.atendenteNome && <span className="text-xs font-medium text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded">Resp: {activeChat.atendenteNome}</span>}
+                      <PlatformBadge platform={activeChat.platform} />
                     </div>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <PlatformBadge platform={activeChat.platform} />
+                  {/* Transferir e Finalizar */}
+                  <div className="flex items-center gap-2 shrink-0">
+                    <select
+                      value=""
+                      onChange={(e) => {
+                        if (e.target.value) transferirAtendimento(e.target.value)
+                      }}
+                      disabled={!atendimentoEmAndamento || transferindo}
+                      className="h-12 text-sm border border-zinc-300 rounded-lg px-3 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-800 disabled:opacity-50 disabled:bg-zinc-50 shrink-0 outline-none w-36"
+                    >
+                      <option value="">
+                        {transferindo ? "Transferindo..." : "Transferir..."}
+                      </option>
+                      {/* ... mapeamento dos setores ... */}
+                    </select>
+
+                    <button
+                      onClick={finalizarAtendimento}
+                      // ...
+                    >
+                      {finalizando ? "Encerrando..." : "Finalizar"}
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -732,96 +784,73 @@ export default function MessagesPage() {
 
               {/* Input do Chat + Ações de atendimento */}
               <div className="border-t border-zinc-200 p-4 bg-white">
-                <div className="flex items-center gap-3 w-full">
-                  
-                  {/* ESQUERDA: Transferir e Finalizar */}
-                  <div className="flex items-center gap-2 shrink-0">
-                    <select
-                      value=""
-                      onChange={(e) => {
-                        if (e.target.value) transferirAtendimento(e.target.value)
-                      }}
-                      disabled={!atendimentoEmAndamento || transferindo}
-                      className="h-12 text-sm border border-zinc-300 rounded-lg px-3 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-800 disabled:opacity-50 disabled:bg-zinc-50 shrink-0 outline-none w-36"
-                    >
-                      <option value="">
-                        {transferindo ? "Transferindo..." : "Transferir..."}
-                      </option>
-                      {setores
-                        .filter((s) => s.id_setor !== activeChat.setorId)
-                        .map((s) => (
-                          <option key={s.id_setor} value={s.id_setor}>
-                            {s.no_setor}
-                          </option>
-                        ))}
-                    </select>
+                {activeChat.status === "P" ? (
+                  <button
+                    onClick={iniciarAtendimento}
+                    disabled={iniciandoAtendimento}
+                    className="w-full h-12 text-sm font-bold bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:hover:bg-blue-600 text-white px-4 rounded-lg transition-colors flex items-center justify-center shadow-sm"
+                  >
+                    {iniciandoAtendimento ? "Iniciando atendimento..." : "Assumir / Iniciar Atendimento"}
+                  </button>
+                ) : (
+                  <div className="flex items-center gap-3 w-full">
+                    {/* CENTRO: Raio e Input (Ocupando espaço livre) */}
+                    <div className="flex items-center gap-2 flex-1">
+                      {/* Mensagens predefinidas */}
+                      <div className="relative shrink-0 h-12" ref={predefinidasRef}>
+                        <button
+                          onClick={() => setMostrarPredefinidas((v) => !v)}
+                          title="Mensagens predefinidas"
+                          className="h-full aspect-square flex items-center justify-center border border-zinc-300 rounded-lg bg-white hover:bg-zinc-50 text-zinc-600 transition-colors px-3"
+                        >
+                          <Zap size={18} />
+                        </button>
 
-                    <button
-                      onClick={finalizarAtendimento}
-                      disabled={!atendimentoEmAndamento || finalizando}
-                      className="h-12 text-sm font-semibold bg-zinc-900 hover:bg-zinc-800 disabled:opacity-50 disabled:hover:bg-zinc-900 text-white px-4 rounded-lg transition-colors shrink-0"
-                    >
-                      {finalizando ? "Encerrando..." : "Finalizar"}
-                    </button>
-                  </div>
+                        {mostrarPredefinidas && (
+                          <div className="absolute bottom-full mb-2 left-0 w-72 max-h-64 overflow-y-auto bg-white border border-zinc-200 rounded-lg shadow-lg z-20">
+                            {mensagensPredefinidas.length === 0 ? (
+                              <div className="p-3 text-sm text-zinc-400 italic">
+                                Nenhuma mensagem predefinida cadastrada.
+                              </div>
+                            ) : (
+                              mensagensPredefinidas.map((m) => (
+                                <button
+                                  key={m.id_atalho}
+                                  onClick={() => usarMensagemPredefinida(m)}
+                                  className="block w-full text-left px-3 py-2 hover:bg-zinc-50 border-b border-zinc-100 last:border-b-0"
+                                >
+                                  <strong>{m.no_atalho}</strong>
+                                  <br />
+                                  <span className="text-sm text-zinc-500">
+                                    {m.ds_atalho}
+                                  </span>
+                                </button>
+                              ))
+                            )}
+                          </div>
+                        )}
+                      </div>
 
-                  {/* CENTRO: Raio e Input (Ocupando espaço livre) */}
-                  <div className="flex items-center gap-2 flex-1">
-                    {/* Mensagens predefinidas */}
-                    <div className="relative shrink-0 h-12" ref={predefinidasRef}>
-                      <button
-                        onClick={() => setMostrarPredefinidas((v) => !v)}
-                        title="Mensagens predefinidas"
-                        className="h-full aspect-square flex items-center justify-center border border-zinc-300 rounded-lg bg-white hover:bg-zinc-50 text-zinc-600 transition-colors px-3"
-                      >
-                        <Zap size={18} />
-                      </button>
-
-                      {mostrarPredefinidas && (
-                        <div className="absolute bottom-full mb-2 left-0 w-72 max-h-64 overflow-y-auto bg-white border border-zinc-200 rounded-lg shadow-lg z-20">
-                          {mensagensPredefinidas.length === 0 ? (
-                            <div className="p-3 text-sm text-zinc-400 italic">
-                              Nenhuma mensagem predefinida cadastrada.
-                            </div>
-                          ) : (
-                            mensagensPredefinidas.map((m) => (
-                              <button
-                                key={m.id_atalho}
-                                onClick={() => usarMensagemPredefinida(m)}
-                                className="block w-full text-left px-3 py-2 hover:bg-zinc-50 border-b border-zinc-100 last:border-b-0"
-                              >
-                                <strong>{m.no_atalho}</strong>
-                                <br />
-                                <span className="text-sm text-zinc-500">
-                                  {m.ds_atalho}
-                                </span>
-                              </button>
-                            ))
-                          )}
-                        </div>
-                      )}
+                      <input
+                        placeholder={idAtendenteAtivo ? "Escreva sua mensagem..." : "Selecione um atendente acima para responder..."}
+                        className="h-12 border border-zinc-300 rounded-lg px-4 flex-1 disabled:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 transition-shadow w-full outline-none"
+                        value={reply}
+                        onChange={(e) => setReply(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        disabled={!idAtendenteAtivo || sending}
+                      />
                     </div>
 
-                    <input
-                      placeholder={idAtendenteAtivo ? "Escreva sua mensagem..." : "Selecione um atendente acima para responder..."}
-                      className="h-12 border border-zinc-300 rounded-lg px-4 flex-1 disabled:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 transition-shadow w-full outline-none"
-                      value={reply}
-                      onChange={(e) => setReply(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                      disabled={!idAtendenteAtivo || sending}
-                    />
+                    {/* DIREITA: Enviar */}
+                    <button
+                      onClick={sendMessage}
+                      disabled={!idAtendenteAtivo || sending || !reply.trim()}
+                      className="h-12 bg-zinc-900 hover:bg-zinc-800 disabled:opacity-50 text-white font-semibold px-6 rounded-lg transition-colors flex items-center justify-center min-w-[120px] shrink-0"
+                    >
+                      {sending ? "Enviando..." : "Enviar"}
+                    </button>
                   </div>
-
-                  {/* DIREITA: Enviar */}
-                  <button
-                    onClick={sendMessage}
-                    disabled={!idAtendenteAtivo || sending || !reply.trim()}
-                    className="h-12 bg-zinc-900 hover:bg-zinc-800 disabled:opacity-50 text-white font-semibold px-6 rounded-lg transition-colors flex items-center justify-center min-w-[120px] shrink-0"
-                  >
-                    {sending ? "Enviando..." : "Enviar"}
-                  </button>
-                  
-                </div>
+                )}
               </div>
             </>
           ) : (

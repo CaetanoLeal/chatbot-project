@@ -344,7 +344,7 @@ async function aplicarStatusEspecialChatbot({ idUtilizador, idFunil, idSetor }) 
 
   // Não há IA cadastrada/ativa nesse setor -> vai para atendimento humano
   return direcionarParaAtendimento({
-    idUtilizador, idFunil, idSetor, statusDestino: CHAT_STATUS.HUMANO
+    idUtilizador, idFunil, idSetor, statusDestino: CHAT_STATUS.PENDENTE
   })
 }
 
@@ -379,6 +379,26 @@ async function definirStatusManual({ idUtilizador, idFunil, status }) {
   await _emitChatUpdated(idUtilizador, idFunil)
   logger.info(`🔀 Status do utilizador ${idUtilizador} alterado manualmente para ${status}`)
 }
+
+/* ============================================================
+   CONTROLE DE ENVIOS AUTOMÁTICOS EM TRÂNSITO
+   Evita que o webhook message.sent confunda uma mensagem do
+   próprio funil com uma resposta manual de atendente/dono.
+   ============================================================ */
+    const _enviosAutomaticosPendentes = new Map() // idUtilizador -> contagem
+
+    function marcarEnvioAutomatico(idUtilizador) {
+      const atual = _enviosAutomaticosPendentes.get(idUtilizador) || 0
+      _enviosAutomaticosPendentes.set(idUtilizador, atual + 1)
+    }
+
+    function consumirEnvioAutomatico(idUtilizador) {
+      const atual = _enviosAutomaticosPendentes.get(idUtilizador) || 0
+      if (atual <= 0) return false
+      if (atual === 1) _enviosAutomaticosPendentes.delete(idUtilizador)
+      else _enviosAutomaticosPendentes.set(idUtilizador, atual - 1)
+      return true
+    }
 
 /* ============================================================
    CAMPOS PERSONALIZADOS
@@ -1118,4 +1138,6 @@ module.exports = {
   direcionarParaPendente,
   getFunilIaConfig,                  // uso opcional em rotas de admin/painel
   getUtilizadorExistente,
+  marcarEnvioAutomatico,
+  consumirEnvioAutomatico
 }
