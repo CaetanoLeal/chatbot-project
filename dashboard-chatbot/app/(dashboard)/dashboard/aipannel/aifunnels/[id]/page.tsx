@@ -42,10 +42,10 @@ export default function EditIAFunilPage() {
     init()
   }, [id])
 
-  async function handleUpdate(data: FunilIA) {
+  async function handleUpdate(data: FunilIA, clearDraft: () => void) {
     try {
       setSaving(true)
-      setError(null)  // <-- limpa erro anterior a cada tentativa
+      setError(null)
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funil-ia/${id}`, {
         method: "PUT",
@@ -58,6 +58,7 @@ export default function EditIAFunilPage() {
         throw new Error(errData.error || "Erro ao atualizar funil IA.")
       }
 
+      clearDraft()
       router.push("/dashboard/aipannel/aifunnels")
     } catch (err: any) {
       setError(err.message)
@@ -75,14 +76,10 @@ export default function EditIAFunilPage() {
   }
 
   return (
-    <IAFunilForm 
-      title="Editar Funil de IA"
-      subtitle="Atualize o comportamento da inteligência artificial."
-      initialData={initialData}
-      modelos={modelos}
-      saving={saving}
-      error={error}
-      onSubmit={handleUpdate}
+    <IAFunilForm
+      idFunilIa={id}
+      onCancel={() => router.push("/dashboard/aipannel/aifunnels")}
+      onSuccess={() => router.push("/dashboard/aipannel/aifunnels")}
     />
   )
 }

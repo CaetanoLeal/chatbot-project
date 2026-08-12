@@ -1,12 +1,13 @@
 "use client"
 import { useState, useEffect, useMemo, useCallback, useRef } from "react"
 import { io } from "socket.io-client"
-import { Zap } from "lucide-react"
+import { Zap, ChevronLeft, ChevronRight } from "lucide-react"
 
 const socket = io(`${process.env.NEXT_PUBLIC_API_URL}`)
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 const SYSTEM_ATENDENTE_ID = "00000000-0000-0000-0000-000000000000"
+const ATENDENTE_PREFIX_REGEX = /^Mensagem de \*[^*]+\*:\s*/
 
 /* =====================
    TYPES
@@ -117,6 +118,10 @@ function Avatar({ name, photo }: { name: string; photo?: string }) {
   )
 }
 
+function stripAttendantPrefix(content: string) {
+  return content.replace(ATENDENTE_PREFIX_REGEX, "")
+}
+
 /* =====================
    ORDENAÇÃO
 ===================== */
@@ -162,6 +167,11 @@ export default function MessagesPage() {
   const automatizados = useMemo(() => threads.filter((t) => ["B", "C", "I"].includes(t.status)), [threads])
   const aguardando = useMemo(() => threads.filter((t) => t.status === "P"), [threads])
   const meusAtendimentos = useMemo(() => threads.filter((t) => ["H"].includes(t.status)), [threads])
+  const [collapsedColumns, setCollapsedColumns] = useState<Record<"automatizado" | "aguardando" | "meus", boolean>>({
+    automatizado: false,
+    aguardando: false,
+    meus: false,
+  })
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
@@ -186,7 +196,10 @@ export default function MessagesPage() {
   useEffect(() => {
     function handleNewMessage(data: any) {
       let cleanContent = data.conteudo || ""
-      if (data.fromMe) cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
+      if (data.fromMe) {
+        cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
+        cleanContent = stripAttendantPrefix(cleanContent) // 👈 novo
+      }
 
       const newMessage: ChatMessage = {
         id: data.id_mensagem || data.idChat + Date.now().toString(),
@@ -380,7 +393,10 @@ export default function MessagesPage() {
 
       const formattedMessages: ChatMessage[] = json.data.map((msg: any) => {
         let cleanContent = msg.ds_conteudo || ""
-        if (msg.from_me) cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
+        if (msg.from_me) {
+          cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
+          cleanContent = stripAttendantPrefix(cleanContent)
+         }
 
         return {
           id: msg.id_mensagem,
@@ -423,7 +439,10 @@ export default function MessagesPage() {
 
       const olderMessages: ChatMessage[] = json.data.map((msg: any) => {
         let cleanContent = msg.ds_conteudo || ""
-        if (msg.from_me) cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
+        if (msg.from_me) {
+          cleanContent = cleanContent.replace(/\s*_[^_]+_$/, "")
+          cleanContent = stripAttendantPrefix(cleanContent)
+        }
 
         return {
           id: msg.id_mensagem,
@@ -464,6 +483,10 @@ export default function MessagesPage() {
     if (e.currentTarget.scrollTop < 150) {
       loadMoreMessages()
     }
+  }
+
+  function toggleColumn(key: "automatizado" | "aguardando" | "meus") {
+    setCollapsedColumns((prev) => ({ ...prev, [key]: !prev[key] }))
   }
 
   async function sendMessage() {
@@ -672,40 +695,87 @@ export default function MessagesPage() {
       <div className="flex-1 flex overflow-hidden">
 
         {/* KANBAN BOARD (Esquerda) */}
-        <div className="flex overflow-x-auto bg-zinc-50/50 border-r border-zinc-200 shadow-inner">
+          <div className="flex overflow-x-auto bg-zinc-50/50 border-r border-zinc-200 shadow-inner">
 
-          {/* Coluna 1: Automatizado */}
-          <div className="w-[300px] flex flex-col border-r border-zinc-200 shrink-0">
-            <div className="p-3 bg-white border-b border-zinc-200 text-xs font-bold text-center text-zinc-500 uppercase tracking-widest sticky top-0 z-10">
-              Automatizado ({automatizados.length})
+            {/* Coluna 1: Automatizado */}
+            <div className={`flex flex-col border-r border-zinc-200 shrink-0 transition-[width] duration-200 ${collapsedColumns.automatizado ? "w-12" : "w-[300px]"}`}>
+              <div className="p-3 bg-white border-b border-zinc-200 sticky top-0 z-10 flex items-center justify-between gap-2">
+                {!collapsedColumns.automatizado && (
+                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">
+                    Automatizado ({automatizados.length})
+                  </span>
+                )}
+                <button
+                  onClick={() => toggleColumn("automatizado")}
+                  title={collapsedColumns.automatizado ? "Expandir" : "Recolher"}
+                  className="ml-auto shrink-0 w-6 h-6 flex items-center justify-center rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700"
+                >
+                  {collapsedColumns.automatizado ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
+                </button>
+              </div>
+              {!collapsedColumns.automatizado && (
+                <div className="flex-1 overflow-y-auto pb-4">
+                  {automatizados.map(renderChatCard)}
+                </div>
+              )}
             </div>
-            <div className="flex-1 overflow-y-auto pb-4">
-              {automatizados.map(renderChatCard)}
+
+            {/* Coluna 2: Aguardando */}
+            <div className={`flex flex-col border-r border-zinc-200 shrink-0 transition-[width] duration-200 ${collapsedColumns.aguardando ? "w-12" : "w-[300px]"}`}>
+              <div className="p-3 bg-white border-b border-zinc-200 sticky top-0 z-10 flex items-center justify-between gap-2">
+                {!collapsedColumns.aguardando && (
+                  <span className="text-xs font-bold text-red-600 uppercase tracking-widest flex items-center gap-2">
+                    Aguardando ({aguardando.length})
+                    {aguardando.length > 0 && <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />}
+                  </span>
+                )}
+                <button
+                  onClick={() => toggleColumn("aguardando")}
+                  title={collapsedColumns.aguardando ? "Expandir" : "Recolher"}
+                  className="ml-auto shrink-0 w-6 h-6 flex items-center justify-center rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700"
+                >
+                  {collapsedColumns.aguardando ? (
+                    aguardando.length > 0 ? (
+                      <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                    ) : (
+                      <ChevronRight size={14} />
+                    )
+                  ) : (
+                    <ChevronLeft size={14} />
+                  )}
+                </button>
+              </div>
+              {!collapsedColumns.aguardando && (
+                <div className="flex-1 overflow-y-auto pb-4">
+                  {aguardando.map(renderChatCard)}
+                </div>
+              )}
             </div>
+
+            {/* Coluna 3: Meus Atendimentos */}
+            <div className={`flex flex-col shrink-0 transition-[width] duration-200 ${collapsedColumns.meus ? "w-12" : "w-[300px]"}`}>
+              <div className="p-3 bg-white border-b border-zinc-200 sticky top-0 z-10 flex items-center justify-between gap-2">
+                {!collapsedColumns.meus && (
+                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">
+                    Meus Atendimentos ({meusAtendimentos.length})
+                  </span>
+                )}
+                <button
+                  onClick={() => toggleColumn("meus")}
+                  title={collapsedColumns.meus ? "Expandir" : "Recolher"}
+                  className="ml-auto shrink-0 w-6 h-6 flex items-center justify-center rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700"
+                >
+                  {collapsedColumns.meus ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
+                </button>
+              </div>
+              {!collapsedColumns.meus && (
+                <div className="flex-1 overflow-y-auto pb-4">
+                  {meusAtendimentos.map(renderChatCard)}
+                </div>
+              )}
+            </div>
+
           </div>
-
-          {/* Coluna 2: Aguardando */}
-          <div className="w-[300px] flex flex-col border-r border-zinc-200 shrink-0">
-            <div className="p-3 bg-white border-b border-zinc-200 text-xs font-bold text-center text-red-600 uppercase tracking-widest sticky top-0 z-10 flex justify-center items-center gap-2">
-              Aguardando ({aguardando.length})
-              {aguardando.length > 0 && <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />}
-            </div>
-            <div className="flex-1 overflow-y-auto pb-4">
-              {aguardando.map(renderChatCard)}
-            </div>
-          </div>
-
-          {/* Coluna 3: Meus Atendimentos */}
-          <div className="w-[300px] flex flex-col shrink-0">
-            <div className="p-3 bg-white border-b border-zinc-200 text-xs font-bold text-center text-zinc-500 uppercase tracking-widest sticky top-0 z-10">
-              Meus Atendimentos ({meusAtendimentos.length})
-            </div>
-            <div className="flex-1 overflow-y-auto pb-4">
-              {meusAtendimentos.map(renderChatCard)}
-            </div>
-          </div>
-
-        </div>
 
         {/* CHAT WINDOW (Direita) */}
         <main className="flex-1 flex flex-col bg-white min-w-[400px]">
@@ -748,7 +818,8 @@ export default function MessagesPage() {
 
                     <button
                       onClick={finalizarAtendimento}
-                      // ...
+                      disabled={!atendimentoEmAndamento || finalizando}
+                      className="h-12 text-sm font-semibold bg-zinc-900 hover:bg-zinc-800 disabled:opacity-50 disabled:hover:bg-zinc-900 text-white px-4 rounded-lg transition-colors shrink-0"
                     >
                       {finalizando ? "Encerrando..." : "Finalizar"}
                     </button>

@@ -1,15 +1,9 @@
+// app/(dashboard)/dashboard/aipannel/aifunnels/page.tsx
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
-import {
-  Bot,
-  Plus,
-  Pencil,
-  Trash2,
-  BrainCircuit,
-  Loader2
-} from "lucide-react"
+import { Bot, Plus, Pencil, Trash2, Loader2 } from "lucide-react"
+import IAFunilForm from "./components/IAFunilForm"
 
 interface FunilIA {
   id_funil_ia: string
@@ -32,18 +26,18 @@ export default function IAFunnelsPage() {
   const [loading, setLoading] = useState(true)
   const [funis, setFunis] = useState<FunilIA[]>([])
 
+  // ✅ isto é o que substitui a navegação: um estado interno da própria aba
+  const [view, setView] = useState<"list" | "form">("list")
+  const [editingId, setEditingId] = useState<string | null>(null)
+
   async function loadFunis() {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funil-ia`)
       const data = await response.json()
 
-      if (Array.isArray(data)) {
-        setFunis(data)
-      } else if (data && Array.isArray(data.data)) {
-        setFunis(data.data)
-      } else {
-        setFunis([])
-      }
+      if (Array.isArray(data)) setFunis(data)
+      else if (data && Array.isArray(data.data)) setFunis(data.data)
+      else setFunis([])
     } catch (err) {
       console.error(err)
       setFunis([])
@@ -64,15 +58,43 @@ export default function IAFunnelsPage() {
     if (!confirmed) return
 
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funil-ia/${id}`, {
-        method: "DELETE"
-      })
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funil-ia/${id}`, { method: "DELETE" })
       await loadFunis()
     } catch (err) {
       console.error(err)
     }
   }
 
+  function abrirCriacao() {
+    setEditingId(null)
+    setView("form")
+  }
+
+  function abrirEdicao(id: string) {
+    setEditingId(id)
+    setView("form")
+  }
+
+  function voltarParaLista() {
+    setView("list")
+    setEditingId(null)
+  }
+
+  // ===================== VIEW: FORMULÁRIO =====================
+  if (view === "form") {
+    return (
+      <IAFunilForm
+        idFunilIa={editingId}
+        onCancel={voltarParaLista}
+        onSuccess={() => {
+          voltarParaLista()
+          loadFunis()
+        }}
+      />
+    )
+  }
+
+  // ===================== VIEW: LISTA =====================
   if (loading) {
     return (
       <div className="h-screen flex items-center justify-center bg-zinc-100">
@@ -93,13 +115,13 @@ export default function IAFunnelsPage() {
           </p>
         </div>
 
-        <Link
-          href="/dashboard/aipannel/aifunnels/new"
+        <button
+          onClick={abrirCriacao}
           className="bg-blue-600 hover:bg-blue-700 transition-colors text-white px-5 py-3 rounded-xl flex items-center gap-2 font-medium shadow-sm"
         >
           <Plus className="w-5 h-5" />
           Criar Agente IA
-        </Link>
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
@@ -115,9 +137,7 @@ export default function IAFunnelsPage() {
                     <Bot className="w-5 h-5 text-blue-600" />
                     {funil.no_agente}
                   </h2>
-                  <p className="text-sm text-zinc-500 mt-1 line-clamp-2">
-                    {funil.ds_funil}
-                  </p>
+                  <p className="text-sm text-zinc-500 mt-1 line-clamp-2">{funil.ds_funil}</p>
                 </div>
                 <div>
                   {funil.is_ativo ? (
@@ -133,39 +153,37 @@ export default function IAFunnelsPage() {
               </div>
 
               <div className="space-y-2 text-sm text-zinc-600 bg-zinc-50 rounded-xl p-3 border border-zinc-100">
-              <div className="flex items-center justify-between">
-                <span>Funil:</span>
-                <strong className="text-zinc-900">{funil.no_funil || 'N/A'}</strong>
+                <div className="flex items-center justify-between">
+                  <span>Funil:</span>
+                  <strong className="text-zinc-900">{funil.no_funil || "N/A"}</strong>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Modelo:</span>
+                  <strong className="text-zinc-900">{funil.ds_funil_ia_modelo || "N/A"}</strong>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Temperature:</span>
+                  <strong className="text-zinc-900">{funil.nu_temperature}</strong>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Max Tokens:</span>
+                  <strong className="text-zinc-900">{funil.nu_max_tokens}</strong>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Handoff Humano:</span>
+                  <strong className="text-zinc-900">{funil.is_human_handoff ? "Sim" : "Não"}</strong>
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span>Modelo:</span>
-                <strong className="text-zinc-900">{funil.ds_funil_ia_modelo || 'N/A'}</strong>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Temperature:</span>
-                <strong className="text-zinc-900">{funil.nu_temperature}</strong>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Max Tokens:</span>
-                <strong className="text-zinc-900">{funil.nu_max_tokens}</strong>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Handoff Humano:</span>
-                <strong className="text-zinc-900">
-                  {funil.is_human_handoff ? "Sim" : "Não"}
-                </strong>
-              </div>
-            </div>
             </div>
 
             <div className="flex items-center gap-3 mt-5 pt-4 border-t border-zinc-100">
-              <Link
-                href={`/dashboard/aipannel/aifunnels/${funil.id_funil_ia}`}
+              <button
+                onClick={() => abrirEdicao(funil.id_funil_ia)}
                 className="flex-1 bg-zinc-100 hover:bg-zinc-200 transition-colors text-zinc-700 rounded-xl py-2.5 flex items-center justify-center gap-2 text-sm font-medium"
               >
                 <Pencil className="w-4 h-4" />
                 Editar
-              </Link>
+              </button>
               <button
                 onClick={() => handleDelete(funil.id_funil_ia)}
                 className="bg-red-50 hover:bg-red-100 transition-colors rounded-xl p-2.5 text-red-600"

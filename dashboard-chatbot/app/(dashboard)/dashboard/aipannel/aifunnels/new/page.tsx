@@ -26,7 +26,7 @@ export default function NewIAFunilPage() {
 
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-  const [error, setError] = useState<string | null>(null)  // <-- adicionado
+  const [error, setError] = useState<string | null>(null)
   const [modelos, setModelos] = useState<ModeloIA[]>([])
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function NewIAFunilPage() {
     loadModelos()
   }, [])
 
-  async function handleCreate(data: FunilIA) {
+  async function handleCreate(data: FunilIA, clearDraft: () => void) {
     try {
       setSaving(true)
       setError(null)
@@ -61,6 +61,7 @@ export default function NewIAFunilPage() {
         throw new Error(errData.error || "Erro ao criar funil IA.")
       }
 
+      clearDraft()
       router.push("/dashboard/aipannel/aifunnels")
     } catch (err: any) {
       setError(err.message)
@@ -78,14 +79,6 @@ export default function NewIAFunilPage() {
   }
 
   return (
-    <IAFunilForm 
-      title="Novo Funil de IA"
-      subtitle="Crie o comportamento da inteligência artificial."
-      initialData={emptyFunil}
-      modelos={modelos}
-      saving={saving}
-      error={error}
-      onSubmit={handleCreate}
-    />
+    <IAFunilForm onCancel={() => router.push("/dashboard/aipannel/aifunnels")} onSuccess={() => router.push("/dashboard/aipannel/aifunnels")} />
   )
 }

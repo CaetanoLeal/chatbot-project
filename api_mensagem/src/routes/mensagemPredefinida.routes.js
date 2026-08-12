@@ -7,6 +7,7 @@ const MensagemPredefinidaController = require("../controllers/mensagemPredefinid
 const router = Router()
 
 router.get("/", MensagemPredefinidaController.list)
+router.get("/tipos", MensagemPredefinidaController.listartipos)
 router.post("/", MensagemPredefinidaController.create)
 router.get("/:id_mensagem_predefinida", MensagemPredefinidaController.get)
 router.put("/:id_mensagem_predefinida", MensagemPredefinidaController.update)

@@ -1,7 +1,7 @@
+// app/(dashboard)/dashboard/aipannel/aifunnels/components/IAFunilForm.tsx
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
 import { BrainCircuit, Loader2, ArrowLeft } from "lucide-react"
 
 export interface ModeloIA {
@@ -35,96 +35,153 @@ export interface FunilIA {
   id_funil: string
 }
 
-interface IAFunilFormProps {
-  initialData: FunilIA
-  modelos: ModeloIA[]
-  onSubmit: (data: FunilIA) => void
-  saving: boolean
-  title: string
-  subtitle: string
-  error?: string | null
+const emptyFunil: FunilIA = {
+  no_funil: "",
+  no_agente: "",
+  ds_funil: "",
+  ds_personalidade: "",
+  nu_temperature: 0.7,
+  nu_max_tokens: 300,
+  is_ativo: true,
+  ds_fallback: "Desculpe, ocorreu um erro no atendimento.",
+  is_human_handoff: false,
+  id_funil_ia_modelo: 1,
+  id_setor: "",
+  id_funil: "",
 }
 
-export default function IAFunilForm({
-  initialData,
-  modelos,
-  onSubmit,
-  saving,
-  title,
-  subtitle,
-  error,
-}: IAFunilFormProps) {
-  const [form, setForm] = useState<FunilIA>(initialData)
+interface Props {
+  idFunilIa?: string | null // undefined/null = criação, string = edição
+  onCancel: () => void      // volta pra lista (dentro da mesma aba)
+  onSuccess: () => void     // salvou — volta pra lista e recarrega
+}
+
+export default function IAFunilForm({ idFunilIa, onCancel, onSuccess }: Props) {
+  const isEdicao = !!idFunilIa
+
+  const [form, setForm] = useState<FunilIA>(emptyFunil)
+  const [modelos, setModelos] = useState<ModeloIA[]>([])
   const [setores, setSetores] = useState<Setor[]>([])
-  const [loadingSetores, setLoadingSetores] = useState<boolean>(true)
   const [funis, setFunis] = useState<Funil[]>([])
-  const [loadingFunis, setLoadingFunis] = useState<boolean>(true)
+  const [loadingData, setLoadingData] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  // Atualiza o formulário se os dados iniciais mudarem (útil para o fetch assíncrono do Edit)
+  // Carrega listas de apoio + o registro (se for edição)
   useEffect(() => {
-    setForm(initialData)
-  }, [initialData])
+    let ativo = true
 
-  // Busca os setores de forma dinâmica na API
-  useEffect(() => {
-    async function fetchSetores() {
+    async function init() {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/setores`)
-        if (response.ok) {
-          const data = await response.json()
-          setSetores(data)
+        setLoadingData(true)
+
+        const requests = [
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funil-ia-modelo`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/setores`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funis`),
+        ]
+
+        if (isEdicao) {
+          requests.push(fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funil-ia/${idFunilIa}`))
         }
-      } catch (error) {
-        console.error("Erro ao buscar setores:", error)
+
+        const responses = await Promise.all(requests)
+        const [resModelos, resSetores, resFunis, resFunilIa] = responses
+
+        const dataModelos = await resModelos.json()
+        const dataSetores = await resSetores.json()
+        const dataFunis = await resFunis.json()
+
+        if (!ativo) return
+
+        setModelos(Array.isArray(dataModelos) ? dataModelos : dataModelos.data ?? [])
+        setSetores(Array.isArray(dataSetores) ? dataSetores : [])
+        setFunis(Array.isArray(dataFunis) ? dataFunis : [])
+
+        if (isEdicao && resFunilIa) {
+          const dataFunilIa = await resFunilIa.json()
+          setForm(dataFunilIa)
+        } else {
+          setForm(emptyFunil)
+        }
+      } catch (err) {
+        console.error("Erro ao carregar formulário de IA:", err)
+        if (ativo) setError("Não foi possível carregar os dados necessários.")
       } finally {
-        setLoadingSetores(false)
+        if (ativo) setLoadingData(false)
       }
     }
 
-    fetchSetores()
-  }, [])
+    init()
 
-  // Busca os funis de forma dinâmica na API
-  useEffect(() => {
-    async function fetchFunis() {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/funis`)
-        if (response.ok) {
-          const data = await response.json()
-          setFunis(data)
-        }
-      } catch (error) {
-        console.error("Erro ao buscar funis:", error)
-      } finally {
-        setLoadingFunis(false)
-      }
+    return () => {
+      ativo = false
     }
+  }, [idFunilIa, isEdicao])
 
-    fetchFunis()
-  }, [])
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setSaving(true)
+    setError(null)
+
+    const url = isEdicao
+      ? `${process.env.NEXT_PUBLIC_API_URL}/api/funil-ia/${idFunilIa}`
+      : `${process.env.NEXT_PUBLIC_API_URL}/api/funil-ia`
+    const method = isEdicao ? "PUT" : "POST"
+
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      })
+
+      if (!response.ok) {
+        const errData = await response.json()
+        throw new Error(errData.error || "Erro ao salvar agente IA.")
+      }
+
+      onSuccess()
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  if (loadingData) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <Loader2 className="animate-spin w-10 h-10 text-blue-600" />
+      </div>
+    )
+  }
 
   return (
-    <div className="p-6 bg-zinc-100 h-screen overflow-y-auto">
+    <div className="p-6 bg-zinc-100 min-h-full">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <Link
-            href="/dashboard/aipannel/aifunnels"
+          <button
+            onClick={onCancel}
             className="inline-flex items-center gap-2 text-zinc-600 hover:text-zinc-900 mb-4"
           >
             <ArrowLeft className="w-4 h-4" />
             Voltar
-          </Link>
+          </button>
           <h1 className="text-3xl font-bold text-zinc-800 flex items-center gap-2">
-            {title}
+            {isEdicao ? "Editar Funil de IA" : "Novo Funil de IA"}
             <BrainCircuit className="w-8 h-8 text-blue-600" />
           </h1>
-          <p className="text-zinc-500 mt-1">{subtitle}</p>
+          <p className="text-zinc-500 mt-1">
+            {isEdicao
+              ? "Atualize o comportamento da inteligência artificial."
+              : "Crie o comportamento da inteligência artificial."}
+          </p>
         </div>
       </div>
 
-      <div className="bg-white rounded-3xl shadow-sm border border-zinc-200 p-6 mb-10">
+      <form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-sm border border-zinc-200 p-6 mb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* NOME DO AGENTE */}
           <div>
             <label className="block text-sm font-medium mb-2">Nome do agente</label>
             <input
@@ -132,10 +189,10 @@ export default function IAFunilForm({
               onChange={(e) => setForm({ ...form, no_agente: e.target.value })}
               className="w-full border border-zinc-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Ex: Atendente Financeiro"
+              required
             />
           </div>
 
-          {/* MODELO IA */}
           <div>
             <label className="block text-sm font-medium mb-2">Modelo IA</label>
             <select
@@ -151,7 +208,6 @@ export default function IAFunilForm({
             </select>
           </div>
 
-          {/* DESCRIÇÃO DO FUNIL */}
           <div className="md:col-span-2">
             <label className="block text-sm font-medium mb-2">Descrição do funil</label>
             <input
@@ -162,7 +218,6 @@ export default function IAFunilForm({
             />
           </div>
 
-          {/* PERSONALIDADE DA IA */}
           <div className="md:col-span-2">
             <label className="block text-sm font-medium mb-2">Personalidade da IA</label>
             <textarea
@@ -173,7 +228,6 @@ export default function IAFunilForm({
             />
           </div>
 
-          {/* TEMPERATURE */}
           <div>
             <label className="block text-sm font-medium mb-2">Temperature</label>
             <input
@@ -187,7 +241,6 @@ export default function IAFunilForm({
             />
           </div>
 
-          {/* MAX TOKENS */}
           <div>
             <label className="block text-sm font-medium mb-2">Max Tokens</label>
             <input
@@ -200,7 +253,6 @@ export default function IAFunilForm({
             />
           </div>
 
-          {/* FALLBACK */}
           <div className="md:col-span-2">
             <label className="block text-sm font-medium mb-2">Mensagem fallback</label>
             <textarea
@@ -211,14 +263,12 @@ export default function IAFunilForm({
             />
           </div>
 
-          {/* ESCOLHER FUNIL */}
           <div>
             <label className="block text-sm font-medium mb-2">Escolher Funil</label>
             <select
               value={form.id_funil || ""}
               onChange={(e) => setForm({ ...form, id_funil: e.target.value })}
               className="w-full border border-zinc-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-              disabled={loadingFunis}
             >
               <option value="">Selecione um funil</option>
               {funis.map((funil) => (
@@ -229,14 +279,12 @@ export default function IAFunilForm({
             </select>
           </div>
 
-          {/* ESCOLHER SETOR */}
           <div>
             <label className="block text-sm font-medium mb-2">Escolher Setor</label>
             <select
               value={form.id_setor || ""}
               onChange={(e) => setForm({ ...form, id_setor: e.target.value })}
               className="w-full border border-zinc-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-              disabled={loadingSetores}
             >
               <option value="">Selecione um setor</option>
               {setores.map((setor) => (
@@ -247,7 +295,6 @@ export default function IAFunilForm({
             </select>
           </div>
 
-          {/* HANDOFF HUMANO */}
           <div className="md:col-span-2 flex items-center justify-between bg-zinc-50 border border-zinc-200 rounded-2xl p-4">
             <div>
               <h3 className="font-semibold text-zinc-800">Handoff humano</h3>
@@ -263,29 +310,27 @@ export default function IAFunilForm({
         </div>
 
         {error && (
-          <div className="text-red-600 text-sm bg-red-50 p-3 rounded-xl mt-4">
-            {error}
-          </div>
+          <div className="text-red-600 text-sm bg-red-50 p-3 rounded-xl mt-4">{error}</div>
         )}
 
-        {/* BOTÕES */}
         <div className="flex items-center justify-end gap-3 mt-8">
-          <Link
-            href="/dashboard/aipannel/aifunnels"
+          <button
+            type="button"
+            onClick={onCancel}
             className="px-5 py-3 rounded-xl bg-zinc-100 hover:bg-zinc-200 transition text-zinc-700 font-medium"
           >
             Cancelar
-          </Link>
+          </button>
           <button
-            onClick={() => onSubmit(form)}
+            type="submit"
             disabled={saving || !form.id_funil || !form.id_setor}
             className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl flex items-center gap-2 font-medium disabled:opacity-50"
           >
             {saving && <Loader2 className="animate-spin w-4 h-4" />}
-            Salvar alterações
+            Salvar
           </button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

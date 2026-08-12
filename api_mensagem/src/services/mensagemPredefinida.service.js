@@ -19,6 +19,7 @@ async function buscarMensagemPredefinida(id) {
 async function criarMensagemPredefinida({
   no_mensagem_predefinida,
   ds_mensagem_predefinida,
+  sg_atalho_tipo
 }) {
   if (!no_mensagem_predefinida?.trim()) {
     throw new Error("O nome da mensagem é obrigatório")
@@ -30,7 +31,8 @@ async function criarMensagemPredefinida({
 
   return repository.criar(
     no_mensagem_predefinida.trim(),
-    ds_mensagem_predefinida.trim()
+    ds_mensagem_predefinida.trim(),
+    sg_atalho_tipo
   )
 }
 
@@ -39,6 +41,7 @@ async function atualizarMensagemPredefinida(
   {
     no_mensagem_predefinida,
     ds_mensagem_predefinida,
+    sg_atalho_tipo,
   }
 ) {
   if (!no_mensagem_predefinida?.trim()) {
@@ -52,7 +55,8 @@ async function atualizarMensagemPredefinida(
   const atualizada = await repository.atualizar(
     id,
     no_mensagem_predefinida.trim(),
-    ds_mensagem_predefinida.trim()
+    ds_mensagem_predefinida.trim(),
+    sg_atalho_tipo
   )
 
   if (!atualizada) {
@@ -72,10 +76,15 @@ async function excluirMensagemPredefinida(id) {
   return excluida
 }
 
+async function listartipos() {
+  return repository.listartipos()
+}
+
 module.exports = {
   listarMensagensPredefinidas,
   buscarMensagemPredefinida,
   criarMensagemPredefinida,
   atualizarMensagemPredefinida,
   excluirMensagemPredefinida,
+  listartipos
 }

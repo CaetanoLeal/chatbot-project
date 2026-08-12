@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import ReactFlow, {
   Background,
   Controls,
@@ -20,7 +19,6 @@ import ReactFlow, {
 // @ts-ignore
 import "reactflow/dist/style.css";
 
-import { useRouter } from "next/navigation";
 import {
   Plus,
   Clipboard,
@@ -31,6 +29,7 @@ import {
   Undo2,
   Redo2,
   Maximize2,
+  Minimize2,
   Save,
   X,
 } from "lucide-react";
@@ -58,6 +57,8 @@ const edgeOptions = {
 
 type Props = {
   idFunil: string;
+  initialFlow?: "cadastro" | "chatbot";
+  onClose?: () => void;
 };
 
 function proximoCodigo(nodes: Node<FlowNodeData>[], fluxo: "cadastro" | "chatbot") {
@@ -65,21 +66,26 @@ function proximoCodigo(nodes: Node<FlowNodeData>[], fluxo: "cadastro" | "chatbot
   return codigos.length === 0 ? 0 : Math.max(...codigos) + 1;
 }
 
-export default function FunnelFlowBuilder({ idFunil }: Props) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+export default function FunnelFlowBuilder({ idFunil, initialFlow, onClose }: Props) {
+  // REFERÊNCIA PARA MODO TELA CHEIA
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // ESTADOS GLOBAIS
   const [nodes, setNodes] = useNodesState<FlowNodeData>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>([]);
 
   // ESTADO DA ABA ATIVA
-  const initialFlow = searchParams.get("flow");
   const [activeFlow, setActiveFlow] = useState<"cadastro" | "chatbot">(
-    initialFlow === "chatbot" ? "chatbot" : "cadastro"
+    initialFlow ?? "cadastro"
   );
 
-  // Estados para a instância do React Flow, Clipboard e Menu de Contexto
+  useEffect(() => {
+    if (initialFlow) {
+      setActiveFlow(initialFlow);
+    }
+  }, [initialFlow]);
+
   const [rfInstance, setRfInstance] = useState<any>(null);
   const [clipboard, setClipboard] = useState<Node<FlowNodeData>[]>([]);
   const [menu, setMenu] = useState<{ visible: boolean; x: number; y: number; type: "pane" | "node"; nodeId?: string } | null>(null);
@@ -99,6 +105,27 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
 
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [configModal, setConfigModal] = useState<"campos" | "setores" | "expiracao" | null>(null);
+
+  /* ===================== LISTENER MODO TELA CHEIA ===================== */
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      wrapperRef.current?.requestFullscreen().catch(err => {
+        console.error("Erro ao entrar em tela cheia:", err);
+      });
+    } else {
+      document.exitFullscreen().catch(err => {
+        console.error("Erro ao sair da tela cheia:", err);
+      });
+    }
+  };
 
   /* ===================== CARGA INICIAL DO BANCO ===================== */
   useEffect(() => {
@@ -121,7 +148,6 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
         setNodes(n);
         setEdges(routedEdges);
         
-        // Inicializa o histórico com o estado de carregamento
         setHistory([{ nodes: n, edges: routedEdges }]);
         setHistoryStep(0);
 
@@ -167,7 +193,6 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
   );
 
   /* ===================== HISTÓRICO (UNDO/REDO) ===================== */
-  // Agora salva os novos estados passados (e não os antigos)
   const saveSnapshot = useCallback((newNodes: Node<FlowNodeData>[], newEdges: Edge[]) => {
     setHistory((prev) => {
       const newHistory = prev.slice(0, historyStep + 1);
@@ -207,12 +232,10 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     [setNodes, setEdges]
   );
 
-  // Hook nativo para registrar histórico ao soltar um Node após arrastar
   const onNodeDragStop = useCallback(() => {
     saveSnapshot(nodes, edges);
   }, [nodes, edges, saveSnapshot]);
 
-  /* ===================== CONEXÕES ===================== */
   const onConnect = useCallback(
     (params: Connection | Edge) => {
       let nextEdges: Edge[] = [];
@@ -221,7 +244,6 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
         nextEdges = getAutoRoutedEdges(nodes, novo);
         return nextEdges;
       });
-      // Salva snapshot após a atualização de state (setTimeout curto garante novo valor)
       setTimeout(() => saveSnapshot(nodes, nextEdges), 10);
     },
     [nodes, setEdges, saveSnapshot]
@@ -245,7 +267,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
       setError(null);
       const payload = fluxoParaFunil(nodes, edges);
       await api.salvarEstrutura(idFunil, payload);
-      setSavedStep(historyStep); // <-- marca como salvo
+      setSavedStep(historyStep);
       alert("✅ Fluxo salvo com sucesso!");
     } catch (err: any) {
       setError(err.message ?? "Erro ao salvar");
@@ -255,7 +277,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
     }
   }, [nodes, edges, idFunil, historyStep]);
 
-  /* ===================== CLIPBOARD & MANIPULAÇÕES (COPY/CUT/PASTE/DELETE) ===================== */
+  /* ===================== CLIPBOARD & MANIPULAÇÕES ===================== */
   const handleCopy = useCallback(() => {
     const selectedNodes = nodes.filter((n) => n.selected);
     if (selectedNodes.length > 0) {
@@ -349,24 +371,30 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
       const timer = setTimeout(() => {
         handleFitView();
       }, 50);
-      
       return () => clearTimeout(timer);
     }
   }, [activeFlow, rfInstance, handleFitView]);
 
-  /* ===================== SALVOU? ===================== */
-
+  /* ===================== FECHAR ===================== */
   const hasUnsavedChanges = historyStep !== savedStep;
 
-    const handleClose = useCallback(() => {
-      if (hasUnsavedChanges) {
-        const confirmar = window.confirm(
-          "Você tem alterações não salvas. Se sair agora, elas serão perdidas. Deseja continuar?"
-        );
-        if (!confirmar) return;
-      }
-      router.push("/dashboard/funnels");
-    }, [hasUnsavedChanges, router]);
+  const handleClose = useCallback(() => {
+    if (hasUnsavedChanges) {
+      const confirmar = window.confirm(
+        "Você tem alterações não salvas neste painel. Se sair agora, elas serão perdidas. Deseja continuar?"
+      );
+      if (!confirmar) return;
+    }
+    
+    // Força saída de tela cheia se estiver, antes de fechar o painel
+    if (document.fullscreenElement) {
+        document.exitFullscreen().catch(()=>{});
+    }
+
+    if (onClose) {
+      onClose();
+    }
+  }, [hasUnsavedChanges, onClose]);
 
   /* ===================== ATALHOS DE TECLADO ===================== */
   useEffect(() => {
@@ -428,7 +456,6 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
         n.id === nodeId ? { ...n, ...patch, data: { ...n.data, ...(patch.data ?? {}) } } : n
       )
     );
-    // Nota: Como texto é atualizado muitas vezes por segundo, não chamamos saveSnapshot aqui.
   }
 
   function removeNode(nodeId: string) {
@@ -490,124 +517,137 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
 
   if (loading) {
     return (
-      <div className="w-full h-screen flex items-center justify-center text-zinc-400 text-sm">
+      <div className="w-full h-full flex items-center justify-center text-zinc-400 text-sm">
         Carregando funil…
       </div>
     );
   }
 
   return (
-    <div className="w-full h-screen flex bg-zinc-50/50">
+    <div ref={wrapperRef} className="w-full h-full flex bg-zinc-50 relative">
       <style>{`
         .react-flow__pane, .react-flow__node {
           cursor: default !important;
         }
       `}</style>
       
-      <div className="flex-1 relative">
+      <div className="flex-1 relative h-full">
         
-        {/* TOOLBAR ESQUERDA */}
-        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-white rounded-lg shadow-sm border border-zinc-200 px-3 py-2">
-          <span className="text-sm font-semibold text-zinc-700 truncate max-w-[150px]">
-            {funilNome}
-          </span>
-          <div className="w-px h-5 bg-zinc-200 mx-1" />
-          
-          <button
-            onClick={salvar}
-            disabled={saving}
-            className="text-xs font-medium bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded transition-colors disabled:opacity-50 ml-1 shadow-sm flex items-center gap-1.5"
-          >
-            <Save className="w-3.5 h-3.5" /> {saving ? "Salvando..." : "Salvar"}
-          </button>
+        {/* HEADER RESPONSIVO */}
+          <div className="absolute top-4 left-4 right-4 z-10 flex flex-wrap items-start justify-between gap-3 pointer-events-none">
+            
+            {/* TOOLBAR ESQUERDA */}
+            <div className="flex flex-wrap items-center gap-2 bg-white rounded-lg shadow-sm border border-zinc-200 px-3 py-2 pointer-events-auto max-w-full">
+              <span className="text-sm font-semibold text-zinc-700 truncate max-w-[150px]">
+                {funilNome}
+              </span>
+              <div className="w-px h-5 bg-zinc-200 mx-1 hidden sm:block" />
+              
+              <button
+                onClick={salvar}
+                disabled={saving}
+                className="text-xs font-medium bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded transition-colors disabled:opacity-50 ml-1 shadow-sm flex items-center gap-1.5"
+              >
+                <Save className="w-3.5 h-3.5" /> {saving ? "Salvando..." : "Salvar"}
+              </button>
 
-          <div className="w-px h-5 bg-zinc-200 mx-1" />
+              <div className="w-px h-5 bg-zinc-200 mx-1 hidden sm:block" />
 
-          <button
-            onClick={handleUndo}
-            disabled={historyStep <= 0}
-            title="Desfazer (Ctrl+Z)"
-            className="text-zinc-500 hover:text-zinc-700 disabled:opacity-30 disabled:hover:text-zinc-500 p-1.5 rounded hover:bg-zinc-100"
-          >
-            <Undo2 className="w-3.5 h-3.5" />
-          </button>
-          <button
-            onClick={handleRedo}
-            disabled={historyStep >= history.length - 1}
-            title="Refazer (Ctrl+Y)"
-            className="text-zinc-500 hover:text-zinc-700 disabled:opacity-30 disabled:hover:text-zinc-500 p-1.5 rounded hover:bg-zinc-100"
-          >
-            <Redo2 className="w-3.5 h-3.5" />
-          </button>
+              <button
+                onClick={handleUndo}
+                disabled={historyStep <= 0}
+                title="Desfazer (Ctrl+Z)"
+                className="text-zinc-500 hover:text-zinc-700 disabled:opacity-30 disabled:hover:text-zinc-500 p-1.5 rounded hover:bg-zinc-100"
+              >
+                <Undo2 className="w-3.5 h-3.5" />
+              </button>
+              <button
+                onClick={handleRedo}
+                disabled={historyStep >= history.length - 1}
+                title="Refazer (Ctrl+Y)"
+                className="text-zinc-500 hover:text-zinc-700 disabled:opacity-30 disabled:hover:text-zinc-500 p-1.5 rounded hover:bg-zinc-100"
+              >
+                <Redo2 className="w-3.5 h-3.5" />
+              </button>
 
-          <div className="w-px h-5 bg-zinc-200 mx-1" />
-          
-          <button
-            onClick={() => setConfigModal("campos")}
-            className="text-xs text-zinc-600 bg-zinc-100 hover:bg-zinc-200 px-2.5 py-1.5 rounded transition-colors"
-          >
-            Campos
-          </button>
-          <button
-            onClick={() => setConfigModal("setores")}
-            className="text-xs text-zinc-600 bg-zinc-100 hover:bg-zinc-200 px-2.5 py-1.5 rounded transition-colors"
-          >
-            Setores
-          </button>
-          <button
-            onClick={() => setConfigModal("expiracao")}
-            className="text-xs text-zinc-600 bg-zinc-100 hover:bg-zinc-200 px-2.5 py-1.5 rounded transition-colors"
-          >
-            Expiração
-          </button>
-          <div className="w-px h-5 bg-zinc-200 mx-1" />
+              <div className="w-px h-5 bg-zinc-200 mx-1 hidden sm:block" />
+              
+              <button
+                onClick={() => setConfigModal("campos")}
+                className="text-xs text-zinc-600 bg-zinc-100 hover:bg-zinc-200 px-2.5 py-1.5 rounded transition-colors"
+              >
+                Campos
+              </button>
+              <button
+                onClick={() => setConfigModal("setores")}
+                className="text-xs text-zinc-600 bg-zinc-100 hover:bg-zinc-200 px-2.5 py-1.5 rounded transition-colors"
+              >
+                Setores
+              </button>
+              <button
+                onClick={() => setConfigModal("expiracao")}
+                className="text-xs text-zinc-600 bg-zinc-100 hover:bg-zinc-200 px-2.5 py-1.5 rounded transition-colors"
+              >
+                Expiração
+              </button>
+              <div className="w-px h-5 bg-zinc-200 mx-1 hidden sm:block" />
 
-          <button
-            onClick={() => addMessage()}
-            className="text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded transition-colors flex items-center gap-1.5"
-          >
-            <Plus className="w-3.5 h-3.5" /> Adicionar Mensagem
-          </button>
+              <button
+                onClick={() => addMessage()}
+                className="text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded transition-colors flex items-center gap-1.5"
+              >
+                <Plus className="w-3.5 h-3.5" /> Adicionar Mensagem
+              </button>
 
+              <div className="w-px h-5 bg-zinc-200 mx-1 hidden sm:block" />
 
-          <button
-            onClick={handleClose}
-            title="Fechar editor"
-            className="text-zinc-500 hover:text-red-600 p-1.5 rounded hover:bg-red-50"
-          >
-            <X className="w-3.5 h-3.5" />
-          </button>
-        </div>
+              <button
+                onClick={toggleFullscreen}
+                title={isFullscreen ? "Sair da Tela Cheia" : "Modo Tela Cheia"}
+                className="text-zinc-500 hover:text-zinc-800 p-1.5 rounded hover:bg-zinc-100"
+              >
+                {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+              </button>
 
-        {/* SWITCH DIREITA */}
-        <div className="absolute top-4 right-4 z-10 bg-white rounded-lg shadow-sm p-1 flex items-center border border-zinc-200">
-          <button
-            onClick={() => setActiveFlow("cadastro")}
-            className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all ${
-              activeFlow === "cadastro"
-                ? "bg-zinc-800 text-white shadow"
-                : "text-zinc-500 hover:text-zinc-700 hover:bg-zinc-50"
-            }`}
-          >
-            Cadastro
-          </button>
-          <button
-            onClick={() => setActiveFlow("chatbot")}
-            className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all ${
-              activeFlow === "chatbot"
-                ? "bg-zinc-800 text-white shadow"
-                : "text-zinc-500 hover:text-zinc-700 hover:bg-zinc-50"
-            }`}
-          >
-            Chatbot
-          </button>
-        </div>
+              <button
+                onClick={handleClose}
+                title="Fechar editor"
+                className="text-zinc-500 hover:text-red-600 p-1.5 rounded hover:bg-red-50"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
 
-        {error && (
-          <div className="absolute top-16 left-4 z-10 bg-red-50 text-red-600 border border-red-200 text-xs px-3 py-2 rounded shadow-sm max-w-sm">
-            {error}
+            {/* SWITCH DIREITA */}
+            <div className="bg-white rounded-lg shadow-sm p-1 flex items-center border border-zinc-200 pointer-events-auto shrink-0">
+              <button
+                onClick={() => setActiveFlow("cadastro")}
+                className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all ${
+                  activeFlow === "cadastro"
+                    ? "bg-zinc-800 text-white shadow"
+                    : "text-zinc-500 hover:text-zinc-700 hover:bg-zinc-50"
+                }`}
+              >
+                Cadastro
+              </button>
+              <button
+                onClick={() => setActiveFlow("chatbot")}
+                className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all ${
+                  activeFlow === "chatbot"
+                    ? "bg-zinc-800 text-white shadow"
+                    : "text-zinc-500 hover:text-zinc-700 hover:bg-zinc-50"
+                }`}
+              >
+                Chatbot
+              </button>
+            </div>
           </div>
-        )}
+
+          {error && (
+            <div className="absolute top-28 left-4 z-10 bg-red-50 text-red-600 border border-red-200 text-xs px-3 py-2 rounded shadow-sm max-w-sm pointer-events-auto">
+              {error}
+            </div>
+          )}
 
         <ReactFlow
           nodes={visibleNodes}
@@ -624,7 +664,7 @@ export default function FunnelFlowBuilder({ idFunil }: Props) {
           onPaneClick={() => setSelectedNodeId(null)}
           onNodeContextMenu={onNodeContextMenu}
           onPaneContextMenu={onPaneContextMenu}
-          deleteKeyCode={null} /* Previne que o ReactFlow destrua nodes sem salvar no nosso snapshot */
+          deleteKeyCode={null}
           fitView
           fitViewOptions={{ padding: 0.2 }}
           minZoom={0.15}

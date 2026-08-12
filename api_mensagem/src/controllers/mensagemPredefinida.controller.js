@@ -43,12 +43,14 @@ async function create(req, res) {
     const {
       no_mensagem_predefinida,
       ds_mensagem_predefinida,
+      sg_atalho_tipo
     } = req.body
 
     const mensagem =
       await mensagemPredefinidaService.criarMensagemPredefinida({
         no_mensagem_predefinida,
         ds_mensagem_predefinida,
+        sg_atalho_tipo,
       })
 
     return res.status(201).json({
@@ -70,6 +72,7 @@ async function update(req, res) {
     const {
       no_mensagem_predefinida,
       ds_mensagem_predefinida,
+      sg_atalho_tipo,
     } = req.body
 
     const mensagem =
@@ -78,6 +81,7 @@ async function update(req, res) {
         {
           no_mensagem_predefinida,
           ds_mensagem_predefinida,
+          sg_atalho_tipo,
         }
       )
 
@@ -114,10 +118,27 @@ async function remove(req, res) {
   }
 }
 
+async function listartipos(req, res) {
+  try {
+    const tipos = await mensagemPredefinidaService.listartipos()
+
+    return res.json({
+      success: true,
+      data: tipos,
+    })
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    })
+  }
+}
+
 module.exports = {
   list,
   get,
   create,
   update,
   remove,
+  listartipos,
 }

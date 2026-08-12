@@ -140,7 +140,7 @@ function inserirCampo(nomeCampo: string) {
   }
 
   return (
-    <div className="w-80 shrink-0 bg-white border-l border-zinc-200 h-screen overflow-y-auto p-5 space-y-5 text-zinc-700">
+    <div className="w-full sm:w-80 shrink-0 bg-white border-l border-zinc-200 h-full absolute sm:relative right-0 z-20 overflow-y-auto p-5 space-y-5 text-zinc-700 shadow-2xl sm:shadow-none">
       
       {/* HEADER */}
       <div className="flex items-center justify-between">

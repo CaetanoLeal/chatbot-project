@@ -187,26 +187,26 @@ export default function FunilConfigModal({
   return (
     <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-[80vh] overflow-y-auto text-zinc-700">
-        <div className="flex border-b border-zinc-100">
+        <div className="flex overflow-x-auto border-b border-zinc-100 no-scrollbar">
           <button
-            className={`flex-1 py-3 text-sm font-medium ${tab === "campos" ? "text-blue-600 border-b-2 border-blue-600" : "text-zinc-400"}`}
+            className={`flex-1 py-3 px-4 text-sm font-medium whitespace-nowrap ${tab === "campos" ? "text-blue-600 border-b-2 border-blue-600" : "text-zinc-400"}`}
             onClick={() => setTab("campos")}
           >
             Campos personalizados
           </button>
           <button
-            className={`flex-1 py-3 text-sm font-medium ${tab === "setores" ? "text-blue-600 border-b-2 border-blue-600" : "text-zinc-400"}`}
+            className={`flex-1 py-3 px-4 text-sm font-medium whitespace-nowrap ${tab === "setores" ? "text-blue-600 border-b-2 border-blue-600" : "text-zinc-400"}`}
             onClick={() => setTab("setores")}
           >
             Setores
           </button>
           <button
-            className={`flex-1 py-3 text-sm font-medium ${tab === "expiracao" ? "text-blue-600 border-b-2 border-blue-600" : "text-zinc-400"}`}
+            className={`flex-1 py-3 px-4 text-sm font-medium whitespace-nowrap ${tab === "expiracao" ? "text-blue-600 border-b-2 border-blue-600" : "text-zinc-400"}`}
             onClick={() => setTab("expiracao")}
           >
             Expiração
           </button>
-          <button onClick={onClose} className="px-4 text-zinc-400 hover:text-zinc-600">
+          <button onClick={onClose} className="px-4 text-zinc-400 hover:text-zinc-600 shrink-0">
             ✕
           </button>
         </div>

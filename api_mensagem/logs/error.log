@@ -2675,3 +2675,66 @@
 [2026-08-10 20:18:54] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID fa3c8e81-0c66-48b9-b0a7-eea553c3ccbc: Request failed with status code 404
 [2026-08-10 20:32:43] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-08-10 20:32:43] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-11 17:19:26] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-11 17:19:26] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-11 17:20:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:20:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:22:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:22:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:23:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:23:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:23:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:23:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:27:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:27:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:30:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:30:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:32:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:32:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:33:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:33:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:37:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:37:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:40:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:40:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:41:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:41:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:42:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:42:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:45:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:45:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:48:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:48:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:50:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:50:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:51:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:51:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:55:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:55:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 17:58:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 17:58:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 18:00:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 18:00:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 18:01:26] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-11 18:01:26] [ERROR]: ❌ Falha ao enviar mensagem de expiração para o ID 8869d7f1-3b4b-441d-a272-63a9a658cea6: Request failed with status code 404
+[2026-08-11 20:25:26] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-11 20:25:26] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-11 20:33:30] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-11 20:33:30] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-11 21:18:57] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-11 21:18:57] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-12 18:26:45] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-12 18:26:45] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-12 18:48:54] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-12 18:48:54] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-12 19:17:27] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-08-12 19:50:24] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-12 19:50:24] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-12 19:51:02] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-12 19:51:49] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-12 20:00:41] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-12 20:00:41] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-12 20:01:33] [ERROR]: ❌ Erro ao enviar mensagem WhatsApp
+[2026-08-12 20:36:58] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
+[2026-08-12 21:06:50] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-12 21:06:50] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up

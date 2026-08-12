@@ -1,9 +1,9 @@
-// app/(dashboards)/layout.tsx
+// app/(dashboard)/layout.tsx
 "use client"
 
 import { useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 import {
   LayoutDashboard,
   Bot,
@@ -54,12 +54,12 @@ const NAV_ITEMS: NavItem[] = [
     label: "Cadastro",
     icon: Boxes,
     items: [
-      { label: "Atendente", href: "/dashboard/attendants", icon: Headset },
-      { label: "Contato", href: "/dashboard/contacts", icon: Users },
-      { label: "Funil", href: "/dashboard/funnels", icon: Filter },
-      { label: "IA", href: "/dashboard/aipannel/aifunnels", icon: Sparkles },
-      { label: "Msg Predefinida", href: "/dashboard/shortcuts", icon: Inbox },
-      { label: "Setor", href: "/dashboard/sector", icon: Building2 },
+      { label: "Atendente", href: "/dashboard/cadastro?tab=atendente", icon: Headset },
+      { label: "Contato", href: "/dashboard/cadastro?tab=contato", icon: Users },
+      { label: "Funil", href: "/dashboard/cadastro?tab=funil", icon: Filter },
+      { label: "IA", href: "/dashboard/cadastro?tab=ia", icon: Sparkles },
+      { label: "Msg Predefinida", href: "/dashboard/cadastro?tab=atalho", icon: Inbox },
+      { label: "Setor", href: "/dashboard/cadastro?tab=setor", icon: Building2 },
     ],
   },
   {
@@ -86,6 +86,7 @@ const GROUPS_STORAGE_KEY = "painel:sidebar_grupos_abertos"
    HELPERS
    ============================================================ */
 function isGroupActive(group: NavGroup, pathname: string) {
+  console.log("isGroupActive", group.label, pathname)
   return group.items.some((item) => pathname.startsWith(item.href))
 }
 
@@ -98,6 +99,8 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const activeTab = searchParams.get("tab")
 
   const [collapsed, setCollapsed] = useState(false)
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
@@ -112,6 +115,7 @@ export default function DashboardLayout({
   })
 
   function toggleSidebar() {
+    console.log("toggleSidebar")
     setCollapsed((prev) => {
       const next = !prev
       if (typeof window !== "undefined") localStorage.setItem(SIDEBAR_STORAGE_KEY, String(next))
@@ -120,6 +124,7 @@ export default function DashboardLayout({
   }
 
   function toggleGroup(label: string) {
+    console.log("toggleGroup")
     setOpenGroups((prev) => {
       const next = { ...prev, [label]: !prev[label] }
       if (typeof window !== "undefined") localStorage.setItem(GROUPS_STORAGE_KEY, JSON.stringify(next))
@@ -209,7 +214,10 @@ export default function DashboardLayout({
                   {!collapsed && open && (
                     <div className="mt-1 ml-3 pl-3 border-l border-zinc-800 space-y-1">
                       {item.items.map((sub) => {
-                        const active = pathname.startsWith(sub.href)
+                        const active =
+                          sub.href.includes("?tab=")
+                            ? pathname === "/dashboard/cadastro" && sub.href.endsWith(`tab=${activeTab}`)
+                            : pathname.startsWith(sub.href)
                         return (
                           <Link
                             key={sub.href}

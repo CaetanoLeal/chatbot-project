@@ -230,95 +230,85 @@ async function transferirAtendimento({ idChat, idSetor }) {
 /* ============================================================
    Envio de mensagem pelo atendente
    ============================================================ */
-async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
-  const chat = await chatRepository.getChatById(idChat)
-  if (!chat) {
-    throw new Error("Chat não encontrado")
-  }
-
-  let nomeAtendente = "Atendimento"
-
-  if (idAtendente) {
-    const atendente = await atendenteRepository.buscarPorId(idAtendente)
-    if (!atendente) {
-      throw new Error("Atendente não encontrado")
-    }
-    nomeAtendente = atendente.no_atendente
-
-    const capacitado = await atendenteRepository.verificarCapacitacaoSetor(idAtendente, chat.id_setor)
-    if (!capacitado) {
-      throw new Error(`${nomeAtendente} não está habilitado a atender o setor deste chat`)
-    }
-  }
-
-  const mensagemParaEnvio = `Mensagem de *${nomeAtendente}*:\n ${texto}`
-
-  if (chat.cd_provider === 1) {
-    const telefone = chat.nu_telefone || chat.cd_whatsapp
-    if (!telefone) throw new Error("Chat sem telefone de WhatsApp cadastrado")
-    if (!chat.no_instancia) throw new Error("Chat sem instância de WhatsApp vinculada")
-
-    await sendWhatsAppMessage({
-      telefone,
-      message: mensagemParaEnvio,
-      instanceName: chat.no_instancia,
-    })
-  } else if (chat.cd_provider === 2) {
-    if (!chat.cd_telegram) throw new Error("Chat sem identificador de Telegram cadastrado")
-
-    await sendTelegramMessage({
-      userId: chat.cd_telegram,
-      message: mensagemParaEnvio,
-      nome: nomeAtendente,
-    })
-  } else {
-    throw new Error(`Provider do chat desconhecido (cd_provider=${chat.cd_provider})`)
-  }
-
-  const idMensagem = await saveUnifiedMessage({
-    idChat,
-    cdProvider: chat.cd_provider,
-    idMensagemExterna: null,
-    fromMe: true,
-    conteudo: texto,
-    tipo: "text",
-    payload: null,
-    dhEnvio: new Date(),
-    idAtendente: idAtendente || null,
-  })
-
-  if (chat.id_funil && chat.id_utilizador) {
-    await funilHelper.verificarRespostaHumanaPendente({
-      idUtilizador: chat.id_utilizador,
-      idFunil: chat.id_funil,
-    })
-  }
-
-  return {
-    id_mensagem: idMensagem,
-    ds_conteudo: texto,
-    no_atendente: nomeAtendente,
-  }
-
-  /* ============================================================
-   Iniciar atendimento (mudar para Humano)
-   ============================================================ */
-  async function iniciarAtendimento({ idChat }) {
+  async function enviarMensagemAtendente({ idChat, texto, idAtendente }) {
     const chat = await chatRepository.getChatById(idChat)
     if (!chat) {
       throw new Error("Chat não encontrado")
     }
 
-    if (!chat.id_funil || !chat.id_utilizador) {
-      throw new Error("Chat não está vinculado a um funil/utilizador")
+    let nomeAtendente = "Atendimento"
+
+    if (idAtendente) {
+      const atendente = await atendenteRepository.buscarPorId(idAtendente)
+      if (!atendente) {
+        throw new Error("Atendente não encontrado")
+      }
+      nomeAtendente = atendente.no_atendente
+
+      const capacitado = await atendenteRepository.verificarCapacitacaoSetor(idAtendente, chat.id_setor)
+      if (!capacitado) {
+        throw new Error(`${nomeAtendente} não está habilitado a atender o setor deste chat`)
+      }
     }
 
-    await funilHelper.definirStatusManual({
-      idUtilizador: chat.id_utilizador,
-      idFunil: chat.id_funil,
-      status: funilHelper.CHAT_STATUS.HUMANO, // Usando o enum do helper
-    })
+    const mensagemParaEnvio = `Mensagem de *${nomeAtendente}*:\n ${texto}`
+
+    if (chat.cd_provider === 1) {
+      const telefone = chat.nu_telefone || chat.cd_whatsapp
+      if (!telefone) throw new Error("Chat sem telefone de WhatsApp cadastrado")
+      if (!chat.no_instancia) throw new Error("Chat sem instância de WhatsApp vinculada")
+
+      await sendWhatsAppMessage({
+        telefone,
+        message: mensagemParaEnvio,
+        instanceName: chat.no_instancia,
+      })
+    } else if (chat.cd_provider === 2) {
+      if (!chat.cd_telegram) throw new Error("Chat sem identificador de Telegram cadastrado")
+
+      await sendTelegramMessage({
+        userId: chat.cd_telegram,
+        message: mensagemParaEnvio,
+        nome: nomeAtendente,
+      })
+    } else {
+      throw new Error(`Provider do chat desconhecido (cd_provider=${chat.cd_provider})`)
+    }
+    const idMensagem = uuidv4()
+
+    if (chat.id_funil && chat.id_utilizador) {
+      await funilHelper.verificarRespostaHumanaPendente({
+        idUtilizador: chat.id_utilizador,
+        idFunil: chat.id_funil,
+      })
+    }
+
+    return {
+      id_mensagem: idMensagem,
+      ds_conteudo: mensagemParaEnvio,
+      no_atendente: nomeAtendente,
+    }
+
   }
+  
+/* ============================================================
+ Iniciar atendimento (mudar para Humano)
+ ============================================================ */
+async function iniciarAtendimento({ idChat }) {
+  const chat = await chatRepository.getChatById(idChat)
+  if (!chat) {
+    throw new Error("Chat não encontrado")
+  }
+
+  if (!chat.id_funil || !chat.id_utilizador) {
+    throw new Error("Chat não está vinculado a um funil/utilizador")
+  }
+
+  await funilHelper.definirStatusManual({
+    idUtilizador: chat.id_utilizador,
+    idFunil: chat.id_funil,
+    status: funilHelper.CHAT_STATUS.HUMANO, // Usando o enum do helper
+  })
 }
 
 module.exports = {
