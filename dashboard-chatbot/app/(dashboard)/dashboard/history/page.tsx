@@ -1,7 +1,7 @@
 // app/(dashboards)/dashboard/history/page.tsx
 "use client"
 import { useState, useEffect, useMemo, useRef, Suspense } from "react"
-import { useSearchParams } from "next/navigation"
+import { useTabs } from "../context/tabs-context"
 import { Search, History as HistoryIcon, Inbox } from "lucide-react"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -73,7 +73,7 @@ function sortThreads(list: ChatThread[]): ChatThread[] {
 
 function formatChatFromApi(chat: any): ChatThread {
   return {
-    id: chat.id_chat,
+    id: String(chat.id_chat),
     contactName: chat.no_utilizador || "Sem nome",
     contactNumber: chat.nu_telefone || "-",
     instanceName: chat.no_instancia || "Instância",
@@ -98,21 +98,13 @@ function formatChatFromApi(chat: any): ChatThread {
       : [],
   }
 }
-
 /* =====================
-   PAGE (wrapper — useSearchParams exige Suspense no App Router)
+   PAGE (Adaptado para o sistema de Abas)
 ===================== */
-export default function HistoryPage() {
-  return (
-    <Suspense fallback={null}>
-      <HistoryPageContent />
-    </Suspense>
-  )
-}
+export default function HistoryPage(props: any) {
 
-function HistoryPageContent() {
-  const searchParams = useSearchParams()
-  const chatIdDaUrl = searchParams.get("chat")
+  const rawChatId = props.chat || props?.params?.chat;
+  const chatIdDaUrl = rawChatId ? String(rawChatId) : null;
 
   const [threads, setThreads] = useState<ChatThread[]>([])
   const [loading, setLoading] = useState(true)
@@ -122,7 +114,7 @@ function HistoryPageContent() {
   const [hasMore, setHasMore] = useState(true)
   const messagesContainerRef = useRef<HTMLDivElement>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-
+  
   const activeChat = useMemo(() => threads.find((t) => t.id === activeChatId) ?? null, [threads, activeChatId])
 
   const threadsFiltradas = useMemo(() => {
@@ -147,16 +139,18 @@ function HistoryPageContent() {
     setHasMore(true)
   }, [activeChatId])
 
-  /* Abre automaticamente o chat vindo de ?chat=<id> (ex: link "Ver histórico"
-     na tela de Contatos), assim que a lista de threads terminar de carregar. */
-  useEffect(() => {
-    if (loading || !chatIdDaUrl || activeChatId === chatIdDaUrl) return
-    const alvo = threads.find((t) => t.id === chatIdDaUrl)
-    if (alvo) loadMessages(alvo)
-  }, [loading, chatIdDaUrl, threads])
+  /* Abre automaticamente o chat vindo dos parâmetros da aba */
+    useEffect(() => {
+      if (loading || !chatIdDaUrl || activeChatId === chatIdDaUrl) return
+      
+      const alvo = threads.find((t) => t.id === chatIdDaUrl)
+      if (alvo) loadMessages(alvo)
+      
+    }, [loading, chatIdDaUrl, threads, activeChatId])
 
   /* =====================
-     API CALLS
+     API CALLS E RENDER 
+     (Todo o resto do seu código permanece exatamente igual daqui para baixo)
   ===================== */
   async function loadHistorico() {
     setLoading(true)
@@ -165,9 +159,7 @@ function HistoryPageContent() {
       const json = await res.json()
       if (!json.success) return
 
-      // Filtro defensivo no client — caso a API ainda não filtre por status
       const somenteAbertos = (json.data || []).filter((c: any) => c.sg_chat_status === "A")
-
       const formatted = somenteAbertos.map(formatChatFromApi)
       setThreads(sortThreads(formatted))
     } catch (err) {
@@ -271,9 +263,6 @@ function HistoryPageContent() {
     }
   }
 
-  /* =====================
-     RENDER DO CARD (lista)
-  ===================== */
   const renderChatCard = (chat: ChatThread) => (
     <div
       key={chat.id}
@@ -310,7 +299,6 @@ function HistoryPageContent() {
 
   return (
     <div className="h-screen w-full flex flex-col bg-white overflow-hidden text-zinc-800 font-sans">
-      {/* HEADER BAR */}
       <header className="flex items-center gap-3 border-b border-zinc-200 px-6 py-3 bg-white shadow-sm z-10">
         <div className="rounded-lg bg-zinc-100 p-2 text-zinc-600">
           <HistoryIcon size={18} />
@@ -322,7 +310,6 @@ function HistoryPageContent() {
       </header>
 
       <div className="flex-1 flex overflow-hidden">
-        {/* LISTA (Esquerda) */}
         <div className="w-[320px] flex flex-col border-r border-zinc-200 shrink-0 bg-zinc-50/50">
           <div className="p-3 bg-white border-b border-zinc-200 sticky top-0 z-10">
             <div className="relative">
@@ -350,11 +337,9 @@ function HistoryPageContent() {
           </div>
         </div>
 
-        {/* VISUALIZAÇÃO (Direita) */}
         <main className="flex-1 flex flex-col bg-white min-w-[400px]">
           {activeChat ? (
             <>
-              {/* Header do Chat */}
               <div className="border-b border-zinc-200 p-4 flex justify-between items-center bg-white shadow-sm z-10">
                 <div className="flex items-center gap-4">
                   <Avatar name={activeChat.contactName} photo={activeChat.photo} />
@@ -372,13 +357,11 @@ function HistoryPageContent() {
                     </div>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-4">
                   <PlatformBadge platform={activeChat.platform} />
                 </div>
               </div>
 
-              {/* Mensagens do Chat — somente leitura */}
               <div
                 ref={messagesContainerRef}
                 onScroll={handleMessagesScroll}
@@ -404,7 +387,6 @@ function HistoryPageContent() {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Rodapé informativo — sem input, é somente leitura */}
               <div className="border-t border-zinc-200 px-4 py-3 bg-zinc-50 text-center text-xs text-zinc-400">
                 Este atendimento já foi finalizado. Modo somente leitura.
               </div>

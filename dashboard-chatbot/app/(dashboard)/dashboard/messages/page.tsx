@@ -229,6 +229,12 @@ export default function MessagesPage() {
     }
 
     function handleChatUpdated(data: any) {
+      if (data.sgChatStatus === "A") {
+        setThreads((prev) => prev.filter((chat) => chat.id !== data.idChat))
+        setActiveChatId((prev) => (prev === data.idChat ? null : prev))
+        return
+      }
+
       setThreads((prev) => {
         const updated = prev.map((chat) =>
           chat.id === data.idChat
@@ -246,8 +252,9 @@ export default function MessagesPage() {
 
     function handleNewChat(chatCompleto: any) {
       setThreads((prev) => {
-        if (prev.some((t) => t.id === chatCompleto.id_chat)) return prev // evita duplicar
+        if (prev.some((t) => t.id === chatCompleto.id_chat)) return prev
         const novoChat = formatChatFromApi(chatCompleto)
+        if (novoChat.status === "A") return prev // 👈 ignora finalizados
         return sortThreads([novoChat, ...prev])
       })
     }
@@ -375,7 +382,9 @@ export default function MessagesPage() {
       const json = await res.json()
       if (!json.success) return
 
-      const formatted: ChatThread[] = json.data.map(formatChatFromApi)
+      const formatted: ChatThread[] = json.data
+        .map(formatChatFromApi)
+        .filter((chat: ChatThread) => chat.status !== "A")   // 👈 nunca carregar finalizados
 
       const sorted = sortThreads(formatted)
       setThreads(sorted)
@@ -571,9 +580,11 @@ export default function MessagesPage() {
       const json = await res.json()
       if (!json.success) return alert(json.message || "Não foi possível finalizar o atendimento.")
 
-      setThreads((prev) =>
-        sortThreads(prev.map((chat) => (chat.id === activeChat.id ? { ...chat, status: "A", atendenteNome: null } : chat)))
-      )
+      const finalizedId = activeChat.id
+
+      setThreads((prev) => prev.filter((chat) => chat.id !== finalizedId)) // 👈 remove da lista
+
+      setActiveChatId((prev) => (prev === finalizedId ? null : prev))      // 👈 limpa seleção
     } catch (err) {
       alert("Erro ao finalizar atendimento. Tente novamente.")
     } finally {

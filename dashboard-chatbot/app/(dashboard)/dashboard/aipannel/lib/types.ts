@@ -1,4 +1,5 @@
 // lib/types.ts
+export type Period = "today" | "week" | "year" | "custom"
 
 export type TotaisConsumoIA = {
   total_prompt: number | null;

@@ -13,7 +13,8 @@ class InstanceService {
       status: item.ds_status,
       webhook: item.ds_webhook,
       fotoPerfil: item.ds_foto_perfil,
-      authPath: item.ds_auth_path
+      authPath: item.ds_auth_path,
+      funil: item.no_funil
     }))
   }
 }

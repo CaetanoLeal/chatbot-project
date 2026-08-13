@@ -2738,3 +2738,11 @@
 [2026-08-12 20:36:58] [ERROR]: ❌ Webhook error: invalid input syntax for type timestamp: "0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN"
 [2026-08-12 21:06:50] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
 [2026-08-12 21:06:50] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-13 17:47:10] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-13 17:47:10] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-13 17:51:03] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-13 17:51:03] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-13 18:12:39] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up
+[2026-08-13 18:12:39] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-13 18:17:17] [ERROR]: ❌ Erro ao buscar id_funil: the database system is starting up
+[2026-08-13 18:17:17] [ERROR]: ❌ Erro de conexão com PostgreSQL: the database system is starting up

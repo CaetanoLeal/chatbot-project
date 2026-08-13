@@ -3,7 +3,6 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { usePathname, useSearchParams } from "next/navigation"
 import {
   LayoutDashboard,
   Bot,
@@ -24,42 +23,50 @@ import {
   PanelLeftOpen,
 } from "lucide-react"
 
+import { TabsProvider, useTabs } from "./dashboard/context/tabs-context"
+import TabsHost from "./dashboard/components/tabsHost"
+
 /* ============================================================
    TIPOS
    ============================================================ */
 type NavLeaf = {
   type: "link"
   label: string
-  href: string
+  registryKey: string
   icon: React.ElementType
+  params?: Record<string, any>
 }
 
 type NavGroup = {
   type: "group"
   label: string
   icon: React.ElementType
-  items: { label: string; href: string; icon: React.ElementType }[]
+  items: { label: string; registryKey: string; icon: React.ElementType; params?: Record<string, any> }[]
 }
 
 type NavItem = NavLeaf | NavGroup
 
 /* ============================================================
    ESTRUTURA DO MENU
+   registryKey aponta pra chave do TAB_REGISTRY (ver tab-registry.tsx).
+   Itens de um mesmo grupo que abrem a MESMA aba (ex: Cadastro) usam o
+   mesmo registryKey — o que muda é o "params", que a própria tela lê
+   pra saber em qual sub-aba abrir.
    ============================================================ */
 const NAV_ITEMS: NavItem[] = [
-  { type: "link", label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { type: "link", label: "Painel IA", href: "/dashboard/aipannel", icon: Bot },
+  { type: "link", label: "Dashboard", registryKey: "dashboard", icon: LayoutDashboard },
+  { type: "link", label: "Painel IA", registryKey: "aipannel", icon: Bot },
   {
     type: "group",
     label: "Cadastro",
     icon: Boxes,
     items: [
-      { label: "Atendente", href: "/dashboard/cadastro?tab=atendente", icon: Headset },
-      { label: "Contato", href: "/dashboard/cadastro?tab=contato", icon: Users },
-      { label: "Funil", href: "/dashboard/cadastro?tab=funil", icon: Filter },
-      { label: "IA", href: "/dashboard/cadastro?tab=ia", icon: Sparkles },
-      { label: "Msg Predefinida", href: "/dashboard/cadastro?tab=atalho", icon: Inbox },
-      { label: "Setor", href: "/dashboard/cadastro?tab=setor", icon: Building2 },
+      { label: "Atendente", registryKey: "atendente", icon: Headset },
+      { label: "Contato", registryKey: "contato", icon: Users },
+      { label: "Funil", registryKey: "funil", icon: Filter },
+      { label: "IA", registryKey: "ia", icon: Sparkles },
+      { label: "Msg Predefinida", registryKey: "atalho", icon: Inbox },
+      { label: "Setor", registryKey: "setor", icon: Building2 },
     ],
   },
   {
@@ -67,16 +74,17 @@ const NAV_ITEMS: NavItem[] = [
     label: "Chat",
     icon: MessageSquare,
     items: [
-      { label: "Atendimento", href: "/dashboard/messages", icon: MessageSquare },
-      { label: "Histórico", href: "/dashboard/history", icon: History },
-      { label: "Instância", href: "/dashboard/instances", icon: Boxes },
+      { label: "Atendimento", registryKey: "atendimento", icon: MessageSquare },
+      { label: "Histórico", registryKey: "historico", icon: History },
+      { label: "Instância", registryKey: "instancias", icon: Boxes },
     ],
   },
 ]
 
-const BOTTOM_ITEMS: NavLeaf[] = [
-  { type: "link", label: "Documentação", href: "/dashboard/coming", icon: BookOpen },
-  { type: "link", label: "Sair", href: "/dashboard/coming", icon: LogOut },
+// Itens que não fazem parte do sistema de abas (ainda não têm tela/registry) — continuam navegação normal.
+const BOTTOM_ITEMS: { label: string; href: string; icon: React.ElementType }[] = [
+  { label: "Documentação", href: "/dashboard/coming", icon: BookOpen },
+  { label: "Sair", href: "/dashboard/coming", icon: LogOut },
 ]
 
 const SIDEBAR_STORAGE_KEY = "painel:sidebar_colapsada"
@@ -85,37 +93,43 @@ const GROUPS_STORAGE_KEY = "painel:sidebar_grupos_abertos"
 /* ============================================================
    HELPERS
    ============================================================ */
-function isGroupActive(group: NavGroup, pathname: string) {
-  console.log("isGroupActive", group.label, pathname)
-  return group.items.some((item) => pathname.startsWith(item.href))
+function isGroupActive(group: NavGroup, activeKey: string) {
+  return group.items.some((item) => item.registryKey === activeKey)
 }
 
 /* ============================================================
-   LAYOUT
+   LAYOUT (wrapper — só monta o Provider)
    ============================================================ */
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const activeTab = searchParams.get("tab")
+  return (
+    <TabsProvider>
+      <DashboardLayoutInner>{children}</DashboardLayoutInner>
+    </TabsProvider>
+  )
+}
+
+/* ============================================================
+   LAYOUT INNER — usa o contexto de abas
+   ============================================================ */
+function DashboardLayoutInner({ children }: { children: React.ReactNode }) {
+  const { activeKey, openTab } = useTabs()
 
   const [collapsed, setCollapsed] = useState(false)
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
-    // grupos abrem automaticamente se a rota atual pertence a eles
     const initial: Record<string, boolean> = {}
     for (const item of NAV_ITEMS) {
       if (item.type === "group") {
-        initial[item.label] = isGroupActive(item, pathname)
+        initial[item.label] = isGroupActive(item, activeKey)
       }
     }
     return initial
   })
 
   function toggleSidebar() {
-    console.log("toggleSidebar")
     setCollapsed((prev) => {
       const next = !prev
       if (typeof window !== "undefined") localStorage.setItem(SIDEBAR_STORAGE_KEY, String(next))
@@ -124,7 +138,6 @@ export default function DashboardLayout({
   }
 
   function toggleGroup(label: string) {
-    console.log("toggleGroup")
     setOpenGroups((prev) => {
       const next = { ...prev, [label]: !prev[label] }
       if (typeof window !== "undefined") localStorage.setItem(GROUPS_STORAGE_KEY, JSON.stringify(next))
@@ -132,6 +145,16 @@ export default function DashboardLayout({
     })
     // se a sidebar estiver colapsada, expandir ao abrir um grupo
     if (collapsed) setCollapsed(false)
+  }
+
+  function handleOpenTab(item: { label: string; registryKey: string; params?: Record<string, any> }) {
+    openTab({
+      key: item.registryKey,
+      registryKey: item.registryKey,
+      label: item.label,
+      params: item.params,
+      closable: item.registryKey !== "dashboard",
+    })
   }
 
   return (
@@ -161,13 +184,13 @@ export default function DashboardLayout({
           <nav className="space-y-1 text-sm">
             {NAV_ITEMS.map((item) => {
               if (item.type === "link") {
-                const active = pathname === item.href
+                const active = activeKey === item.registryKey
                 return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
+                  <button
+                    key={item.registryKey}
+                    onClick={() => handleOpenTab(item)}
                     title={collapsed ? item.label : undefined}
-                    className={`flex items-center gap-2 px-2 py-2 rounded transition-colors ${
+                    className={`w-full flex items-center gap-2 px-2 py-2 rounded transition-colors text-left ${
                       collapsed ? "justify-center" : ""
                     } ${
                       active
@@ -177,12 +200,12 @@ export default function DashboardLayout({
                   >
                     <item.icon size={16} className="shrink-0" />
                     {!collapsed && <span className="truncate">{item.label}</span>}
-                  </Link>
+                  </button>
                 )
               }
 
               // GRUPO
-              const groupActive = isGroupActive(item, pathname)
+              const groupActive = isGroupActive(item, activeKey)
               const open = !!openGroups[item.label]
 
               return (
@@ -214,15 +237,16 @@ export default function DashboardLayout({
                   {!collapsed && open && (
                     <div className="mt-1 ml-3 pl-3 border-l border-zinc-800 space-y-1">
                       {item.items.map((sub) => {
+                        // sub-item ativo: aba ativa é essa registryKey E (se houver initialTab) ela bate com o params atual
                         const active =
-                          sub.href.includes("?tab=")
-                            ? pathname === "/dashboard/cadastro" && sub.href.endsWith(`tab=${activeTab}`)
-                            : pathname.startsWith(sub.href)
+                          activeKey === sub.registryKey &&
+                          (!sub.params?.initialTab || true) // destaque fica no nível da aba; refine se quiser destacar a sub-aba exata
+
                         return (
-                          <Link
-                            key={sub.href}
-                            href={sub.href}
-                            className={`flex items-center gap-2 px-2 py-1.5 rounded text-sm transition-colors ${
+                          <button
+                            key={`${sub.registryKey}-${sub.label}`}
+                            onClick={() => handleOpenTab(sub)}
+                            className={`w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm transition-colors text-left ${
                               active
                                 ? "bg-zinc-800 text-white"
                                 : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
@@ -230,7 +254,7 @@ export default function DashboardLayout({
                           >
                             <sub.icon size={14} className="shrink-0" />
                             <span className="truncate">{sub.label}</span>
-                          </Link>
+                          </button>
                         )
                       })}
                     </div>
@@ -259,8 +283,10 @@ export default function DashboardLayout({
         </div>
       </aside>
 
-      {/* CONTENT */}
-      <main className="flex-1 bg-zinc-100 overflow-y-auto">{children}</main>
+      {/* CONTENT — não usa mais {children} do Next, o conteúdo vem das abas */}
+      <main className="flex-1 bg-zinc-100 overflow-y-auto">
+        <TabsHost />
+      </main>
     </div>
   )
 }

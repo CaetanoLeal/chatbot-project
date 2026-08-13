@@ -2,7 +2,7 @@
 "use client"
 
 import { useState, useEffect, Fragment } from "react"
-import { useRouter } from "next/navigation"
+import { useTabs } from "../context/tabs-context"
 import { History } from "lucide-react"
 
 /* =====================
@@ -56,7 +56,7 @@ function formatDate(dateString?: string) {
    PAGE
 ===================== */
 export default function ContactsPage() {
-  const router = useRouter()
+  const { openTab } = useTabs()
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState(true)
@@ -67,7 +67,7 @@ export default function ContactsPage() {
       try {
         setLoading(true)
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contatos`)
 
         if (!response.ok) {
           throw new Error("Erro ao buscar contatos")
@@ -86,8 +86,14 @@ export default function ContactsPage() {
   }, [])
 
   function irParaHistorico(e: React.MouseEvent, idChat: string) {
-    e.stopPropagation() // não deixa o clique também abrir/fechar o accordion
-    router.push(`/dashboard/history?chat=${idChat}`)
+    e.stopPropagation()
+    openTab({
+      registryKey: "historico",
+      key: "historico",
+      label: "Histórico",
+      closable: true,
+      params: { chat: idChat }
+    })
   }
 
   return (

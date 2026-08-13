@@ -1,5 +1,5 @@
-//app/(dashboard)/dashboard/lib/types.ts
-export type Period = "today" | "month" | "year"
+// lib/types.ts
+export type Period = "today" | "week" | "year" | "custom"
 
 export interface KpiValue {
   total: number

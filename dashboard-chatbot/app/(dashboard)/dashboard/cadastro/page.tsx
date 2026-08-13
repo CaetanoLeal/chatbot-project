@@ -27,27 +27,19 @@ const TAB_LABELS: Record<TabKey, string> = {
   setor: "Setor",
 };
 
-export default function CadastroPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const tabFromUrl = searchParams.get("tab") as TabKey | null;
+export default function CadastroPage({ initialTab }: { initialTab?: TabKey }) {
   const [activeTab, setActiveTab] = useState<TabKey>(
-    tabFromUrl && TAB_KEYS.includes(tabFromUrl) ? tabFromUrl : "atendente"
-  );
+    initialTab && TAB_KEYS.includes(initialTab) ? initialTab : "atendente"
+  )
 
-  // Mantém o estado sincronizado se o usuário clicar em um link do menu lateral
-  // que já aponta pra /dashboard/cadastro?tab=xxx
   useEffect(() => {
-    if (tabFromUrl && TAB_KEYS.includes(tabFromUrl) && tabFromUrl !== activeTab) {
-      setActiveTab(tabFromUrl);
+    if (initialTab && TAB_KEYS.includes(initialTab)) {
+      setActiveTab(initialTab)
     }
-  }, [tabFromUrl]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [initialTab])
 
   function handleChangeTab(key: string) {
-    setActiveTab(key as TabKey);
-    // scroll:false + replace evita reload da página, só atualiza a URL (deep-link / botão voltar)
-    router.replace(`/dashboard/cadastro?tab=${key}`, { scroll: false });
+    setActiveTab(key as TabKey)
   }
 
   const tabs = [
@@ -57,11 +49,11 @@ export default function CadastroPage() {
     { key: "ia", label: TAB_LABELS.ia, content: <IaPage /> },
     { key: "atalho", label: TAB_LABELS.atalho, content: <ShortcutsPage /> },
     { key: "setor", label: TAB_LABELS.setor, content: <SetoresPage /> },
-  ];
+  ]
 
   return (
-    <div className="h-[calc(100vh-0px)] flex flex-col">
+    <div className="h-full flex flex-col">
       <KeepAliveTabs tabs={tabs} activeKey={activeTab} onChange={handleChangeTab} />
     </div>
-  );
+  )
 }

@@ -15,6 +15,7 @@ import {
   Award
 } from "lucide-react"
 
+import { useTabs } from "../context/tabs-context"
 import { DashboardIAData } from "./lib/types"
 import { formatNumber } from "../lib/format"
 import KpiCard from "../components/kpicard"
@@ -39,6 +40,7 @@ function getGreeting() {
 }
 
 export default function PainelIAPage() {
+  const { openTab } = useTabs()
   const [greeting, setGreeting] = useState("Olá")
   const [data, setData] = useState<DashboardIAData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -49,6 +51,15 @@ export default function PainelIAPage() {
   
   const [startDate, setStartDate] = useState(defaultStart)
   const [endDate, setEndDate] = useState(defaultEnd)
+
+  const handleAbrirFunis = () => {
+    openTab({
+      registryKey: "ia",
+      key: "ia",
+      label: "IA",
+      closable: true,
+    })
+  }
 
   const fetchData = useCallback(async () => {
     setLoading(true)
@@ -117,12 +128,12 @@ export default function PainelIAPage() {
             <RefreshCcw size={16} className={loading ? "animate-spin" : ""} />
             Atualizar
           </button>
-          <Link
-            href="/dashboard/aipannel/aifunnels"
-            className="bg-blue-600 hover:bg-blue-700 transition-colors text-white px-5 py-3   rounded-xl flex items-center gap-2 font-medium shadow-sm"
+          <button
+            onClick={handleAbrirFunis}
+            className="bg-blue-600 hover:bg-blue-700 transition-colors text-white px-5 py-3 rounded-xl flex items-center gap-2 font-medium shadow-sm"
           >
             Ir para funis de IA
-          </Link>
+          </button>
         </div>
       </div>
 

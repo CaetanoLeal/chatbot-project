@@ -62,7 +62,7 @@ const fetchInstances = async () => {
       name: item.name,
       number: item.number || "Não informado",
       platforms: [item.platform?.toLowerCase() as InstancePlatform],
-      funnel: "Sem funil",
+      funnel: item.funil || "Sem funil",
       profilePicture: item.fotoPerfil || null,
     }));
 
