@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect, useMemo, useCallback, useRef } from "react"
 import { io } from "socket.io-client"
-import { Zap, ChevronLeft, ChevronRight } from "lucide-react"
+import { Zap, ChevronLeft, ChevronRight, X } from "lucide-react"
 
 const socket = io(`${process.env.NEXT_PUBLIC_API_URL}`)
 
@@ -31,10 +31,15 @@ type Setor = {
   no_setor: string
 }
 
+// Tipos de atalho conforme tbl_atalho_tipo
+// G = GERAL, B = BOAS-VINDAS, E = ENCERRAMENTO, T = TRANSFERÊNCIA, F = FECHADO
+type AtalhoTipo = "G" | "B" | "E" | "T" | "F"
+
 type MensagemPredefinida = {
   id_atalho: string
   no_atalho: string
   ds_atalho: string
+  sg_atalho_tipo: AtalhoTipo
 }
 
 type Atendente = {
@@ -61,6 +66,21 @@ type ChatThread = {
 }
 
 /* =====================
+   SELEÇÃO DE PREDEFINIDA (modal)
+===================== */
+type AcaoComPredefinida = "iniciar" | "finalizar" | "transferir"
+
+type SelecaoPredefinidaState = {
+  acao: AcaoComPredefinida
+  tipo: AtalhoTipo
+  opcoes: MensagemPredefinida[]
+  chatId: string
+  contactName: string
+  // chamado com a mensagem escolhida (ou null se o usuário optar por não enviar nada)
+  onConfirm: (msg: MensagemPredefinida | null) => void
+} | null
+
+/* =====================
    STATUS MAPS
 ===================== */
 const STATUS_LABEL: Record<ChatStatus, string> = {
@@ -82,7 +102,20 @@ const STATUS_COLOR: Record<ChatStatus, string> = {
 }
 
 const ATENDENTE_STORAGE_KEY = "painel:id_atendente_ativo"
+const AUTO_ENVIO_STORAGE_KEY = "painel:auto_envio_predefinida"
 const PAGE_SIZE = 30
+
+const ACAO_TITULO: Record<AcaoComPredefinida, string> = {
+  iniciar: "Iniciar atendimento",
+  finalizar: "Finalizar atendimento",
+  transferir: "Transferir atendimento",
+}
+
+const ACAO_DESCRICAO: Record<AcaoComPredefinida, string> = {
+  iniciar: "Existe mais de uma mensagem de boas-vindas cadastrada. Escolha qual enviar ao iniciar o atendimento:",
+  finalizar: "Existe mais de uma mensagem de encerramento cadastrada. Escolha qual enviar antes de finalizar:",
+  transferir: "Existe mais de uma mensagem de transferência cadastrada. Escolha qual enviar antes de transferir:",
+}
 
 /* =====================
    HELPERS COMPONENTS
@@ -158,6 +191,13 @@ export default function MessagesPage() {
   const [atendentes, setAtendentes] = useState<Atendente[]>([])
   const [idAtendenteAtivo, setIdAtendenteAtivo] = useState<string>("")
 
+  // Switch geral: liga/desliga o envio automático de mensagens predefinidas
+  // ao iniciar / finalizar / transferir atendimentos.
+  const [autoEnviarPredefinida, setAutoEnviarPredefinida] = useState<boolean>(true)
+
+  // Estado do modal de escolha quando há 2+ mensagens predefinidas do mesmo tipo
+  const [selecaoPredefinida, setSelecaoPredefinida] = useState<SelecaoPredefinidaState>(null)
+
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const activeChat = useMemo(() => threads.find((t) => t.id === activeChatId) ?? null, [threads, activeChatId])
@@ -191,6 +231,9 @@ export default function MessagesPage() {
     loadMensagensPredefinidas()
     const salvo = typeof window !== "undefined" ? localStorage.getItem(ATENDENTE_STORAGE_KEY) : null
     if (salvo) setIdAtendenteAtivo(salvo)
+
+    const autoSalvo = typeof window !== "undefined" ? localStorage.getItem(AUTO_ENVIO_STORAGE_KEY) : null
+    if (autoSalvo !== null) setAutoEnviarPredefinida(autoSalvo === "1")
   }, [])
 
   useEffect(() => {
@@ -346,6 +389,19 @@ export default function MessagesPage() {
     if (typeof window !== "undefined") localStorage.setItem(ATENDENTE_STORAGE_KEY, id)
   }
 
+  function alternarAutoEnvio() {
+    setAutoEnviarPredefinida((prev) => {
+      const novo = !prev
+      if (typeof window !== "undefined") localStorage.setItem(AUTO_ENVIO_STORAGE_KEY, novo ? "1" : "0")
+      return novo
+    })
+  }
+
+  // Retorna as mensagens predefinidas cadastradas para um tipo específico (B, E, T...)
+  function mensagensPorTipo(tipo: AtalhoTipo): MensagemPredefinida[] {
+    return mensagensPredefinidas.filter((m) => m.sg_atalho_tipo === tipo)
+  }
+
   function formatChatFromApi(chat: any): ChatThread {
   return {
     id: chat.id_chat,
@@ -498,27 +554,37 @@ export default function MessagesPage() {
     setCollapsedColumns((prev) => ({ ...prev, [key]: !prev[key] }))
   }
 
-  async function sendMessage() {
-    if (!reply.trim() || !activeChat || sending) return
-    if (!idAtendenteAtivo) return alert("Selecione o atendente que está usando o sistema antes de responder.")
+  /* =====================
+     ENVIO DE MENSAGEM (genérico, usado tanto pelo input quanto pelo fluxo automático)
+  ===================== */
+  // Envia uma mensagem de texto para um chat específico sem depender do estado `reply`.
+  // Usado internamente pelas rotinas de iniciar/finalizar/transferir com predefinidas.
+  async function enviarMensagemDireta(chatId: string, texto: string): Promise<boolean> {
+    if (!texto.trim()) return true
+    if (!idAtendenteAtivo) {
+      alert("Selecione o atendente que está usando o sistema antes de enviar mensagens.")
+      return false
+    }
 
-    setSending(true)
     try {
-      const res = await fetch(`${API_URL}/api/chats/${activeChat.id}/mensagens`, {
+      const res = await fetch(`${API_URL}/api/chats/${chatId}/mensagens`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto: reply.trim(), id_atendente: idAtendenteAtivo }),
+        body: JSON.stringify({ texto: texto.trim(), id_atendente: idAtendenteAtivo }),
       })
       const json = await res.json()
-      if (!json.success) return alert(json.message || "Não foi possível enviar a mensagem.")
+      if (!json.success) {
+        alert(json.message || "Não foi possível enviar a mensagem predefinida.")
+        return false
+      }
 
       const atendenteAtivo = atendentes.find((a) => a.id_atendente === idAtendenteAtivo)
       const newMessage: ChatMessage = {
         id: json.data.id_mensagem || Date.now().toString(),
-        platform: activeChat.platform,
+        platform: "whatsapp",
         fromMe: true,
         senderName: atendenteAtivo?.no_atendente || "sistema",
-        content: reply.trim(),
+        content: texto.trim(),
         timestamp: json.data.dh_envio
           ? new Date(json.data.dh_envio).toLocaleString()
           : new Date().toLocaleString(),
@@ -528,45 +594,132 @@ export default function MessagesPage() {
       setThreads((prev) =>
         sortThreads(
           prev.map((chat) =>
-            chat.id === activeChat.id
-              ? { ...chat, status: chat.status === "P" ? "H" : chat.status, atendenteNome: atendenteAtivo?.no_atendente || chat.atendenteNome, messages: [...chat.messages, newMessage] }
+            chat.id === chatId
+              ? {
+                  ...chat,
+                  atendenteNome: atendenteAtivo?.no_atendente || chat.atendenteNome,
+                  messages: [...chat.messages, newMessage],
+                }
               : chat
           )
         )
       )
-      setReply("")
+      return true
     } catch (err) {
-      alert("Erro ao enviar mensagem. Tente novamente.")
+      alert("Erro ao enviar mensagem predefinida. Tente novamente.")
+      return false
+    }
+  }
+
+  async function sendMessage() {
+    if (!reply.trim() || !activeChat || sending) return
+    if (!idAtendenteAtivo) return alert("Selecione o atendente que está usando o sistema antes de responder.")
+
+    setSending(true)
+    try {
+      const ok = await enviarMensagemDireta(activeChat.id, reply)
+      if (ok) {
+        // sendMessage também garante a transição de status P -> H quando o atendente responde manualmente
+        setThreads((prev) =>
+          sortThreads(
+            prev.map((chat) =>
+              chat.id === activeChat.id && chat.status === "P" ? { ...chat, status: "H" } : chat
+            )
+          )
+        )
+        setReply("")
+      }
     } finally {
       setSending(false)
     }
   }
 
-  async function iniciarAtendimento() {
-    if (!activeChat || iniciandoAtendimento) return
-
+  /* =====================
+     INICIAR ATENDIMENTO (com lógica de mensagem de boas-vindas - tipo B)
+  ===================== */
+  async function executarIniciarBase(chatId: string): Promise<boolean> {
     setIniciandoAtendimento(true)
     try {
-      // Supondo que você crie a rota /iniciar no backend (veja a etapa 2)
-      const res = await fetch(`${API_URL}/api/chats/${activeChat.id}/iniciar`, { method: "POST" })
+      const res = await fetch(`${API_URL}/api/chats/${chatId}/iniciar`, { method: "POST" })
       const json = await res.json()
-      
-      if (!json.success) return alert(json.message || "Não foi possível iniciar o atendimento.")
 
-      // Atualiza o chat localmente para o status "H" (Humano)
+      if (!json.success) {
+        alert(json.message || "Não foi possível iniciar o atendimento.")
+        return false
+      }
+
       setThreads((prev) =>
-        sortThreads(
-          prev.map((chat) =>
-            chat.id === activeChat.id
-              ? { ...chat, status: "H" }
-              : chat
-          )
-        )
+        sortThreads(prev.map((chat) => (chat.id === chatId ? { ...chat, status: "H" } : chat)))
       )
+      return true
     } catch (err) {
       alert("Erro ao iniciar atendimento. Tente novamente.")
+      return false
     } finally {
       setIniciandoAtendimento(false)
+    }
+  }
+
+  async function iniciarAtendimento() {
+    if (!activeChat || iniciandoAtendimento) return
+    const chatId = activeChat.id
+    const contactName = activeChat.contactName
+
+    // Switch desligado: comportamento antigo, sem enviar nada automaticamente
+    if (!autoEnviarPredefinida) {
+      await executarIniciarBase(chatId)
+      return
+    }
+
+    const opcoes = mensagensPorTipo("B")
+
+    if (opcoes.length === 0) {
+      await executarIniciarBase(chatId)
+      return
+    }
+
+    if (opcoes.length === 1) {
+      const ok = await executarIniciarBase(chatId)
+      if (ok) await enviarMensagemDireta(chatId, opcoes[0].ds_atalho)
+      return
+    }
+
+    // 2 ou mais mensagens de boas-vindas cadastradas: pede pro usuário escolher
+    setSelecaoPredefinida({
+      acao: "iniciar",
+      tipo: "B",
+      opcoes,
+      chatId,
+      contactName,
+      onConfirm: async (msg) => {
+        setSelecaoPredefinida(null)
+        const ok = await executarIniciarBase(chatId)
+        if (ok && msg) await enviarMensagemDireta(chatId, msg.ds_atalho)
+      },
+    })
+  }
+
+  /* =====================
+     FINALIZAR ATENDIMENTO (envia mensagem de encerramento - tipo E - antes de finalizar)
+  ===================== */
+  async function executarFinalizarBase(chatId: string): Promise<boolean> {
+    setFinalizando(true)
+    try {
+      const res = await fetch(`${API_URL}/api/chats/${chatId}/finalizar`, { method: "POST" })
+      const json = await res.json()
+      if (!json.success) {
+        alert(json.message || "Não foi possível finalizar o atendimento.")
+        return false
+      }
+
+      setThreads((prev) => prev.filter((chat) => chat.id !== chatId))
+      setActiveChatId((prev) => (prev === chatId ? null : prev))
+      return true
+    } catch (err) {
+      alert("Erro ao finalizar atendimento. Tente novamente.")
+      return false
+    } finally {
+      setFinalizando(false)
     }
   }
 
@@ -574,46 +727,62 @@ export default function MessagesPage() {
     if (!activeChat || finalizando) return
     if (!confirm(`Finalizar o atendimento de ${activeChat.contactName}?`)) return
 
-    setFinalizando(true)
-    try {
-      const res = await fetch(`${API_URL}/api/chats/${activeChat.id}/finalizar`, { method: "POST" })
-      const json = await res.json()
-      if (!json.success) return alert(json.message || "Não foi possível finalizar o atendimento.")
+    const chatId = activeChat.id
+    const contactName = activeChat.contactName
 
-      const finalizedId = activeChat.id
-
-      setThreads((prev) => prev.filter((chat) => chat.id !== finalizedId)) // 👈 remove da lista
-
-      setActiveChatId((prev) => (prev === finalizedId ? null : prev))      // 👈 limpa seleção
-    } catch (err) {
-      alert("Erro ao finalizar atendimento. Tente novamente.")
-    } finally {
-      setFinalizando(false)
+    if (!autoEnviarPredefinida) {
+      await executarFinalizarBase(chatId)
+      return
     }
+
+    const opcoes = mensagensPorTipo("E")
+
+    if (opcoes.length === 0) {
+      await executarFinalizarBase(chatId)
+      return
+    }
+
+    if (opcoes.length === 1) {
+      await enviarMensagemDireta(chatId, opcoes[0].ds_atalho)
+      await executarFinalizarBase(chatId)
+      return
+    }
+
+    setSelecaoPredefinida({
+      acao: "finalizar",
+      tipo: "E",
+      opcoes,
+      chatId,
+      contactName,
+      onConfirm: async (msg) => {
+        setSelecaoPredefinida(null)
+        if (msg) await enviarMensagemDireta(chatId, msg.ds_atalho)
+        await executarFinalizarBase(chatId)
+      },
+    })
   }
 
-  async function transferirAtendimento(idSetorDestino: string) {
-    if (!activeChat || transferindo || !idSetorDestino) return
-
-    const setorDestino = setores.find((s) => s.id_setor === idSetorDestino)
-    if (!setorDestino) return
-
-    if (!confirm(`Transferir o atendimento de ${activeChat.contactName} para ${setorDestino.no_setor}?`)) return
-
+  /* =====================
+     TRANSFERIR ATENDIMENTO (envia mensagem de transferência - tipo T - antes de transferir)
+  ===================== */
+  async function executarTransferirBase(chatId: string, setorDestino: Setor): Promise<boolean> {
     setTransferindo(true)
     try {
-      const res = await fetch(`${API_URL}/api/chats/${activeChat.id}/transferir`, {
+      const res = await fetch(`${API_URL}/api/chats/${chatId}/transferir`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id_setor: idSetorDestino }),
+        body: JSON.stringify({ id_setor: setorDestino.id_setor }),
       })
       const json = await res.json()
-      if (!json.success) return alert(json.message || "Não foi possível transferir o atendimento.")
+      if (!json.success) {
+        alert(json.message || "Não foi possível transferir o atendimento.")
+        return false
+      }
 
       setThreads((prev) =>
         sortThreads(
           prev.map((chat) =>
-            chat.id === activeChat.id
+            chat.id === chatId
               ? {
                   ...chat,
                   status: "P",
@@ -625,11 +794,56 @@ export default function MessagesPage() {
           )
         )
       )
+      return true
     } catch (err) {
       alert("Erro ao transferir atendimento. Tente novamente.")
+      return false
     } finally {
       setTransferindo(false)
     }
+  }
+
+  async function transferirAtendimento(idSetorDestino: string) {
+    if (!activeChat || transferindo || !idSetorDestino) return
+
+    const setorDestino = setores.find((s) => s.id_setor === idSetorDestino)
+    if (!setorDestino) return
+
+    if (!confirm(`Transferir o atendimento de ${activeChat.contactName} para ${setorDestino.no_setor}?`)) return
+
+    const chatId = activeChat.id
+    const contactName = activeChat.contactName
+
+    if (!autoEnviarPredefinida) {
+      await executarTransferirBase(chatId, setorDestino)
+      return
+    }
+
+    const opcoes = mensagensPorTipo("T")
+
+    if (opcoes.length === 0) {
+      await executarTransferirBase(chatId, setorDestino)
+      return
+    }
+
+    if (opcoes.length === 1) {
+      await enviarMensagemDireta(chatId, opcoes[0].ds_atalho)
+      await executarTransferirBase(chatId, setorDestino)
+      return
+    }
+
+    setSelecaoPredefinida({
+      acao: "transferir",
+      tipo: "T",
+      opcoes,
+      chatId,
+      contactName,
+      onConfirm: async (msg) => {
+        setSelecaoPredefinida(null)
+        if (msg) await enviarMensagemDireta(chatId, msg.ds_atalho)
+        await executarTransferirBase(chatId, setorDestino)
+      },
+    })
   }
 
   const handleKeyDown = useCallback(
@@ -692,6 +906,27 @@ export default function MessagesPage() {
               </option>
             ))}
           </select>
+
+          {/* SWITCH: envio automático de mensagens predefinidas */}
+          <div className="flex items-center gap-2 pl-3 ml-1 border-l border-zinc-200">
+            <span className="text-sm font-medium text-zinc-500 whitespace-nowrap">Auto-envio predefinidas</span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={autoEnviarPredefinida}
+              onClick={alternarAutoEnvio}
+              title={autoEnviarPredefinida ? "Desligar envio automático" : "Ligar envio automático"}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors shrink-0 ${
+                autoEnviarPredefinida ? "bg-emerald-600" : "bg-zinc-300"
+              }`}
+            >
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${
+                  autoEnviarPredefinida ? "translate-x-6" : "translate-x-1"
+                }`}
+              />
+            </button>
+          </div>
         </div>
 
         {pendentesCount > 0 && (
@@ -824,7 +1059,11 @@ export default function MessagesPage() {
                       <option value="">
                         {transferindo ? "Transferindo..." : "Transferir..."}
                       </option>
-                      {/* ... mapeamento dos setores ... */}
+                      {setores.map((s) => (
+                        <option key={s.id_setor} value={s.id_setor}>
+                          {s.no_setor}
+                        </option>
+                      ))}
                     </select>
 
                     <button
@@ -948,6 +1187,58 @@ export default function MessagesPage() {
         </main>
 
       </div>
+
+      {/* MODAL: escolha de mensagem predefinida quando há 2+ opções do mesmo tipo */}
+      {selecaoPredefinida && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-zinc-200">
+              <div>
+                <h2 className="font-bold text-zinc-900 text-base">{ACAO_TITULO[selecaoPredefinida.acao]}</h2>
+                <p className="text-xs text-zinc-500 mt-0.5">{selecaoPredefinida.contactName}</p>
+              </div>
+              <button
+                onClick={() => setSelecaoPredefinida(null)}
+                className="w-8 h-8 flex items-center justify-center rounded hover:bg-zinc-100 text-zinc-400 hover:text-zinc-700"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            <div className="px-5 py-4">
+              <p className="text-sm text-zinc-600 mb-3">{ACAO_DESCRICAO[selecaoPredefinida.acao]}</p>
+
+              <div className="flex flex-col gap-2 max-h-72 overflow-y-auto">
+                {selecaoPredefinida.opcoes.map((op) => (
+                  <button
+                    key={op.id_atalho}
+                    onClick={() => selecaoPredefinida.onConfirm(op)}
+                    className="text-left border border-zinc-200 rounded-lg px-3 py-2 hover:border-zinc-800 hover:bg-zinc-50 transition-colors"
+                  >
+                    <div className="font-semibold text-sm text-zinc-900">{op.no_atalho}</div>
+                    <div className="text-xs text-zinc-500 mt-0.5 line-clamp-2">{op.ds_atalho}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between gap-2 px-5 py-4 border-t border-zinc-200 bg-zinc-50">
+              <button
+                onClick={() => setSelecaoPredefinida(null)}
+                className="text-sm font-medium text-zinc-500 hover:text-zinc-800 px-3 py-2"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={() => selecaoPredefinida.onConfirm(null)}
+                className="text-sm font-semibold text-zinc-700 hover:text-zinc-900 border border-zinc-300 rounded-lg px-3 py-2 bg-white hover:bg-zinc-100"
+              >
+                Continuar sem enviar mensagem
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

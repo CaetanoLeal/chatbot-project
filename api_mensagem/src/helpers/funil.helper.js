@@ -327,11 +327,15 @@ async function direcionarParaPendente({ idUtilizador, idFunil, idSetor, noSetor 
   logger.info(`PENDENTE: SETOR ${nomeSetor ?? "NÃO INFORMADO"}`)
 }
 
-async function aplicarStatusEspecialChatbot({ idUtilizador, idFunil, idSetor }) {
+async function aplicarStatusEspecialChatbot({ idUtilizador, idFunil, idSetor, sendMessage }) {
   // Sem setor definido na mensagem finalizadora -> apenas encerra (status ABERTO)
   if (!idSetor) {
     return direcionarParaPendente({ idUtilizador, idFunil, idSetor })
   }
+
+  // checa horário de funcionamento do setor antes de decidir o destino
+  const podeSeguir = await verificarSetorAbertoOuFechar({ idUtilizador, idFunil, idSetor, sendMessage })
+  if (!podeSeguir) return
 
   // Tenta localizar a IA cadastrada para este funil + setor
   const config = await getFunilIaConfig(idFunil, idSetor)
@@ -636,6 +640,7 @@ async function iniciarOuProgredirChatbot(idUtilizador, idFunil, cdMensagem, send
         idUtilizador,
         idFunil,
         idSetor: msg.id_setor,
+        sendMessage,
       })
       break
     }
@@ -1021,6 +1026,150 @@ async function _processarEtapaIA({ idUtilizador, idFunil, idChat, texto, sendMes
 }
 
 /* ============================================================
+   HORÁRIO DE FUNCIONAMENTO DO SETOR
+   ============================================================ */
+  // Mapeia Date.getDay() (0=domingo..6=sábado) para tbl_dia_semana (1=domingo..7=sábado)
+  function _agoraBrasilia() {
+    const agora = new Date()
+
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Sao_Paulo",
+      weekday: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23"
+    })
+
+    const partes = formatter.formatToParts(agora)
+
+    const get = tipo => partes.find(p => p.type === tipo)?.value
+
+    const dias = {
+      Sun: 1,
+      Mon: 2,
+      Tue: 3,
+      Wed: 4,
+      Thu: 5,
+      Fri: 6,
+      Sat: 7
+    }
+
+    const diaSemana = get("weekday")
+
+    return {
+      nuDiaSemana: dias[diaSemana],
+      horaAtual: `${get("hour")}:${get("minute")}:${get("second")}`
+    }
+  }
+
+  async function _getSituacaoSetor(idSetor) {
+    if (!idSetor) {
+      return { aberto: true, is24h: true }
+    }
+
+    const rTemHorario = await db.query(
+      `SELECT 1
+        FROM tbl_setor_horario
+        WHERE id_setor = $1
+          AND is_excluido = false
+        LIMIT 1`,
+      [idSetor]
+    )
+
+    // Nenhum horário cadastrado = 24h
+    if (rTemHorario.rows.length === 0) {
+      return { aberto: true, is24h: true }
+    }
+
+    const agora = _agoraBrasilia()
+
+    const nuDiaSemana = agora.nuDiaSemana
+    const horaAtual = agora.horaAtual
+
+    console.log(
+      `[HORARIO] Brasília → dia=${nuDiaSemana}, hora=${horaAtual}`
+    )
+
+    const rHorarios = await db.query(
+      `SELECT hr_inicial, hr_final
+        FROM tbl_setor_horario
+        WHERE id_setor = $1
+          AND nu_dia_semana = $2
+          AND is_excluido = false`,
+      [idSetor, nuDiaSemana]
+    )
+
+    console.log(
+      `[HORARIO] Horários encontrados para o setor ${idSetor}:`,
+      rHorarios.rows
+    )
+
+    const dentroDoHorario = rHorarios.rows.some(h => {
+      const horaInicial = String(h.hr_inicial)
+      const horaFinal = String(h.hr_final)
+
+      console.log(
+        `[HORARIO] Comparando ${horaAtual} >= ${horaInicial} && ${horaAtual} <= ${horaFinal}`
+      )
+
+      return (
+        horaAtual >= horaInicial &&
+        horaAtual <= horaFinal
+      )
+    })
+
+    console.log(
+      `[HORARIO] Resultado: ${dentroDoHorario ? "ABERTO" : "FECHADO"}`
+    )
+
+    return {
+      aberto: dentroDoHorario,
+      is24h: false
+    }
+  }
+
+  async function _getMensagemFechamento() {
+    const r = await db.query(
+      `SELECT ds_atalho FROM tbl_atalho
+        WHERE sg_atalho_tipo = 'F' AND is_excluido = false
+        ORDER BY dh_inclusao
+        LIMIT 1`
+    )
+    return r.rows[0]?.ds_atalho ?? null
+  }
+
+/**
+ * Verifica se o setor está aberto. Se estiver FECHADO, dispara a
+ * mensagem predefinida tipo F e finaliza a sessão (status ABERTO).
+ * Retorna true  -> pode seguir o fluxo normalmente
+ * Retorna false -> fluxo foi interrompido por fechamento
+ */
+async function verificarSetorAbertoOuFechar({ idUtilizador, idFunil, idSetor, sendMessage }) {
+  const situacao = await _getSituacaoSetor(idSetor)
+  if (situacao.aberto) return true
+
+  const mensagemFechamento = await _getMensagemFechamento()
+  if (mensagemFechamento) {
+    await sendMessage(mensagemFechamento)
+  } else {
+    logger.warn(`[HORARIO] Setor ${idSetor} está fechado mas não há mensagem predefinida tipo F cadastrada`)
+  }
+
+  await direcionarParaAberto({ idUtilizador, idFunil })
+    const agoraBrasilia = new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    dateStyle: "short",
+    timeStyle: "medium"
+  }).format(new Date())
+
+  logger.info(
+    `🔒 Setor ${idSetor} fechado no momento — utilizador ${idUtilizador} recebeu mensagem de fechamento e sessão foi encerrada — Brasília: ${agoraBrasilia}`
+  )
+  return false
+}
+
+/* ============================================================
    CRON / CRON-JOB: ENGINE DE EXPIRAÇÃO DE SESSÕES
    ============================================================ */
 async function verificarEProcessarExpiracoes(globalSendMessage) {
@@ -1139,5 +1288,6 @@ module.exports = {
   getFunilIaConfig,                  // uso opcional em rotas de admin/painel
   getUtilizadorExistente,
   marcarEnvioAutomatico,
-  consumirEnvioAutomatico
+  consumirEnvioAutomatico,
+  verificarSetorAbertoOuFechar,
 }
